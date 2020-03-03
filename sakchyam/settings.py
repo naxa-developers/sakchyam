@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
+# import django
+#
+# django.setup()
 
 import os
 
@@ -25,7 +28,7 @@ SECRET_KEY = 'w75se3g^b2jb2cd+1!0qr52p+3=#^hyp#6in0tcsah8rtp)k$x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_swagger',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +124,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
+
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+
+sentry_sdk.init(
+    dsn="https://a0b24277c6f244269f9b73a965d14d91@sentry.io/3529312",
+    integrations=[DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
 
 try:
     from sakchyam.local_settings import *
