@@ -37,6 +37,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            python3 -m venv venv
+            . venv/bin/activate
             pip install -r requirements.txt
             pip install codeclimate-test-reporter
             pip install coverage==4.3
@@ -64,6 +66,7 @@ jobs:
       - run:
           name: run tests
           command: |
+            . venv/bin/activate
             python manage.py migrate
             pytest
             mkdir test-reports
