@@ -2,6 +2,9 @@
 Sakchyam data visualization web application
 
 
+[![CircleCI](https://circleci.com/gh/naxa-developers/sakchyam/tree/master.svg?style=svg)](https://circleci.com/gh/naxa-developers/sakchyam/tree/master) [![Maintainability](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/maintainability)](https://codeclimate.com/github/naxa-developers/sakchyam/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/test_coverage)](https://codeclimate.com/github/naxa-developers/sakchyam/test_coverage)
+
+
 
 ### Steps To Follow
 
