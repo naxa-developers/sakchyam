@@ -2,7 +2,7 @@
 Sakchyam data visualization web application
 
 
-[![Requirements Status](https://requires.io/github/naxa-developers/sakchyam/requirements.svg?branch=master)](https://requires.io/github/naxa-developers/sakchyam/requirements/?branch=master) [![CircleCI](https://circleci.com/gh/naxa-developers/sakchyam/tree/master.svg?style=svg)](https://circleci.com/gh/naxa-developers/sakchyam/tree/master) [![Maintainability](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/maintainability)](https://codeclimate.com/github/naxa-developers/sakchyam/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/test_coverage)](https://codeclimate.com/github/naxa-developers/sakchyam/test_coverage)
+[![Requirements Status](https://requires.io/github/naxa-developers/sakchyam/requirements.svg?branch=master)](https://requires.io/github/naxa-developers/sakchyam/requirements/?branch=master) [![CircleCI](https://circleci.com/gh/naxa-developers/sakchyam/tree/master.svg?style=svg)](https://circleci.com/gh/naxa-developers/sakchyam/tree/master) [![Maintainability](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/maintainability)](https://codeclimate.com/github/naxa-developers/sakchyam/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/test_coverage)](https://codeclimate.com/github/naxa-developers/sakchyam/test_coverage) ![version](https://img.shields.io/badge/python-v3.6-orange?style=flat&logo=python)
 
 
 
