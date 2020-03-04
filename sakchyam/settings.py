@@ -146,7 +146,7 @@ sentry_sdk.init(
 
 
 try:
-    from sakchyam.local_settings import *
+    from sakchyam.local_setting import *
 except ImportError:
     pass
 
