@@ -1,19 +1,36 @@
-# sakchyam
-Sakchyam data visualization web application
+# Sakchyam Data Visaualization Web Application
+
+![Imgur](https://i.imgur.com/h2ppROy.png) 
+
+> Sakchyam Web Application
+> For visaualization of Project
+> Data and its services. 
+> This project provides a way to 
+> show the works sakchyam in a
+> interactive way for user.
+
+
+
 
 
 [![Requirements Status](https://requires.io/github/naxa-developers/sakchyam/requirements.svg?branch=master)](https://requires.io/github/naxa-developers/sakchyam/requirements/?branch=master) [![CircleCI](https://circleci.com/gh/naxa-developers/sakchyam/tree/master.svg?style=svg)](https://circleci.com/gh/naxa-developers/sakchyam/tree/master) [![Maintainability](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/maintainability)](https://codeclimate.com/github/naxa-developers/sakchyam/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/a89b6658ac3885befb78/test_coverage)](https://codeclimate.com/github/naxa-developers/sakchyam/test_coverage) ![version](https://img.shields.io/badge/python-v3.6-orange?style=flat&logo=python)
 
 
 
-### Steps To Follow
+## Installation
 
 - Clone this repository
 
-- Install docker and docker-compose in your system.
- Docker Refrence [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
- 
-- Create docker-compose.yml file
+```sh
+   git clone git@github.com:naxa-developers/sakchyam.git
+ ```
+
+- Install docker and docker-compose in your system. Docker Refrence Ubuntu
+
+- Create a symlink with name docker-compose.yml to docker-compose.local.yml
+```sh
+   ln -s docker-compose.local.yml docker-compose.yml
+ ```
 
 - Rename .env_sample to .env and change it settings accordingly for the project
 
