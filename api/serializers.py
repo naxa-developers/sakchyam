@@ -7,6 +7,7 @@ class LogCategorySerializer(serializers.ModelSerializer):
         model = LogCategory
         fields = '__all__'
 
+
 class LogSubCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = LogSubCategory
@@ -35,4 +36,3 @@ class LogDataAlternativeSerializer(serializers.ModelSerializer):
         model = LogData
         fields = '__all__'
         depth = 1
-
