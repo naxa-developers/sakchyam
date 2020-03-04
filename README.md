@@ -2,12 +2,11 @@
 
 ![Imgur](https://i.imgur.com/h2ppROy.png) 
 
-> Sakchyam Web Application
-> For visaualization of Project
-> Data and its services. 
-> This project provides a way to 
-> show the works sakchyam in a
-> interactive way for user.
+> This Web Application is built to 
+> visualize Sakchyam's Project, Partner
+> and its services Data in an interactive way. 
+> This project is built on django a high-level Python Web framework
+
 
 
 
