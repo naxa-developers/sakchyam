@@ -34,7 +34,7 @@
 
 - Rename .env_sample to .env and change it settings accordingly for the project
 
-- Inside dvs folder rename local_settings_sample.py to local_settings.py and change it settings accordingly for the project
+- Inside sakchyam folder rename local_setting_sample.py to local_setting.py and change it settings accordingly for the project
 
 - Bulid docker image
 ```sh
