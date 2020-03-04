@@ -5,8 +5,8 @@ from django.db import models
 
 class LogCategory(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    input = models.CharField(max_length=500)
+    description = models.TextField(blank=True, null=True)
+    input = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -14,7 +14,7 @@ class LogCategory(models.Model):
 
 class LogSubCategory(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     category = models.ForeignKey(LogCategory, on_delete=models.CASCADE, related_name='Category')
 
     def __str__(self):
@@ -22,14 +22,13 @@ class LogSubCategory(models.Model):
 
 
 class MilestoneYear(models.Model):
-    year = models.DateField()
+    year = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.date
+        return self.year
 
 
 class LogData(models.Model):
-    baseline = models.CharField(max_length=30)
     planned = models.CharField(max_length=30)
     achieved = models.CharField(max_length=30)
     year = models.ForeignKey(MilestoneYear, on_delete=models.CASCADE, related_name='LogData')
