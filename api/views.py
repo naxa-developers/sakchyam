@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-
 class LogCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = LogCategorySerializer
     queryset = LogCategory.objects.all()
@@ -37,4 +36,5 @@ class LogDataAlternativeViewSet(viewsets.ModelViewSet):
     serializer_class = LogDataAlternativeSerializer
     queryset = LogData.objects.all()
     permission_classes = []
+
 

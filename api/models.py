@@ -29,6 +29,12 @@ class MilestoneYear(models.Model):
 
 
 class LogData(models.Model):
+    DATA_TYPE = (
+        (0, 'Number'),
+        (1, 'Funds'),
+        (2, 'Percentage'),
+    )
+    data_type = models.IntegerField(choices=DATA_TYPE, default=0)
     planned = models.CharField(max_length=30)
     achieved = models.CharField(max_length=30)
     year = models.ForeignKey(MilestoneYear, on_delete=models.CASCADE, related_name='LogData')
