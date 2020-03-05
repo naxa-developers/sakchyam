@@ -1,4 +1,7 @@
 from django.urls import reverse, resolve
+from django.test import TestCase
+from dashboard.views import signup
+
 #
 #
 # class TestUrls:
@@ -54,3 +57,21 @@ from django.urls import reverse, resolve
 #     def test_dashboard_token(self):
 #         path = reverse('token')
 #         assert resolve(path).view_name == "token"
+
+
+class TestUrls(TestCase):
+
+    def test_signup_url_resolve_signup_view(self):
+        url = reverse('signup')
+        view = resolve(url)
+        self.assertEqual(view.func, signup)
+
+    def test_login_url_resolve_login_view(self):
+        url = reverse('login')
+        view = resolve(url)
+        self.assertEqual(view.view_name, 'login')
+
+    def test_logout_url_resolve_login_view(self):
+        url = reverse('logout')
+        view = resolve(url)
+        self.assertEqual(view.view_name, 'logout')

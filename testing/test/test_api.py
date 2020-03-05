@@ -1,6 +1,8 @@
 from django.test import RequestFactory
 from django.urls import reverse
 from rest_framework.test import APIRequestFactory, APITestCase
+from django.test import TestCase
+from django.contrib.auth.models import User
 
 
 # class TestViews(APITestCase, APIRequestFactory):
@@ -61,5 +63,34 @@ from rest_framework.test import APIRequestFactory, APITestCase
 #         url = reverse('sub-sector')
 #         response = self.client.get(url, format='json')
 #         assert response.status_code == 200
-#
-#
+
+
+class UserTest(TestCase):
+
+    def setUp(self):
+        self.credentials = {
+            'username': 'sakchyam',
+            'password': 'sakchyam@123'}
+        User.objects.create_user(username='sakchyam', password='sakchyam@123')
+
+    def test_signup_view_status_code(self):
+        url = reverse('signup')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_view_status_code(self):
+        url = reverse('login')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_logout_view_status_code(self):
+        url = reverse('logout')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    # def test_user_login(self):
+    #     response = self.client.post('/login', self.credentials)
+    #     self.assertEqual(response.status_code, 200)
+
+
+

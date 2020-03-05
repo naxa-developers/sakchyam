@@ -14,7 +14,6 @@ class LogCategory(models.Model):
 
 class LogSubCategory(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(blank=True, null=True)
     category = models.ForeignKey(LogCategory, on_delete=models.CASCADE, related_name='Category')
 
     def __str__(self):
@@ -34,9 +33,11 @@ class LogData(models.Model):
         (1, 'Funds'),
         (2, 'Percentage'),
     )
+    description = models.TextField(blank=True, null=True)
     data_type = models.IntegerField(choices=DATA_TYPE, default=0)
-    planned = models.CharField(max_length=30)
-    achieved = models.CharField(max_length=30)
+    planned = models.CharField(max_length=30, blank=True, null=True)
+    planned_afp = models.CharField(max_length=30, blank=True, null=True)
+    achieved = models.CharField(max_length=30, blank=True, null=True)
     year = models.ForeignKey(MilestoneYear, on_delete=models.CASCADE, related_name='LogData')
     sub_category = models.ForeignKey(LogSubCategory, on_delete=models.CASCADE, related_name='LogData')
     category = models.ForeignKey(LogCategory, on_delete=models.CASCADE, related_name='LogData')
