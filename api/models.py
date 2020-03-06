@@ -28,9 +28,25 @@ class MilestoneYear(models.Model):
         return self.year
 
 
+class Title(models.Model):
+    title = models.CharField(max_length=100)
+    sub_category = models.ForeignKey(LogSubCategory, on_delete=models.CASCADE, related_name='title')
+
+    def __str__(self):
+        return self.title
+
+
 class LogData(models.Model):
-    planned = models.CharField(max_length=30)
-    achieved = models.CharField(max_length=30)
+    DATA_TYPE = (
+        (0, 'Number'),
+        (1, 'Funds'),
+        (2, 'Percentage'),
+    )
+    title = models.ForeignKey(Title, on_delete=models.CASCADE, related_name='LogData', blank=True, null=True)
+    data_type = models.IntegerField(choices=DATA_TYPE, default=0)
+    planned = models.CharField(max_length=30, blank=True, null=True)
+    planned_afp = models.CharField(max_length=30, blank=True, null=True)
+    achieved = models.CharField(max_length=30, blank=True, null=True)
     year = models.ForeignKey(MilestoneYear, on_delete=models.CASCADE, related_name='LogData')
     sub_category = models.ForeignKey(LogSubCategory, on_delete=models.CASCADE, related_name='LogData')
     category = models.ForeignKey(LogCategory, on_delete=models.CASCADE, related_name='LogData')

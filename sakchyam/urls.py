@@ -30,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger', schema_view),
     path('api/v1/', include('api.urls')),
+    path('', include('dashboard.urls')),
     path('sentry-debug/', trigger_error),
 ]
 
