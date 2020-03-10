@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Title
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -37,3 +39,22 @@ class FormPage(TemplateView):
         # else:
         #     five = FiveW.objects.select_related('supplier_id').filter(supplier_id=user_data.partner.id)[:10]
         return render(request, 'log_frame_add.html')
+
+
+class LogFrameList(LoginRequiredMixin, ListView):
+    template_name = 'logframe_list.html'
+    model = LogData
+
+    def get_context_data(self, **kwargs):
+        data = super(LogFrameList, self).get_context_data(**kwargs)
+        # user = self.request.user
+        # user_data = UserProfile.objects.get(user=user)
+        # group = Group.objects.get(user=user)
+        # if group.name == 'admin':
+        #     program_list = Program.objects.order_by('id')
+        # else:
+        #     program_list = Program.objects.filter(id=user_data.program.id)
+        # data['list'] = program_list
+        # data['user'] = user_data
+        # data['active'] = 'program'
+        return data
