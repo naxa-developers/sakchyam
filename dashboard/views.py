@@ -7,6 +7,7 @@ from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Titl
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm
+from django.urls import reverse, reverse_lazy
 
 
 # Create your views here.
@@ -84,4 +85,7 @@ class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['years'] = MilestoneYear.objects.all()
         data['active'] = 'log_data'
         return data
+
+    def get_success_url(self):
+        reverse_lazy('log-frame-add')
 

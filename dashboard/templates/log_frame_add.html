@@ -14,7 +14,7 @@
         </ul>
     </div>
     <!-- program form -->
-    <form class="program-form">
+    <form class="program-form" method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
         {% if form.errors %}
@@ -32,7 +32,7 @@
         {% endfor %}
         {% endif %}
 
-        {{form.as_p}}
+<!--        {{form.as_p}}-->
 
         <!-- default form -->
         <div class="default-form">
@@ -97,7 +97,7 @@
                         <select class="selectpicker" name="category" required id="id_category">
                             <option value selected>-------</option>
                             {% for category in categories %}
-                            <option>{{category.name}}</option>
+                            <option value="{{category.id}}">{{category.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -108,7 +108,7 @@
                         <select class="selectpicker" data-live-search="true" name="sub_category" required id="id_sub_category">
                             <option selected>Default Dropdown</option>
                             {% for sub_category in sub_categories %}
-                            <option>{{sub_category.name}}</option>
+                            <option value="{{sub_category.id}}">{{sub_category.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -119,9 +119,9 @@
                         <select class="selectpicker" data-live-search="true" name="title" required id="id_title">
                             <option selected>Default Dropdown</option>
                             {% for title in titles %}
-                            <option>{{title.title}}</option>
+                            <option value="{{title.id}}">{{title.title}}</option>
                             {% endfor %}
-                        </select>sss
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -130,7 +130,7 @@
                         <select class="selectpicker" data-live-search="true" name="year" required id="id_year">
                             <option selected>Default Dropdown</option>
                             {% for year in years %}
-                            <option>{{year.year}}</option>
+                            <option value="{{year.id}}">{{year.year}}</option>
                             {% endfor %}
                         </select>
                     </div>
