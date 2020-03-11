@@ -287,3 +287,10 @@
         }
     }
 }
+.logframe{
+    background-color: $color-white;
+    padding:1rem;
+    border:1px solid $color-border;
+    @include radius(5px);
+    margin-top:2rem;
+}

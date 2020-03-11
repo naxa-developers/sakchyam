@@ -162,8 +162,8 @@ form {
 }
 .custom-checkbox {
     .custom-control-input:checked~.custom-control-label::before {
-        background-color: $color-secondary;
-        border-color:$color-secondary;
+        background-color: $color-blue;
+        border-color:$color-blue;
     }
 }
 .select-list{

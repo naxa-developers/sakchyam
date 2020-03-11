@@ -32,7 +32,7 @@ body {
   line-height: 1.5;
   color: #000000;
   text-align: left;
-  background-color: #ffffff; }
+  background-color: #F7F7F7; }
 
 p {
   margin-top: 0;
@@ -1163,9 +1163,6 @@ pre code {
   100% {
     -ms-transform: scale(1);
     opacity: 0; } }
-.z-index {
-  z-index: 9999; }
-
 .mrt30 {
   margin-top: 30px; }
 
@@ -1321,8 +1318,7 @@ main.sakchyam-main {
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   position: relative;
-  padding: 3rem;
-  background-color: #F7F7F7; }
+  padding: 3rem; }
 
 .page-wrapper {
   -webkit-transition: all 0.5s ease-in-out;
@@ -1497,21 +1493,30 @@ a.openspace-button:not([href]) {
   color: #ffffff !important;
   text-decoration: none; }
 
-.program-list {
-  margin-top: 3rem; }
-
 .dataTable {
   width: 100% !important;
   margin-top: 1rem; }
   .dataTable thead {
     background-color: #F7F7F7; }
     .dataTable thead th {
-      color: #96A5CD;
-      text-transform: uppercase;
+      color: #757575;
+      text-transform: capitalize;
       font-family: "Titillium Web", sans-serif;
-      font-size: .875rem;
-      font-weight: 500;
+      font-size: 1.1rem;
+      font-weight: 700;
       padding: 1rem .6125rem; }
+      .dataTable thead th .table-title {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center; }
+        .dataTable thead th .table-title i {
+          margin-right: .5rem; }
   .dataTable tbody tr {
     border-bottom: 1px solid #E2E2E2;
     -webkit-transition: all 0.5s ease-in-out;
@@ -1528,79 +1533,10 @@ a.openspace-button:not([href]) {
         font-size: 1rem;
         font-weight: 600;
         font-family: "Titillium Web", sans-serif; }
-      .dataTable tbody tr td .org-list {
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start; }
-        .dataTable tbody tr td .org-list a {
-          max-width: 30px;
-          margin-left: -10px;
-          width: 30px;
-          height: 30px;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          border-radius: 50%; }
-          .dataTable tbody tr td .org-list a img {
-            width: 30px;
-            height: 30px;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            border-radius: 50%;
-            -webkit-transition: all 0.5s ease-in-out;
-            -o-transition: all 0.5s ease-in-out;
-            transition: all 0.5s ease-in-out;
-            -moz-transform: scale(1);
-            -ms-transform: scale(1);
-            -o-transform: scale(1);
-            -webkit-transform: scale(1);
-            transform: scale(1); }
-          .dataTable tbody tr td .org-list a:hover img {
-            -moz-transform: scale(1.2);
-            -ms-transform: scale(1.2);
-            -o-transform: scale(1.2);
-            -webkit-transform: scale(1.2);
-            transform: scale(1.2); }
-      .dataTable tbody tr td .partner-info {
-        align-items: center;
-        flex-wrap: nowrap; }
-        .dataTable tbody tr td .partner-info img {
-          width: 30px;
-          height: 30px;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          border-radius: 50%;
-          margin-right: 1rem; }
-        .dataTable tbody tr td .partner-info h6 {
-          font-size: 1rem;
-          font-weight: 600;
-          text-overflow: ellipsis;
-          /* Needed to make it work */
-          overflow: hidden;
-          white-space: nowrap; }
-      .dataTable tbody tr td a.name {
-        color: #96A5CD;
-        font-size: 1rem;
-        font-family: "Titillium Web", sans-serif;
-        text-transform: capitalize;
-        font-weight: 600; }
-      .dataTable tbody tr td a.edit {
-        color: #FEE748;
-        align-items: center; }
-        .dataTable tbody tr td a.edit i {
-          margin-right: .6125rem;
-          font-size: 1rem; }
+      .dataTable tbody tr td .icons .icon.check i {
+        color: #18D838; }
     .dataTable tbody tr:hover {
-      -webkit-box-shadow: 0 17px 16px rgba(0, 0, 0, 0.16);
-      -ms-box-shadow: 0 17px 16px rgba(0, 0, 0, 0.16);
-      -o-box-shadow: 0 17px 16px rgba(0, 0, 0, 0.16);
-      box-shadow: 0 17px 16px rgba(0, 0, 0, 0.16); }
+      background-color: #FFFCE8; }
   .dataTable .table-action {
     position: relative;
     display: inline-block; }
@@ -1619,17 +1555,29 @@ a.openspace-button:not([href]) {
       z-index: 999;
       background-color: #ffffff; }
       .dataTable .table-action ul li a {
-        display: block;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
         padding: 0.5rem 1rem;
         font-size: .775rem;
         color: #B6B6B6;
-        align-items: center; }
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out; }
         .dataTable .table-action ul li a i {
           font-size: 1rem;
           margin-right: 0.5rem; }
         .dataTable .table-action ul li a:hover {
           background-color: #FEE748;
-          color: #ffffff; }
+          color: #D9002A; }
+          .dataTable .table-action ul li a:hover i {
+            color: #D9002A; }
   .dataTable.table-border {
     margin-top: 0rem; }
     .dataTable.table-border thead tr th {
@@ -1785,9 +1733,12 @@ ul.pagination {
     padding: 1rem .6125rem;
     color: #ffffff;
     border-bottom: 1px solid #E2E2E2;
-    width: 100%; }
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600; }
     .sidebar .btn-menu i {
-      margin-right: .25rem; }
+      margin-right: .25rem;
+      font-size: 1.3rem; }
     .sidebar .btn-menu:hover {
       opacity: 1;
       cursor: pointer; }
@@ -1818,73 +1769,69 @@ ul.pagination {
     .sidebar .menu .list {
       list-style: none;
       margin: 0; }
-      .sidebar .menu .list li {
-        border-bottom: 1px solid rgba(217, 0, 42, 0.2); }
-        .sidebar .menu .list li .menu-toggle::before, .sidebar .menu .list li .menu-toggle::after {
-          -webkit-transition: all 0.5s ease-in-out;
-          -o-transition: all 0.5s ease-in-out;
-          transition: all 0.5s ease-in-out;
-          font-size: 1.4rem;
+      .sidebar .menu .list li .menu-toggle::before, .sidebar .menu .list li .menu-toggle::after {
+        -webkit-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        font-size: 1.4rem;
+        position: absolute;
+        top: 0.6125rem;
+        right: 15px;
+        font-family: 'Material Icons'; }
+      .sidebar .menu .list li .menu-toggle::before {
+        content: 'chevron_right'; }
+      .sidebar .menu .list li .menu-toggle.toggled {
+        color: #96A5CD; }
+        .sidebar .menu .list li .menu-toggle.toggled::before {
+          content: 'expand_less'; }
+      .sidebar .menu .list li a {
+        color: #ffffff;
+        position: relative;
+        padding: 15px 10px;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        font-family: "Titillium Web", sans-serif;
+        font-weight: 600;
+        -webkit-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out; }
+        .sidebar .menu .list li a i {
+          width: 20px;
+          font-size: 1.3rem; }
+        .sidebar .menu .list li a small {
           position: absolute;
-          top: 0.6125rem;
-          right: 15px;
-          font-family: 'Material Icons'; }
-        .sidebar .menu .list li .menu-toggle::before {
-          content: 'chevron_right'; }
-        .sidebar .menu .list li .menu-toggle.toggled {
-          color: #96A5CD; }
-          .sidebar .menu .list li .menu-toggle.toggled::before {
-            content: 'expand_less'; }
-        .sidebar .menu .list li a {
-          color: #ffffff;
-          position: relative;
-          padding: 15px 10px;
-          display: flex;
-          align-items: center;
-          font-size: 1rem;
-          font-family: "Titillium Web", sans-serif;
-          font-weight: 600;
-          -webkit-transition: all 0.4s ease-in-out;
-          -o-transition: all 0.4s ease-in-out;
-          transition: all 0.4s ease-in-out; }
-          .sidebar .menu .list li a i {
-            width: 20px;
-            font-size: 1.3rem; }
-          .sidebar .menu .list li a small {
-            position: absolute;
-            top: calc(50% - 7.5px);
-            right: 15px; }
-          .sidebar .menu .list li a span {
-            margin: 0 0 0 12px;
-            text-transform: capitalize; }
-          .sidebar .menu .list li a:hover {
+          top: calc(50% - 7.5px);
+          right: 15px; }
+        .sidebar .menu .list li a span {
+          margin: 0 0 0 12px;
+          text-transform: capitalize; }
+        .sidebar .menu .list li a:hover {
+          background-color: #BE0017; }
+      .sidebar .menu .list li.active a {
+        background-color: #BE0017; }
+      .sidebar .menu .list li .ml-menu {
+        list-style: none;
+        display: none;
+        background-color: #BE0017;
+        -webkit-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        padding: 0; }
+        .sidebar .menu .list li .ml-menu li a {
+          font-size: .875rem;
+          padding: 0.6125rem 1rem 0.6125rem 1.5rem;
+          text-transform: capitalize;
+          border-bottom: 1px solid rgba(247, 247, 247, 0.2);
+          color: #ffffff; }
+          .sidebar .menu .list li .ml-menu li a span {
+            font-weight: 400;
+            margin: 3px 0 1px 6px; }
+          .sidebar .menu .list li .ml-menu li a:hover {
             background-color: #FEE748;
             color: #D9002A; }
-        .sidebar .menu .list li.active a {
-          background-color: #FEE748;
-          color: #D9002A; }
-        .sidebar .menu .list li .ml-menu {
-          list-style: none;
-          display: none;
-          background-color: #BE0017;
-          -webkit-transition: all 0.5s ease-in-out;
-          -o-transition: all 0.5s ease-in-out;
-          transition: all 0.5s ease-in-out;
-          padding: 0; }
-          .sidebar .menu .list li .ml-menu li a {
-            font-size: .875rem;
-            padding: 0.6125rem 1rem 0.6125rem 1.5rem;
-            text-transform: capitalize;
-            border-bottom: 1px solid rgba(247, 247, 247, 0.2);
-            color: #ffffff; }
-            .sidebar .menu .list li .ml-menu li a span {
-              font-weight: 400;
-              margin: 3px 0 1px 6px; }
-            .sidebar .menu .list li .ml-menu li a:hover {
-              background-color: #FEE748;
-              color: #D9002A; }
-        .sidebar .menu .list li.submenu .ml-menu {
-          display: block; }
+      .sidebar .menu .list li.submenu .ml-menu {
+        display: block; }
   .sidebar.open {
     left: 0;
     -webkit-box-shadow: 0px 5px 15px rgba(41, 42, 51, 0.3);
@@ -2022,6 +1969,7 @@ ul.pagination {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background-color: #ffffff;
   height: 110px;
   border-bottom: 1px solid #F7F7F7;
   -webkit-transition: all 0.5s ease-in-out;
@@ -2060,7 +2008,7 @@ ul.pagination {
           right: .6125rem;
           padding: 0; }
           .sakchyam-header .navbar .navbar-right .navbar-nav .dropdown-menu li {
-            border-bottom: 1px solid #ffffff; }
+            border-bottom: 1px solid #E2E2E2; }
             .sakchyam-header .navbar .navbar-right .navbar-nav .dropdown-menu li a {
               display: block;
               color: #B6B6B6;
@@ -2149,7 +2097,7 @@ ul.pagination {
               font-size: .775rem; }
         .sakchyam-header .navbar .navbar-right .navbar-nav .user-menu .dropdown-menu {
           width: 240px;
-          background-color: #F7F7F7;
+          background-color: #ffffff;
           border: 0;
           -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
           -ms-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
@@ -2178,6 +2126,10 @@ ul.pagination {
     width: 260px; }
 
 .authentication {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  height: 100vh;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -2186,31 +2138,40 @@ ul.pagination {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; }
+  flex-direction: column; }
   .authentication .auth-form {
     -webkit-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-    height: 100vh;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    padding: 2rem 5rem;
-    position: relative;
-    overflow: hidden; }
+    padding: 4rem;
+    max-width: 700px;
+    width: 100%;
+    background-color: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px; }
+    .authentication .auth-form .login-header {
+      text-align: center; }
+      .authentication .auth-form .login-header figure {
+        max-width: 80px;
+        margin: 0 auto; }
+      .authentication .auth-form .login-header h3 {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase; }
+    .authentication .auth-form form {
+      margin: 3rem 0; }
+      .authentication .auth-form form button {
+        width: 100%; }
+      .authentication .auth-form form .forgot-password {
+        text-align: center; }
+        .authentication .auth-form form .forgot-password a {
+          color: #B6B6B6; }
+      .authentication .auth-form form .form-group .custom-checkbox label {
+        font-size: .875rem;
+        font-weight: 400; }
     .authentication .auth-form.registration-form {
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
@@ -2225,9 +2186,6 @@ ul.pagination {
       -o-box-shadow: 0px 1px 6px #96A5CD;
       box-shadow: 0px 1px 6px #96A5CD;
       background: white; }
-      .authentication .auth-form.registration-form .login-wrap .login-header h3 {
-        margin-bottom: 1rem;
-        font-size: 1.875rem; }
       .authentication .auth-form.registration-form .login-wrap form .file-select input {
         font-size: 1rem; }
       .authentication .auth-form.registration-form .login-wrap form .form-group {
@@ -2330,183 +2288,7 @@ ul.pagination {
           -ms-box-shadow: inset 0px 0px 2px rgba(39, 41, 61, 0.6);
           -o-box-shadow: inset 0px 0px 2px rgba(39, 41, 61, 0.6);
           box-shadow: inset 0px 0px 2px rgba(39, 41, 61, 0.6); }
-    .authentication .auth-form.login-info {
-      background-image: linear-gradient(to bottom, #e6e9f3, #dce1ee, #d3d8ea, #c9d0e5, #bfc8e1); }
-      .authentication .auth-form.login-info .header img {
-        max-width: 380px; }
-      .authentication .auth-form.login-info .welcome {
-        margin-top: 3rem; }
-        .authentication .auth-form.login-info .welcome span {
-          font-size: 4rem;
-          font-weight: 400;
-          font-family: "Titillium Web", sans-serif;
-          color: #D9002A; }
-        .authentication .auth-form.login-info .welcome h2 {
-          font-size: 4rem;
-          font-weight: 700;
-          color: #D9002A; }
-      .authentication .auth-form.login-info figure {
-        position: absolute;
-        bottom: 2rem;
-        right: -100px;
-        margin: 0; }
-      .authentication .auth-form.login-info .powered-by {
-        position: absolute;
-        left: 5rem;
-        bottom: 1rem;
-        color: #96A5CD; }
-        .authentication .auth-form.login-info .powered-by span {
-          text-transform: capitalize;
-          margin-right: 0.5rem; }
-        .authentication .auth-form.login-info .powered-by strong {
-          font-family: "Titillium Web", sans-serif; }
-    .authentication .auth-form.login-form .login-wrap {
-      width: 100%; }
-      .authentication .auth-form.login-form .login-wrap .login-header h3 {
-        font-size: 2rem;
-        text-transform: capitalize;
-        margin-bottom: 1rem; }
-      .authentication .auth-form.login-form .login-wrap .login-header span {
-        font-weight: 500; }
-    .authentication .auth-form.login-form form {
-      width: 100%;
-      margin-top: 3rem; }
-      .authentication .auth-form.login-form form button {
-        width: 100%; }
-      .authentication .auth-form.login-form form .forgot-password {
-        text-align: center; }
-        .authentication .auth-form.login-form form .forgot-password a {
-          color: #B6B6B6; }
 
-@media only screen and (min-width: 280px) {
-  .authentication .auth-form .login-info {
-    padding: 2rem; }
-    .authentication .auth-form .login-info .header img {
-      max-width: 200px; }
-    .authentication .auth-form .login-info .welcome span {
-      font-size: 1.5rem; }
-    .authentication .auth-form .login-info .welcome h2 {
-      font-size: 1.5rem; }
-    .authentication .auth-form .login-info figure {
-      max-width: 400px;
-      bottom: 0; } }
-/* less than 767px; */
-@media only screen and (max-width: 767px) {
-  .authentication .auth-form.registration-form {
-    height: auto;
-    padding: 2rem 3rem; }
-    .authentication .auth-form.registration-form .login-wrap .login-header {
-      margin-top: 1rem; }
-      .authentication .auth-form.registration-form .login-wrap .login-header h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem; }
-    .authentication .auth-form.registration-form .login-wrap form {
-      margin-top: 2rem; }
-      .authentication .auth-form.registration-form .login-wrap form .file-select input {
-        font-size: 0.875rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group {
-        margin-bottom: 3rem; }
-        .authentication .auth-form.registration-form .login-wrap form .form-group label {
-          margin-bottom: 0.5rem;
-          font-size: 0.875rem; }
-        .authentication .auth-form.registration-form .login-wrap form .form-group .form-control {
-          height: 35px;
-          line-height: 35px;
-          font-size: 0.875rem; }
-        .authentication .auth-form.registration-form .login-wrap form .form-group #id_image {
-          font-size: 0.875rem; }
-        .authentication .auth-form.registration-form .login-wrap form .form-group select {
-          font-size: 0.875rem;
-          height: calc(2.25rem + 2px); }
-        .authentication .auth-form.registration-form .login-wrap form .form-group button {
-          width: 20%;
-          font-size: 0.75rem;
-          padding: 0.5rem 2rem; } }
-/* less than 567px; */
-@media only screen and (max-width: 576px) {
-  .authentication .auth-form.registration-form {
-    height: auto;
-    padding: 2rem; }
-    .authentication .auth-form.registration-form .login-wrap .login-header {
-      margin-top: 2rem; }
-      .authentication .auth-form.registration-form .login-wrap .login-header h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem; }
-    .authentication .auth-form.registration-form .login-wrap form .file-select input {
-      font-size: 0.75rem; }
-    .authentication .auth-form.registration-form .login-wrap form .form-group {
-      margin-bottom: 2rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group label {
-        margin-bottom: 0.5rem;
-        font-size: 0.75rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group .form-control {
-        height: 35px;
-        line-height: 35px;
-        font-size: 0.75rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group #id_image {
-        font-size: 0.75rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group select {
-        font-size: 0.75rem;
-        height: calc(2.25rem + 2px); }
-      .authentication .auth-form.registration-form .login-wrap form .form-group button {
-        width: 20%;
-        font-size: 0.75rem;
-        padding: 0.5rem 2rem; } }
-/* less than 480px; */
-@media only screen and (max-width: 480px) {
-  .authentication .auth-form.registration-form {
-    height: auto;
-    padding: 1rem; }
-    .authentication .auth-form.registration-form .login-wrap .login-header {
-      margin-top: 1rem; }
-      .authentication .auth-form.registration-form .login-wrap .login-header h3 {
-        font-size: 1.25rem;
-        margin-bottom: 1rem !important; }
-    .authentication .auth-form.registration-form .login-wrap form .file-select input {
-      font-size: 0.75rem; }
-    .authentication .auth-form.registration-form .login-wrap form .form-group {
-      margin-bottom: 2rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group label {
-        margin-bottom: 0.5rem;
-        font-size: 0.75rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group .form-control {
-        height: 25px;
-        line-height: 25px;
-        font-size: 0.75rem;
-        padding: 0rem 0.5rem; }
-        .authentication .auth-form.registration-form .login-wrap form .form-group .form-control::placeholder {
-          font-size: 0.75rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group #id_image {
-        font-size: 0.75rem; }
-      .authentication .auth-form.registration-form .login-wrap form .form-group select {
-        font-size: 0.75rem;
-        height: calc(2.25rem + 2px); }
-      .authentication .auth-form.registration-form .login-wrap form .form-group button {
-        width: 20%;
-        font-size: 0.75rem;
-        padding: 0.5rem 2rem; } }
-@media only screen and (min-width: 992px) {
-  .authentication .auth-form.login-info .welcome span {
-    font-size: 2rem; }
-  .authentication .auth-form.login-info .welcome h2 {
-    font-size: 2rem; }
-  .authentication .auth-form.login-info figure {
-    max-width: 500px;
-    bottom: 0; } }
-@media only screen and (min-width: 1540px) {
-  .authentication .auth-form {
-    padding: 2rem 5rem; }
-    .authentication .auth-form.login-info .header img {
-      max-width: 380px; }
-    .authentication .auth-form.login-info .welcome span {
-      font-size: 4rem; }
-    .authentication .auth-form.login-info .welcome h2 {
-      font-size: 4rem; }
-    .authentication .auth-form.login-info figure {
-      right: -100px;
-      max-width: 600px; }
-    .authentication .auth-form.login-info .powered-by {
-      left: 5rem; } }
 .accordion .card .card-header {
   border: 0; }
   .accordion .card .card-header button {
@@ -2810,6 +2592,16 @@ ul.pagination {
     text-transform: capitalize;
     color: #B6B6B6; }
 
+.logframe {
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 1px solid #E2E2E2;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 2rem; }
+
 form .form-group {
   margin-bottom: 2rem;
   position: relative; }
@@ -2955,8 +2747,8 @@ form .bootstrap-select .dropdown-menu {
   border-radius: 0; }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #FEE748;
-  border-color: #FEE748; }
+  background-color: #D9002A;
+  border-color: #D9002A; }
 
 .select-list h4 {
   color: #96A5CD;

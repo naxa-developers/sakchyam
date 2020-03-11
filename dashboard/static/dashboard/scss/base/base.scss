@@ -1,6 +1,3 @@
-.z-index {
-    z-index: 9999
-}
 
 .mrt30 {
     margin-top: 30px;
@@ -150,10 +147,11 @@ main.sakchyam-main {
     @include transition(all .5s ease-in-out);
     position: relative;
     padding:3rem;
-    background-color: $color-bg;
+    
 }
 
 .page-wrapper {
     @include transition(all .5s ease-in-out);
     margin-left: 250px;
+    
 }

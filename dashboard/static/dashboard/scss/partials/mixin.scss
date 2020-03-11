@@ -290,6 +290,13 @@
     -o-box-shadow: $boxshadow;
     box-shadow: $boxshadow;
 }
+
+@mixin cover ($value){
+  background-size:cover !important;
+  background-repeat: no-repeat !important;
+  background-position: $value !important;
+
+}
 // @mixin cover($bs:cover,$br:no-repeat,$pos){
 //     background-size:$bs;
 //     background-repeat: $br;

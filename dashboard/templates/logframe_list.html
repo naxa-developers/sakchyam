@@ -14,14 +14,22 @@
     <div class="logframe">
         <!-- logframe table -->
         <div class="table-tesponsive ">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
-                    <th width="20%">Product / Services</th>
+                    <th width="20%">Category</th>
                     <th>
                         <div class="table-title">
-                            <i class="material-icons">assignment</i>
-                            <span>Project</span>
+<!--                            <i class="material-icons">assignment</i>-->
+                            <span>Sub-category</span>
                         </div>
                     </th>
                     <th>
@@ -37,12 +45,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for data in list %}
                 <tr>
                     <td>
-                        Product development
+                        {{data.category.name}}
                     </td>
                     <td>
-                        Mega Bank
+                        {{data.sub_category.name}}
                     </td>
                     <td>Saving increasement Model (SIM) Project</td>
                     <td>dinesh.gurung@actionaid.org</td>
@@ -77,167 +86,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        Product development
-                    </td>
-                    <td>
-                        Mega Bank
-                    </td>
-                    <td>Saving increasement Model (SIM) Project</td>
-                    <td>dinesh.gurung@actionaid.org</td>
-                    <td>
-                        <div class="component">
-                            <span>C1</span>,<span> C4</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="icons">
-                            <span class="icon check"><i class="material-icons">check_circle</i></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="table-action">
-                            <a href="#" class="more-action">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-animation">
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">edit</i> Edit
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
-                                    </a>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Product development
-                    </td>
-                    <td>
-                        Mega Bank
-                    </td>
-                    <td>Saving increasement Model (SIM) Project</td>
-                    <td>dinesh.gurung@actionaid.org</td>
-                    <td>
-                        <div class="component">
-                            <span>C1</span>,<span> C4</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="icons">
-                            <span class="icon check"><i class="material-icons">check_circle</i></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="table-action">
-                            <a href="#" class="more-action">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-animation">
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">edit</i> Edit
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
-                                    </a>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Product development
-                    </td>
-                    <td>
-                        Mega Bank
-                    </td>
-                    <td>Saving increasement Model (SIM) Project</td>
-                    <td>dinesh.gurung@actionaid.org</td>
-                    <td>
-                        <div class="component">
-                            <span>C1</span>,<span> C4</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="icons">
-                            <span class="icon check"><i class="material-icons">check_circle</i></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="table-action">
-                            <a href="#" class="more-action">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-animation">
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">edit</i> Edit
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
-                                    </a>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Product development
-                    </td>
-                    <td>
-                        Mega Bank
-                    </td>
-                    <td>Saving increasement Model (SIM) Project</td>
-                    <td>dinesh.gurung@actionaid.org</td>
-                    <td>
-                        <div class="component">
-                            <span>C1</span>,<span> C4</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="icons">
-                            <span class="icon check"><i class="material-icons">check_circle</i></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="table-action">
-                            <a href="#" class="more-action">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-animation">
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">edit</i> Edit
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
-                                    </a>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-
+                {% endfor %}
                 </tbody>
             </table>
         </div>

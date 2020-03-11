@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Title
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from dashboard.forms import LogDataForm
 
 
 # Create your views here.
@@ -19,7 +21,6 @@ def signup(request):
 
             user = authenticate(username=username, password=password)
             user.is_active = False
-
 
     else:
         form = UserCreationForm()
@@ -49,12 +50,38 @@ class LogFrameList(LoginRequiredMixin, ListView):
         data = super(LogFrameList, self).get_context_data(**kwargs)
         # user = self.request.user
         # user_data = UserProfile.objects.get(user=user)
+        query_data = LogData.objects.all()
         # group = Group.objects.get(user=user)
         # if group.name == 'admin':
         #     program_list = Program.objects.order_by('id')
         # else:
         #     program_list = Program.objects.filter(id=user_data.program.id)
-        # data['list'] = program_list
+        data['list'] = query_data
         # data['user'] = user_data
         # data['active'] = 'program'
         return data
+
+
+class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = LogData
+    template_name = 'log_frame_add.html'
+    form_class = LogDataForm
+    success_message = 'Log data successfully Created'
+
+    def get_context_data(self, **kwargs):
+        data = super(LogDataCreate, self).get_context_data(**kwargs)
+        # data['open_space'] = OpenSpace.objects.filter(id=self.kwargs['id']).select_related('province',
+        #                                                                                    'district',
+        #                                                                                    'municipality').order_by(
+        #     'id')
+        # data['suggest'] = SuggestedUseList.objects.order_by('id')
+        # user = self.request.user
+        # user_data = UserProfile.objects.get(user=user)
+        # data['user'] = user_data
+        data['categories'] = LogCategory.objects.all()
+        data['sub_categories'] = LogSubCategory.objects.all()
+        data['titles'] = Title.objects.all()
+        data['years'] = MilestoneYear.objects.all()
+        data['active'] = 'log_data'
+        return data
+

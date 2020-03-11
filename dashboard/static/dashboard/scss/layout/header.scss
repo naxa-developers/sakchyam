@@ -2,6 +2,7 @@
         @include display-flex(flex);
         @include justify-content-between;
         @include align-items-center;
+        background-color: $color-white;
         height: 110px;
         border-bottom: 1px solid $color-bg;
         @include transition(all .5s ease-in-out);
@@ -52,7 +53,7 @@
                     padding: 0;
 
                     li {
-                        border-bottom: 1px solid $color-white;
+                        border-bottom: 1px solid $color-border;
 
                         a {
                             display: block;
@@ -158,7 +159,7 @@
 
                     .dropdown-menu {
                         width: 240px;
-                        background-color: $color-bg;
+                        background-color: $color-white;
                         border: 0;
                         @include boxshadow($boxshadow:0 3px 10px rgba(0, 0, 0, 0.16));
                     }
