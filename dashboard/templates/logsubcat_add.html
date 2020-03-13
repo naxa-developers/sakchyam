@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Log Frame</a>
+            </li>
+
+            <li>
+                <a href="/dashboard/logsubcat-list/{{ categories.first.id }}">{{ categories.first.name }}</a>
+            </li>
+
+
+            <li>Add Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <!-- category form
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>Indicator</h3>
+            </div>
+
+        </div> -->
+
+        <!-- default form -->
+        <div class="default-form">
+
+            <div style="display:block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_category" class="">category</label>
+                            <select class="selectpicker" data-live-search="true" name="category" required
+                                    id="id_category">
+                                {% for category in categories %}
+                                <option value="{{category.id}}" selected>{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_name" class="">Name</label>
+                        <input class="form-control" type="text" name="name" maxlength="100" required id="id_name"/>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_description" class="">Description</label>
+                        <textarea class="form-control" name="description" cols="40" rows="10" id="id_description">
+                                </textarea></div>
+                </div>
+
+            </div>
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+    </form>
+</main>
+
+{% endblock %}

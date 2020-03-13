@@ -137,3 +137,25 @@ class LogTitleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
+
+
+class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = LogData
+    template_name = 'logsubcat_add.html'
+    form_class = LogSubCategoryForm
+    success_message = 'Log data successfully Created'
+
+    def get_context_data(self, **kwargs):
+        data = super(LogSubCatCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        # user_data = UserProfile.objects.get(user=user)
+        # data['user'] = user_data
+        # data['active'] = 'program'
+        sidebar = LogCategory.objects.all()
+        data['sidebar'] = sidebar
+        data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
+        data['active'] = 'log_data'
+        return data
+
+    def get_success_url(self):
+        return '/dashboard/logsubcat-list/' + str(self.kwargs['cat'])
