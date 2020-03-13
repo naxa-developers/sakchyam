@@ -29,9 +29,10 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-class FormPage(TemplateView):
+class Dashboard(TemplateView):
 
     def get(self, request, *args, **kwargs):
+        sidebar = LogCategory.objects.all()
         # user = self.request.user
         # user_data = UserProfile.objects.get(user=user)
         # group = Group.objects.get(user=user)
@@ -40,7 +41,7 @@ class FormPage(TemplateView):
         #     five = FiveW.objects.order_by('id')
         # else:
         #     five = FiveW.objects.select_related('supplier_id').filter(supplier_id=user_data.partner.id)[:10]
-        return render(request, 'log_frame_add.html')
+        return render(request, 'dashboard.html', {"sidebar": sidebar})
 
 
 class LogFrameList(LoginRequiredMixin, ListView):
