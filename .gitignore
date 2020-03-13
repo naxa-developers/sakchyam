@@ -7,7 +7,7 @@ local_setting.py
 docker-compose.yml
 #docker-entrypoint.local.sh
 postgres-data/
-static/
+/static/
 # C extensions
 *.so
 *.csv

@@ -1,0 +1,172 @@
+.registration-heading{
+    background: $color-bg;
+    position: relative;
+    @include boxshadow(0 1px 10px $blue-light);
+    .header{
+        .img-map{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 260px;
+        }
+    }
+}
+.authentication {
+    @include cover(center center);
+    height: 100vh;
+    @include flexvr;
+    .auth-form {
+        @include transition(all .5s ease-in-out);
+        padding:4rem;
+        max-width: 700px;
+        width: 100%;
+        background-color: $color-white;
+        @include radius(5px);
+        .login-header{
+            text-align: center;
+            figure{
+                max-width: 80px;
+                margin:0 auto;
+            }
+            h3{
+                margin-top: 1rem;
+                font-size: 1.2rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            // &.login-footer{
+
+            // }
+        }
+        form{
+            margin:3rem 0;
+                button{
+                    width:100%;
+                }
+                .forgot-password{
+                    text-align: center;
+                    a{
+                        color:$color-bg-text;
+                    }
+                }
+                .form-group{
+                    .custom-checkbox{
+                        label{
+                            font-size:.875rem;
+                            font-weight: 400;
+                        }
+                    }
+                }
+        }
+        &.registration-form{
+            @include radius(10px);
+            margin: 5rem 0  4rem;
+            padding: 2rem 4rem;
+            overflow: visible;
+            height: auto;
+            @include boxshadow(0px 1px 6px $blue-light);
+            background: lighten($color-bg-text, 30%);
+            .login-wrap{
+                
+                form{
+                    .file-select{
+                        input{
+                            font-size: 1rem;
+                        }
+                    }
+                    .form-group{
+                        margin-bottom: 3rem;
+                        &:last-child{
+                            margin: 4rem 0rem 1rem;
+                            @include flexCenter;
+                        }
+                        label{
+                            margin-bottom: 0.5rem; 
+                            font-size: 1rem;
+                            color: darken($blue-light, 10%);
+                        }
+                        .form-control{
+                            background: $color-white;
+                            height: 40px;
+                            line-height: 40px;
+                            font-size: 1rem;
+                            color: $color-nav;
+                            border: 1px solid #ced4da;
+                            @include transition(all .5s ease-in-out);
+                            @include radius(0.25rem);
+                            &::placeholder{
+                                font-size: 1rem;
+                            }
+                            &:focus{
+                                border-color: $blue-light;
+                                @include boxshadow($boxshadow: 0px 0px 2px $blue-light);
+                                color: darken($color-grey, 10%);
+                            }
+                          
+                        }
+                        select{
+                            font-size: 1rem;
+                            height: calc(2.25rem + 2px);
+                        }
+                        button{
+                            width: 20%;
+                            font-size: 1rem;
+                            padding: 0.5rem 2rem;
+                            background: $color-blue;
+                            color: $blue-light; 
+                            @include radius(5px);
+                            @include transition(all .5s ease-in-out);
+                            &:hover{
+                                background: lighten($color-blue, 20%);
+                                color: lighten($blue-light, 20%);
+                            }
+
+                        }
+                    }
+                }
+                .message-wrapper{
+                    text-align: center;
+                    .check-circle{
+                        font-size: 40px;
+                        font-weight: 600;
+                        @include radius(50%);
+                        padding: 0.75rem;
+                        color: $color-blue;
+                        border: 1px solid $blue-light;
+                        background: linear-gradient(180deg, $color-blue, $blue-light);
+                    }
+                    .message-box{
+                        text-align: center;
+                        margin-top: 2rem;
+                        h3{
+                            color: $color-nav;
+                            font-size: 1.25rem;
+                            font-weight: 500;
+                            &:nth-child(1){
+                                padding-bottom: 0.75rem;
+                                text-transform: capitalize;
+                                font-weight: 600;
+                                font-size: 1.5rem;
+                            }
+                        }
+                    }
+                    span{
+                       
+                        text-transform: uppercase;
+                        color: $color-white;
+                        margin-top: 2.5rem;
+                        display: block;
+                        font-size: 1.75rem;
+                        font-weight: 700;
+                        padding: 0.5rem 0;
+                        background: lighten($blue-light, 5%);
+                        @include radius(10px);
+                        @include boxshadow(inset 0px 0px 2px rgba($color-nav,0.6));
+                    }
+                }
+            }
+        }
+    }
+
+}
+

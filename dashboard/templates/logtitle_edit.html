@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Log Frame</a>
+            </li>
+
+            <li>
+                <a href="/dashboard/logsubcat-list/{{ sub_categories.first.categoryid }}">{{ sub_categories.first.category.name }}</a>
+            </li>
+            <li>
+                <a href="/dashboard/logtitle-list/{{ sub_categories.first.id }}">
+                    {{ sub_categories.first.name }}
+                </a>
+            </li>
+
+
+            <li>Add Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <!-- category form
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>Indicator</h3>
+            </div>
+
+        </div> -->
+
+        <!-- default form -->
+        <div class="default-form">
+
+        <div style="display:none">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_sub_category" class="">sub-category</label>
+                        <select class="selectpicker" data-live-search="true" name="sub_category" required
+                                id="id_sub_category">
+
+                            <option value="{{form.instance.sub_category.id}}" selected>{{form.instance.sub_category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_title" class="">Title</label>
+                        <input  class="form-control" type="text" name="title" maxlength="500" value="{{ form.instance.title }}" required id="id_title"/>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_source" class="">Source</label>
+                        <input  class="form-control" type="text" name="source" maxlength="500" value="{{ form.instance.source }}" id="id_source"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_description" class="">Description</label>
+                                    <textarea class="form-control" name="description" cols="40" rows="10" id="id_description">
+                                {{ form.instance.description }}</textarea></div>
+                            </div>
+
+        </div>
+
+
+        <div class="form-group mrt-100">
+            <button type="submit" class="sakchyam-button sm-button">Save</button>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

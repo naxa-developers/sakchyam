@@ -1,0 +1,244 @@
+
+.dataTable {
+    width: 100% !important;
+    margin-top: 1rem;
+
+    thead {
+        background-color: $color-bg;
+
+        th {
+            color: $primary-light;
+            text-transform: capitalize;
+            font-family: $montserrat;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 1rem .6125rem;
+            .table-title{
+                @include display-flex(flex);
+                @include justify-content-start;
+                @include align-items-center;
+                i{
+                    margin-right: .5rem;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-border;
+            @include transition(all .5s ease-in-out);
+
+            td {
+                font-weight: 500;
+                font-family: $montserrat;
+                padding: 1rem .6125rem;
+
+                span.budget {
+                    color: $color-secondary;
+                    font-weight: 500;
+                }
+
+                strong {
+                    font-size: 1rem;
+                    font-weight: 600;
+                    font-family: $montserrat;
+                }
+                .icons{
+                    .icon{
+                        &.check{
+                            i{
+                                color:$color-green;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: $secondary-light;
+            }
+        }
+    }
+
+    .table-action {
+        position: relative;
+        display: inline-block;
+        a {
+            i {
+                color: $color-bg-text;
+            }
+        }
+
+        ul {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 100px;
+            display: none;
+            @include boxshadow($boxshadow:0 3px 10px rgba(0, 0, 0, 0.16));
+            z-index: 999;
+            background-color: $color-white;
+
+            li {
+                a {
+                    @include display-flex(flex);
+                    @include justify-content-start;
+                    @include align-items-center;
+                    padding: 0.5rem 1rem;
+                    font-size: .775rem;
+                    color: $color-bg-text;
+                    @include transition(all .3s ease-in-out);
+
+                    i {
+                        font-size: 1rem;
+                        margin-right: 0.5rem;
+                    }
+
+                    &:hover {
+                        background-color: $color-secondary;
+                        color: $color-blue;
+                        i{
+                            color: $color-blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.table-border{
+        margin-top: 0rem;
+        thead{
+            tr{
+                th{
+                    color: darken($blue-light, 40%);
+                    border: 1px solid $blue-light;
+                    font-size: 0.875rem;
+                }
+                &:nth-child(1){
+                    th{
+                        text-align: center;
+                    }
+                }
+                
+                &:nth-child(2){
+                    th{
+                        text-align: center;
+                        font-size: 0.75rem;
+                    }
+                }
+                &:nth-child(3){
+                    th{
+                        font-size: 0.75rem;
+                    }
+                }
+
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    border: 1px solid $blue-light;
+                    border-top: 0px;    
+                    font-size: 0.745rem;
+                }
+            }
+        }
+    }
+}
+
+.dt-buttons {
+    float: right;
+
+    .dt-button {
+        background: transparent;
+        border: 1px solid darken($color-bg, 5%);
+        color: $color-bg-text;
+        padding: 0.25rem 1rem;
+        font-size: .875rem;
+        font-family: $montserrat;
+    }
+}
+
+.dataTables_info {
+    color: $color-bg-text;
+    font-size: .875rem;
+    font-family: $montserrat;
+    float: left;
+    margin-top: 2rem;
+}
+
+.dataTables_paginate {
+    margin-top: 2rem;
+}
+
+.dataTables_filter {
+    label {
+        input.form-control {
+            border: 1px solid darken($color-bg, 5%);
+            color: $color-bg-text;
+            font-size: .875rem;
+            font-family: $montserrat;
+            -webkit-outline: none;
+            outline: none;
+
+            &:focus {
+                -webkit-outline: none;
+                outline: none;
+                box-shadow: none;
+                background-color: $color-focus;
+            }
+        }
+    }
+}
+
+.project_list {
+    padding: 30px;
+    background-color: $color-light;
+    margin-bottom: 30px;
+
+    .table {
+
+        th,
+        td {
+            border: 1px solid rgba($color-primary, 0.1);
+            font-size: 0.875rem;
+        }
+
+        th {
+            border-bottom: 2px solid rgba($color-secondary, 0.2);
+            text-transform: capitalize;
+        }
+    }
+}
+
+.table-footer {
+    @include flexBetween;
+    align-items: center;
+}
+
+ul.pagination {
+    justify-content: flex-end;
+    align-items: center;
+
+    li {
+        a.page-link {
+            color: $color-primary;
+            background-color: $color-bg;
+            border: 1px solid rgba($color-primary, 0.1);
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &.active,
+        &:hover {
+            a.page-link {
+                background-color: $color-secondary;
+                color: $color-white;
+                border-color: $color-secondary;
+            }
+        }
+    }
+}

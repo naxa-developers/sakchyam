@@ -1,0 +1,97 @@
+{% load static %}
+<!doctype html>
+<html class="no-js " lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="Responsive sakchyam Dashboard.">
+    <title>sakchyam Dashboard</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Favicon-->
+    <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap-select.min.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+</head>
+
+<body class="">
+    <!-- login page start -->
+
+    <div class="authentication" style="background:url(../static/dashboard/images/login-bg.jpg)">
+
+        <!-- login form start -->
+
+
+            <div class="auth-form login-form">
+                    <div class="login-header">
+                        <figure>
+                            <img src=" {% static 'dashboard/images/sakchyam-logo.png' %}" alt="sakchyam logo" />
+                        </figure>
+                        <h3>Log in to your account</h3>
+                    </div>
+
+                <form method="post" action="">
+                     {% csrf_token %}
+                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                       <strong>{{ field.name|title }} {{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                       <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                        <div class="form-group">
+                            <label for="id_username" class="">Username</label>
+                            <input type="text" class="form-control" id="id_username" placeholder="username" name="username"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password" class="">password</label>
+                            <input type="password" required id="id_password" name="password" class="form-control" placeholder="username" />
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="Remember" name="Remember">
+                                <label class="custom-control-label" for="Remember">Remember me</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="sakchyam-button">Sign in</button>
+                        </div>
+                        <div class="forgot-password">
+                            <a href="#">Can't log in ?</a>
+                        </div>
+                    </form>
+                    <div class="login-footer login-header">
+                        <figure>
+                            <img src="{% static 'dashboard/images/ukaid.png'%}" alt="ukaid logo" />
+                        </figure>
+                    </div>
+            </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+<!--    <script src="js/jquery-3.4.1.min.js"></script>-->
+<!--    <script src="js/bootstrap.min.js"></script>-->
+<!--    <script src="js/jquery.slimscroll.min.js"></script>-->
+<!--    <script src="js/mainscripts.bundle.js"></script>-->
+<!--    <script src="js/equalHeight.js"></script>-->
+<!--    <script src="plugins/datatable/dataTables.min.js"></script>-->
+<!--    <script src="plugins/datatable/dataTables.bootstrap.min.js"></script>-->
+<!--    <script src="plugins/datatable/dataTables.button.js"></script>-->
+<!--    <script src="plugins/datatable/jszip.min.js"></script>-->
+<!--    <script src="plugins/datatable/buttons.html5.min.js"></script>-->
+<!--    <script src="plugins/datatable/custom-datatables.js"></script>-->
+</body>
+
+
+</html>

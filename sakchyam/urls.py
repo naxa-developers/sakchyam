@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework_swagger.views import get_swagger_view
+from django.contrib.auth import views as auth_view
+
 
 schema_view = get_swagger_view(title='Sakchyam API')
 
@@ -30,8 +32,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger', schema_view),
     path('api/v1/', include('api.urls')),
-    path('', include('dashboard.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('sentry-debug/', trigger_error),
+    path('', auth_view.LoginView.as_view(), name='login'),
+    path('logout', auth_view.LogoutView.as_view(), name='logout'),
+
 ]
 
 

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+            <li>
+                <a href="#">Log Frame</a>
+            </li>
+
+            <li>
+                <a href="/dashboard/logsubcat-list/{{ list.first.category.id }}">{{ list.first.category.name }}</a>
+            </li>
+            <li>
+                <a href="/dashboard/logtitle-list/{{ list.first.sub_category.id }}">
+                    {{ list.first.sub_category.name }}
+                </a>
+            </li>
+            <li>
+                {{ list.first.title.title }}
+            </li>
+
+
+        </ul>
+        <div style="margin-left: 1441px;">
+            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}">
+                <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
+            </a>
+
+        </div>
+    </div>
+
+
+    <div class="logframe">
+        <!-- logframe table -->
+        <div class="table-tesponsive ">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <table class="logframe-table dataTable">
+                <thead>
+                <tr>
+
+                    <th>year</th>
+                    <th>planned</th>
+                    <th>planned_afp</th>
+                    <th>achieved</th>
+
+
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in list %}
+                <tr>
+
+                    <td>{{data.year}}</td>
+                    <td>{{data.planned}}</td>
+                    <td>{{data.planned_afp}}</td>
+                    <td>{{data.achieved}}</td>
+
+
+                    <td>
+                        <div class="table-action">
+                            <a href="#" class="more-action">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-animation">
+                                <li>
+                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}" class="flex-start">
+                                        <i class="material-icons">edit</i> Edit
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex-start">
+                                        <i class="material-icons">delete</i>delete
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

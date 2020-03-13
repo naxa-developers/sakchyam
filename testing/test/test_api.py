@@ -83,10 +83,10 @@ class UserTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_logout_view_status_code(self):
-        url = reverse('logout')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+    # def test_logout_view_status_code(self):
+    #     url = reverse('logout')
+    #     response = self.client.get(url)
+    #     self.assertEqual(response.status_code, 200)
 
     # def test_user_login(self):
     #     response = self.client.post('/login', self.credentials)

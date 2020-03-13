@@ -2,7 +2,7 @@
 
 ![Imgur](https://i.imgur.com/h2ppROy.png) 
 
-> This Web Application is built to 
+> This Web Application is designed to 
 > visualize Sakchyam's Project, Partner
 > and its services Data in an interactive way. 
 > This project is built on django a high-level Python Web framework

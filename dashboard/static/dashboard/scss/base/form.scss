@@ -1,0 +1,236 @@
+form {
+    .form-group {
+        margin-bottom: 2rem;
+        position: relative;
+
+        label {
+            color: $color-primary;
+            text-transform: capitalize;
+            font-size: .9125rem;
+            font-family: $montserrat;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            padding: 0.5rem 1rem;
+            color: $color-primary;
+            background-color: $color-white;
+            font-size: .875rem;
+            border-color: $color-border;
+            height: 50px;
+            line-height: 50px;
+            @include transition(all .5s ease-in-out);
+            -webkit-outline: none;
+            outline: none;
+            @include radius(25px);
+
+            @include input-placeholder {
+                color: $primary-light;
+                font-size: .875rem;
+                text-transform: capitalize;
+            }
+
+            &:focus {
+                box-shadow: none;
+                background-color: $secondary-light;
+                -webkit-outline: none;
+                outline: none;
+                border-color: $secondary-dark;
+            }
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .error-message {
+            color: $color-error;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            display: inline-block;
+
+            .error-icon {
+                color: $color-error;
+                @include translatey;
+                right: 1rem;
+            }
+        }
+
+        &.error {
+            .form-control {
+                border-color: $color-error;
+            }
+
+        }
+        .btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show>.btn-light.dropdown-toggle {
+            
+            color: $color-primary;
+            background-color: $color-white;
+            border-color: $color-border;
+            font-size: .875rem;
+            -webkit-outline: none;
+            outline: none;
+            height: 50px;
+            line-height: 35px;
+            @include radius(25px);
+            &:focus,&:hover{
+                background-color: transparent;
+                border:0;
+            }
+        }
+        .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+            width:100%;
+            background-color: transparent;
+            border:0;
+            
+            .filter-option{
+                padding: 0.5rem 1rem;
+                color: $color-primary;
+                background-color: $color-white;
+                font-size: .875rem;
+                
+                height: 50px;
+                line-height: 35px;
+                @include transition(all .5s ease-in-out);
+                -webkit-outline: none;
+                outline: none;
+                @include radius(25px);
+            }
+        }
+        .btn-light{
+            &:hover{
+                background-color: transparent;
+                box-shadow: none;
+                border:0;
+            }
+            &:focus{
+                border:0;
+                box-shadow: none;
+            }
+        }
+        
+        
+        .bootstrap-select>.dropdown-toggle {
+            height: 50px;
+            line-height: 35px;
+            box-shadow: none;
+            outline: none;
+            -webkit-outline:none;
+            &::after{
+                position: relative;
+                z-index:999;
+            }
+        }
+        
+    }
+    &.program-form{
+        margin-top:3rem;
+    }
+    .default-form{
+        border-bottom: 1px solid $color-bg;
+    }
+    .bootstrap-select{
+        .dropdown-menu{
+            padding:0;
+            border-color:$color-border;
+            li{
+                &.selected.active{
+                    a{
+                        &.dropdown-item.selected.active{
+                            color: $primary-light;
+                            text-decoration: none;
+                            background-color: $secondary-light;
+                        }
+                    }
+                }
+                a{
+                    color: $color-primary;
+                    @include transition(all .4s ease-in-out);
+                }
+            }
+        }
+    }
+}
+
+.custom-checkbox{
+    .custom-control-label::before{
+        background-color: transparent;
+        border:1.2px solid $color-bg-text;
+        border-radius: 0;
+    }
+}
+.custom-checkbox {
+    .custom-control-input:checked~.custom-control-label::before {
+        background-color: $color-blue;
+        border-color:$color-blue;
+    }
+}
+.select-list{
+    h4{
+        color:$blue-light;
+        text-transform: uppercase;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        
+    }
+}
+.form-card{
+    margin-top:3rem;
+    h3{
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+        font-weight: 700;
+    }
+}
+.checklist-wrapper{
+    @include boxshadow($boxshadow:0 10px 16px rgba($color-primary, 0.40));
+    .checklist-body{
+        min-height: 200px;
+        .checklist-card{
+            display:block;
+            .checklist-header{
+                padding:.6125rem 1rem;
+                &.active{
+                    background-color:$red-light;
+                }
+            }
+            .custom-checkbox {
+                .custom-control-label {
+                    color:$color-bg-text;
+                }
+                .custom-control-input:checked~.custom-control-label{
+                    color:$color-secondary;
+                }
+            }
+            ul{
+                padding:0 2rem;
+                display: none;
+                li{
+                    padding:.6125rem 0;
+                    &.active{
+                        background-color: $red-light;
+                    }
+                }
+            }
+            
+        }
+        &.marker-body{
+            .checklist-card{
+               ul{
+                   display: block;
+               }
+            }
+        }
+    }
+}
+.marker-sector{
+    .checklist-wrapper{
+        box-shadow: none;
+        .marker-body{
+            background-color: $color-bg;
+        }
+    }
+}
+
+

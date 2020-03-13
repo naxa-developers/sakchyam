@@ -1,0 +1,200 @@
+{% load static %}
+<!doctype html>
+<html class="no-js " lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="Responsive sakchyam Dashboard.">
+    <title>sakchyam Dashboard</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Favicon-->
+    <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap-select.min.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
+</head>
+
+<body class="">
+    <div class="sakchyam-wrapper">
+        <!-- header start -->
+        <header class="sakchyam-header" id="header">
+            <!-- brand start -->
+            <div class="navbar-brand">
+
+                <a href="index.html"><img src="{% static 'dashboard/images/sakchyam-logo.png' %}" width="100" alt="sakchyam"></a>
+            </div>
+            <nav class="navbar navbar-static-top navbar-expand-lg">
+                <button class="btn-icon mobile_menu" type="button"><i class="material-icons">menu</i></button>
+
+                <div class="navbar-right ">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown notifications-menu">
+                            <button class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <i class="material-icons">notifications_none</i>
+                                <span class="notify"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                                <li class="dropdown-header">You have 5 notifications</li>
+                                <li>
+                                    <a href="#">
+                                        New user registered
+                                        <span class=" font-size-12 d-inline-block float-right">10 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        User deleted
+                                        <span class=" font-size-12 d-inline-block float-right">07 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
+                                        <span class=" font-size-12 d-inline-block float-right"> 12 PM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        New client
+                                        <span class=" font-size-12 d-inline-block float-right"> 10 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Server overloaded
+                                        <span class=" font-size-12 d-inline-block float-right"> 05 AM</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer">
+                                    <a class="text-center" href="#"> View All </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account -->
+                        <li class="dropdown user-menu">
+                            <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <img src="{% static 'dashboard/images/avatar.png' %}" class="user-image" alt="User Image">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                                <!-- User image -->
+                                <li>
+                                    <a href="profile.html"> My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"> Account Setting </a>
+                                </li>
+
+                                <li class="dropdown-footer">
+                                    <a href="/logout"> <i class="material-icons">power_settings_new</i> Log Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <figure class="ukaid">
+                                    <img src="{% static 'dashboard/images/ukaid.png' %}" alt="ukaid" />
+                                </figure>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+        </header>
+        <div class="page-wrapper">
+            <!-- Left Sidebar -->
+            <aside id="leftsidebar" class="sidebar">
+                <button class="btn-menu ls-toggle-btn" type="button"><i class="material-icons">menu</i><span>Menu</span></button>
+                <!-- sidebar menu start -->
+                <div class="menu">
+                    <ul class="list">
+                        <li class="menu-item "> <a href="/dashboard/main" class=""><i
+                                    class="material-icons">dashboard</i><span>Dashboard</span></a>
+
+                        </li>
+                        <li class="active menu-item"> <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">assignment</i>
+                                <span>Log Frame</span></a>
+
+                            <ul class="ml-menu">
+                                {% for log in sidebar %}
+                                <li><a href="/dashboard/logsubcat-list/{{ log.id }}">{{log.name}}</a></li>
+
+
+                                {% endfor %}
+                            </ul>
+
+                        </li>
+                        <li class="menu-item"> <a href="javascript:void(0);">
+                                <i class="material-icons">person</i><span>partners</span></a>
+                        </li>
+                        <li class="menu-item"> <a href="javascript:void(0);" class="menu-toggle"><i
+                                    class="material-icons">category</i><span>Sectors</span></a>
+                            <ul class="ml-menu">
+                                <li><a href="broad-sector.html">Broad Sectors</a></li>
+                                <li><a href="input-sector.html">Broad Sectors</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item"> <a href="javascript:void(0);" class="menu-toggle"><i
+                                    class="material-icons">pie_chart</i><span>markers</span></a>
+                            <ul class="ml-menu">
+                                <li><a href="#">marker one</a></li>
+                                <li><a href="#">Marker 2</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="menu-item"> <a href="javascript:void(0);" class="menu-toggle"><i
+                                    class="material-icons">room</i><span>Locations</span></a>
+                            <ul class="ml-menu">
+                                <li><a href="province.html">Province</a></li>
+                                <li><a href="district.html">District</a></li>
+                                <li><a href="municipality.html">Municipalities</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item"> <a href="javascript:void(0);" class=""><i
+                                    class="material-icons">drag_indicator</i><span>Indicators</span></a></li>
+
+                    </ul>
+                </div>
+            </aside>
+
+        <!-- Main Content -->
+        {% block content %}
+        {% endblock %}
+        <!-- Main Content -->
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'dashboard/js/jquery-3.2.1.slim.min.js' %}" ></script>
+    <script src="{% static 'dashboard/js/popper.min.js' %}" ></script>
+    <script src="{% static 'dashboard/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap-select.min.js' %}"></script>
+
+    <script src="{% static 'dashboard/js/mainscripts.bundle.js' %}"></script>
+    <script src="{% static 'dashboard/js/equalHeight.js' %}"></script>
+    <!-- <script src="plugins/datatable/dataTables.min.js"></script>
+    <script src="plugins/datatable/dataTables.bootstrap.min.js"></script>
+    <script src="plugins/datatable/dataTables.button.js"></script>
+    <script src="plugins/datatable/jszip.min.js"></script>
+    <script src="plugins/datatable/buttons.html5.min.js"></script>
+    <script src="plugins/datatable/custom-datatables.js"></script> -->
+</body>
+
+
+</html>
