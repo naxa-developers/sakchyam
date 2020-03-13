@@ -118,7 +118,7 @@ class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 class LogTitleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
-    model = LogData
+    model = Title
     template_name = 'logtitle_add.html'
     form_class = TitleForm
     success_message = 'Log data successfully Created'
@@ -140,7 +140,7 @@ class LogTitleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
-    model = LogData
+    model = LogSubCategory
     template_name = 'logsubcat_add.html'
     form_class = LogSubCategoryForm
     success_message = 'Log data successfully Created'
@@ -159,3 +159,47 @@ class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return '/dashboard/logsubcat-list/' + str(self.kwargs['cat'])
+
+
+class LogSubCatUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = LogSubCategory
+    template_name = 'logsubcat_edit.html'
+    form_class = LogSubCategoryForm
+    success_message = 'Log data successfully Updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(LogSubCatUpdate, self).get_context_data(**kwargs)
+        user = self.request.user
+        # user_data = UserProfile.objects.get(user=user)
+        # data['user'] = user_data
+        # data['active'] = 'program'
+        sidebar = LogCategory.objects.all()
+        data['sidebar'] = sidebar
+        data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
+        data['active'] = 'log_data'
+        return data
+
+    def get_success_url(self):
+        return '/dashboard/logsubcat-list/' + str(self.kwargs['cat'])
+
+
+class LogTitleUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Title
+    template_name = 'logtitle_edit.html'
+    form_class = TitleForm
+    success_message = 'Log data successfully Created'
+
+    def get_context_data(self, **kwargs):
+        data = super(LogTitleUpdate, self).get_context_data(**kwargs)
+        user = self.request.user
+        # user_data = UserProfile.objects.get(user=user)
+        # data['user'] = user_data
+        # data['active'] = 'program'
+        sidebar = LogCategory.objects.all()
+        data['sidebar'] = sidebar
+        data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
+        data['active'] = 'log_data'
+        return data
+
+    def get_success_url(self):
+        return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
