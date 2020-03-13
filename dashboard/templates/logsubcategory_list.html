@@ -8,30 +8,15 @@
             <li>
                 <a href="#">Log Frame</a>
             </li>
-
             <li>
-                <a href="/dashboard/logsubcat-list/{{ list.first.category.id }}">{{ list.first.category.name }}</a>
+                <a href="#">  {{ list.first.category.name }}</a>
             </li>
             <li>
-                <a href="/dashboard/logtitle-list/{{ list.first.sub_category.id }}">
-                    {{ list.first.sub_category.name }}
-                </a>
+                {{ list.first.category.description }}
             </li>
-            <li>
-                {{ list.first.title.title }}
-            </li>
-
 
         </ul>
-        <div style="margin-left: 1441px;">
-            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}">
-                <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
-            </a>
-
-        </div>
     </div>
-
-
     <div class="logframe">
         <!-- logframe table -->
         <div class="table-tesponsive ">
@@ -47,10 +32,7 @@
                 <thead>
                 <tr>
 
-                    <th>year</th>
-                    <th>planned</th>
-                    <th>planned_afp</th>
-                    <th>achieved</th>
+                    <th>Title</th>
 
 
                     <th></th>
@@ -59,11 +41,18 @@
                 <tbody>
                 {% for data in list %}
                 <tr>
+                    <td>
+                        {% if data.TitleSubCat.all.count < 1 %}
+                        <a href="/dashboard/logtitle-add/{{ data.id }}">
+                            {{data.name}}
+                        </a>
+                        {% else %}
+                         <a href="/dashboard/logtitle-list/{{ data.id }}">
+                            {{data.name}}
+                        </a>
+                        {% endif %}
+                    </td>
 
-                    <td>{{data.year}}</td>
-                    <td>{{data.planned}}</td>
-                    <td>{{data.planned_afp}}</td>
-                    <td>{{data.achieved}}</td>
 
 
                     <td>

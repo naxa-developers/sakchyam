@@ -7,10 +7,26 @@
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
+
             <li>
-                <a href="#">program</a>
+                <a href="#">Log Frame</a>
             </li>
-            <li>New</li>
+
+            <li>
+                <a href="/dashboard/logsubcat-list/{{ categories.first.id }}">{{ categories.first.name }}</a>
+            </li>
+            <li>
+                <a href="/dashboard/logtitle-list/{{ sub_categories.first.id }}">
+                    {{ sub_categories.first.name }}
+                </a>
+            </li>
+            <li>
+                <a href="/dashboard/logframe-list/{{ titles.first.id }}">
+                    {{ titles.first.title }}
+                </a>
+            </li>
+
+            <li>Add Form</li>
         </ul>
     </div>
     <!-- program form -->
@@ -32,72 +48,26 @@
         {% endfor %}
         {% endif %}
 
-<!--        {{form.as_p}}-->
+
+        <!-- category form
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>Indicator</h3>
+            </div>
+
+        </div> -->
 
         <!-- default form -->
         <div class="default-form">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_planned" class="">planned budget</label>
-                        <input type="text" class="form-control" placeholder="Name" name="planned" id="id_planned"/>
-<!--                        <span class="error-message"><i class="material-icons error-icon">error_outline</i>-->
-<!--                                        Please enter name</span>-->
-                    </div>
-                </div>
-                <div class="col-md-6">
-                </div>
-            </div>
-<!--            <div class="row">-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="" class="">Description</label>-->
-<!--                        <textarea type="text" class="form-control" placeholder="Program description"-->
-<!--                                  rows="5"></textarea>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-6">-->
-<!--                </div>-->
-<!--            </div>-->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_planned_afp" class="">planned budget as afp</label>
-                        <input type="text" class="form-control" name="planned_afp" id="id_planned_afp" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_achieved" class="">achieved budget</label>
-                        <input type="text" class="form-control" name="achieved" id="id_achieved" />
-                    </div>
-                </div>
-            </div>
-<!--            <div class="row">-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="form-group ">-->
-<!--                        <label for="" class="">Budget</label>-->
-<!--                        <input type="text" class="form-control" placeholder="e.g. GBP 89413"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-6">-->
-<!--                </div>-->
-<!--            </div>-->
-        </div>
 
-        <!-- category form -->
-        <div class="category-form form-card">
-            <div class="form-title">
-                <h3>Category</h3>
-            </div>
+        <div style="display:none">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_category" class="">category</label>
                         <select class="selectpicker" name="category" required id="id_category">
-                            <option value selected>-------</option>
                             {% for category in categories %}
-                            <option value="{{category.id}}">{{category.name}}</option>
+                            <option value="{{category.id}}" selected>{{category.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -105,48 +75,95 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_sub_category" class="">sub-category</label>
-                        <select class="selectpicker" data-live-search="true" name="sub_category" required id="id_sub_category">
-                            <option selected>Default Dropdown</option>
+                        <select class="selectpicker" data-live-search="true" name="sub_category" required
+                                id="id_sub_category">
                             {% for sub_category in sub_categories %}
-                            <option value="{{sub_category.id}}">{{sub_category.name}}</option>
+                            <option value="{{sub_category.id}}" selected>{{sub_category.name}}</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
+
+
+            </div>
+            <div class="row">
+
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_title" class="">Title</label>
-                        <select class="selectpicker" data-live-search="true" name="title" required id="id_title">
-                            <option selected>Default Dropdown</option>
+                        <select class="selectpicker" data-live-search="true" name="title" required
+                                id="id_title">
                             {% for title in titles %}
-                            <option value="{{title.id}}">{{title.title}}</option>
+                            <option value="{{title.id}}" selected>{{title.title}}</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
+
+
+            </div>
+
+            </div>
+
+
+
+            <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group error">
+                        <label for="id_planned" class="">planned budget</label>
+                        <input type="text" class="form-control" placeholder="Name" name="planned" id="id_planned"/>
+                        <!--                        <span class="error-message"><i class="material-icons error-icon">error_outline</i>-->
+                        <!--                                        Please enter name</span>-->
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_planned_afp" class="">planned budget as afp</label>
+                        <input type="text" class="form-control" name="planned_afp" id="id_planned_afp"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_achieved" class="">achieved budget</label>
+                        <input type="text" class="form-control" name="achieved" id="id_achieved"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
                         <label for="id_year" class="">Year</label>
-                        <select class="selectpicker" data-live-search="true" name="year" required id="id_year">
-                            <option selected>Default Dropdown</option>
+                        <select class="selectpicker" data-live-search="true" name="year" required
+                                id="id_year">
                             {% for year in years %}
-                            <option value="{{year.id}}">{{year.year}}</option>
+                            <option value="{{year.id}}">{{year.name}}({{year.range}})</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_data_type" class="">data type</label>
-                        <select class="selectpicker" data-live-search="true" name="data_type" required id="id_data_type">
-                            <option value="0" selected>Number</option>
-                            <option value="1" >Funds</option>
-                            <option value="2" >Percentage</option>
-                        </select>
-                    </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group ">
+                    <label for="id_data_type" class="">data type</label>
+                    <select class="selectpicker" data-live-search="true" name="data_type" required
+                            id="id_data_type">
+                        <option value="0" selected>Number</option>
+                        <option value="1">Funds</option>
+                        <option value="2">Percentage</option>
+                    </select>
                 </div>
             </div>
+
+
         </div>
+
 
         <div class="form-group mrt-100">
             <button type="submit" class="sakchyam-button sm-button">Save</button>

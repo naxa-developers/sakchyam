@@ -119,9 +119,17 @@
                                     class="material-icons">dashboard</i><span>Dashboard</span></a>
 
                         </li>
-                        <li class="active menu-item"> <a href="sakchyam-program.html" class="">
+                        <li class="active menu-item"> <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Log Frame</span></a>
+
+                            <ul class="ml-menu">
+                                {% for log in sidebar %}
+                                <li><a href="/dashboard/logsubcat-list/{{ log.id }}">{{log.name}}</a></li>
+
+
+                                {% endfor %}
+                            </ul>
 
                         </li>
                         <li class="menu-item"> <a href="javascript:void(0);">
@@ -174,7 +182,7 @@
     <!-- Jquery Core Js -->
     <script src="{% static 'dashboard/js/jquery-3.2.1.slim.min.js' %}" ></script>
     <script src="{% static 'dashboard/js/popper.min.js' %}" ></script>
-    <script src="{% static 'dashboard/js/jquery-3.4.1.min.js"></script>
+    <script src="{% static 'dashboard/js/jquery-3.4.1.min.js' %}"></script>
     <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'dashboard/js/bootstrap-select.min.js' %}"></script>
 
