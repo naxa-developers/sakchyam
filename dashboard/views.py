@@ -203,3 +203,28 @@ class LogTitleUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
+
+
+class LogDataUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = LogData
+    template_name = 'logdata_edit.html'
+    form_class = LogDataForm
+    success_message = 'Log data successfully Updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(LogDataUpdate, self).get_context_data(**kwargs)
+        user = self.request.user
+        # user_data = UserProfile.objects.get(user=user)
+        # data['user'] = user_data
+        # data['active'] = 'program'
+        sidebar = LogCategory.objects.all()
+        data['sidebar'] = sidebar
+        data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
+        data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
+        data['titles'] = Title.objects.filter(id=self.kwargs['title']).order_by('id')
+        data['years'] = MilestoneYear.objects.order_by('id')
+        data['active'] = 'log_data'
+        return data
+
+    def get_success_url(self):
+        return '/dashboard/logframe-list/' + str(self.kwargs['title'])
