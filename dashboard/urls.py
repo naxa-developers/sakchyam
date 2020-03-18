@@ -2,7 +2,7 @@ from django.urls import path, include
 from dashboard import views
 
 urlpatterns = [
-    path('signup', views.signup, name='signup'),
+    path('signup/', views.signup, name='signup'),
     path('main/', views.Dashboard.as_view(), name='main'),
 
     path('log-frame-add/<int:cat>/<int:subcat>/<int:title>', views.LogDataCreate.as_view(), name='log-frame-add'),
