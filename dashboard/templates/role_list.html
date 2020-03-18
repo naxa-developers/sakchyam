@@ -6,23 +6,25 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Log Frame</a>
+                <a href="#">User Management</a>
             </li>
+
+
             <li>
-                <a href="#">  {{ list.first.category.name }}</a>
+                User List
             </li>
-            <li>
-                {{ list.first.category.title }}
-            </li>
+
 
         </ul>
         <div style="margin-left: 1441px;">
-            <a href="/dashboard/logsubcat-add/{{ list.first.category.id }}">
+            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
     </div>
+
+
     <div class="logframe">
         <!-- logframe table -->
         <div class="table-tesponsive ">
@@ -37,32 +39,19 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
-
+                    <th>Id</th>
                     <th>Name</th>
-                    <th>Title</th>
-                    <th>Description</th>
-
 
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for data in list %}
+                {% for group in list %}
                 <tr>
+                    <td>{{ group.id }}</td>
                     <td>
-                        {% if data.LogSubCat.all.count < 1 %}
-                        <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ data.id }}">
-                            {{data.name}}
-                        </a>
-                        {% else %}
-                         <a href="/dashboard/logframe-list/{{ data.id }}">
-                            {{data.name}}
-                        </a>
-                        {% endif %}
+                        <strong><a href="#">{{group.name}}</a></strong>
                     </td>
-                    <td>{{data.title}}</td>
-                    <td>{{data.description}}</td>
-
 
 
                     <td>
@@ -72,7 +61,8 @@
                             </a>
                             <ul class="dropdown-animation">
                                 <li>
-                                    <a href="/dashboard/logsubcat-edit/{{data.id}}/{{ list.first.category.id }}" class="flex-start">
+                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}"
+                                       class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>

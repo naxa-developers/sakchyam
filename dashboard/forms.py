@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Title
+from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear
 
 
 class LogCategoryForm(ModelForm):
@@ -25,8 +25,7 @@ class MilestoneYearForm(ModelForm):
         model = MilestoneYear
         fields = '__all__'
 
-
-class TitleForm(ModelForm):
-    class Meta:
-        model = Title
-        fields = '__all__'
+# class TitleForm(ModelForm):
+#     class Meta:
+#         model = Title
+#         fields = '__all__'

@@ -1,8 +1,7 @@
 from rest_framework import viewsets
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Title
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
-    LogDataAlternativeSerializer, TitleSerializer
-
+    LogDataAlternativeSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -39,10 +38,7 @@ class LogDataAlternativeViewSet(viewsets.ModelViewSet):
     queryset = LogData.objects.all()
     permission_classes = []
 
-
-class TitleViewSet(viewsets.ModelViewSet):
-    serializer_class = LogDataAlternativeSerializer
-    queryset = Title.objects.all()
-    permission_classes = []
-
-
+# class TitleViewSet(viewsets.ModelViewSet):
+#     serializer_class = LogDataAlternativeSerializer
+#     queryset = Title.objects.all()
+#     permission_classes = []

@@ -6,23 +6,25 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Log Frame</a>
+                <a href="#">User Management</a>
             </li>
+
+
             <li>
-                <a href="#">  {{ list.first.category.name }}</a>
+                User List
             </li>
-            <li>
-                {{ list.first.category.title }}
-            </li>
+
 
         </ul>
         <div style="margin-left: 1441px;">
-            <a href="/dashboard/logsubcat-add/{{ list.first.category.id }}">
+            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
     </div>
+
+
     <div class="logframe">
         <!-- logframe table -->
         <div class="table-tesponsive ">
@@ -37,32 +39,69 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
-
+                    <th>Id</th>
                     <th>Name</th>
-                    <th>Title</th>
-                    <th>Description</th>
-
-
+                    <th>Email</th>
+                    <th>User Status</th>
+                    <th>role</th>
                     <th></th>
+
+
+                    <!--                <th></th>-->
                 </tr>
                 </thead>
                 <tbody>
-                {% for data in list %}
+                {% for user in list %}
                 <tr>
+                    <td>{{ user.id }}</td>
                     <td>
-                        {% if data.LogSubCat.all.count < 1 %}
-                        <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ data.id }}">
-                            {{data.name}}
+                        <a href="#" class="partner-info flex-start">
+                            {% if user.thumbnail %}
+                            <img src="{{ user.thumbnail.url }}" alt="org"/>
+                            {% else %}
+                            <img src="{% static 'dashboard/images/admin.png' %}" alt="org"/>
+                            {% endif %}
+                            <h6>{{user.full_name}}</h6>
                         </a>
-                        {% else %}
-                         <a href="/dashboard/logframe-list/{{ data.id }}">
-                            {{data.name}}
-                        </a>
-                        {% endif %}
                     </td>
-                    <td>{{data.title}}</td>
-                    <td>{{data.description}}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
 
+
+                        {% if user.user.is_active %}
+
+                        <span class="status green">Active</span>
+
+                        {% else %}
+
+                        <a href="/dashboard/activate/{{ user.user.id }}">
+                            <button type="button" class="btn btn-outline-info">Activate</button>
+                        </a>
+
+                        {% endif %}
+
+
+                    </td>
+
+                    <td>
+                    {% if user.user.is_superuser %}
+                        admin
+                    {% else %}
+
+                    {% if user.user.groups.all.exists %}
+
+                    {% for grp in user.user.groups.all %}
+                    {{ grp.name }}
+                    {% endfor %}
+
+                    {% else %}
+
+                    <a href="/dashboard/assign-role/{{ user.user.id }}"><button type="button" class="btn btn-outline-info">Assign Role</button></a>
+
+                    {% endif %}
+                    {% endif %}
+
+                </td>
 
 
                     <td>
@@ -72,7 +111,8 @@
                             </a>
                             <ul class="dropdown-animation">
                                 <li>
-                                    <a href="/dashboard/logsubcat-edit/{{data.id}}/{{ list.first.category.id }}" class="flex-start">
+                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}"
+                                       class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>

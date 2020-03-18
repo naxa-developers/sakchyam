@@ -13,18 +13,18 @@
                 <a href="/dashboard/logsubcat-list/{{ list.first.category.id }}">{{ list.first.category.name }}</a>
             </li>
             <li>
-                <a href="/dashboard/logtitle-list/{{ list.first.sub_category.id }}">
+                <a href="#">
                     {{ list.first.sub_category.name }}
                 </a>
             </li>
             <li>
-                {{ list.first.title.title }}
+                {{ list.first.sub_category.title }}
             </li>
 
 
         </ul>
         <div style="margin-left: 1441px;">
-            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}">
+            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
@@ -48,7 +48,6 @@
                 <tr>
 
                     <th>year</th>
-                    <th>planned</th>
                     <th>planned_afp</th>
                     <th>achieved</th>
 
@@ -61,7 +60,6 @@
                 <tr>
 
                     <td>{{data.year}}</td>
-                    <td>{{data.planned}}</td>
                     <td>{{data.planned_afp}}</td>
                     <td>{{data.achieved}}</td>
 
@@ -73,7 +71,7 @@
                             </a>
                             <ul class="dropdown-animation">
                                 <li>
-                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}" class="flex-start">
+                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}" class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>

@@ -16,15 +16,11 @@
                 <a href="/dashboard/logsubcat-list/{{ categories.first.id }}">{{ categories.first.name }}</a>
             </li>
             <li>
-                <a href="/dashboard/logtitle-list/{{ sub_categories.first.id }}">
+                <a href="/dashboard/logframe-list/{{ sub_categories.first.id }}">
                     {{ sub_categories.first.name }}
                 </a>
             </li>
-            <li>
-                <a href="/dashboard/logframe-list/{{ titles.first.id }}">
-                    {{ titles.first.title }}
-                </a>
-            </li>
+
 
             <li>Add Form</li>
         </ul>
@@ -86,41 +82,19 @@
 
 
             </div>
-            <div class="row">
 
-                <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_title" class="">Title</label>
-                        <select class="selectpicker" data-live-search="true" name="title" required
-                                id="id_title">
-                            {% for title in titles %}
-                            <option value="{{title.id}}" selected>{{title.title}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-
-            </div>
 
             </div>
 
 
 
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_planned" class="">planned budget</label>
-                        <input type="text" class="form-control" placeholder="Name" name="planned" id="id_planned"/>
-                        <!--                        <span class="error-message"><i class="material-icons error-icon">error_outline</i>-->
-                        <!--                                        Please enter name</span>-->
-                    </div>
-                </div>
+
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_planned_afp" class="">planned budget as afp</label>
-                        <input type="text" class="form-control" name="planned_afp" id="id_planned_afp"/>
+                        <input type="text" class="form-control" name="planned_afp" value="0" id="id_planned_afp"/>
                     </div>
                 </div>
 
@@ -131,7 +105,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_achieved" class="">achieved budget</label>
-                        <input type="text" class="form-control" name="achieved" id="id_achieved"/>
+                        <input type="text" class="form-control" name="achieved" value="0" id="id_achieved"/>
                     </div>
                 </div>
 
