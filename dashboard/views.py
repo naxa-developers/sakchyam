@@ -3,11 +3,13 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Title
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from dashboard.forms import LogDataForm, TitleForm, LogSubCategoryForm, LogCategoryForm
+from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.models import User, Group, Permission
+from .models import UserProfile
 
 
 # Create your views here.
@@ -54,7 +56,7 @@ class LogFrameList(LoginRequiredMixin, ListView):
         # user_data = UserProfile.objects.get(user=user)
         # data['active'] = 'program'
         sidebar = LogCategory.objects.order_by('id')
-        query_data = LogData.objects.filter(title__id=self.kwargs['id']).order_by('id')
+        query_data = LogData.objects.filter(sub_category__id=self.kwargs['id']).order_by('id')
         data['list'] = query_data
         data['sidebar'] = sidebar
         return data
@@ -77,20 +79,20 @@ class LogSubCategoryList(LoginRequiredMixin, ListView):
         return data
 
 
-class LogTitleList(LoginRequiredMixin, ListView):
-    template_name = 'logtitle_list.html'
-    model = LogSubCategory
-
-    def get_context_data(self, **kwargs):
-        data = super(LogTitleList, self).get_context_data(**kwargs)
-        # user = self.request.user
-        # user_data = UserProfile.objects.get(user=user)
-        # data['active'] = 'program'
-        sidebar = LogCategory.objects.order_by('id')
-        data['sidebar'] = sidebar
-        query_data = Title.objects.filter(sub_category__id=self.kwargs['id']).order_by('id')
-        data['list'] = query_data
-        return data
+# class LogTitleList(LoginRequiredMixin, ListView):
+#     template_name = 'logtitle_list.html'
+#     model = LogSubCategory
+#
+#     def get_context_data(self, **kwargs):
+#         data = super(LogTitleList, self).get_context_data(**kwargs)
+#         # user = self.request.user
+#         # user_data = UserProfile.objects.get(user=user)
+#         # data['active'] = 'program'
+#         sidebar = LogCategory.objects.order_by('id')
+#         data['sidebar'] = sidebar
+#         query_data = Title.objects.filter(sub_category__id=self.kwargs['id']).order_by('id')
+#         data['list'] = query_data
+#         return data
 
 
 class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -109,35 +111,34 @@ class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['sidebar'] = sidebar
         data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
         data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
-        data['titles'] = Title.objects.filter(id=self.kwargs['title']).order_by('id')
         data['years'] = MilestoneYear.objects.order_by('id')
         data['active'] = 'log_data'
         return data
 
     def get_success_url(self):
-        return '/dashboard/logframe-list/' + str(self.kwargs['title'])
+        return '/dashboard/logframe-list/' + str(self.kwargs['subcat'])
 
 
-class LogTitleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
-    model = Title
-    template_name = 'logtitle_add.html'
-    form_class = TitleForm
-    success_message = 'Log data successfully Created'
-
-    def get_context_data(self, **kwargs):
-        data = super(LogTitleCreate, self).get_context_data(**kwargs)
-        user = self.request.user
-        # user_data = UserProfile.objects.get(user=user)
-        # data['user'] = user_data
-        # data['active'] = 'program'
-        sidebar = LogCategory.objects.all()
-        data['sidebar'] = sidebar
-        data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
-        data['active'] = 'log_data'
-        return data
-
-    def get_success_url(self):
-        return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
+# class LogTitleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+#     model = Title
+#     template_name = 'logtitle_add.html'
+#     form_class = TitleForm
+#     success_message = 'Log data successfully Created'
+#
+#     def get_context_data(self, **kwargs):
+#         data = super(LogTitleCreate, self).get_context_data(**kwargs)
+#         user = self.request.user
+#         # user_data = UserProfile.objects.get(user=user)
+#         # data['user'] = user_data
+#         # data['active'] = 'program'
+#         sidebar = LogCategory.objects.all()
+#         data['sidebar'] = sidebar
+#         data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
+#         data['active'] = 'log_data'
+#         return data
+#
+#     def get_success_url(self):
+#         return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
 
 
 class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -184,26 +185,26 @@ class LogSubCatUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return '/dashboard/logsubcat-list/' + str(self.kwargs['cat'])
 
 
-class LogTitleUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
-    model = Title
-    template_name = 'logtitle_edit.html'
-    form_class = TitleForm
-    success_message = 'Log data successfully Created'
-
-    def get_context_data(self, **kwargs):
-        data = super(LogTitleUpdate, self).get_context_data(**kwargs)
-        user = self.request.user
-        # user_data = UserProfile.objects.get(user=user)
-        # data['user'] = user_data
-        # data['active'] = 'program'
-        sidebar = LogCategory.objects.all()
-        data['sidebar'] = sidebar
-        data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
-        data['active'] = 'log_data'
-        return data
-
-    def get_success_url(self):
-        return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
+# class LogTitleUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+#     model = Title
+#     template_name = 'logtitle_edit.html'
+#     form_class = TitleForm
+#     success_message = 'Log data successfully Created'
+#
+#     def get_context_data(self, **kwargs):
+#         data = super(LogTitleUpdate, self).get_context_data(**kwargs)
+#         user = self.request.user
+#         # user_data = UserProfile.objects.get(user=user)
+#         # data['user'] = user_data
+#         # data['active'] = 'program'
+#         sidebar = LogCategory.objects.all()
+#         data['sidebar'] = sidebar
+#         data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
+#         data['active'] = 'log_data'
+#         return data
+#
+#     def get_success_url(self):
+#         return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
 
 
 class LogDataUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
@@ -222,10 +223,39 @@ class LogDataUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['sidebar'] = sidebar
         data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
         data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
-        data['titles'] = Title.objects.filter(id=self.kwargs['title']).order_by('id')
         data['years'] = MilestoneYear.objects.order_by('id')
         data['active'] = 'log_data'
         return data
 
     def get_success_url(self):
-        return '/dashboard/logframe-list/' + str(self.kwargs['title'])
+        return '/dashboard/logframe-list/' + str(self.kwargs['subcat'])
+
+
+class UserList(LoginRequiredMixin, ListView):
+    template_name = 'user_list.html'
+    model = UserProfile
+
+    def get_context_data(self, **kwargs):
+        data = super(UserList, self).get_context_data(**kwargs)
+        user_list = UserProfile.objects.order_by('id')
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['list'] = user_list
+        data['user'] = user_data
+        data['active'] = 'user'
+        return data
+
+
+class RoleList(LoginRequiredMixin, ListView):
+    template_name = 'role_list.html'
+    model = Group
+
+    def get_context_data(self, **kwargs):
+        data = super(RoleList, self).get_context_data(**kwargs)
+        role_list = Group.objects.order_by('id')
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['list'] = role_list
+        data['user'] = user_data
+        data['active'] = 'permission'
+        return data
