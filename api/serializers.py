@@ -28,7 +28,7 @@ class LogDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LogData
-        fields = ['id', 'planned', 'achieved', 'year', 'category', 'sub_category']
+        fields = ['id', 'planned_afp', 'achieved', 'year', 'category', 'sub_category']
 
 
 class LogDataAlternativeSerializer(serializers.ModelSerializer):

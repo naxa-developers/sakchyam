@@ -32,17 +32,47 @@ function CustomJs() {
 //     checkStatuForResize();
 // })
 
-$('.menu .list li a.menu-toggle').on('click', function (e) {
-    e.preventDefault();
-    // $("body").addClass("ls-toggle-menu");
+// $('.menu .list li a.menu-toggle').on('click', function (e) {
+//     e.preventDefault();
+//     // $("body").addClass("ls-toggle-menu");
 
-    if ($(this).closest('li').next().hasClass('submenu')) {
-        $('.menu .list li').removeClass('submenu');
-    } else {
-        $('.menu .list li').removeClass('submenu');
+//     if ($(this).closest('li').next().hasClass('submenu')) {
+//         $('.menu .list li').removeClass('submenu');
+//     } else {
+//         $('.menu .list li').removeClass('submenu');
+//     }
+//     $(this).closest('li').toggleClass('submenu');
+// });
+
+function dropdownMenu(){
+    $('.ml-menu').hide();
+    //stores the total number of indicated classes(in this case , hidden paragraph titles) in the variable 'numberOfDesc'
+    var numberOfSubmenu = $('.menu-toggle').length; 
+    //initiates the 'while loop' inidicated below
+    var i = 0;
+    //start while loop
+    while(i <= numberOfSubmenu) {
+      function dropdown(i) {
+          $('.menu-toggle').eq(i).click(function () {
+              //this closes any paragraph that might be open. can be seen as default behaviour.
+              $('.ml-menu').slideUp();
+              $('.menu-toggle').removeClass('toggled');
+              
+              // opens paragraph (if it's closed) with equivalent index to clicked '.submenu'
+              if($('.ml-menu').eq(i).is(':hidden')){
+                  $('.ml-menu').eq(i).slideDown("slow");
+                  $(this).addClass('toggled');
+              } else {
+                  // hides paragraph if its visible
+                  $('.ml-menu').eq(i).slideUp();
+              }        
+          });
+      }  
+      dropdown(i);
+      i++;  //repeats the task till last declared index
     }
-    $(this).closest('li').toggleClass('submenu');
-});
+  }
+  dropdownMenu();
 
 $('.program-footer a').on('click', function (e) {
     e.preventDefault();

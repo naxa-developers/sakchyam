@@ -56,24 +56,25 @@
             list-style: none;
             margin:0;
             li{
-                .menu-toggle{
+                &.menu-toggle{
+                    position: relative;
                     &::before,
                     &::after{
-                        @include transition(all .5s ease-in-out);
                         font-size: 1.4rem;
                         position: absolute;
                         top:0.6125rem;
                         right: 15px;
                         font-family: 'Material Icons';
+                        color:$color-white;
+                        z-index: 99;
                     }
                     &::before{
-                        content: 'chevron_right';
+                        content: 'expand_more';
                     }
                     &.toggled{
-                        color: $blue-light;
                         &::before{
-                            content:'expand_less';
-                        }
+                            content: 'expand_less';
+                        }  
                     }
                 }
                 a{
@@ -110,9 +111,7 @@
                 }
                 .ml-menu {
                     list-style: none;
-                    display: none;
                     background-color:$blue-dark;
-                    @include transition(all .5s ease-in-out);
                     padding:0;
                     li{
                         a {
@@ -132,11 +131,7 @@
                         }
                     }
                 }
-                &.submenu{
-                    .ml-menu{
-                        display: block;
-                    }
-                }
+               
             }
             
         }

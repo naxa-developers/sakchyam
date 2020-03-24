@@ -1327,10 +1327,10 @@ main.sakchyam-main {
   margin-left: 250px; }
 
 button.sakchyam-button, a.sakchyam-button {
-  padding: 1rem 2rem;
+  padding: .5rem 1rem;
   text-align: center;
   text-transform: capitalize;
-  font-size: 1rem;
+  font-size: .875rem;
   color: #ffffff;
   background-color: #BE0017;
   -webkit-transition: all 0.5s ease-in-out;
@@ -1341,7 +1341,6 @@ button.sakchyam-button, a.sakchyam-button {
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
   cursor: pointer;
-  min-width: 110px;
   display: inline-block; }
   button.sakchyam-button:hover, a.sakchyam-button:hover {
     -webkit-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
@@ -1360,8 +1359,8 @@ button.sakchyam-button, a.sakchyam-button {
       -o-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
       box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4); }
   button.sakchyam-button.sm-button, a.sakchyam-button.sm-button {
-    padding: 0.5rem 1rem;
-    border: 1px solid #FEE748; }
+    padding: 0.25rem 1rem;
+    min-width: auto; }
 
 .action-btn {
   width: 100%; }
@@ -1402,96 +1401,6 @@ button {
   button:focus {
     -webkit-outline: none;
     outline: none; }
-
-.checkbox label,
-.radio label {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  padding-left: 33px;
-  line-height: 27px; }
-  .checkbox label::before, .checkbox label::after,
-  .radio label::before,
-  .radio label::after {
-    content: " ";
-    display: inline-block;
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    left: 0;
-    cursor: pointer;
-    border-radius: 3px;
-    top: 0;
-    background-color: transparent;
-    border: 1px solid #FEE748;
-    -webkit-transition: opacity 0.3s linear;
-    -moz-transition: opacity 0.3s linear;
-    -o-transition: opacity 0.3s linear;
-    -ms-transition: opacity 0.3s linear;
-    transition: opacity 0.3s linear; }
-
-.checkbox label::after {
-  color: #ffffff;
-  font-size: 14px;
-  font-family: 'LineAwesome';
-  content: "\f17b";
-  top: 0px;
-  text-align: center;
-  opacity: 0;
-  border: 0;
-  background-color: #FEE748; }
-.checkbox input[type="checkbox"] {
-  opacity: 0;
-  position: absolute;
-  visibility: hidden; }
-  .checkbox input[type="checkbox"]:checked + label:after {
-    opacity: 1; }
-
-.radio input[type="radio"] {
-  opacity: 0;
-  position: absolute;
-  visibility: hidden; }
-.radio input[type="radio"] + label:after {
-  opacity: 0; }
-.radio input[type="radio"]:checked + label::after {
-  width: 8px;
-  height: 8px;
-  background-color: #FEE748;
-  border-color: transparent;
-  top: 9px;
-  left: 9px;
-  opacity: 1; }
-.radio label::after,
-.radio label::before {
-  content: " ";
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid #FEE748;
-  display: inline-block;
-  position: absolute;
-  left: 3px;
-  top: 3px;
-  padding: 1px;
-  -webkit-transition: opacity 0.3s linear;
-  -moz-transition: opacity 0.3s linear;
-  -o-transition: opacity 0.3s linear;
-  -ms-transition: opacity 0.3s linear;
-  transition: opacity 0.3s linear; }
-
-.checkbox.checkbox-circle label::before {
-  border-radius: 50%; }
-
-.radio input[type="radio"]:disabled + label::before,
-.radio input[type="radio"]:disabled + label::after {
-  color: #ffffff; }
-
-.radio.radio-inline {
-  margin-top: 0; }
-
-a.openspace-button:not([href]) {
-  color: #ffffff !important;
-  text-decoration: none; }
 
 .dataTable {
   width: 100% !important;
@@ -1535,6 +1444,35 @@ a.openspace-button:not([href]) {
         font-family: "Titillium Web", sans-serif; }
       .dataTable tbody tr td .icons .icon.check i {
         color: #18D838; }
+      .dataTable tbody tr td .user {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start; }
+        .dataTable tbody tr td .user figure {
+          -webkit-box-flex: 0;
+          -ms-flex: 0 0 34px;
+          flex: 0 0 34px;
+          max-width: 34px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          border-radius: 50%;
+          margin: 0 .6125rem 0 0; }
+          .dataTable tbody tr td .user figure img {
+            width: 34px;
+            height: 34px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            border-radius: 50%; }
+        .dataTable tbody tr td .user h6 {
+          font-weight: 600; }
     .dataTable tbody tr:hover {
       background-color: #FFFCE8; }
   .dataTable .table-action {
@@ -1665,43 +1603,55 @@ ul.pagination {
     color: #ffffff;
     border-color: #FEE748; }
 
-.sakchyam-breadcrumb ul {
-  align-items: center; }
-  .sakchyam-breadcrumb ul li {
-    text-transform: uppercase;
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 1px; }
-    .sakchyam-breadcrumb ul li a {
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: center; }
-      .sakchyam-breadcrumb ul li a i {
-        color: #FEE748;
-        margin-right: 1rem; }
-      .sakchyam-breadcrumb ul li a::after {
-        -webkit-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
-        content: 'chevron_right';
-        font-size: 1.4rem;
-        font-family: 'Material Icons';
-        margin: 0 .6125rem;
-        text-transform: initial; }
-      .sakchyam-breadcrumb ul li a.sm-button {
-        padding: 0.15rem .5rem;
-        text-align: center;
-        min-width: auto; }
-        .sakchyam-breadcrumb ul li a.sm-button i {
-          margin-right: .25rem; }
-        .sakchyam-breadcrumb ul li a.sm-button::after {
-          display: none; }
+.sakchyam-breadcrumb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  .sakchyam-breadcrumb ul {
+    align-items: center; }
+    .sakchyam-breadcrumb ul li {
+      text-transform: uppercase;
+      font-family: "Titillium Web", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px; }
+      .sakchyam-breadcrumb ul li a {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center; }
+        .sakchyam-breadcrumb ul li a i {
+          color: #FEE748;
+          margin-right: 1rem; }
+        .sakchyam-breadcrumb ul li a::after {
+          -webkit-transition: all 0.5s ease-in-out;
+          -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
+          content: 'chevron_right';
+          font-size: 1.4rem;
+          font-family: 'Material Icons';
+          margin: 0 .6125rem;
+          text-transform: initial; }
+        .sakchyam-breadcrumb ul li a.sm-button {
+          padding: 0.15rem .5rem;
+          text-align: center;
+          min-width: auto; }
+          .sakchyam-breadcrumb ul li a.sm-button i {
+            margin-right: .25rem; }
+          .sakchyam-breadcrumb ul li a.sm-button::after {
+            display: none; }
 
 .sidebar {
   -webkit-transition: all 0.5s ease-in-out;
@@ -1769,20 +1719,19 @@ ul.pagination {
     .sidebar .menu .list {
       list-style: none;
       margin: 0; }
-      .sidebar .menu .list li .menu-toggle::before, .sidebar .menu .list li .menu-toggle::after {
-        -webkit-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
-        font-size: 1.4rem;
-        position: absolute;
-        top: 0.6125rem;
-        right: 15px;
-        font-family: 'Material Icons'; }
-      .sidebar .menu .list li .menu-toggle::before {
-        content: 'chevron_right'; }
-      .sidebar .menu .list li .menu-toggle.toggled {
-        color: #96A5CD; }
-        .sidebar .menu .list li .menu-toggle.toggled::before {
+      .sidebar .menu .list li.menu-toggle {
+        position: relative; }
+        .sidebar .menu .list li.menu-toggle::before, .sidebar .menu .list li.menu-toggle::after {
+          font-size: 1.4rem;
+          position: absolute;
+          top: 0.6125rem;
+          right: 15px;
+          font-family: 'Material Icons';
+          color: #ffffff;
+          z-index: 99; }
+        .sidebar .menu .list li.menu-toggle::before {
+          content: 'expand_more'; }
+        .sidebar .menu .list li.menu-toggle.toggled::before {
           content: 'expand_less'; }
       .sidebar .menu .list li a {
         color: #ffffff;
@@ -1812,11 +1761,7 @@ ul.pagination {
         background-color: #BE0017; }
       .sidebar .menu .list li .ml-menu {
         list-style: none;
-        display: none;
         background-color: #BE0017;
-        -webkit-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
         padding: 0; }
         .sidebar .menu .list li .ml-menu li a {
           font-size: .875rem;
@@ -1830,8 +1775,6 @@ ul.pagination {
           .sidebar .menu .list li .ml-menu li a:hover {
             background-color: #FEE748;
             color: #D9002A; }
-      .sidebar .menu .list li.submenu .ml-menu {
-        display: block; }
   .sidebar.open {
     left: 0;
     -webkit-box-shadow: 0px 5px 15px rgba(41, 42, 51, 0.3);
@@ -2751,10 +2694,11 @@ form .bootstrap-select .dropdown-menu {
   border-color: #D9002A; }
 
 .select-list h4 {
-  color: #96A5CD;
-  text-transform: uppercase;
-  font-size: 1rem;
-  margin-bottom: 1rem; }
+  color: #000000;
+  text-transform: capitalize;
+  font-size: .9125rem;
+  margin-bottom: 1rem;
+  font-weight: 600; }
 
 .form-card {
   margin-top: 3rem; }
@@ -2763,32 +2707,28 @@ form .bootstrap-select .dropdown-menu {
     margin-bottom: 3rem;
     font-weight: 700; }
 
-.checklist-wrapper {
-  -webkit-box-shadow: 0 10px 16px rgba(0, 0, 0, 0.4);
-  -ms-box-shadow: 0 10px 16px rgba(0, 0, 0, 0.4);
-  -o-box-shadow: 0 10px 16px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.4); }
-  .checklist-wrapper .checklist-body {
-    min-height: 200px; }
-    .checklist-wrapper .checklist-body .checklist-card {
-      display: block; }
-      .checklist-wrapper .checklist-body .checklist-card .checklist-header {
-        padding: .6125rem 1rem; }
-        .checklist-wrapper .checklist-body .checklist-card .checklist-header.active {
+.checklist-wrapper .checklist-body {
+  min-height: 200px;
+  background-color: #ffffff; }
+  .checklist-wrapper .checklist-body .checklist-card {
+    display: block; }
+    .checklist-wrapper .checklist-body .checklist-card .checklist-header {
+      padding: .6125rem 1rem; }
+      .checklist-wrapper .checklist-body .checklist-card .checklist-header.active {
+        background-color: #FFEAEE; }
+    .checklist-wrapper .checklist-body .checklist-card .custom-checkbox .custom-control-label {
+      color: #B6B6B6; }
+    .checklist-wrapper .checklist-body .checklist-card .custom-checkbox .custom-control-input:checked ~ .custom-control-label {
+      color: #000000; }
+    .checklist-wrapper .checklist-body .checklist-card ul {
+      padding: 0 2rem;
+      display: none; }
+      .checklist-wrapper .checklist-body .checklist-card ul li {
+        padding: .6125rem 0; }
+        .checklist-wrapper .checklist-body .checklist-card ul li.active {
           background-color: #FFEAEE; }
-      .checklist-wrapper .checklist-body .checklist-card .custom-checkbox .custom-control-label {
-        color: #B6B6B6; }
-      .checklist-wrapper .checklist-body .checklist-card .custom-checkbox .custom-control-input:checked ~ .custom-control-label {
-        color: #FEE748; }
-      .checklist-wrapper .checklist-body .checklist-card ul {
-        padding: 0 2rem;
-        display: none; }
-        .checklist-wrapper .checklist-body .checklist-card ul li {
-          padding: .6125rem 0; }
-          .checklist-wrapper .checklist-body .checklist-card ul li.active {
-            background-color: #FFEAEE; }
-    .checklist-wrapper .checklist-body.marker-body .checklist-card ul {
-      display: block; }
+  .checklist-wrapper .checklist-body.marker-body .checklist-card ul {
+    display: block; }
 
 .marker-sector .checklist-wrapper {
   box-shadow: none; }
