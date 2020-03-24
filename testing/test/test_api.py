@@ -65,23 +65,23 @@ from django.contrib.auth.models import User
 #         assert response.status_code == 200
 
 
-class UserTest(TestCase):
-
-    def setUp(self):
-        self.credentials = {
-            'username': 'sakchyam',
-            'password': 'sakchyam@123'}
-        User.objects.create_user(username='sakchyam', password='sakchyam@123')
-
-    def test_signup_view_status_code(self):
-        url = reverse('signup')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-
-    def test_login_view_status_code(self):
-        url = reverse('login')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+# class UserTest(TestCase):
+#
+#     def setUp(self):
+#         self.credentials = {
+#             'username': 'sakchyam',
+#             'password': 'sakchyam@123'}
+#         User.objects.create_user(username='sakchyam', password='sakchyam@123')
+#
+#     def test_signup_view_status_code(self):
+#         url = reverse('signup')
+#         response = self.client.get(url)
+#         self.assertEqual(response.status_code, 200)
+#
+#     def test_login_view_status_code(self):
+#         url = reverse('login')
+#         response = self.client.get(url)
+#         self.assertEqual(response.status_code, 200)
 
     # def test_logout_view_status_code(self):
     #     url = reverse('logout')
