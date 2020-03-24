@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 local_setting.py
-# Docker
+Dockerfile
 docker-compose.yml
 #docker-entrypoint.local.sh
 postgres-data/
