@@ -16,12 +16,7 @@
 
 
         </ul>
-        <div style="margin-left: 1441px;">
-            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}">
-                <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
-            </a>
-
-        </div>
+        <button class="sakchyam-button">Add new</button>
     </div>
 
 
@@ -55,14 +50,17 @@
                 <tr>
                     <td>{{ user.id }}</td>
                     <td>
-                        <a href="#" class="partner-info flex-start">
-                            {% if user.thumbnail %}
-                            <img src="{{ user.thumbnail.url }}" alt="org"/>
-                            {% else %}
-                            <img src="{% static 'dashboard/images/admin.png' %}" alt="org"/>
-                            {% endif %}
+                        <div class="user">
+                            <figure>
+                                {% if user.thumbnail %}
+                                <img src="{{ user.thumbnail.url }}" alt="org"/>
+                                {% else %}
+                                <img src="{% static 'dashboard/images/admin.png' %}" alt="org"/>
+                                {% endif %}
+                            </figure>
                             <h6>{{user.full_name}}</h6>
-                        </a>
+                        </div>
+
                     </td>
                     <td>{{ user.email }}</td>
                     <td>
@@ -84,24 +82,26 @@
                     </td>
 
                     <td>
-                    {% if user.user.is_superuser %}
+                        {% if user.user.is_superuser %}
                         admin
-                    {% else %}
+                        {% else %}
 
-                    {% if user.user.groups.all.exists %}
+                        {% if user.user.groups.all.exists %}
 
-                    {% for grp in user.user.groups.all %}
-                    {{ grp.name }}
-                    {% endfor %}
+                        {% for grp in user.user.groups.all %}
+                        {{ grp.name }}
+                        {% endfor %}
 
-                    {% else %}
+                        {% else %}
 
-                    <a href="/dashboard/assign-role/{{ user.user.id }}"><button type="button" class="btn btn-outline-info">Assign Role</button></a>
+                        <a href="/dashboard/assign-role/{{ user.user.id }}">
+                            <button type="button" class="sakchyam-button sm-button">Assign Role</button>
+                        </a>
 
-                    {% endif %}
-                    {% endif %}
+                        {% endif %}
+                        {% endif %}
 
-                </td>
+                    </td>
 
 
                     <td>

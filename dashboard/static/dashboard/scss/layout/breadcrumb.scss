@@ -1,4 +1,8 @@
 .sakchyam-breadcrumb{
+    @include display-flex(flex);
+    @include justify-content-between;
+    @include align-items-center;
+    @include flex-wrap(wrap);
     ul{
         align-items: center;
         li{

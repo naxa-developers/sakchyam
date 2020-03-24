@@ -53,6 +53,25 @@
                         }
                     }
                 }
+                .user{
+                    @include display-flex(flex);
+                    @include align-items-center;
+                    @include justify-content-start;
+                    figure{
+                        @include flex-base(0 0 34px);
+                        max-width: 34px;
+                        @include radius(50%);
+                        margin:0 .6125rem 0 0;
+                        img{
+                            width:34px;
+                            height: 34px;
+                            @include radius(50%);
+                        }
+                    }
+                    h6{
+                        font-weight: 600;
+                    }
+                }
             }
 
             &:hover {

@@ -240,6 +240,8 @@ class UserList(LoginRequiredMixin, ListView):
         user_list = UserProfile.objects.order_by('id')
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
+        sidebar = LogCategory.objects.all()
+        data['sidebar'] = sidebar
         data['list'] = user_list
         data['user'] = user_data
         data['active'] = 'user'
@@ -255,7 +257,60 @@ class RoleList(LoginRequiredMixin, ListView):
         role_list = Group.objects.order_by('id')
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
+        sidebar = LogCategory.objects.all()
+        data['sidebar'] = sidebar
         data['list'] = role_list
         data['user'] = user_data
         data['active'] = 'permission'
         return data
+
+
+def signup(request, **kwargs):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.is_active = False
+            user.save()
+            if kwargs['group'] != 0:
+                group = Group.objects.get(pk=kwargs['group'])
+                user.groups.add(group)
+
+            UserProfile.objects.create(user=user, name=request.POST['name'], email=request.POST['email'],
+                                       partner_id=int(request.POST['partner']), image=request.FILES['image'])
+
+            # notify_message = request.POST['email'] + ' has created account by username ' + request.POST['username']
+            #
+            # notify_messages = 'Activate account for user ' + request.POST['username']
+            #
+            # notify = Notification.objects.create(user=user, message=notify_message, type='signup',
+            #                                      link='/dashboard/user-list')
+            # notified = Notification.objects.create(user=user, message=notify_messages, type='signup',
+            #                                        link='/dashboard/user-list')
+            return render(request, 'registered_message.html', {'user': request.POST['name']})
+        # else:
+        #     if kwargs['group'] == 0:
+        #         partner = Partner.objects.all()
+        #         # program = Program.objects.all()
+        #         # project = Project.objects.all()
+        #     else:
+        #         partner = Partner.objects.filter(id=kwargs['partner'])
+        #         # program = Program.objects.filter(id=kwargs['program'])
+        #         # project = Project.objects.filter(id=kwargs['project'])
+        #
+        #     return render(request, 'signups.html',
+        #                   {'form': form, 'partners': partner, })
+
+    else:
+        form = UserCreationForm()
+        # if kwargs['group'] == 0:
+        #     partner = Partner.objects.all()
+        #     # program = Program.objects.all()
+        #     # project = Project.objects.all()
+        # else:
+        #     partner = Partner.objects.filter(id=kwargs['partner'])
+        #     # program = Program.objects.filter(id=kwargs['program'])
+        #     # project = Project.objects.filter(id=kwargs['project'])
+
+        return render(request, 'signups.html',
+                      {'form': form, 'partners': partner, })
