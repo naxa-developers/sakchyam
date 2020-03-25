@@ -3,9 +3,15 @@ from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
 
 
 class LogCategorySerializer(serializers.ModelSerializer):
+    subcat = serializers.SerializerMethodField()
+
     class Meta:
         model = LogCategory
-        fields = '__all__'
+        fields = ('id', 'name', 'title', 'subcat')
+
+    def get_subcat(self, obj):
+        qs = obj.Category.all().order_by('id').values('id', 'name')
+        return qs
 
 
 class LogSubCategorySerializer(serializers.ModelSerializer):
@@ -36,7 +42,6 @@ class LogDataAlternativeSerializer(serializers.ModelSerializer):
         model = LogData
         fields = '__all__'
         depth = 1
-
 
 # class TitleSerializer(serializers.ModelSerializer):
 #     class Meta:
