@@ -7,6 +7,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class LogCategoryViewSet(viewsets.ModelViewSet):
@@ -37,6 +38,8 @@ class LogDataAlternativeViewSet(viewsets.ModelViewSet):
     serializer_class = LogDataAlternativeSerializer
     queryset = LogData.objects.all()
     permission_classes = []
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'category', 'sub_category', 'year']
 
 # class TitleViewSet(viewsets.ModelViewSet):
 #     serializer_class = LogDataAlternativeSerializer
