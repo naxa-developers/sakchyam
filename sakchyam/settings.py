@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_yasg',
+    'corsheaders',
     'api',
     'dashboard',
 ]
@@ -57,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'sakchyam.urls'
@@ -132,6 +135,8 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/dashboard/main/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
