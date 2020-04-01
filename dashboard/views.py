@@ -348,3 +348,16 @@ def assign_role(request, **kwargs):
         # notify = Notification.objects.create(user=user, message=notify_message, type='role',
         #                                      link='/dashboard/user-list')
         return redirect('user')
+
+
+def activate_user(request, **kwargs):
+    user = User.objects.get(id=kwargs['id'])
+    # user_data = UserProfile.objects.get(user=user)
+
+    if user.is_active:
+        user.is_active = False
+    else:
+        user.is_active = True
+
+    user.save()
+    return redirect('user')

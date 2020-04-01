@@ -37,12 +37,11 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>User Status</th>
+                    <th>Activate / Deactivate Users</th>
                     <th>role</th>
-                    <th></th>
+<!--                    <th></th>-->
 
 
-                    <!--                <th></th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -68,7 +67,10 @@
 
                         {% if user.user.is_active %}
 
-                        <span class="status green">Active</span>
+<!--                        <span class="status green">Active</span>-->
+                        <a href="/dashboard/activate/{{ user.user.id }}">
+                            <button type="button" class="btn btn-outline-danger">Deactivate</button>
+                        </a>
 
                         {% else %}
 
@@ -104,27 +106,27 @@
                     </td>
 
 
-                    <td>
-                        <div class="table-action">
-                            <a href="#" class="more-action">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-animation">
-                                <li>
-                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}"
-                                       class="flex-start">
-                                        <i class="material-icons">edit</i> Edit
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
-                                    </a>
+<!--                    <td>-->
+<!--                        <div class="table-action">-->
+<!--                            <a href="#" class="more-action">-->
+<!--                                <i class="material-icons">more_vert</i>-->
+<!--                            </a>-->
+<!--                            <ul class="dropdown-animation">-->
+<!--                                <li>-->
+<!--                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}"-->
+<!--                                       class="flex-start">-->
+<!--                                        <i class="material-icons">edit</i> Edit-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a href="#" class="flex-start">-->
+<!--                                        <i class="material-icons">delete</i>delete-->
+<!--                                    </a>-->
 
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </td>-->
                 </tr>
                 {% endfor %}
                 </tbody>
