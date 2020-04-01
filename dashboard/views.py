@@ -330,3 +330,21 @@ def create_role(request):
             group.permissions.add(permission_check)
 
         return redirect('role')
+
+
+def assign_role(request, **kwargs):
+    if "GET" == request.method:
+        groups = Group.objects.all()
+        user = request.user
+        user_data = UserProfile.objects.get(user=user)
+        return render(request, 'assign_role.html', {'user': user_data, 'groups': groups, 'user_id': kwargs['id']})
+    else:
+        user_id = request.POST['user']
+        group_id = request.POST['group_id']
+        user = User.objects.get(id=user_id)
+        group = Group.objects.get(id=group_id)
+        user.groups.add(group)
+        # notify_message = user.username + ' was assigned ' + group.name + ' role by ' + request.user.username
+        # notify = Notification.objects.create(user=user, message=notify_message, type='role',
+        #                                      link='/dashboard/user-list')
+        return redirect('user')
