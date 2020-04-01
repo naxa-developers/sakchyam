@@ -314,3 +314,19 @@ def signup(request, **kwargs):
 
         return render(request, 'signups.html',
                       {'form': form, 'partners': partner, })
+
+
+def create_role(request):
+    if "GET" == request.method:
+        permissions = Permission.objects.all()
+        return render(request, 'add_role.html', {'permissions': permissions})
+
+    else:
+        role = request.POST['role']
+        permission_list = request.POST.getlist('permissions')
+        group = Group.objects.create(name=role)
+        for permissions in permission_list:
+            permission_check = Permission.objects.get(id=permissions)
+            group.permissions.add(permission_check)
+
+        return redirect('role')

@@ -3,6 +3,7 @@ from dashboard import views
 
 urlpatterns = [
     path('signup/', views.signup, name='signup'),
+    path('add-role/', views.create_role, name='add-role'),
     path('main/', views.Dashboard.as_view(), name='main'),
     path('user/', views.UserList.as_view(), name='user'),
     path('role/', views.RoleList.as_view(), name='role'),
