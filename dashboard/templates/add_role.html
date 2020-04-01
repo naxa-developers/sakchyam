@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">User Management</a>
+            </li>
+
+            <li>
+                <a href="/dashboard/role">Roles</a>
+            </li>
+
+
+            <li>Add Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <!-- category form
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>Indicator</h3>
+            </div>
+
+        </div> -->
+
+        <!-- default form -->
+        <div class="default-form">
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_role" class="">Role Title</label>
+                        <input class="form-control" type="text" name="role" maxlength="500" required id="id_role"/>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="category-form form-card">
+                <div class="form-title">
+                    <h3>Permissions</h3>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Log Frame Permissions</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'logdata' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="logdata{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="logdata{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--                 <div class="col-md-6">-->
+                    <!--                    <div class="category-sector select-list">-->
+                    <!--                        <h4>Log Frame Permissions</h4>-->
+                    <!--                        <div class="checklist-wrapper">-->
+                    <!--                            <div class="checklist-body category-body">-->
+                    <!--                                {% for permission in permissions %}-->
+                    <!--                                {% if permission.content_type.model == 'logdata' %}-->
+                    <!--                                <div class="checklist-card">-->
+                    <!--                                    <div class="checklist-header">-->
+                    <!--                                        <div class="custom-control custom-checkbox">-->
+                    <!--                                            <input type="checkbox" value="{{permission.id}}"-->
+                    <!--                                                   class="custom-control-input"-->
+                    <!--                                                   id="logdata{{permission.id}}" name="permissions">-->
+                    <!--                                            <label class="custom-control-label" for="logdata{{permission.id}}">{{permission.name}}-->
+                    <!--                                            </label>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+
+                    <!--                                {% endif %}-->
+                    <!--                                {% endfor %}-->
+
+
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+
+
+                </div>
+            </div>
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

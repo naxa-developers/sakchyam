@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">User Management</a>
+            </li>
+
+            <li>
+                <a href="/dashboard/user">User List</a>
+            </li>
+
+
+            <li>Assign Role</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <!-- category form
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>Indicator</h3>
+            </div>
+
+        </div> -->
+
+        <!-- default form -->
+        <div class="default-form">
+
+            <div style="display:block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="id_group">Roles :</label>
+                        <select name="group_id" id="id_group" class="custom-select">
+                            {% for group in groups %}
+                            <option value={{ group.id }}>{{ group.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <input type="text" class="form-control" name="user" maxlength="100" id="id_user"
+                   placeholder="Name" value="{{ user_id }}" hidden/>
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+    </form>
+</main>
+
+{% endblock %}
