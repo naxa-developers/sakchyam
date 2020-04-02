@@ -56,7 +56,7 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_name" class="">Role Title</label>
-                        <input class="form-control" type="text" name="name"  maxlength="80" required id="id_name"/>
+                        <input class="form-control" type="text" value ="{{ form.instance.name }}" name="name" maxlength="80" required id="id_name"/>
 
                     </div>
                 </div>
@@ -83,7 +83,11 @@
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" value="{{permission.id}}"
                                                        class="custom-control-input"
-                                                       id="logdata{{permission.id}}" name="permissions">
+                                                       id="logdata{{permission.id}}" name="permissions"
+                                                       {% for e in form.instance.permissions.all %}
+                                                       {% if e.id == permission.id %} checked
+                                                       {%endif%} {% endfor %}>
+
                                                 <label class="custom-control-label" for="logdata{{permission.id}}">{{permission.name}}
                                                 </label>
                                             </div>

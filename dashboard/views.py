@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm
+from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -119,28 +119,6 @@ class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         return '/dashboard/logframe-list/' + str(self.kwargs['subcat'])
 
 
-# class LogTitleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
-#     model = Title
-#     template_name = 'logtitle_add.html'
-#     form_class = TitleForm
-#     success_message = 'Log data successfully Created'
-#
-#     def get_context_data(self, **kwargs):
-#         data = super(LogTitleCreate, self).get_context_data(**kwargs)
-#         user = self.request.user
-#         # user_data = UserProfile.objects.get(user=user)
-#         # data['user'] = user_data
-#         # data['active'] = 'program'
-#         sidebar = LogCategory.objects.all()
-#         data['sidebar'] = sidebar
-#         data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
-#         data['active'] = 'log_data'
-#         return data
-#
-#     def get_success_url(self):
-#         return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
-
-
 class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = LogSubCategory
     template_name = 'logsubcat_add.html'
@@ -183,28 +161,6 @@ class LogSubCatUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return '/dashboard/logsubcat-list/' + str(self.kwargs['cat'])
-
-
-# class LogTitleUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
-#     model = Title
-#     template_name = 'logtitle_edit.html'
-#     form_class = TitleForm
-#     success_message = 'Log data successfully Created'
-#
-#     def get_context_data(self, **kwargs):
-#         data = super(LogTitleUpdate, self).get_context_data(**kwargs)
-#         user = self.request.user
-#         # user_data = UserProfile.objects.get(user=user)
-#         # data['user'] = user_data
-#         # data['active'] = 'program'
-#         sidebar = LogCategory.objects.all()
-#         data['sidebar'] = sidebar
-#         data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
-#         data['active'] = 'log_data'
-#         return data
-#
-#     def get_success_url(self):
-#         return '/dashboard/logtitle-list/' + str(self.kwargs['subcat'])
 
 
 class LogDataUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
@@ -316,6 +272,44 @@ def signup(request, **kwargs):
                       {'form': form, 'partners': partner, })
 
 
+class RoleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Group
+    template_name = 'add_role.html'
+    form_class = GroupForm
+    success_message = 'Role successfully added'
+
+    def get_context_data(self, **kwargs):
+        data = super(RoleCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['active'] = 'role'
+        data['permissions'] = Permission.objects.all()
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('role')
+
+
+class RoleUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Group
+    template_name = 'edit_role.html'
+    form_class = GroupForm
+    success_message = 'Role successfully added'
+
+    def get_context_data(self, **kwargs):
+        data = super(RoleUpdate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['active'] = 'role'
+        data['permissions'] = Permission.objects.all()
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('role')
+
+
 def create_role(request):
     if "GET" == request.method:
         permissions = Permission.objects.all()
@@ -330,6 +324,19 @@ def create_role(request):
             group.permissions.add(permission_check)
 
         return redirect('role')
+
+
+def activate_user(request, **kwargs):
+    user = User.objects.get(id=kwargs['id'])
+    # user_data = UserProfile.objects.get(user=user)
+
+    if user.is_active:
+        user.is_active = False
+    else:
+        user.is_active = True
+
+    user.save()
+    return redirect('user')
 
 
 def assign_role(request, **kwargs):
@@ -348,16 +355,3 @@ def assign_role(request, **kwargs):
         # notify = Notification.objects.create(user=user, message=notify_message, type='role',
         #                                      link='/dashboard/user-list')
         return redirect('user')
-
-
-def activate_user(request, **kwargs):
-    user = User.objects.get(id=kwargs['id'])
-    # user_data = UserProfile.objects.get(user=user)
-
-    if user.is_active:
-        user.is_active = False
-    else:
-        user.is_active = True
-
-    user.save()
-    return redirect('user')

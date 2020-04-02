@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django.contrib.auth.models import User, Permission, Group
 from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear
 
 
@@ -25,7 +26,8 @@ class MilestoneYearForm(ModelForm):
         model = MilestoneYear
         fields = '__all__'
 
-# class TitleForm(ModelForm):
-#     class Meta:
-#         model = Title
-#         fields = '__all__'
+
+class GroupForm(ModelForm):
+    class Meta:
+        model = Group
+        fields = '__all__'
