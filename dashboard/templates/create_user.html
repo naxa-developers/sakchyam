@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Log Frame</a>
+            </li>
+
+            <li>
+                <a href="/dashboard/logsubcat-list/{{ sub_categories.first.categoryid }}">{{
+                    sub_categories.first.category.name }}</a>
+            </li>
+            <li>
+                <a href="/dashboard/logtitle-list/{{ sub_categories.first.id }}">
+                    {{ sub_categories.first.name }}
+                </a>
+            </li>
+
+
+            <li>Add Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <!-- category form  -->
+
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>User Credentials</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_username" class="">Username:</label>
+                        <input type="text" name="username" class="form-control" maxlength="150" autofocus required
+                               id="id_username"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_password1">Password:</label>
+                        <input type="password" class="form-control" name="password1" required id="id_password1"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_password2">Password confirmation:</label>
+                        <input type="password" class="form-control" name="password2" required id="id_password2"/>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>User Information</h3>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_full_name">Full Name:</label>
+                        <input type="text" class="form-control" name="full_name" required id="id_full_name"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_email">Email:</label>
+                        <input type="email" class="form-control" name="email" required id="id_email"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_image" class="">Image</label>
+                        <input type="file" name="image" id="id_image">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- default form -->
+
+
+        <div class="form-group mrt-100">
+            <button type="submit" class="sakchyam-button sm-button">Save</button>
+        </div>
+    </form>
+</main>
+
+{% endblock %}
