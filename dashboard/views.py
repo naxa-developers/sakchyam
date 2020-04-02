@@ -6,29 +6,13 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm
+from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
 
 
 # Create your views here.
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.data)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-
-            user = authenticate(username=username, password=password)
-            user.is_active = False
-
-    else:
-        form = UserCreationForm()
-
-    return render(request, 'signup.html', {'form': form})
 
 
 class Dashboard(TemplateView):
@@ -77,22 +61,6 @@ class LogSubCategoryList(LoginRequiredMixin, ListView):
         query_data = LogSubCategory.objects.filter(category__id=self.kwargs['id']).order_by('id')
         data['list'] = query_data
         return data
-
-
-# class LogTitleList(LoginRequiredMixin, ListView):
-#     template_name = 'logtitle_list.html'
-#     model = LogSubCategory
-#
-#     def get_context_data(self, **kwargs):
-#         data = super(LogTitleList, self).get_context_data(**kwargs)
-#         # user = self.request.user
-#         # user_data = UserProfile.objects.get(user=user)
-#         # data['active'] = 'program'
-#         sidebar = LogCategory.objects.order_by('id')
-#         data['sidebar'] = sidebar
-#         query_data = Title.objects.filter(sub_category__id=self.kwargs['id']).order_by('id')
-#         data['list'] = query_data
-#         return data
 
 
 class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -228,48 +196,17 @@ def signup(request, **kwargs):
             user = form.save()
             user.is_active = False
             user.save()
-            if kwargs['group'] != 0:
-                group = Group.objects.get(pk=kwargs['group'])
-                user.groups.add(group)
 
-            UserProfile.objects.create(user=user, name=request.POST['name'], email=request.POST['email'],
-                                       partner_id=int(request.POST['partner']), image=request.FILES['image'])
+            UserProfile.objects.create(user=user, full_name=request.POST['full_name'], email=request.POST['email'],
+                                       image=request.FILES['image'])
+            return redirect('user')
+        else:
+            return render(request, 'create_user.html', {'form': form, })
 
-            # notify_message = request.POST['email'] + ' has created account by username ' + request.POST['username']
-            #
-            # notify_messages = 'Activate account for user ' + request.POST['username']
-            #
-            # notify = Notification.objects.create(user=user, message=notify_message, type='signup',
-            #                                      link='/dashboard/user-list')
-            # notified = Notification.objects.create(user=user, message=notify_messages, type='signup',
-            #                                        link='/dashboard/user-list')
-            return render(request, 'registered_message.html', {'user': request.POST['name']})
-        # else:
-        #     if kwargs['group'] == 0:
-        #         partner = Partner.objects.all()
-        #         # program = Program.objects.all()
-        #         # project = Project.objects.all()
-        #     else:
-        #         partner = Partner.objects.filter(id=kwargs['partner'])
-        #         # program = Program.objects.filter(id=kwargs['program'])
-        #         # project = Project.objects.filter(id=kwargs['project'])
-        #
-        #     return render(request, 'signups.html',
-        #                   {'form': form, 'partners': partner, })
 
     else:
         form = UserCreationForm()
-        # if kwargs['group'] == 0:
-        #     partner = Partner.objects.all()
-        #     # program = Program.objects.all()
-        #     # project = Project.objects.all()
-        # else:
-        #     partner = Partner.objects.filter(id=kwargs['partner'])
-        #     # program = Program.objects.filter(id=kwargs['program'])
-        #     # project = Project.objects.filter(id=kwargs['project'])
-
-        return render(request, 'signups.html',
-                      {'form': form, 'partners': partner, })
+        return render(request, 'create_user.html', {'form': form, })
 
 
 class RoleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):

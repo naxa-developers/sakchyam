@@ -2,7 +2,7 @@ from django.urls import path, include
 from dashboard import views
 
 urlpatterns = [
-    path('signup/', views.signup, name='signup'),
+    path('create-user/', views.signup, name='create-user'),
     # path('add-role/', views.create_role, name='add-role'),
     path('activate/<int:id>', views.activate_user, name='activate'),
     path('main/', views.Dashboard.as_view(), name='main'),

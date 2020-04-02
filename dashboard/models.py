@@ -9,7 +9,7 @@ from io import BytesIO
 
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_role')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     full_name = models.CharField(max_length=500, null=True, blank=True)
     email = models.CharField(max_length=500, null=True, blank=True)
     image = models.ImageField(upload_to='upload/profile/', null=True, blank=True)
