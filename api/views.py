@@ -40,8 +40,3 @@ class LogDataAlternativeViewSet(viewsets.ModelViewSet):
     permission_classes = []
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id', 'category', 'sub_category', 'year']
-
-# class TitleViewSet(viewsets.ModelViewSet):
-#     serializer_class = LogDataAlternativeSerializer
-#     queryset = Title.objects.all()
-#     permission_classes = []
