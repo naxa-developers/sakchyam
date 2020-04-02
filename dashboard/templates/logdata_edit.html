@@ -12,7 +12,7 @@
                 <a href="#">Log Frame</a>
             </li>
 
-             <li>
+            <li>
                 <a href="/dashboard/logsubcat-list/{{ categories.first.id }}">{{ categories.first.name }}</a>
             </li>
             <li>
@@ -61,36 +61,35 @@
         <!-- default form -->
         <div class="default-form">
 
-        <div style="display:none">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_category" class="">category</label>
-                        <select class="selectpicker" name="category" required id="id_category">
-                            {% for category in categories %}
-                            <option value="{{category.id}}" selected>{{category.name}}</option>
-                            {% endfor %}
-                        </select>
+            <div style="display:none">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_category" class="">category</label>
+                            <select class="selectpicker" name="category" required id="id_category">
+                                {% for category in categories %}
+                                <option value="{{category.id}}" selected>{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_sub_category" class="">sub-category</label>
-                        <select class="selectpicker" data-live-search="true" name="sub_category" required
-                                id="id_sub_category">
-                            {% for sub_category in sub_categories %}
-                            <option value="{{sub_category.id}}" selected>{{sub_category.name}}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_sub_category" class="">sub-category</label>
+                            <select class="selectpicker" data-live-search="true" name="sub_category" required
+                                    id="id_sub_category">
+                                {% for sub_category in sub_categories %}
+                                <option value="{{sub_category.id}}" selected>{{sub_category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
+
+
                 </div>
 
 
             </div>
-
-
-            </div>
-
 
 
             <div class="row">
@@ -99,7 +98,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_planned_afp" class="">planned budget as afp</label>
-                        <input type="text" class="form-control" value="{{form.instance.planned_afp}}"  name="planned_afp" id="id_planned_afp"/>
+                        <input type="text" class="form-control" value="{{form.instance.planned_afp}}" name="planned_afp"
+                               id="id_planned_afp"/>
                     </div>
                 </div>
 
@@ -110,7 +110,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_achieved" class="">achieved budget</label>
-                        <input type="text" class="form-control" value="{{form.instance.achieved}}"  name="achieved" id="id_achieved"/>
+                        <input type="text" class="form-control" value="{{form.instance.achieved}}" name="achieved"
+                               id="id_achieved"/>
                     </div>
                 </div>
 
@@ -120,7 +121,9 @@
                         <select class="selectpicker" data-live-search="true" name="year" required
                                 id="id_year">
 
-                            <option value="{{form.instance.year.id}}">{{form.instance.year.name}}({{form.instance.year.range}})</option>
+                            <option value="{{form.instance.year.id}}">
+                                {{form.instance.year.name}}({{form.instance.year.range}})
+                            </option>
 
                         </select>
                     </div>
@@ -128,25 +131,44 @@
 
             </div>
 
-            <div class="col-md-6">
-                <div class="form-group ">
-                    <label for="id_data_type" class="">data type</label>
-                    <select class="selectpicker" data-live-search="true" name="data_type" required
-                            id="id_data_type">
-                        {% if form.instance.data_type == 0 %}
-                        <option value="0" selected>Number</option>
-                        <option value="1">Funds</option>
-                        <option value="2">Percentage</option>
-                        {% elif form.instance.data_type == 1 %}
-                        <option value="0" >Number</option>
-                        <option value="1" selected>Funds</option>
-                        <option value="2">Percentage</option>
-                        {% elif form.instance.data_type == 2 %}
-                         <option value="0" >Number</option>
-                        <option value="1">Funds</option>
-                        <option value="2" selected>Percentage</option>
-                        {% endif  %}
-                    </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_data_type" class="">data type</label>
+                        <select class="selectpicker" data-live-search="true" name="data_type" required
+                                id="id_data_type">
+                            {% if form.instance.data_type == 'number' %}
+                            <option value="number" selected>Number</option>
+                            <option value="budget">Budget</option>
+                            <option value="percentage">Percentage</option>
+                            {% elif form.instance.data_type == 'budget' %}
+                            <option value="number">Number</option>
+                            <option value="budget" selected>Budget</option>
+                            <option value="percentage">Percentage</option>
+                            {% elif form.instance.data_type == 'percentage' %}
+                            <option value="number">Number</option>
+                            <option value="budget">Budget</option>
+                            <option value="percentage" selected>Percentage</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_unit" class="">Unit</label>
+                        <select class="selectpicker" data-live-search="true" name="unit"
+                                id="id_unit">
+                            {% if form.instance.unit == 'pound' %}
+                            <option value="pound" selected>Pound</option>
+                            <option value="rupees">Rupees</option>
+
+                            {% else %}
+                            <option value="pound">Pound</option>
+                            <option value="rupees" selected>Rupees</option>
+                            {% endif %}
+                        </select>
+                    </div>
                 </div>
             </div>
 

@@ -56,36 +56,35 @@
         <!-- default form -->
         <div class="default-form">
 
-        <div style="display:none">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_category" class="">category</label>
-                        <select class="selectpicker" name="category" required id="id_category">
-                            {% for category in categories %}
-                            <option value="{{category.id}}" selected>{{category.name}}</option>
-                            {% endfor %}
-                        </select>
+            <div style="display:none">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_category" class="">category</label>
+                            <select class="selectpicker" name="category" required id="id_category">
+                                {% for category in categories %}
+                                <option value="{{category.id}}" selected>{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_sub_category" class="">sub-category</label>
-                        <select class="selectpicker" data-live-search="true" name="sub_category" required
-                                id="id_sub_category">
-                            {% for sub_category in sub_categories %}
-                            <option value="{{sub_category.id}}" selected>{{sub_category.name}}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_sub_category" class="">sub-category</label>
+                            <select class="selectpicker" data-live-search="true" name="sub_category" required
+                                    id="id_sub_category">
+                                {% for sub_category in sub_categories %}
+                                <option value="{{sub_category.id}}" selected>{{sub_category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
+
+
                 </div>
 
 
             </div>
-
-
-            </div>
-
 
 
             <div class="row">
@@ -123,15 +122,30 @@
 
             </div>
 
-            <div class="col-md-6">
-                <div class="form-group ">
-                    <label for="id_data_type" class="">data type</label>
-                    <select class="selectpicker" data-live-search="true" name="data_type" required
-                            id="id_data_type">
-                        <option value="0" selected>Number</option>
-                        <option value="1">Funds</option>
-                        <option value="2">Percentage</option>
-                    </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_data_type" class="">data type</label>
+                        <select class="selectpicker" data-live-search="true" name="data_type" required
+                                id="id_data_type">
+                            <option value="0" selected>Number</option>
+                            <option value="1">Funds</option>
+                            <option value="2">Percentage</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_unit" class="">Unit</label>
+                        <select class="selectpicker" data-live-search="true" name="unit"
+                                id="id_unit">
+                            <option value="pound">Pound</option>
+                            <option value="rupees">Rupees</option>
+
+
+                        </select>
+                    </div>
                 </div>
             </div>
 
