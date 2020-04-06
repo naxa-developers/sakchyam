@@ -61,6 +61,7 @@ class LogData(models.Model):
     sub_category = models.ForeignKey(LogSubCategory, on_delete=models.CASCADE, related_name='LogSubCat')
     category = models.ForeignKey(LogCategory, on_delete=models.CASCADE, related_name='LogCat')
     unit = models.CharField(max_length=30, blank=True, null=True, choices=UNIT)
+    is_related = models.BooleanField(default=False)
 
     def __str__(self):
         return self.sub_category.name
