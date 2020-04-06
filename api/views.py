@@ -39,4 +39,4 @@ class LogDataAlternativeViewSet(viewsets.ModelViewSet):
     queryset = LogData.objects.order_by('id')
     permission_classes = []
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'category', 'sub_category', 'year']
+    filterset_fields = ['id', 'category', 'sub_category', 'year', 'is_related']
