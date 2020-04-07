@@ -7,5 +7,6 @@ urlpatterns = [
     path('milestone-year', views.MilestoneYearViewSet.as_view({'get': 'list'}), name='milestone-year'),
     path('log-data', views.LogDataViewSet.as_view({'get': 'list'}), name='log-data'),
     path('logFrame-data', views.LogDataAlternativeViewSet.as_view({'get': 'list'}), name='logFrame-data'),
-    
+    path('logFrameSingle-data', views.LogDataSingle.as_view({'get': 'list'}), name='logFrameSingle-data'),
+
 ]

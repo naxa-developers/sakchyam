@@ -24,6 +24,19 @@ class LogSubCategory(models.Model):
 
 
 class MilestoneYear(models.Model):
+    period = (
+        ('y1', 'Year 1'),
+        ('y2', 'Year 2'),
+        ('y3', 'Year 3'),
+        ('y4', 'Year 4'),
+        ('y5', 'Year 5'),
+        ('y6', 'Year 6'),
+        ('y7', 'Year 7'),
+        ('y8', 'Year 8'),
+        ('y9', 'Year 9'),
+        ('y10', 'Year 10'),
+    )
+    period = models.CharField(max_length=30, blank=True, null=True, choices=period)
     name = models.CharField(max_length=200, null=True, blank=True)
     range = models.CharField(max_length=200, null=True, blank=True)
 
