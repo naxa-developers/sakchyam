@@ -60,12 +60,12 @@ class LogDataSingle(viewsets.ModelViewSet):
 
             }
 
-            log_subcat = LogSubCategory.objects.filter(category__id=cat.id)
+            log_subcat = LogSubCategory.objects.filter(category__id=cat.id).order_by('id')
 
             for sub_cat in log_subcat:
                 print('sub-cat', sub_cat.name)
 
-                log_data = LogData.objects.filter(sub_category__id=sub_cat.id)
+                log_data = LogData.objects.filter(sub_category__id=sub_cat.id).order_by('id')
                 sub_category = {
                     'id': sub_cat.id,
                     'name': sub_cat.name,
