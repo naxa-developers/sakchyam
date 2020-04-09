@@ -1,48 +1,107 @@
 from rest_framework import viewsets
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
-    LogDataAlternativeSerializer
+    LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User, Group, Permission
+from dashboard.models import UserProfile
 
 
 class LogCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = LogCategorySerializer
     queryset = LogCategory.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticated, ]
 
 
 class LogSubCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = LogSubCategorySerializer
     queryset = LogSubCategory.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticated, ]
 
 
 class MilestoneYearViewSet(viewsets.ModelViewSet):
     serializer_class = MilestoneYearSerializer
     queryset = MilestoneYear.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticated, ]
 
 
 class LogDataViewSet(viewsets.ModelViewSet):
     serializer_class = LogDataSerializer
     queryset = LogData.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticated, ]
 
 
 class LogDataAlternativeViewSet(viewsets.ModelViewSet):
     serializer_class = LogDataAlternativeSerializer
     queryset = LogData.objects.order_by('id')
-    permission_classes = []
+    permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id', 'category', 'sub_category', 'year', 'is_related']
 
 
+class AutomationViewSet(viewsets.ModelViewSet):
+    serializer_class = AutomationSerializer
+    queryset = Automation.objects.order_by('id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', ]
+
+
+class ProvinceViewSet(viewsets.ModelViewSet):
+    serializer_class = ProvinceSerializer
+    queryset = Province.objects.order_by('id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', ]
+
+
+class DistrictViewSet(viewsets.ModelViewSet):
+    serializer_class = DistrictSerializer
+    queryset = District.objects.order_by('id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', ]
+
+
+class MunicipalityViewSet(viewsets.ModelViewSet):
+    serializer_class = MunicipalitySerializer
+    queryset = Municipality.objects.order_by('id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', ]
+
+
+class UserPermission(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        print('user', self.request.user.id)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        permission = Permission.objects.values_list('codename', flat=True).filter(group=group)
+
+        user_info = [{
+            "id": user_data.id,
+            "name": user_data.full_name,
+            "email": user_data.email,
+            "image": user_data.thumbnail.url,
+            "permission": permission,
+
+        }]
+
+        return Response({"results": user_info})
+
+
 class LogDataSingle(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
     queryset = True
 
     def list(self, request, **kwargs):

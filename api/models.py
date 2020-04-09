@@ -78,3 +78,39 @@ class LogData(models.Model):
 
     def __str__(self):
         return self.sub_category.name
+
+
+class Province(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    code = models.IntegerField(default=0)
+
+
+class District(models.Model):
+    province_id = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='DistrictProvince', null=True,
+                                    blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    code = models.IntegerField(default=0)
+
+
+class Municipality(models.Model):
+    province_id = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='MunProvince', null=True,
+                                    blank=True)
+    district_id = models.ForeignKey(District, on_delete=models.CASCADE, related_name='MunDistrict', null=True,
+                                    blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    municipality_type = models.CharField(max_length=100, null=True, blank=True)
+    hlcit_code = models.CharField(max_length=100, null=True, blank=True)
+    code = models.IntegerField(default=0)
+
+
+class Automation(models.Model):
+    province_id = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='AutoProvince', null=True,
+                                    blank=True)
+    district_id = models.ForeignKey(District, on_delete=models.CASCADE, related_name='AutoDistrict', null=True,
+                                    blank=True)
+    municipality_id = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='AutoMunicipality',
+                                        null=True,
+                                        blank=True)
+    partner_institution = models.CharField(max_length=100, null=True, blank=True)
+    branch = models.CharField(max_length=100, null=True, blank=True)
+    num_tablet_deployed = models.IntegerField(default=0, null=True, blank=True)

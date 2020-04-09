@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation
 
 
 class LogCategorySerializer(serializers.ModelSerializer):
@@ -43,7 +43,26 @@ class LogDataAlternativeSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 1
 
-# class TitleSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Title
-#         fields = '__all__'
+
+class ProvinceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Province
+        fields = '__all__'
+
+
+class DistrictSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = District
+        fields = '__all__'
+
+
+class MunicipalitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Municipality
+        fields = '__all__'
+
+
+class AutomationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Automation
+        fields = '__all__'
