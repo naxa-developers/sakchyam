@@ -20,7 +20,6 @@
     <form class="program-form" method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
-        {{ form.as_p }}
         {% if form.errors %}
         {% for field in form %}
         {% for error in field.errors %}
