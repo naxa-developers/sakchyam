@@ -3,10 +3,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm
+from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, AutomationForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -28,6 +28,56 @@ class Dashboard(TemplateView):
         # else:
         #     five = FiveW.objects.select_related('supplier_id').filter(supplier_id=user_data.partner.id)[:10]
         return render(request, 'dashboard.html', {"sidebar": sidebar})
+
+
+class LogCategoryList(LoginRequiredMixin, ListView):
+    template_name = 'logcat_list.html'
+    model = LogCategory
+
+    def get_context_data(self, **kwargs):
+        data = super(LogCategoryList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        # data['active'] = 'program'
+        query_data = LogCategory.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+
+class AutomationList(LoginRequiredMixin, ListView):
+    template_name = 'automation_list.html'
+    model = Automation
+
+    def get_context_data(self, **kwargs):
+        data = super(AutomationList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        # data['active'] = 'program'
+        query_data = Automation.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+
+class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Automation
+    template_name = 'automation_create.html'
+    form_class = AutomationForm
+    success_message = 'Automation data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(AutomationCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['province'] = Province.objects.order_by('id')
+        data['district'] = District.objects.order_by('id')
+        data['municipality'] = Municipality.objects.order_by('id')
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('automation-list')
 
 
 class LogFrameList(LoginRequiredMixin, ListView):

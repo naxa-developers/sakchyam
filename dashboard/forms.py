@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User, Permission, Group
-from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear
+from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Automation
 from .models import UserProfile
 
 
@@ -37,4 +37,10 @@ class GroupForm(ModelForm):
 class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
+        fields = '__all__'
+
+
+class AutomationForm(ModelForm):
+    class Meta:
+        model = Automation
         fields = '__all__'
