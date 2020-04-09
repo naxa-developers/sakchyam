@@ -160,10 +160,12 @@
                         <select class="selectpicker" data-live-search="true" name="unit"
                                 id="id_unit">
                             {% if form.instance.unit == 'pound' %}
+                            <option value="">-----</option>
                             <option value="pound" selected>Pound</option>
                             <option value="rupees">Rupees</option>
 
                             {% else %}
+                            <option value="">-----</option>
                             <option value="pound">Pound</option>
                             <option value="rupees" selected>Rupees</option>
                             {% endif %}
