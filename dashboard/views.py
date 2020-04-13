@@ -6,7 +6,8 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, AutomationForm
+from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
+    AutomationForm, LogCategoryForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -44,6 +45,26 @@ class LogCategoryList(LoginRequiredMixin, ListView):
         return data
 
 
+class LogCategoryCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = LogCategory
+    template_name = 'logcat_add.html'
+    form_class = LogCategoryForm
+    success_message = 'Log Category data created'
+
+    def get_context_data(self, **kwargs):
+        print('Log Cat')
+        data = super(LogCategoryCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['active'] = 'logcat'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('logcat-list')
+
+
 class AutomationList(LoginRequiredMixin, ListView):
     template_name = 'automation_list.html'
     model = Automation
@@ -70,9 +91,9 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
         # data['active'] = 'program'
-        data['province'] = Province.objects.order_by('id')
-        data['district'] = District.objects.order_by('id')
-        data['municipality'] = Municipality.objects.order_by('id')
+        data['provinces'] = Province.objects.order_by('id')
+        data['districts'] = District.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
         data['active'] = 'automation'
         return data
 
