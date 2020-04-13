@@ -22,6 +22,7 @@ urlpatterns = [
 
     # path('logtitle-add/<int:subcat>', views.LogTitleCreate.as_view(), name='logtitle-add'),
     path('logcat-list/', views.LogCategoryList.as_view(), name='logcat-list'),
+    path('logcat-add/', views.LogCategoryCreate.as_view(), name='logcat-add'),
     # path('logtitle-edit/<int:pk>/<int:subcat>', views.LogTitleUpdate.as_view(), name='logtitle-edit'),
 
     path('automation-list/', views.AutomationList.as_view(), name='automation-list'),

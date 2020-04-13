@@ -15,7 +15,7 @@
 
         </ul>
         <div style="margin-left: 1441px;">
-            <a href="/dashboard/logtitle-add/{{ list.first.sub_category.id }}">
+            <a href="/dashboard/automation-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
@@ -51,13 +51,13 @@
                 {% for data in list %}
                 <tr>
                     <td>
-                        data.province_id
+                        {{ data.province_id.name }}
                     </td>
-                    <td>{{data.district_id}}</td>
-                    <td>{{data.municipality}}</td>
-                    <td>{{data.partner_institution}}</td>
-                    <td>{{data.branch}}</td>
-                    <td>{{data.num_tablet_deployed}}</td>
+                    <td>{{ data.district_id.name }}</td>
+                    <td>{{ data.municipality_id.name }}</td>
+                    <td>{{ data.partner_institution }}</td>
+                    <td>{{ data.branch }}</td>
+                    <td>{{ data.num_tablet_deployed }}</td>
 
 
                     <td>
