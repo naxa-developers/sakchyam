@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 # django.setup()
 
 import os
+from django.core.mail.backends import smtp
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -148,6 +150,14 @@ LOGIN_URL = '/'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'naxasakchyam2020@gmail.com'
+EMAIL_HOST_PASSWORD = '1122qqww'
+DEFAULT_FROM_EMAIL = 'naxasakchyam2020@gmail.com'
+
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -159,6 +169,8 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
+
+
 
 try:
     from sakchyam.local_setting import *
