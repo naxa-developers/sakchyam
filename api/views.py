@@ -129,7 +129,8 @@ class LogDataSingle(viewsets.ModelViewSet):
                     'id': sub_cat.id,
                     'name': sub_cat.name,
                     'title': sub_cat.title,
-                    'category': sub_cat.category.id
+                    'category': sub_cat.category.id,
+                    'description': sub_cat.description
                 }
 
                 for frame in log_data:
@@ -240,4 +241,4 @@ class LogDataSingle(viewsets.ModelViewSet):
                         }
                     )
 
-        return Response({"results": data})
+        return Response(data)
