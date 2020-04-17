@@ -10,7 +10,7 @@ class LogCategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'title', 'subcat')
 
     def get_subcat(self, obj):
-        qs = obj.Category.all().order_by('id').values('id', 'name')
+        qs = obj.Category.all().order_by('id').values('id', 'name', 'description')
         return qs
 
 

@@ -97,7 +97,7 @@ class UserPermission(viewsets.ModelViewSet):
 
         }]
 
-        return Response({"results": user_info})
+        return Response(user_info)
 
 
 class LogDataSingle(viewsets.ModelViewSet):
