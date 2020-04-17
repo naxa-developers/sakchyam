@@ -11,6 +11,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User, Group, Permission
 from dashboard.models import UserProfile
+from django.core import serializers
+from django.db.models import Sum
 
 
 class LogCategoryViewSet(viewsets.ModelViewSet):
@@ -240,5 +242,168 @@ class LogDataSingle(viewsets.ModelViewSet):
 
                         }
                     )
+
+        return Response(data)
+
+
+class AutomationDataDistrict(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        print('user', self.request.user.id)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        district = District.objects.values('id', 'name', 'code', ).order_by('id')
+        for dist in district:
+            automation = Automation.objects.filter(district_id=dist['id'])
+            tablet_sum = automation.aggregate(
+                Sum('num_tablet_deployed'))
+            data_auto = []
+            for auto in automation:
+                data_auto.append({
+                    'province_id': auto.province_id.id,
+                    'district_id': auto.district_id.id,
+                    'municipality_id': auto.municipality_id.id,
+                    'partner_institution': auto.partner_institution,
+                    'branch': auto.branch,
+                    'num_tablet_deployed': auto.num_tablet_deployed,
+                })
+
+            data.append(
+                {
+                    "id": dist['id'],
+                    "name": dist['name'],
+                    "code": dist['code'],
+                    "num_tablet_deployed": tablet_sum['num_tablet_deployed__sum'],
+                    'data': data_auto,
+
+                }
+            )
+
+        return Response(data)
+
+
+class AutomationDataProvince(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        print('user', self.request.user.id)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        province = Province.objects.values('id', 'name', 'code', ).order_by('id')
+        for prov in province:
+            automation = Automation.objects.filter(province_id=prov['id'])
+            tablet_sum = automation.aggregate(
+                Sum('num_tablet_deployed'))
+            data_auto = []
+            for auto in automation:
+                data_auto.append({
+                    'province_id': auto.province_id.id,
+                    'district_id': auto.district_id.id,
+                    'municipality_id': auto.municipality_id.id,
+                    'partner_institution': auto.partner_institution,
+                    'branch': auto.branch,
+                    'num_tablet_deployed': auto.num_tablet_deployed,
+                })
+
+            data.append(
+                {
+                    "id": prov['id'],
+                    "name": prov['name'],
+                    "code": prov['code'],
+                    "num_tablet_deployed": tablet_sum['num_tablet_deployed__sum'],
+                    'data': data_auto,
+
+                }
+            )
+
+        return Response(data)
+
+
+class AutomationDataMunicipality(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        print('user', self.request.user.id)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        municipality = Municipality.objects.values('id', 'name', 'code', ).order_by('id')
+        for mun in municipality:
+            automation = Automation.objects.filter(municipality_id=mun['id'])
+            tablet_sum = automation.aggregate(
+                Sum('num_tablet_deployed'))
+            data_auto = []
+            for auto in automation:
+                data_auto.append({
+                    'province_id': auto.province_id.id,
+                    'district_id': auto.district_id.id,
+                    'municipality_id': auto.municipality_id.id,
+                    'partner_institution': auto.partner_institution,
+                    'branch': auto.branch,
+                    'num_tablet_deployed': auto.num_tablet_deployed,
+                })
+
+            if data_auto:
+                data.append(
+                    {
+                        "id": mun['id'],
+                        "name": mun['name'],
+                        "code": mun['code'],
+                        "num_tablet_deployed": tablet_sum['num_tablet_deployed__sum'],
+                        'data': data_auto,
+
+                    }
+                )
+
+        return Response(data)
+
+
+class AutomationDataPartner(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        print('user', self.request.user.id)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        partner = Automation.objects.values('partner_institution', 'id').distinct("partner_institution")
+        print(partner)
+        for part in partner:
+            print(part['partner_institution'])
+            automation = Automation.objects.filter(partner_institution=part['partner_institution'])
+            tablet_sum = automation.aggregate(
+                Sum('num_tablet_deployed'))
+            data_auto = []
+            for auto in automation:
+                data_auto.append({
+                    'province_id': auto.province_id.id,
+                    'district_id': auto.district_id.id,
+                    'municipality_id': auto.municipality_id.id,
+                    'partner_institution': auto.partner_institution,
+                    'branch': auto.branch,
+                    'num_tablet_deployed': auto.num_tablet_deployed,
+                })
+
+            if data_auto:
+                data.append(
+                    {
+                        "id": part['id'],
+                        "name": part['partner_institution'],
+                        "num_tablet_deployed": tablet_sum['num_tablet_deployed__sum'],
+                        'data': data_auto,
+
+                    }
+                )
 
         return Response(data)
