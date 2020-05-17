@@ -1,5 +1,6 @@
 from rest_framework import viewsets
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
+    Automation, Partner, AutomationPartner
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer
 
@@ -377,33 +378,27 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
         data = []
-        partner = Automation.objects.values('partner_institution', 'id').distinct("partner_institution")
-        print(partner)
+        partner = AutomationPartner.objects.order_by('id')
         for part in partner:
-            print(part['partner_institution'])
-            automation = Automation.objects.filter(partner_institution=part['partner_institution'])
+            automation = Automation.objects.filter(partner__id=part.id)
             tablet_sum = automation.aggregate(
                 Sum('num_tablet_deployed'))
-            data_auto = []
-            for auto in automation:
-                data_auto.append({
-                    'province_id': auto.province_id.id,
-                    'district_id': auto.district_id.id,
-                    'municipality_id': auto.municipality_id.id,
-                    'partner_institution': auto.partner_institution,
-                    'branch': auto.branch,
-                    'num_tablet_deployed': auto.num_tablet_deployed,
-                })
-
-            if data_auto:
-                data.append(
-                    {
-                        "id": part['id'],
-                        "name": part['partner_institution'],
-                        "num_tablet_deployed": tablet_sum['num_tablet_deployed__sum'],
-                        'data': data_auto,
-
-                    }
-                )
+            print(tablet_sum['num_tablet_deployed__sum'])
+            dist_cov = automation.distinct('district_id').count()
+            prov_cov = automation.distinct('province_id').count()
+            mun_cov = automation.distinct('municipality_id').count()
+            branch = automation.count()
+            data.append({
+                'partner_id': part.partner.id,
+                'partner_name': part.partner.name,
+                'district_covered': dist_cov,
+                'province_covered': prov_cov,
+                'municipality_covered': mun_cov,
+                'branch': branch,
+                'beneficiary': part.beneficiary,
+                'lat': part.latitude,
+                'long': part.longitude,
+                'num_tablet_deployed': tablet_sum['num_tablet_deployed__sum'],
+            })
 
         return Response(data)

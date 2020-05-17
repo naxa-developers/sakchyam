@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  naxamap:
+  sakchyam_db:
     container_name: psql-11-sakchyam_db
     image: mdillon/postgis:11-alpine
     volumes:
