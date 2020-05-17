@@ -53,7 +53,7 @@ class AutomationViewSet(viewsets.ModelViewSet):
     queryset = Automation.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'partner_institution', 'branch', 'province_id', 'district_id', 'municipality_id', ]
+    filterset_fields = ['id', 'partner', 'branch', 'province_id', 'district_id', 'municipality_id', ]
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):
@@ -368,6 +368,59 @@ class AutomationDataMunicipality(viewsets.ModelViewSet):
         return Response(data)
 
 
+class AutomationDataAll(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        print('user', self.request.user.id)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        total_data = []
+        partner = AutomationPartner.objects.order_by('id')
+        total_beneficiary = partner.aggregate(
+            Sum('beneficiary'))
+        tablet_total = 0
+        branch_total = 0
+        for part in partner:
+            automation = Automation.objects.filter(partner__id=part.id)
+            tablet_sum = automation.aggregate(
+                Sum('num_tablet_deployed'))
+            print(tablet_sum['num_tablet_deployed__sum'])
+            dist_cov = automation.distinct('district_id').count()
+            prov_cov = automation.distinct('province_id').count()
+            mun_cov = automation.distinct('municipality_id').count()
+            branch = automation.count()
+            tablet_total = tablet_sum['num_tablet_deployed__sum'] + tablet_total
+            branch_total = branch + branch_total
+            data.append({
+                'id': part.id,
+                'partner_id': part.partner.id,
+                'partner_name': part.partner.name,
+                'district_covered': dist_cov,
+                'province_covered': prov_cov,
+                'municipality_covered': mun_cov,
+                'branch': branch,
+                'beneficiary': part.beneficiary,
+                'lat': part.latitude,
+                'long': part.longitude,
+                'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+            })
+
+        total_data.append({
+            'total_tablet': tablet_total,
+            'total_branch': branch_total,
+            'total_partner': partner.count(),
+            'total_beneficiary': total_beneficiary['beneficiary__sum'],
+            'partner_data': data,
+
+        })
+
+        return Response(total_data)
+
+
 class AutomationDataPartner(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ]
     queryset = True
@@ -378,17 +431,49 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
         data = []
-        partner = AutomationPartner.objects.order_by('id')
+        total_data = []
+        filter_type = request.GET['filter_type']
+        if filter_type == 'partner':
+            partners_id = request.GET.getlist('partner')
+            for i in range(0, len(partners_id)):
+                partners_id[i] = int(partners_id[i])
+        else:
+            prov_id = request.GET.getlist('province')
+            dist_id = request.GET.getlist('district')
+            mun_id = request.GET.getlist('municipality')
+            if prov_id:
+                for i in range(0, len(prov_id)):
+                    prov_id[i] = int(prov_id[i])
+                partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
+                    province_id__in=prov_id).distinct('partner')
+            if dist_id:
+                for i in range(0, len(dist_id)):
+                    dist_id[i] = int(dist_id[i])
+                partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
+                    district_id__in=dist_id).distinct('partner')
+            if mun_id:
+                for i in range(0, len(mun_id)):
+                    mun_id[i] = int(mun_id[i])
+                partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
+                    municipality_id__in=dist_id).distinct('partner')
+
+        partner = AutomationPartner.objects.filter(partner__in=partners_id).order_by('id')
+        total_beneficiary = partner.aggregate(
+            Sum('beneficiary'))
+        tablet_total = 0
+        branch_total = 0
         for part in partner:
             automation = Automation.objects.filter(partner__id=part.id)
             tablet_sum = automation.aggregate(
                 Sum('num_tablet_deployed'))
-            print(tablet_sum['num_tablet_deployed__sum'])
             dist_cov = automation.distinct('district_id').count()
             prov_cov = automation.distinct('province_id').count()
             mun_cov = automation.distinct('municipality_id').count()
             branch = automation.count()
+            tablet_total = tablet_sum['num_tablet_deployed__sum'] + tablet_total
+            branch_total = branch + branch_total
             data.append({
+                'id': part.id,
                 'partner_id': part.partner.id,
                 'partner_name': part.partner.name,
                 'district_covered': dist_cov,
@@ -398,7 +483,16 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                 'beneficiary': part.beneficiary,
                 'lat': part.latitude,
                 'long': part.longitude,
-                'num_tablet_deployed': tablet_sum['num_tablet_deployed__sum'],
+                'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
             })
 
-        return Response(data)
+        total_data.append({
+            'total_tablet': tablet_total,
+            'total_branch': branch_total,
+            'total_partner': partner.count(),
+            'total_beneficiary': total_beneficiary['beneficiary__sum'],
+            'partner_data': data,
+
+        })
+
+        return Response(total_data)

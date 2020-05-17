@@ -1,0 +1,370 @@
+[
+{
+  "model": "api.partner",
+  "pk": 1,
+  "fields": {
+    "name": "Agricultural Development Bank Limited",
+    "code": 1
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 2,
+  "fields": {
+    "name": "Bank of Kathmandu",
+    "code": 2
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 3,
+  "fields": {
+    "name": "Chhimek Laghubitta Bittiya Sanstha",
+    "code": 3
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 4,
+  "fields": {
+    "name": "Citizens Bank International Limited",
+    "code": 4
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 5,
+  "fields": {
+    "name": "D' Rose Technologies Pvt. Ltd.",
+    "code": 5
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 6,
+  "fields": {
+    "name": "eSewa Fonepay Pvt. Ltd.",
+    "code": 6
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 7,
+  "fields": {
+    "name": "Everest Bank Limited",
+    "code": 7
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 8,
+  "fields": {
+    "name": "F1Soft International Pvt. Ltd.",
+    "code": 8
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 9,
+  "fields": {
+    "name": "Global IME Bank",
+    "code": 9
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 10,
+  "fields": {
+    "name": "Himalayan Bank Limited",
+    "code": 10
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 11,
+  "fields": {
+    "name": "IME Digital Solution Limited",
+    "code": 11
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 12,
+  "fields": {
+    "name": "Janata Bank Limited",
+    "code": 12
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 13,
+  "fields": {
+    "name": "Janautthan Laghubitta Bittiya Sanstha",
+    "code": 13
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 14,
+  "fields": {
+    "name": "Kanchan Development Bank Limited",
+    "code": 14
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 15,
+  "fields": {
+    "name": "Kisan Bahuudeshiya Sahakari Sanstha Limited",
+    "code": 15
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 16,
+  "fields": {
+    "name": "Kisan Microfinance Bittiya Sanstha",
+    "code": 16
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 17,
+  "fields": {
+    "name": "Laxmi Bank Limited",
+    "code": 17
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 18,
+  "fields": {
+    "name": "Laxmi Laghubitta Bittiya Sanstha Ltd.",
+    "code": 18
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 19,
+  "fields": {
+    "name": "Machhapuchhre Bank Ltd",
+    "code": 19
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 20,
+  "fields": {
+    "name": "Mahila Sahayatra Microfinance Bittiya Sanstha Limited",
+    "code": 20
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 21,
+  "fields": {
+    "name": "Mega Bank Ltd",
+    "code": 21
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 22,
+  "fields": {
+    "name": "Nabil Bank Ltd.",
+    "code": 22
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 23,
+  "fields": {
+    "name": "NEFSCUN",
+    "code": 23
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 24,
+  "fields": {
+    "name": "Nepal Bank Limited",
+    "code": 24
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 25,
+  "fields": {
+    "name": "Nepal Clearing House Ltd.",
+    "code": 25
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 26,
+  "fields": {
+    "name": "Nepal Insurer's Association",
+    "code": 26
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 27,
+  "fields": {
+    "name": "Nepal Investment Bank Limited",
+    "code": 27
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 28,
+  "fields": {
+    "name": "Nepal Microfinance Bankers' Association",
+    "code": 28
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 29,
+  "fields": {
+    "name": "Nepal Women Community Service Centre (NWCSC)",
+    "code": 29
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 30,
+  "fields": {
+    "name": "Nerude Laghubitta Bikas Bank Limited",
+    "code": 30
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 31,
+  "fields": {
+    "name": "NIC Asia Bank Limited",
+    "code": 31
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 32,
+  "fields": {
+    "name": "Nirdhan Utthan Bank Limited",
+    "code": 32
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 33,
+  "fields": {
+    "name": "NMB Bank Ltd",
+    "code": 33
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 34,
+  "fields": {
+    "name": "NMB Microfinance Bittiya Sanstha",
+    "code": 34
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 35,
+  "fields": {
+    "name": "Prabhu Bank Limited",
+    "code": 35
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 36,
+  "fields": {
+    "name": "Rastriya Banijya Bank Limited",
+    "code": 36
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 37,
+  "fields": {
+    "name": "RMDC Laghubitta",
+    "code": 37
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 38,
+  "fields": {
+    "name": "Sahara Nepal Saving and Credit Cooperative Society Limited",
+    "code": 38
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 39,
+  "fields": {
+    "name": "Sana Kisan Bikas Laghubitta Bittiyasanstha Ltd",
+    "code": 39
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 40,
+  "fields": {
+    "name": "Sanima Bank Limited",
+    "code": 40
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 41,
+  "fields": {
+    "name": "Shikhar Insurance Company Limited",
+    "code": 41
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 42,
+  "fields": {
+    "name": "Siddhartha Bank Ltd",
+    "code": 42
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 43,
+  "fields": {
+    "name": "Stonestep TFD Private Limited",
+    "code": 43
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 44,
+  "fields": {
+    "name": "UNYC Nepal",
+    "code": 44
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 45,
+  "fields": {
+    "name": "Vijaya Laghubitta Bittiya Sanstha Ltd",
+    "code": 45
+  }
+},
+{
+  "model": "api.partner",
+  "pk": 46,
+  "fields": {
+    "name": "Mahila Samudayik Laghubitta",
+    "code": 46
+  }
+}
+]

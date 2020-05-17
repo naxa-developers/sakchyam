@@ -1,0 +1,134 @@
+[
+{
+  "model": "api.automationpartner",
+  "pk": 1,
+  "fields": {
+    "partner": 16,
+    "date": null,
+    "latitude": 28.772745,
+    "longitude": 80.741691,
+    "beneficiary": 13161
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 2,
+  "fields": {
+    "partner": 15,
+    "date": null,
+    "latitude": 28.629291,
+    "longitude": 81.148185,
+    "beneficiary": 49912
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 3,
+  "fields": {
+    "partner": 32,
+    "date": null,
+    "latitude": 27.712017,
+    "longitude": 85.328433,
+    "beneficiary": 355771
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 4,
+  "fields": {
+    "partner": 3,
+    "date": null,
+    "latitude": 27.695951,
+    "longitude": 85.338666,
+    "beneficiary": 752
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 5,
+  "fields": {
+    "partner": 44,
+    "date": null,
+    "latitude": 28.197753,
+    "longitude": 81.681125,
+    "beneficiary": 82375
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 6,
+  "fields": {
+    "partner": 38,
+    "date": null,
+    "latitude": 26.641609,
+    "longitude": 87.963914,
+    "beneficiary": 57108
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 7,
+  "fields": {
+    "partner": 34,
+    "date": null,
+    "latitude": 28.278254,
+    "longitude": 83.935735,
+    "beneficiary": 4711
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 8,
+  "fields": {
+    "partner": 30,
+    "date": null,
+    "latitude": 26.476206,
+    "longitude": 87.278407,
+    "beneficiary": 0
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 9,
+  "fields": {
+    "partner": 46,
+    "date": null,
+    "latitude": 28.039639,
+    "longitude": 82.488734,
+    "beneficiary": 26534
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 10,
+  "fields": {
+    "partner": 20,
+    "date": null,
+    "latitude": 27.647496,
+    "longitude": 85.167454,
+    "beneficiary": 0
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 11,
+  "fields": {
+    "partner": 12,
+    "date": null,
+    "latitude": 27.695673,
+    "longitude": 83.465108,
+    "beneficiary": 0
+  }
+},
+{
+  "model": "api.automationpartner",
+  "pk": 12,
+  "fields": {
+    "partner": 39,
+    "date": null,
+    "latitude": 27.684196,
+    "longitude": 85.34583,
+    "beneficiary": 0
+  }
+}
+]
