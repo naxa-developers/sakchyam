@@ -63,6 +63,14 @@ class MunicipalitySerializer(serializers.ModelSerializer):
 
 
 class AutomationSerializer(serializers.ModelSerializer):
+    partner_id = serializers.SerializerMethodField()
+
     class Meta:
         model = Automation
-        fields = '__all__'
+        fields = (
+            'id', 'partner_id', 'partner', 'branch', 'province_id', 'district_id', 'municipality_id',
+            'num_tablet_deployed')
+
+    def get_partner_id(self, obj):
+        partner_id = obj.partner.partner.id
+        return partner_id
