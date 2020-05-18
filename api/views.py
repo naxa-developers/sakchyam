@@ -69,7 +69,7 @@ class DistrictViewSet(viewsets.ModelViewSet):
     queryset = District.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', ]
+    filterset_fields = ['id', 'province_id', ]
 
 
 class MunicipalityViewSet(viewsets.ModelViewSet):
@@ -77,7 +77,7 @@ class MunicipalityViewSet(viewsets.ModelViewSet):
     queryset = Municipality.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', ]
+    filterset_fields = ['id', 'province_id', 'district_id', ]
 
 
 class UserPermission(viewsets.ModelViewSet):
