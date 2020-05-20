@@ -455,7 +455,7 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                 for i in range(0, len(mun_id)):
                     mun_id[i] = int(mun_id[i])
                 partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
-                    municipality_id__in=dist_id).distinct('partner')
+                    municipality_id__in=mun_id).distinct('partner')
 
         partner = AutomationPartner.objects.filter(partner__in=partners_id).order_by('id')
         total_beneficiary = partner.aggregate(
