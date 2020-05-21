@@ -85,7 +85,6 @@ class UserPermission(viewsets.ModelViewSet):
     queryset = True
 
     def list(self, request, **kwargs):
-        print('user', self.request.user.id)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
@@ -113,7 +112,6 @@ class LogDataSingle(viewsets.ModelViewSet):
         log_cat = LogCategory.objects.order_by('id')
 
         for cat in log_cat:
-            print('category', cat.name)
 
             category = {
                 'id': cat.id,
@@ -125,7 +123,6 @@ class LogDataSingle(viewsets.ModelViewSet):
             log_subcat = LogSubCategory.objects.filter(category__id=cat.id).order_by('id')
 
             for sub_cat in log_subcat:
-                print('sub-cat', sub_cat.name)
 
                 log_data = LogData.objects.filter(sub_category__id=sub_cat.id).order_by('id')
                 sub_category = {
@@ -137,7 +134,6 @@ class LogDataSingle(viewsets.ModelViewSet):
                 }
 
                 for frame in log_data:
-                    print('data', frame.sub_category.name)
 
                     if frame.year.period == 'y1':
                         try:
@@ -252,7 +248,6 @@ class AutomationDataDistrict(viewsets.ModelViewSet):
     queryset = True
 
     def list(self, request, **kwargs):
-        print('user', self.request.user.id)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
@@ -292,7 +287,6 @@ class AutomationDataProvince(viewsets.ModelViewSet):
     queryset = True
 
     def list(self, request, **kwargs):
-        print('user', self.request.user.id)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
@@ -332,7 +326,6 @@ class AutomationDataMunicipality(viewsets.ModelViewSet):
     queryset = True
 
     def list(self, request, **kwargs):
-        print('user', self.request.user.id)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
@@ -373,7 +366,6 @@ class AutomationDataAll(viewsets.ModelViewSet):
     queryset = True
 
     def list(self, request, **kwargs):
-        print('user', self.request.user.id)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
@@ -388,7 +380,6 @@ class AutomationDataAll(viewsets.ModelViewSet):
             automation = Automation.objects.filter(partner__id=part.id)
             tablet_sum = automation.aggregate(
                 Sum('num_tablet_deployed'))
-            print(tablet_sum['num_tablet_deployed__sum'])
             dist_cov = automation.distinct('district_id').count()
             prov_cov = automation.distinct('province_id').count()
             mun_cov = automation.distinct('municipality_id').count()
@@ -426,7 +417,6 @@ class AutomationDataPartner(viewsets.ModelViewSet):
     queryset = True
 
     def list(self, request, **kwargs):
-        print('user', self.request.user.id)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
@@ -496,3 +486,109 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         })
 
         return Response(total_data)
+
+
+class AutomationDataMap(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        partners_id = request.GET.getlist('partner')
+        prov_id = request.GET.getlist('province')
+        dist_id = request.GET.getlist('district')
+        mun_id = request.GET.getlist('municipality')
+
+        if partners_id[0] == '0':
+            partner = AutomationPartner.objects.values_list('partner__id', flat=True).order_by('id')
+
+        else:
+            for i in range(0, len(partners_id)):
+                partners_id[i] = int(partners_id[i])
+                partner = AutomationPartner.objects.values_list('partner__id', flat=True).filter(
+                    partner__id__in=partners_id).order_by('id')
+
+        if prov_id:
+            if prov_id[0] == '0':
+                prov_data = Province.objects.order_by('id')
+                for provi in prov_data:
+                    map_data = Automation.objects.filter(province_id=provi.id).filter(
+                        partner__partner__id__in=partner).order_by('id')
+                    tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
+                    data.append({
+                        'id': provi.id,
+                        'name': provi.name,
+                        'code': provi.code,
+                        'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                    })
+            else:
+                for i in range(0, len(prov_id)):
+                    prov_id[i] = int(prov_id[i])
+                    map_data = Automation.objects.filter(province_id=int(prov_id[i])).filter(
+                        partner__partner__id__in=partner).order_by('id')
+                    tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
+                    prov_data = Province.objects.get(id=int(prov_id[i]))
+                    data.append({
+                        'id': prov_data.id,
+                        'name': prov_data.name,
+                        'code': prov_data.code,
+                        'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                    })
+
+        if dist_id:
+            if dist_id[0] == '0':
+                dist_data = District.objects.values('id', 'name', 'n_code').order_by('id')
+                for dist in dist_data:
+                    map_data = Automation.objects.filter(district_id=dist['id']).filter(
+                        partner__partner__id__in=partner).order_by('id')
+                    tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
+                    data.append({
+                        'id': dist['id'],
+                        'name': dist['name'],
+                        'code': dist['n_code'],
+                        'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                    })
+            else:
+                for i in range(0, len(dist_id)):
+                    dist_id[i] = int(dist_id[i])
+                    map_data = Automation.objects.filter(district_id=int(dist_id[i])).filter(
+                        partner__partner__id__in=partner).order_by('id')
+                    tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
+                    dist_data = District.objects.values('id', 'name', 'n_code').get(id=int(dist_id[i]))
+                    data.append({
+                        'id': dist_data['id'],
+                        'name': dist_data['name'],
+                        'code': dist_data['n_code'],
+                        'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                    })
+        if mun_id:
+            if mun_id[0] == '0':
+                mun_data = Municipality.objects.values('id', 'name', 'code').order_by('id')
+                for mun in mun_data:
+                    map_data = Automation.objects.filter(municipality_id=mun['id']).filter(
+                        partner__partner__id__in=partner).order_by('id')
+                    tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
+                    data.append({
+                        'id': mun['id'],
+                        'name': mun['name'],
+                        'code': mun['code'],
+                        'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                    })
+            else:
+                for i in range(0, len(mun_id)):
+                    mun_id[i] = int(mun_id[i])
+                    map_data = Automation.objects.filter(municipality_id=int(mun_id[i])).filter(
+                        partner__partner__id__in=partner).order_by('id')
+                    tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
+                    mun_data = Municipality.objects.values('id', 'name', 'code').get(id=int(mun_id[i]))
+                    data.append({
+                        'id': mun_data['id'],
+                        'name': mun_data['name'],
+                        'code': mun_data['code'],
+                        'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                    })
+
+        return Response(data)
