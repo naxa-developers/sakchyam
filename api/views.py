@@ -53,7 +53,7 @@ class AutomationViewSet(viewsets.ModelViewSet):
     queryset = Automation.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'partner', 'branch', 'province_id', 'district_id', 'municipality_id', ]
+    filterset_fields = ['id', 'partner__partner__id', 'branch', 'province_id', 'district_id', 'municipality_id', ]
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):
