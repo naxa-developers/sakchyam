@@ -14,6 +14,9 @@ from django.contrib.auth.models import User, Group, Permission
 from dashboard.models import UserProfile
 from django.core import serializers
 from django.db.models import Sum
+import json
+from django.core.serializers import serialize
+from rest_framework.decorators import action
 
 
 class LogCategoryViewSet(viewsets.ModelViewSet):
@@ -58,26 +61,50 @@ class AutomationViewSet(viewsets.ModelViewSet):
 
 class ProvinceViewSet(viewsets.ModelViewSet):
     serializer_class = ProvinceSerializer
-    queryset = Province.objects.order_by('id')
-    permission_classes = [IsAuthenticated, ]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', ]
+
+    def get_queryset(self):
+        print(self.request.POST.getlist('id'))
+        province_id = self.request.POST.getlist('id')
+        if province_id[0] == '0':
+            queryset = Province.objects.order_by('id')
+        else:
+            for i in range(0, len(province_id)):
+                province_id[i] = int(province_id[i])
+                queryset = Province.objects.filter(id__in=province_id).order_by('id')
+
+        return queryset
 
 
 class DistrictViewSet(viewsets.ModelViewSet):
     serializer_class = DistrictSerializer
-    queryset = District.objects.order_by('id')
-    permission_classes = [IsAuthenticated, ]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'province_id', ]
+
+    def get_queryset(self):
+        print(self.request.POST.getlist('id'))
+        province_id = self.request.POST.getlist('id')
+        if province_id[0] == '0':
+            queryset = District.objects.order_by('id')
+        else:
+            for i in range(0, len(province_id)):
+                province_id[i] = int(province_id[i])
+                queryset = District.objects.filter(province_id__in=province_id).order_by('id')
+
+        return queryset
 
 
 class MunicipalityViewSet(viewsets.ModelViewSet):
     serializer_class = MunicipalitySerializer
-    queryset = Municipality.objects.order_by('id')
-    permission_classes = [IsAuthenticated, ]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'province_id', 'district_id', ]
+
+    def get_queryset(self):
+        print(self.request.POST.getlist('id'))
+        dist_id = self.request.POST.getlist('id')
+        if dist_id[0] == '0':
+            queryset = Municipality.objects.order_by('id')
+        else:
+            for i in range(0, len(dist_id)):
+                dist_id[i] = int(dist_id[i])
+                queryset = Municipality.objects.filter(district_id__in=dist_id).order_by('id')
+
+        return queryset
 
 
 class UserPermission(viewsets.ModelViewSet):
@@ -531,11 +558,13 @@ class AutomationDataMap(viewsets.ModelViewSet):
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
                     prov_data = Province.objects.get(id=int(prov_id[i]))
+                    print(json.loads(serialize('json', map_data)))
                     data.append({
                         'id': prov_data.id,
                         'name': prov_data.name,
                         'code': prov_data.code,
                         'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                        'tb_data': json.loads(serialize('json', map_data)),
                     })
 
         if dist_id:

@@ -23,8 +23,8 @@ urlpatterns = [
          name='automation-all'),
     path('automation/automation-partner/', views.AutomationDataPartner.as_view({'get': 'list'}),
          name='automation-partner'),
-    path('adminlevel/province/', views.ProvinceViewSet.as_view({'get': 'list'}), name='province'),
-    path('adminlevel/district/', views.DistrictViewSet.as_view({'get': 'list'}), name='district'),
-    path('adminlevel/municipality/', views.MunicipalityViewSet.as_view({'get': 'list'}), name='municipality'),
+    path('adminlevel/province/', views.ProvinceViewSet.as_view({'post': 'list'}), name='province'),
+    path('adminlevel/district/', views.DistrictViewSet.as_view({'post': 'list'}), name='district'),
+    path('adminlevel/municipality/', views.MunicipalityViewSet.as_view({'post': 'list'}), name='municipality'),
 
 ]
