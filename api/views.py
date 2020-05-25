@@ -480,7 +480,13 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         tablet_total = 0
         branch_total = 0
         for part in partner:
-            automation = Automation.objects.filter(partner__id=part.id)
+            if prov_id:
+                automation = Automation.objects.filter(partner__id=part.id).filter(province_id__in=prov_id)
+            if dist_id:
+                automation = Automation.objects.filter(partner__id=part.id).filter(district_id__in=dist_id)
+            if mun_id:
+                automation = Automation.objects.filter(partner__id=part.id).filter(municipality_id__in=mun_id)
+
             tablet_sum = automation.aggregate(
                 Sum('num_tablet_deployed'))
             dist_cov = automation.distinct('district_id').count()
