@@ -571,7 +571,7 @@ class AutomationDataMap(viewsets.ModelViewSet):
                     map_data = Automation.objects.filter(province_id__code=int(prov_id[i])).filter(
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
-                    prov_data = Province.objects.get(id=int(prov_id[i]))
+                    prov_data = Province.objects.get(code=int(prov_id[i]))
                     print(json.loads(serialize('json', map_data)))
                     data.append({
                         'id': prov_data.id,
@@ -600,7 +600,7 @@ class AutomationDataMap(viewsets.ModelViewSet):
                     map_data = Automation.objects.filter(district_id__code=int(dist_id[i])).filter(
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
-                    dist_data = District.objects.values('id', 'name', 'n_code').get(id=int(dist_id[i]))
+                    dist_data = District.objects.values('id', 'name', 'n_code').get(code=int(dist_id[i]))
                     data.append({
                         'id': dist_data['id'],
                         'name': dist_data['name'],
@@ -626,7 +626,7 @@ class AutomationDataMap(viewsets.ModelViewSet):
                     map_data = Automation.objects.filter(municipality_id__code=int(mun_id[i])).filter(
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
-                    mun_data = Municipality.objects.values('id', 'name', 'code').get(id=int(mun_id[i]))
+                    mun_data = Municipality.objects.values('id', 'name', 'code').get(code=int(mun_id[i]))
                     data.append({
                         'id': mun_data['id'],
                         'name': mun_data['name'],
