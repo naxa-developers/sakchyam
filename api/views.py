@@ -481,17 +481,17 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         branch_total = 0
         for part in partner:
             if filter_type == 'partner':
-                automation = Automation.objects.filter(partner__id=part.id).order_by('id')
+                automation = Automation.objects.filter(partner__id=part.id)
             else:
                 if prov_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
-                        province_id__in=prov_id).order_by('id')
+                        province_id__in=prov_id)
                 if dist_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
-                        district_id__in=dist_id).order_by('id')
+                        district_id__in=dist_id)
                 if mun_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
-                        municipality_id__in=mun_id).order_by('id')
+                        municipality_id__in=mun_id)
 
             tablet_sum = automation.aggregate(
                 Sum('num_tablet_deployed'))
