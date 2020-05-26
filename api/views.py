@@ -129,6 +129,46 @@ class UserPermission(viewsets.ModelViewSet):
         return Response(user_info)
 
 
+class AutomationTimeline(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        year = [d.year for d in AutomationPartner.objects.all().dates('date', 'year')]
+        print(year)
+        year_data = []
+
+        for i in range(0, len(year)):
+            date_t = AutomationPartner.objects.filter(date__year=year[i])
+            print(date_t)
+            partner_data = []
+            for t in date_t:
+                partner_data.append({
+                    'id': t.id,
+                    'partner_name': t.partner.name,
+                    'partner_id': t.partner.id,
+                    'latitude': t.latitude,
+                    'longitude': t.longitude,
+                })
+
+            year_data.append({
+                year[i]: partner_data
+            })
+        user_info = [{
+            "year": year,
+            "timeline": year_data,
+            # "email": user_data.email,
+            # "image": user_data.thumbnail.url,
+            # "permission": permission,
+
+        }]
+
+        return Response(user_info)
+
+
 class LogDataSingle(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ]
     queryset = True
