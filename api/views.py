@@ -462,17 +462,18 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                 for i in range(0, len(prov_id)):
                     prov_id[i] = int(prov_id[i])
                 partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
-                    province_id__in=prov_id).distinct('partner')
+                    province_id__code__in=prov_id).distinct('partner')
             if dist_id:
                 for i in range(0, len(dist_id)):
                     dist_id[i] = int(dist_id[i])
                 partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
-                    district_id__in=dist_id).distinct('partner')
+                    district_id__code__in=dist_id).distinct('partner')
             if mun_id:
                 for i in range(0, len(mun_id)):
                     mun_id[i] = int(mun_id[i])
+                print(mun_id)
                 partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
-                    municipality_id__in=mun_id).distinct('partner')
+                    municipality_id__code__in=mun_id).distinct('partner')
 
         partner = AutomationPartner.objects.filter(partner__in=partners_id).order_by('id')
         total_beneficiary = partner.aggregate(
@@ -485,16 +486,17 @@ class AutomationDataPartner(viewsets.ModelViewSet):
             else:
                 if prov_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
-                        province_id__in=prov_id)
+                        province_id__code__in=prov_id)
                 if dist_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
-                        district_id__in=dist_id)
+                        district_id__code__in=dist_id)
                 if mun_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
-                        municipality_id__in=mun_id)
+                        municipality_id__code__in=mun_id)
 
             tablet_sum = automation.aggregate(
                 Sum('num_tablet_deployed'))
+
             dist_cov = automation.distinct('district_id').count()
             prov_cov = automation.distinct('province_id').count()
             mun_cov = automation.distinct('municipality_id').count()
@@ -566,7 +568,7 @@ class AutomationDataMap(viewsets.ModelViewSet):
             else:
                 for i in range(0, len(prov_id)):
                     prov_id[i] = int(prov_id[i])
-                    map_data = Automation.objects.filter(province_id=int(prov_id[i])).filter(
+                    map_data = Automation.objects.filter(province_id__code=int(prov_id[i])).filter(
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
                     prov_data = Province.objects.get(id=int(prov_id[i]))
@@ -595,7 +597,7 @@ class AutomationDataMap(viewsets.ModelViewSet):
             else:
                 for i in range(0, len(dist_id)):
                     dist_id[i] = int(dist_id[i])
-                    map_data = Automation.objects.filter(district_id=int(dist_id[i])).filter(
+                    map_data = Automation.objects.filter(district_id__code=int(dist_id[i])).filter(
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
                     dist_data = District.objects.values('id', 'name', 'n_code').get(id=int(dist_id[i]))
@@ -621,7 +623,7 @@ class AutomationDataMap(viewsets.ModelViewSet):
             else:
                 for i in range(0, len(mun_id)):
                     mun_id[i] = int(mun_id[i])
-                    map_data = Automation.objects.filter(municipality_id=int(mun_id[i])).filter(
+                    map_data = Automation.objects.filter(municipality_id__code=int(mun_id[i])).filter(
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
                     mun_data = Municipality.objects.values('id', 'name', 'code').get(id=int(mun_id[i]))
