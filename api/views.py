@@ -490,14 +490,14 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         data = []
         total_data = []
         filter_type = request.GET['filter_type']
+        partners_id = request.GET.getlist('partner')
+        prov_id = request.GET.getlist('province')
+        dist_id = request.GET.getlist('district')
+        mun_id = request.GET.getlist('municipality')
         if filter_type == 'partner':
-            partners_id = request.GET.getlist('partner')
             for i in range(0, len(partners_id)):
                 partners_id[i] = int(partners_id[i])
         else:
-            prov_id = request.GET.getlist('province')
-            dist_id = request.GET.getlist('district')
-            mun_id = request.GET.getlist('municipality')
             if prov_id:
                 for i in range(0, len(prov_id)):
                     prov_id[i] = int(prov_id[i])
@@ -523,6 +523,15 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         for part in partner:
             if filter_type == 'partner':
                 automation = Automation.objects.filter(partner__id=part.id)
+                if prov_id:
+                    automation = Automation.objects.filter(partner__id=part.id).filter(
+                        province_id__code__in=prov_id)
+                if dist_id:
+                    automation = Automation.objects.filter(partner__id=part.id).filter(
+                        district_id__code__in=dist_id)
+                if mun_id:
+                    automation = Automation.objects.filter(partner__id=part.id).filter(
+                        municipality_id__code__in=mun_id)
             else:
                 if prov_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
@@ -534,14 +543,17 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                     automation = Automation.objects.filter(partner__id=part.id).filter(
                         municipality_id__code__in=mun_id)
 
-            tablet_sum = automation.aggregate(
-                Sum('num_tablet_deployed'))
-
+            if automation:
+                tablet_sum = automation.aggregate(
+                    Sum('num_tablet_deployed'))
+                tablet = tablet_sum['num_tablet_deployed__sum']
+            else:
+                tablet = 0
             dist_cov = automation.distinct('district_id').count()
             prov_cov = automation.distinct('province_id').count()
             mun_cov = automation.distinct('municipality_id').count()
             branch = automation.count()
-            tablet_total = tablet_sum['num_tablet_deployed__sum'] + tablet_total
+            tablet_total = tablet + tablet_total
             branch_total = branch + branch_total
             data.append({
                 'id': part.id,
@@ -554,7 +566,7 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                 'beneficiary': part.beneficiary,
                 'lat': part.latitude,
                 'long': part.longitude,
-                'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                'tablets_deployed': tablet,
             })
 
         total_data.append({
@@ -612,13 +624,12 @@ class AutomationDataMap(viewsets.ModelViewSet):
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
                     prov_data = Province.objects.get(code=int(prov_id[i]))
-                    print(json.loads(serialize('json', map_data)))
+                    # print(json.loads(serialize('json', map_data)))
                     data.append({
                         'id': prov_data.id,
                         'name': prov_data.name,
                         'code': prov_data.code,
                         'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
-                        'tb_data': json.loads(serialize('json', map_data)),
                     })
 
         if dist_id:
