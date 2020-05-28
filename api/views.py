@@ -686,3 +686,132 @@ class AutomationDataMap(viewsets.ModelViewSet):
                     })
 
         return Response(data)
+
+
+class AutomationDataTable(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        partners_id = request.GET.getlist('partner')
+        prov_id = request.GET.getlist('province')
+        dist_id = request.GET.getlist('district')
+        mun_id = request.GET.getlist('municipality')
+
+        if partners_id[0] == '0':
+            partner = AutomationPartner.objects.values_list('partner__id', flat=True).order_by('id')
+
+        else:
+            for i in range(0, len(partners_id)):
+                partners_id[i] = int(partners_id[i])
+                partner = AutomationPartner.objects.values_list('partner__id', flat=True).filter(
+                    partner__id__in=partners_id).order_by('id')
+
+        if prov_id:
+            if prov_id[0] == '0':
+                prov_data = Province.objects.values_list('id', flat=True).order_by('id')
+                map_data = Automation.objects.only('id').filter(province_id__in=prov_data).filter(
+                    partner__partner__id__in=partner).order_by('id')
+                for m in map_data:
+                    data.append({
+                        'id': m.id,
+                        'partner': m.partner.partner.name,
+                        'branch': m.branch,
+                        'province': m.province_id.name,
+                        'district': m.district_id.name,
+                        'municipality': m.municipality_id.name,
+                        'tablets': m.num_tablet_deployed,
+
+                    })
+            else:
+                for i in range(0, len(prov_id)):
+                    prov_id[i] = int(prov_id[i])
+                map_data = Automation.objects.filter(province_id__code__in=prov_id).filter(
+                    partner__partner__id__in=partner).order_by('id')
+
+                for m in map_data:
+                    data.append({
+                        'id': m.id,
+                        'partner': m.partner.partner.name,
+                        'branch': m.branch,
+                        'province': m.province_id.name,
+                        'district': m.district_id.name,
+                        'municipality': m.municipality_id.name,
+                        'tablets': m.num_tablet_deployed,
+
+                    })
+
+        if dist_id:
+            if dist_id[0] == '0':
+                dist_data = District.objects.values_list('id', flat=True).order_by('id')
+                map_data = Automation.objects.filter(district_id__in=dist_data).filter(
+                    partner__partner__id__in=partner).order_by('id')
+                for m in map_data:
+                    data.append({
+                        'id': m.id,
+                        'partner': m.partner.partner.name,
+                        'branch': m.branch,
+                        'province': m.province_id.name,
+                        'district': m.district_id.name,
+                        'municipality': m.municipality_id.name,
+                        'tablets': m.num_tablet_deployed,
+
+                    })
+
+            else:
+                for i in range(0, len(dist_id)):
+                    dist_id[i] = int(dist_id[i])
+                print(dist_id)
+                map_data = Automation.objects.filter(district_id__code__in=dist_id).filter(
+                    partner__partner__id__in=partner).order_by('id')
+                print(map_data)
+                for m in map_data:
+                    data.append({
+                        'id': m.id,
+                        'partner': m.partner.partner.name,
+                        'branch': m.branch,
+                        'province': m.province_id.name,
+                        'district': m.district_id.name,
+                        'municipality': m.municipality_id.name,
+                        'tablets': m.num_tablet_deployed,
+
+                    })
+        if mun_id:
+            if mun_id[0] == '0':
+                mun_data = Municipality.objects.values_list('id', flat=True).order_by('id')
+                map_data = Automation.objects.filter(municipality_id__in=mun_data).filter(
+                    partner__partner__id__in=partner).order_by('id')
+                for m in map_data:
+                    data.append({
+                        'id': m.id,
+                        'partner': m.partner.partner.name,
+                        'branch': m.branch,
+                        'province': m.province_id.name,
+                        'district': m.district_id.name,
+                        'municipality': m.municipality_id.name,
+                        'tablets': m.num_tablet_deployed,
+
+                    })
+            else:
+                for i in range(0, len(mun_id)):
+                    mun_id[i] = int(mun_id[i])
+                map_data = Automation.objects.filter(municipality_id__code__in=mun_id).filter(
+                    partner__partner__id__in=partner).order_by('id')
+
+                for m in map_data:
+                    data.append({
+                        'id': m.id,
+                        'partner': m.partner.partner.name,
+                        'branch': m.branch,
+                        'province': m.province_id.name,
+                        'district': m.district_id.name,
+                        'municipality': m.municipality_id.name,
+                        'tablets': m.num_tablet_deployed,
+
+                    })
+
+        return Response(data)
