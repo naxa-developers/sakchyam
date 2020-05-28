@@ -464,6 +464,7 @@ class AutomationDataAll(viewsets.ModelViewSet):
                 'beneficiary': part.beneficiary,
                 'lat': part.latitude,
                 'long': part.longitude,
+                'date': part.date.year,
                 'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
             })
 
