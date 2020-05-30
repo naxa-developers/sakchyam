@@ -721,11 +721,17 @@ class AutomationDataTable(viewsets.ModelViewSet):
                     data.append({
                         'id': m.id,
                         'partner': m.partner.partner.name,
+                        'partner_id': m.partner.partner.id,
                         'branch': m.branch,
                         'province': m.province_id.name,
+                        'province_code': m.province_id.code,
                         'district': m.district_id.name,
+                        'district_code': m.district_id.code,
                         'municipality': m.municipality_id.name,
+                        'municipality_code': m.municipality_id.code,
                         'tablets': m.num_tablet_deployed,
+                        'latitude': m.partner.latitude,
+                        'longitude': m.partner.longitude,
 
                     })
             else:
@@ -738,11 +744,17 @@ class AutomationDataTable(viewsets.ModelViewSet):
                     data.append({
                         'id': m.id,
                         'partner': m.partner.partner.name,
+                        'partner_id': m.partner.partner.id,
                         'branch': m.branch,
                         'province': m.province_id.name,
+                        'province_code': m.province_id.code,
                         'district': m.district_id.name,
+                        'district_code': m.district_id.code,
                         'municipality': m.municipality_id.name,
+                        'municipality_code': m.municipality_id.code,
                         'tablets': m.num_tablet_deployed,
+                        'latitude': m.partner.latitude,
+                        'longitude': m.partner.longitude,
 
                     })
 
@@ -755,11 +767,17 @@ class AutomationDataTable(viewsets.ModelViewSet):
                     data.append({
                         'id': m.id,
                         'partner': m.partner.partner.name,
+                        'partner_id': m.partner.partner.id,
                         'branch': m.branch,
                         'province': m.province_id.name,
+                        'province_code': m.province_id.code,
                         'district': m.district_id.name,
+                        'district_code': m.district_id.code,
                         'municipality': m.municipality_id.name,
+                        'municipality_code': m.municipality_id.code,
                         'tablets': m.num_tablet_deployed,
+                        'latitude': m.partner.latitude,
+                        'longitude': m.partner.longitude,
 
                     })
 
@@ -774,11 +792,17 @@ class AutomationDataTable(viewsets.ModelViewSet):
                     data.append({
                         'id': m.id,
                         'partner': m.partner.partner.name,
+                        'partner_id': m.partner.partner.id,
                         'branch': m.branch,
                         'province': m.province_id.name,
+                        'province_code': m.province_id.code,
                         'district': m.district_id.name,
+                        'district_code': m.district_id.code,
                         'municipality': m.municipality_id.name,
+                        'municipality_code': m.municipality_id.code,
                         'tablets': m.num_tablet_deployed,
+                        'latitude': m.partner.latitude,
+                        'longitude': m.partner.longitude,
 
                     })
         if mun_id:
@@ -790,11 +814,17 @@ class AutomationDataTable(viewsets.ModelViewSet):
                     data.append({
                         'id': m.id,
                         'partner': m.partner.partner.name,
+                        'partner_id': m.partner.partner.id,
                         'branch': m.branch,
                         'province': m.province_id.name,
+                        'province_code': m.province_id.code,
                         'district': m.district_id.name,
+                        'district_code': m.district_id.code,
                         'municipality': m.municipality_id.name,
+                        'municipality_code': m.municipality_id.code,
                         'tablets': m.num_tablet_deployed,
+                        'latitude': m.partner.latitude,
+                        'longitude': m.partner.longitude,
 
                     })
             else:
@@ -807,11 +837,17 @@ class AutomationDataTable(viewsets.ModelViewSet):
                     data.append({
                         'id': m.id,
                         'partner': m.partner.partner.name,
+                        'partner_id': m.partner.partner.id,
                         'branch': m.branch,
                         'province': m.province_id.name,
+                        'province_code': m.province_id.code,
                         'district': m.district_id.name,
+                        'district_code': m.district_id.code,
                         'municipality': m.municipality_id.name,
+                        'municipality_code': m.municipality_id.code,
                         'tablets': m.num_tablet_deployed,
+                        'latitude': m.partner.latitude,
+                        'longitude': m.partner.longitude,
 
                     })
 
