@@ -31,6 +31,11 @@
    ln -s docker-compose.local.yml docker-compose.yml
  ```
 
+- Create Dockerfile from Sample Dcokerfile by copying content of sample
+```sh
+   Dockerfile_sample to Dockerfile 
+ ```
+
 - Rename .env_sample to .env and change it settings accordingly for the project
 
 - Inside sakchyam folder rename local_setting_sample.py to local_setting.py and change it settings accordingly for the project
