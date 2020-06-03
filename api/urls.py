@@ -26,5 +26,6 @@ urlpatterns = [
     path('adminlevel/province/', views.ProvinceViewSet.as_view({'post': 'list'}), name='province'),
     path('adminlevel/district/', views.DistrictViewSet.as_view({'post': 'list'}), name='district'),
     path('adminlevel/municipality/', views.MunicipalityViewSet.as_view({'post': 'list'}), name='municipality'),
+    path('financial/program/', views.FinancialProgramApi.as_view({'get': 'list'}), name='program'),
 
 ]

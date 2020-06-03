@@ -1,8 +1,9 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
-    Automation, Partner, AutomationPartner
+    Automation, Partner, AutomationPartner, FinancialProgram
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
-    LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer
+    LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
+    FinancialProgramSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -28,6 +29,12 @@ class LogCategoryViewSet(viewsets.ModelViewSet):
 class LogSubCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = LogSubCategorySerializer
     queryset = LogSubCategory.objects.all()
+    permission_classes = [IsAuthenticated, ]
+
+
+class FinancialProgramApi(viewsets.ModelViewSet):
+    serializer_class = FinancialProgramSerializer
+    queryset = FinancialProgram.objects.all()
     permission_classes = [IsAuthenticated, ]
 
 
