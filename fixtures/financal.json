@@ -1,0 +1,1388 @@
+[
+{
+  "model": "api.financialliteracy",
+  "pk": 1,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 45,
+    "program_id": 9,
+    "value": 11935,
+    "single_count": 11935
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 2,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 45,
+    "program_id": 10,
+    "value": 11935,
+    "single_count": 11935
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 3,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 45,
+    "program_id": 2,
+    "value": 7703,
+    "single_count": 11935
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 4,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 45,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 11935
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 5,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 45,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 11935
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 6,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 45,
+    "program_id": 12,
+    "value": 1442,
+    "single_count": 11935
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 7,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 44,
+    "program_id": 9,
+    "value": 14111,
+    "single_count": 21377
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 8,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 44,
+    "program_id": 10,
+    "value": 3683,
+    "single_count": 21377
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 9,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 44,
+    "program_id": 2,
+    "value": 2200,
+    "single_count": 21377
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 10,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 44,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 21377
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 11,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 44,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 21377
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 12,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 44,
+    "program_id": 12,
+    "value": 5143,
+    "single_count": 21377
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 13,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 32,
+    "program_id": 9,
+    "value": 56999,
+    "single_count": 62587
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 14,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 32,
+    "program_id": 10,
+    "value": 3981,
+    "single_count": 62587
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 15,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 32,
+    "program_id": 2,
+    "value": 1550,
+    "single_count": 62587
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 16,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 32,
+    "program_id": 11,
+    "value": 41697,
+    "single_count": 62587
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 17,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 32,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 62587
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 18,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 32,
+    "program_id": 12,
+    "value": 6558,
+    "single_count": 62587
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 19,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 46,
+    "program_id": 9,
+    "value": 9756,
+    "single_count": 25577
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 20,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 46,
+    "program_id": 10,
+    "value": 305,
+    "single_count": 25577
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 21,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 46,
+    "program_id": 2,
+    "value": 2804,
+    "single_count": 25577
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 22,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 46,
+    "program_id": 11,
+    "value": 690,
+    "single_count": 25577
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 23,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 46,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 25577
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 24,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 46,
+    "program_id": 12,
+    "value": 18174,
+    "single_count": 25577
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 25,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 16,
+    "program_id": 9,
+    "value": 22644,
+    "single_count": 28296
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 26,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 16,
+    "program_id": 10,
+    "value": 18911,
+    "single_count": 28296
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 27,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 16,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 28296
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 28,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 16,
+    "program_id": 11,
+    "value": 14385,
+    "single_count": 28296
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 29,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 16,
+    "program_id": 6,
+    "value": 5250,
+    "single_count": 28296
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 30,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 16,
+    "program_id": 12,
+    "value": 402,
+    "single_count": 28296
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 31,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 15,
+    "program_id": 9,
+    "value": 13839,
+    "single_count": 13839
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 32,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 15,
+    "program_id": 10,
+    "value": 8263,
+    "single_count": 13839
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 33,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 15,
+    "program_id": 2,
+    "value": 3857,
+    "single_count": 13839
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 34,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 15,
+    "program_id": 11,
+    "value": 3700,
+    "single_count": 13839
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 35,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 15,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 13839
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 36,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 15,
+    "program_id": 12,
+    "value": 0,
+    "single_count": 13839
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 37,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 3,
+    "program_id": 9,
+    "value": 33190,
+    "single_count": 127875
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 38,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 3,
+    "program_id": 10,
+    "value": 24987,
+    "single_count": 127875
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 39,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 3,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 127875
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 40,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 3,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 127875
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 41,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 3,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 127875
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 42,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 3,
+    "program_id": 12,
+    "value": 98591,
+    "single_count": 127875
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 43,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 38,
+    "program_id": 9,
+    "value": 6372,
+    "single_count": 24520
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 44,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 38,
+    "program_id": 10,
+    "value": 3154,
+    "single_count": 24520
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 45,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 38,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 24520
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 46,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 38,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 24520
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 47,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 38,
+    "program_id": 6,
+    "value": 11005,
+    "single_count": 24520
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 48,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 38,
+    "program_id": 12,
+    "value": 6370,
+    "single_count": 24520
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 49,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 20,
+    "program_id": 9,
+    "value": 7129,
+    "single_count": 7129
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 50,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 20,
+    "program_id": 10,
+    "value": 7129,
+    "single_count": 7129
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 51,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 20,
+    "program_id": 2,
+    "value": 2461,
+    "single_count": 7129
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 52,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 20,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 7129
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 53,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 20,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 7129
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 54,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 20,
+    "program_id": 12,
+    "value": 2503,
+    "single_count": 7129
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 55,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 34,
+    "program_id": 9,
+    "value": 4346,
+    "single_count": 4346
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 56,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 34,
+    "program_id": 10,
+    "value": 4124,
+    "single_count": 4346
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 57,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 34,
+    "program_id": 2,
+    "value": 1847,
+    "single_count": 4346
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 58,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 34,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 4346
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 59,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 34,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 4346
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 60,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 34,
+    "program_id": 12,
+    "value": 965,
+    "single_count": 4346
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 61,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 37,
+    "program_id": 9,
+    "value": 14578,
+    "single_count": 20059
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 62,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 37,
+    "program_id": 10,
+    "value": 5481,
+    "single_count": 20059
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 63,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 37,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 20059
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 64,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 37,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 20059
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 65,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 37,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 20059
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 66,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 37,
+    "program_id": 12,
+    "value": 0,
+    "single_count": 20059
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 67,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 30,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 11356
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 68,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 30,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 11356
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 69,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 30,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 11356
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 70,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 30,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 11356
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 71,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 30,
+    "program_id": 6,
+    "value": 1093,
+    "single_count": 11356
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 72,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 30,
+    "program_id": 12,
+    "value": 14075,
+    "single_count": 11356
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 73,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 13,
+    "program_id": 9,
+    "value": 2399,
+    "single_count": 5881
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 74,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 13,
+    "program_id": 10,
+    "value": 1359,
+    "single_count": 5881
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 75,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 13,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 5881
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 76,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 13,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 5881
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 77,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 13,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 5881
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 78,
+  "fields": {
+    "partner_type": "Microfinance Institutions",
+    "partner_id": 13,
+    "program_id": 12,
+    "value": 2422,
+    "single_count": 5881
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 79,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 17,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 7323
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 80,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 17,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 7323
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 81,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 17,
+    "program_id": 2,
+    "value": 7323,
+    "single_count": 7323
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 82,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 17,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 7323
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 83,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 17,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 7323
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 84,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 17,
+    "program_id": 12,
+    "value": 0,
+    "single_count": 7323
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 85,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 9,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 1116
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 86,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 9,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 1116
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 87,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 9,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 1116
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 88,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 9,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 1116
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 89,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 9,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 1116
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 90,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 9,
+    "program_id": 12,
+    "value": 1116,
+    "single_count": 1116
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 91,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 21,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 2838
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 92,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 21,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 2838
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 93,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 21,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 2838
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 94,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 21,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 2838
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 95,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 21,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 2838
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 96,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 21,
+    "program_id": 12,
+    "value": 4889,
+    "single_count": 2838
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 97,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 12,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 18483
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 98,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 12,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 18483
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 99,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 12,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 18483
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 100,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 12,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 18483
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 101,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 12,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 18483
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 102,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 12,
+    "program_id": 12,
+    "value": 18483,
+    "single_count": 18483
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 103,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 19,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 6916
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 104,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 19,
+    "program_id": 10,
+    "value": 8076,
+    "single_count": 6916
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 105,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 19,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 6916
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 106,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 19,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 6916
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 107,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 19,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 6916
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 108,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 19,
+    "program_id": 12,
+    "value": 0,
+    "single_count": 6916
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 109,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 4,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 160
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 110,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 4,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 160
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 111,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 4,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 160
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 112,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 4,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 160
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 113,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 4,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 160
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 114,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 4,
+    "program_id": 12,
+    "value": 160,
+    "single_count": 160
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 115,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 7,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 229
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 116,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 7,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 229
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 117,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 7,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 229
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 118,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 7,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 229
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 119,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 7,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 229
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 120,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 7,
+    "program_id": 12,
+    "value": 229,
+    "single_count": 229
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 121,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 11,
+    "program_id": 9,
+    "value": 0,
+    "single_count": 500
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 122,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 11,
+    "program_id": 10,
+    "value": 0,
+    "single_count": 500
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 123,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 11,
+    "program_id": 2,
+    "value": 0,
+    "single_count": 500
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 124,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 11,
+    "program_id": 11,
+    "value": 0,
+    "single_count": 500
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 125,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 11,
+    "program_id": 6,
+    "value": 0,
+    "single_count": 500
+  }
+},
+{
+  "model": "api.financialliteracy",
+  "pk": 126,
+  "fields": {
+    "partner_type": "Commercial Bank and Other Partners",
+    "partner_id": 11,
+    "program_id": 12,
+    "value": 500,
+    "single_count": 500
+  }
+}
+]

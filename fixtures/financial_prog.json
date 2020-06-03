@@ -1,0 +1,122 @@
+[
+{
+  "model": "api.financialprogram",
+  "pk": 1,
+  "fields": {
+    "name": "Year-round 12-module financial literacy",
+    "code": 7,
+    "date": "2015-06-01",
+    "total": 0
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 2,
+  "fields": {
+    "name": "IVR",
+    "code": 3,
+    "date": "2015-08-01",
+    "total": 29745
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 3,
+  "fields": {
+    "name": "Mini-projector & Tablet",
+    "code": 8,
+    "date": "2016-07-01",
+    "total": 0
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 4,
+  "fields": {
+    "name": "FM Radio",
+    "code": 9,
+    "date": "2016-08-01",
+    "total": 0
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 5,
+  "fields": {
+    "name": "Cable TV",
+    "code": 10,
+    "date": "2016-11-01",
+    "total": 0
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 6,
+  "fields": {
+    "name": "Street Drama",
+    "code": 5,
+    "date": "2017-04-01",
+    "total": 17348
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 7,
+  "fields": {
+    "name": "Financial Literacy Buzz",
+    "code": 11,
+    "date": "2018-04-01",
+    "total": 0
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 8,
+  "fields": {
+    "name": "FL on BLB",
+    "code": 12,
+    "date": "2018-11-01",
+    "total": 0
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 9,
+  "fields": {
+    "name": "PGT",
+    "code": 1,
+    "date": "2020-06-03",
+    "total": 197298
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 10,
+  "fields": {
+    "name": "Centre Meeting",
+    "code": 2,
+    "date": "2020-06-03",
+    "total": 101388
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 11,
+  "fields": {
+    "name": "Tab",
+    "code": 4,
+    "date": "2020-06-03",
+    "total": 60472
+  }
+},
+{
+  "model": "api.financialprogram",
+  "pk": 12,
+  "fields": {
+    "name": "Other Initiatives",
+    "code": 6,
+    "date": "2020-06-03",
+    "total": 182022
+  }
+}
+]

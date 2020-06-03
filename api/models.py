@@ -146,3 +146,31 @@ class Automation(models.Model):
 
     def __str__(self):
         return self.branch
+
+
+class FinancialProgram(models.Model):
+    name = models.CharField(max_length=200)
+    code = models.IntegerField(blank=True, null=True)
+    date = models.DateField(null=True, blank=True)
+    total = models.IntegerField(blank=True, null=True, default=0)
+
+    def __str__(self):
+        return self.name
+
+
+class FinancialLiteracy(models.Model):
+    type = (
+        ('Microfinance Institutions', 'Microfinance Institutions'),
+        ('Commercial Bank and Other Partners', 'Commercial Bank and Other Partners'),
+    )
+
+    partner_type = models.CharField(max_length=200, blank=True, null=True, choices=type)
+    partner_id = models.ForeignKey(Partner, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='PartnerFinancial')
+    program_id = models.ForeignKey(FinancialProgram, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='ProgramFinancial')
+    value = models.IntegerField(blank=True, null=True, default=0)
+    single_count = models.IntegerField(blank=True, null=True, default=0)
+
+    def __str__(self):
+        return self.partner_type
