@@ -666,12 +666,22 @@ class AutomationDataMap(viewsets.ModelViewSet):
                     map_data = Automation.objects.filter(municipality_id=mun['id']).filter(
                         partner__partner__id__in=partner).order_by('id')
                     tablet_sum = map_data.aggregate(Sum('num_tablet_deployed'))
-                    data.append({
-                        'id': mun['id'],
-                        'name': mun['name'],
-                        'code': mun['code'],
-                        'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
-                    })
+                    if map_data:
+                        data.append({
+                            'id': mun['id'],
+                            'name': mun['name'],
+                            'code': mun['code'],
+                            'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
+                        })
+
+                    else:
+                        print('a')
+                        data.append({
+                            'id': mun['id'],
+                            'name': mun['name'],
+                            'code': mun['code'],
+                            'tablets_deployed': 0,
+                        })
             else:
                 for i in range(0, len(mun_id)):
                     mun_id[i] = int(mun_id[i])
