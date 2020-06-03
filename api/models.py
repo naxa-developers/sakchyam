@@ -171,3 +171,6 @@ class FinancialLiteracy(models.Model):
                                    related_name='ProgramFinancial')
     value = models.IntegerField(blank=True, null=True, default=0)
     single_count = models.IntegerField(blank=True, null=True, default=0)
+
+    def __str__(self):
+        return self.partner_type
