@@ -40,6 +40,18 @@ class FinancialLiteracySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class FinancialPartnerSerializer(serializers.ModelSerializer):
+    partner_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = FinancialLiteracy
+        fields = ('id', 'partner_id', 'partner_type', 'partner_name',)
+
+    def get_partner_name(self, obj):
+        partner_id = obj.partner_id.name
+        return partner_id
+
+
 class LogDataSerializer(serializers.ModelSerializer):
     year = serializers.ReadOnlyField(source='year.year')
     sub_category = serializers.ReadOnlyField(source='sub_category.name')
