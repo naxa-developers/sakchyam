@@ -485,7 +485,10 @@ class AutomationDataAll(viewsets.ModelViewSet):
                 'beneficiary': part.beneficiary,
                 'lat': part.latitude,
                 'long': part.longitude,
-                'date': part.date.year,
+                'full_data': part.date,
+                'date_year': part.date.year,
+                'date_month_name': part.date.strftime('%B'),
+                'date_day': part.date.day,
                 'tablets_deployed': tablet_sum['num_tablet_deployed__sum'],
             })
 
