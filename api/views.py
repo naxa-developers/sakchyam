@@ -3,7 +3,7 @@ from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Prov
     Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
-    FinancialProgramSerializer, FinancialLiteracySerializer
+    FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -42,6 +42,14 @@ class FinancialLiteracyApi(viewsets.ModelViewSet):
     serializer_class = FinancialLiteracySerializer
     queryset = FinancialLiteracy.objects.all()
     permission_classes = [IsAuthenticated, ]
+
+
+class FinancialPartnerApi(viewsets.ModelViewSet):
+    serializer_class = FinancialPartnerSerializer
+    queryset = FinancialLiteracy.objects.distinct('partner_id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['partner_type', ]
 
 
 class MilestoneYearViewSet(viewsets.ModelViewSet):
