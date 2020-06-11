@@ -3,14 +3,15 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation, Partner
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
-    AutomationForm, LogCategoryForm
+    AutomationForm, LogCategoryForm, PartnerForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -94,12 +95,65 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['provinces'] = Province.objects.order_by('id')
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
+        data['partners'] = Partner.objects.order_by('id')
         data['active'] = 'automation'
         return data
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
 
+class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Automation
+    template_name = 'automation_create.html'
+    form_class = AutomationForm
+    success_message = 'Automation data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(AutomationBulkCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['provinces'] = Province.objects.order_by('id')
+        data['districts'] = District.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('automation-list')
+
+class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Automation
+    template_name = 'automation_edit.html'
+    form_class = AutomationForm
+    success_message = 'Automation data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(AutomationEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['provinces'] = Province.objects.order_by('id')
+        data['districts'] = District.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        data['partners'] = Partner.objects.all()
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('automation-list')
+
+class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'automation_delete.html'
+    success_message = 'Automation deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Automation, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('automation-list')
 
 class LogFrameList(LoginRequiredMixin, ListView):
     template_name = 'logframe_list.html'
@@ -363,3 +417,65 @@ def assign_role(request, **kwargs):
         # notify = Notification.objects.create(user=user, message=notify_message, type='role',
         #                                      link='/dashboard/user-list')
         return redirect('user')
+
+
+'''
+Sakchyam Partner display list on dashboard
+'''
+class SakchyamAPartnersList(LoginRequiredMixin, ListView):
+    template_name = 'sakchyam_partner_list.html'
+    model = Partner
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamAPartnersList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        query_data = Partner.objects.order_by('id')
+        data['list'] = query_data
+        return data
+        
+class SakchyamAPartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Partner
+    template_name = 'sakchyam_partners_create.html'
+    form_class = PartnerForm
+    success_message = 'Sakchyam Partner created'
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamAPartnersCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-partners')
+
+class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Partner
+    template_name = 'sakchyam_partner_edit.html'
+    form_class = PartnerForm
+    success_message = 'Sakchyam Partner data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamAPartnersEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['active'] = 'program'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-partners')
+
+class SakchyamAPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'sakchyam_partner_delete.html'
+    success_message = 'Sakchyam Partner deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Partner, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-partners')

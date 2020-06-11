@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User, Permission, Group
-from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Automation
+from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Automation, Partner
 from .models import UserProfile
 
 
@@ -43,4 +43,16 @@ class UserProfileForm(ModelForm):
 class AutomationForm(ModelForm):
     class Meta:
         model = Automation
+        fields = '__all__'
+        # labels = {
+        #     'province_id': 'Province'
+        # }
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['province_id'].widget.attrs.update({'class': 'col-md-6 form-group selectpicker'})
+
+class PartnerForm(ModelForm):
+    class Meta:
+        model = Partner
         fields = '__all__'
