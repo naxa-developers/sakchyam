@@ -184,17 +184,3 @@
 </main>
 
 {% endblock %}
-
-{% block scripts %}
-	<script type="text/javascript" src="{% static 'js/select2.min.js' %}"></script>
-	<script>
-        $("#id_province_id").select2()
-        var pv = $("#id_province_id").val()
-		$('#id_province_id').change(function (){
-			$.ajax({
-                $("#id_province_id").val() = form.instance.province_id
-				}
-			})
-		})
-	</script>
-{% endblock %}
