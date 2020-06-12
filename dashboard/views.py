@@ -3,11 +3,11 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation, Partner, AutomationPartner
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
-    AutomationForm, LogCategoryForm, PartnerForm
+    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -63,6 +63,18 @@ class LogCategoryCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['user'] = user_data
         # data['active'] = 'program'
         data['active'] = 'logcat'
+        data['years'] = {
+            'y1': 'Year 1',
+            'y2': 'Year 2',
+            'y3': 'Year 3',
+            'y4': 'Year 4',
+            'y5': 'Year 5',
+            'y6': 'Year 6',
+            'y7': 'Year 7',
+            'y8': 'Year 8',
+            'y9': 'Year 9',
+            'y10': 'Year 10'
+        }
         return data
 
     def get_success_url(self):
@@ -607,3 +619,32 @@ def sakchyamPartnerBulkCreate(request):
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Sakchyam Partners Created ")
         return redirect('/dashboard/sakchyam-partners/', messages)
+
+
+class MilestoneYearCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = MilestoneYear
+    template_name = 'milestone_year_create.html'
+    form_class = MilestoneYearForm
+    success_message = 'Milestone Year added'
+
+    def get_context_data(self, **kwargs):
+        data = super(MilestoneYearCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['years'] = {
+            'y1': 'Year 1',
+            'y2': 'Year 2',
+            'y3': 'Year 3',
+            'y4': 'Year 4',
+            'y5': 'Year 5',
+            'y6': 'Year 6',
+            'y7': 'Year 7',
+            'y8': 'Year 8',
+            'y9': 'Year 9',
+            'y10': 'Year 10'
+        }
+        data['user'] = user_data
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('logcat-list')
