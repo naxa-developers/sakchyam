@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation, Partner
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation, Partner, AutomationPartner
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
@@ -12,6 +12,9 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
 from django.shortcuts import get_object_or_404
+from  django.contrib import  messages
+import pandas as pd
+from django.core.exceptions import  ObjectDoesNotExist
 
 
 # Create your views here.
@@ -102,26 +105,76 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('automation-list')
 
-class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
-    model = Automation
-    template_name = 'automation_create.html'
-    form_class = AutomationForm
-    success_message = 'Automation data created'
+# class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+#     model = Automation
+#     template_name = 'automation_create.html'
+#     form_class = AutomationForm
+#     success_message = 'Automation data created'
 
-    def get_context_data(self, **kwargs):
-        data = super(AutomationBulkCreate, self).get_context_data(**kwargs)
-        user = self.request.user
-        user_data = UserProfile.objects.get(user=user)
-        data['user'] = user_data
-        # data['active'] = 'program'
-        data['provinces'] = Province.objects.order_by('id')
-        data['districts'] = District.objects.order_by('id')
-        data['municipalities'] = Municipality.objects.order_by('id')
-        data['active'] = 'automation'
-        return data
+#     def get_context_data(self, **kwargs):
+#         data = super(AutomationBulkCreate, self).get_context_data(**kwargs)
+#         user = self.request.user
+#         user_data = UserProfile.objects.get(user=user)
+#         data['user'] = user_data
+#         # data['active'] = 'program'
+#         data['provinces'] = Province.objects.order_by('id')
+#         data['districts'] = District.objects.order_by('id')
+#         data['municipalities'] = Municipality.objects.order_by('id')
+#         data['active'] = 'automation'
+#         return data
 
-    def get_success_url(self):
-        return reverse_lazy('automation-list')
+#     def get_success_url(self):
+#         return reverse_lazy('automation-list')
+
+'''
+This function enables creating the record of Sakchyam Partner model using a csv or xls file.
+'''
+def automationBulkCreate(request):
+    template = 'automation_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                province = None if  df['Province'][row] == '' else Province.objects.get(name__icontains=df['Province'][row])
+                district = None if  df['District'][row] == '' else District.objects.get(name__icontains=df['District'][row])
+                municipality = None if  df['Municipality'][row] == '' else Municipality.objects.get(name__icontains=df['Municipality'][row])
+                partner = None if  df['Partner'][row] == '' else AutomationPartner.objects.get(partner__name__icontains=df['Partner'][row])
+                branch = None if df['Branch'][row] == '' else df['Branch'][row]
+                numTablets = 0 if df['No. of Tablets'][row] == '' else df['No. of Tablets'][row]
+                automation = Automation.objects.update_or_create(
+                        province_id = province,
+                        district_id = district,
+                        municipality_id = municipality,
+                        partner = partner,
+                        branch = branch,
+                        num_tablet_deployed = numTablets
+                    )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(success_count) + " Automations Created ")
+        return redirect('/dashboard/automation-list/', messages)
 
 class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Automation
@@ -479,3 +532,50 @@ class SakchyamAPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteVie
 
     def get_success_url(self):
         return reverse_lazy('sakchyam-partners')
+
+'''
+This function enables creating the record of Sakchyam Partner model using a csv or xls file.
+'''
+def sakchyamPartnerBulkCreate(request):
+    template = 'sakchyam_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Name, Code'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['myfile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                name = df['Name'][row]
+                if name == '' or name == 'NaN' or name == None:
+                    messages.add_message(request,messages.WARNING, "Data Format Error! Partner Number Missing for row " + str(row))
+                    continue
+                code = df['Code'][row]
+                if code == '' or code == 'nan':
+                    code = None
+                else:
+                    code = code
+                partner = Partner.objects.update_or_create(
+                        name = name,
+                        code = code
+                    )
+            except Exception as e:
+                messages.add_message(request, messages.WARNING, str(e))
+        messages.add_message(request, messages.SUCCESS, str(success_count) + " Sakchyam Partners Created ")
+        return redirect('/dashboard/sakchyam-partners/', messages)

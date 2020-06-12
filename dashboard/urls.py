@@ -27,7 +27,7 @@ urlpatterns = [
 
     path('automation-list/', views.AutomationList.as_view(), name='automation-list'),
     path('automation-add/', views.AutomationCreate.as_view(), name='automation-add'),
-    path('automation-bulk-add/', views.AutomationBulkCreate.as_view(), name='automation-bulk-add'),
+    path('automation-bulk-add/', views.automationBulkCreate, name='automation-bulk-add'),
     path('automation-edit/<int:pk>', views.AutomationEdit.as_view(), name='automation-edit'),
     path('automation-delete/<int:pk>', views.AutomationDelete.as_view(), name='automation-delete'),
 
@@ -36,4 +36,5 @@ urlpatterns = [
     path('sakchyam-partners-add/', views.SakchyamAPartnersCreate.as_view(), name='sakchyam-partners-add'),
     path('sakchyam-partners-edit/<int:pk>', views.SakchyamAPartnersEdit.as_view(), name='sakchyam-partners-edit'),
     path('sakchyam-partners-delete/<int:pk>', views.SakchyamAPartnersDelete.as_view(), name='sakchyam-partners-delete'),
+    path('sakchyam-partners-bulk-add', views.sakchyamPartnerBulkCreate, name='sakchyam-partners-bulk-add'),
 ]
