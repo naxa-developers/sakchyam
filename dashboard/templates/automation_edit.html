@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Automation</a>
+            </li>
+
+            <li>Edit Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <!-- <form class="program-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {{ form.as_p }}
+        <button type="submit" class="sakchyam-button sm-button">Update</button><span></span>
+        <a href="/dashboard/automation-list/"><button  class="sakchyam-button sm-button">Cancel</button></a>
+    </form> -->
+
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="default-form">
+
+            <div style="display:block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_province_id" class="">Province</label>
+                            <select name="province_id" id="id_province_id" class="selectpicker" data-live-search="true" required>
+                                {% for province in provinces %}
+                                    {% if province.id == form.instance.province_id.id %}
+                                        <option value="{{ province.id }}" selected>{{province.name}}</option>
+                                    {% else %}
+                                        <option value="{{ province.id }}" >{{ province.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_district_id" class="">District</label>
+                            <select name="district_id" id="id_district_id" class="selectpicker" data-live-search="true" required>
+                                {% for district in districts %}
+                                    {% if district.id == form.instance.district_id.id %}
+                                        <option value="{{ district.id }}" selected>{{district.name}}</option>
+                                    {% else %}
+                                        <option value="{{ district.id }}" >{{ district.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_municipality_id" class="">Municipality</label>
+                            <select name="municipality_id" id="id_municipality_id" class="selectpicker" data-live-search="true" required>
+                                {% for municipality in municipalities %}
+                                    {% if municipality.id == form.instance.municipality_id.id %}
+                                        <option value="{{ municipality.id }}" selected>{{ municipality.name }}</option>
+                                    {% else %}
+                                        <option value="{{ municipality.id }}" >{{ municipality.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_partner_institution" class="">Name of Partner Institution</label>
+                        <select name="partner_institution" id="id_partner_institution" class="selectpicker" data-live-search="true" required>
+                            {% for partner in partners %}
+                                {% if partner.id == form.instance.municipality_id.id %}
+                                    <option value="{{ partner.id }}" selected>{{ partner.name }}</option>
+                                {% else %}
+                                    <option value="{{ partner.id }}" >{{ partner.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_branch" class="">Branch Name</label>
+                        <input value="{{ form.instance.branch }}" class="form-control" type="text" name="branch" maxlength="100" required id="id_branch" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_num_tablet_deployed" class="">Number Of Tablets Deployed</label>
+                        <input value="{{ form.instance.num_tablet_deployed }}" class="form-control" type="number" name="num_tablet_deployed" value="0"
+                            id="id_num_tablet_deployed">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Update</button>
+            </div>
+        </div>
+
+        <!-- default form -->
+        <!-- <div class="default-form">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_name" class="">Name</label>
+                        <input class="form-control" type="text" value="{{ form.instance.name }}" name="name" required id="id_name"/>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_code" class="">Code</label>
+                        <input class="form-control" type="text" value="{{ form.instance.code }}" name="code" required id="id_code"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Update</button>
+            </div>
+        </div> -->
+    </form>
+</main>
+
+{% endblock %}

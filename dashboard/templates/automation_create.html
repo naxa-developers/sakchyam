@@ -35,17 +35,9 @@
         {% endfor %}
         {% endif %}
 
-
-        <!-- category form
-        <div class="category-form form-card">
-            <div class="form-title">
-                <h3>Indicator</h3>
-            </div>
-
-        </div> -->
-
         <!-- default form -->
         <div class="default-form">
+
 
             <div style="display:block">
                 <div class="row">
@@ -54,7 +46,7 @@
                         <div class="form-group ">
                             <label for="id_province_id" class="">Province</label>
                             <select class="selectpicker" data-live-search="true" name="province_id" required
-                                    id="id_province_id">
+                                id="id_province_id">
                                 {% for province in provinces %}
                                 <option value="{{province.id}}" selected>{{province.name}}</option>
                                 {% endfor %}
@@ -62,11 +54,11 @@
                         </div>
                     </div>
 
-                     <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group ">
                             <label for="id_district_id" class="">District</label>
                             <select class="selectpicker" data-live-search="true" name="district_id" required
-                                    id="id_district_id">
+                                id="id_district_id">
                                 {% for district in districts %}
                                 <option value="{{district.id}}" selected>{{district.name}}</option>
                                 {% endfor %}
@@ -83,7 +75,7 @@
                         <div class="form-group ">
                             <label for="id_municipality_id" class="">Municipality</label>
                             <select class="selectpicker" data-live-search="true" name="municipality_id" required
-                                    id="id_municipality_id">
+                                id="id_municipality_id">
                                 {% for municipality in municipalities %}
                                 <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
                                 {% endfor %}
@@ -101,11 +93,14 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group error">
+                    <div class="form-group">
                         <label for="id_partner_institution" class="">Name of Partner Institution</label>
-                        <input class="form-control" type="text" name="partner_institution" maxlength="100" required
-                               id="id_partner_institution"/>
-
+                        <select class="selectpicker" data-live-search="true" name="partner_institution" required
+                            id="id_partner_institution">
+                            {% for partner in partners %}
+                            <option value="{{partner.id}}" selected>{{partner.name}}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
             </div>
@@ -115,8 +110,7 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_branch" class="">Branch Name</label>
-                        <input class="form-control" type="text" name="branch" maxlength="100" required id="id_branch"/>
-
+                        <input class="form-control" type="text" name="branch" maxlength="100" required id="id_branch" />
                     </div>
                 </div>
 
@@ -129,7 +123,7 @@
                     <div class="form-group">
                         <label for="id_num_tablet_deployed" class="">Number Of Tablets Deployed</label>
                         <input class="form-control" type="number" name="num_tablet_deployed" value="0"
-                               id="id_num_tablet_deployed"></div>
+                            id="id_num_tablet_deployed"></div>
                 </div>
 
             </div>

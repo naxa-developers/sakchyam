@@ -10,18 +10,18 @@
             </li>
 
             <li>
-                Automation
+                Sakchyam Partners
             </li>
 
         </ul>
         <div style="margin-left: 1441px;">
-            <a href="/dashboard/automation-add">
+            <a href="/dashboard/sakchyam-partners-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
         <div style="margin-left: 1441px; margin-top: 20px;">
-            <a href="/dashboard/automation-bulk-add">
+            <a href="/dashboard/sakchyam-partners-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
@@ -41,31 +41,15 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
-
-                    <th>Province</th>
-                    <th>District</th>
-                    <th>Municipality</th>
-                    <th>Name of partner institution</th>
-                    <th>Branch Name</th>
-                    <th>Number of Tablets Deployed</th>
-
-
-                    <th></th>
+                    <th>Code</th>
+                    <th>Partner Name</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for data in list %}
                 <tr>
-                    <td>
-                        {{ data.province_id.name }}
-                    </td>
-                    <td>{{ data.district_id.name }}</td>
-                    <td>{{ data.municipality_id.name }}</td>
-                    <td>{{ data.partner }}</td>
-                    <td>{{ data.branch }}</td>
-                    <td>{{ data.num_tablet_deployed }}</td>
-
-
+                    <td>{{ data.code }}</td>
+                    <td>{{ data.name }}</td>
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">
@@ -73,13 +57,13 @@
                             </a>
                             <ul class="dropdown-animation">
                                 <li>
-                                    <a href="/dashboard/automation-edit/{{data.id}}"
+                                    <a href="/dashboard/sakchyam-partners-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard/automation-delete/{{data.id}}" class="flex-start">
+                                    <a href="/dashboard/sakchyam-partners-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 

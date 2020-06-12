@@ -9,11 +9,10 @@
         <ul class="flex-start">
 
             <li>
-                <a href="#">Log Category</a>
+                <a href="#">Sakchyam Partners</a>
             </li>
 
-
-            <li>Add Form</li>
+            <li>Edit Form</li>
         </ul>
     </div>
     <!-- program form -->
@@ -50,37 +49,26 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group error">
-                        <label for="id_name" class="">Category Name</label>
-                        <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" />
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_title" class="">Category Title</label>
-                        <input class="form-control" type="text" name="title" maxlength="100" required id="id_title" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_yearname" class="">Period</label>
-                        <select class="selectpicker" data-live-search="true" name="yearname" required
-                            id="id_yearname">
-                            {% for code, year in years.items %}
-                                <option value="{{ year }}" selected>{{ year }}</option>
-                            {% endfor %}
+                        <label for="id_name" class="">Name</label>
+                        <input class="form-control" type="text" value="{{ form.instance.name }}" name="name" required id="id_name"/>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group mrt-100">
-                <button type="submit" class="sakchyam-button sm-button">Save</button>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_code" class="">Code</label>
+                        <input class="form-control" type="text" value="{{ form.instance.code }}" name="code" required id="id_code"/>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Update</button>
+            </div>
     </form>
 </main>
 

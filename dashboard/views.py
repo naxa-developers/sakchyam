@@ -3,14 +3,18 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, Automation
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
-    AutomationForm, LogCategoryForm
+    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+import pandas as pd
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -59,6 +63,18 @@ class LogCategoryCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['user'] = user_data
         # data['active'] = 'program'
         data['active'] = 'logcat'
+        data['years'] = {
+            'y1': 'Year 1',
+            'y2': 'Year 2',
+            'y3': 'Year 3',
+            'y4': 'Year 4',
+            'y5': 'Year 5',
+            'y6': 'Year 6',
+            'y7': 'Year 7',
+            'y8': 'Year 8',
+            'y9': 'Year 9',
+            'y10': 'Year 10'
+        }
         return data
 
     def get_success_url(self):
@@ -94,8 +110,121 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['provinces'] = Province.objects.order_by('id')
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
+        data['partners'] = Partner.objects.order_by('id')
         data['active'] = 'automation'
         return data
+
+    def get_success_url(self):
+        return reverse_lazy('automation-list')
+
+# class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+#     model = Automation
+#     template_name = 'automation_create.html'
+#     form_class = AutomationForm
+#     success_message = 'Automation data created'
+
+#     def get_context_data(self, **kwargs):
+#         data = super(AutomationBulkCreate, self).get_context_data(**kwargs)
+#         user = self.request.user
+#         user_data = UserProfile.objects.get(user=user)
+#         data['user'] = user_data
+#         # data['active'] = 'program'
+#         data['provinces'] = Province.objects.order_by('id')
+#         data['districts'] = District.objects.order_by('id')
+#         data['municipalities'] = Municipality.objects.order_by('id')
+#         data['active'] = 'automation'
+#         return data
+
+#     def get_success_url(self):
+#         return reverse_lazy('automation-list')
+
+
+'''
+This function enables creating the record of Sakchyam Partner model using a csv or xls file.
+'''
+
+
+def automationBulkCreate(request):
+    template = 'automation_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code=df['Municipality'][row])
+                province = municipality.province_id
+                district = municipality.district_id
+                partner = AutomationPartner.objects.get(
+                    partner__code=df['Partner'][row])
+                branch = None if df['Branch'][row] == '' else df['Branch'][row]
+                numTablets = 0 if df['No. of Tablets'][row] == '' else df['No. of Tablets'][row]
+                automation = Automation.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner=partner,
+                    branch=branch,
+                    num_tablet_deployed=numTablets
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Automations Created ")
+        return redirect('/dashboard/automation-list/', messages)
+
+
+class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Automation
+    template_name = 'automation_edit.html'
+    form_class = AutomationForm
+    success_message = 'Automation data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(AutomationEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['provinces'] = Province.objects.order_by('id')
+        data['districts'] = District.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        data['partners'] = Partner.objects.all()
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('automation-list')
+
+
+class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'automation_delete.html'
+    success_message = 'Automation deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Automation, id=id)
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
@@ -111,7 +240,8 @@ class LogFrameList(LoginRequiredMixin, ListView):
         # user_data = UserProfile.objects.get(user=user)
         # data['active'] = 'program'
         sidebar = LogCategory.objects.order_by('id')
-        query_data = LogData.objects.filter(sub_category__id=self.kwargs['id']).order_by('id')
+        query_data = LogData.objects.filter(
+            sub_category__id=self.kwargs['id']).order_by('id')
         data['list'] = query_data
         data['sidebar'] = sidebar
         return data
@@ -129,7 +259,8 @@ class LogSubCategoryList(LoginRequiredMixin, ListView):
         print()
         sidebar = LogCategory.objects.order_by('id')
         data['sidebar'] = sidebar
-        query_data = LogSubCategory.objects.filter(category__id=self.kwargs['id']).order_by('id')
+        query_data = LogSubCategory.objects.filter(
+            category__id=self.kwargs['id']).order_by('id')
         data['list'] = query_data
         return data
 
@@ -148,8 +279,10 @@ class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         # data['active'] = 'program'
         sidebar = LogCategory.objects.all()
         data['sidebar'] = sidebar
-        data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
-        data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
+        data['categories'] = LogCategory.objects.filter(
+            id=self.kwargs['cat']).order_by('id')
+        data['sub_categories'] = LogSubCategory.objects.filter(
+            id=self.kwargs['subcat']).order_by('id')
         data['years'] = MilestoneYear.objects.order_by('id')
         data['active'] = 'log_data'
         return data
@@ -172,7 +305,8 @@ class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         # data['active'] = 'program'
         sidebar = LogCategory.objects.all()
         data['sidebar'] = sidebar
-        data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
+        data['categories'] = LogCategory.objects.filter(
+            id=self.kwargs['cat']).order_by('id')
         data['active'] = 'log_data'
         return data
 
@@ -194,7 +328,8 @@ class LogSubCatUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         # data['active'] = 'program'
         sidebar = LogCategory.objects.all()
         data['sidebar'] = sidebar
-        data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
+        data['categories'] = LogCategory.objects.filter(
+            id=self.kwargs['cat']).order_by('id')
         data['active'] = 'log_data'
         return data
 
@@ -216,8 +351,10 @@ class LogDataUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         # data['active'] = 'program'
         sidebar = LogCategory.objects.all()
         data['sidebar'] = sidebar
-        data['categories'] = LogCategory.objects.filter(id=self.kwargs['cat']).order_by('id')
-        data['sub_categories'] = LogSubCategory.objects.filter(id=self.kwargs['subcat']).order_by('id')
+        data['categories'] = LogCategory.objects.filter(
+            id=self.kwargs['cat']).order_by('id')
+        data['sub_categories'] = LogSubCategory.objects.filter(
+            id=self.kwargs['subcat']).order_by('id')
         data['years'] = MilestoneYear.objects.order_by('id')
         data['active'] = 'log_data'
         return data
@@ -273,7 +410,6 @@ def signup(request, **kwargs):
             return redirect('user')
         else:
             return render(request, 'create_user.html', {'form': form, })
-
 
     else:
         form = UserCreationForm()
@@ -363,3 +499,152 @@ def assign_role(request, **kwargs):
         # notify = Notification.objects.create(user=user, message=notify_message, type='role',
         #                                      link='/dashboard/user-list')
         return redirect('user')
+
+
+'''
+Sakchyam Partner display list on dashboard
+'''
+
+
+class SakchyamAPartnersList(LoginRequiredMixin, ListView):
+    template_name = 'sakchyam_partner_list.html'
+    model = Partner
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamAPartnersList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        query_data = Partner.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+
+class SakchyamAPartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Partner
+    template_name = 'sakchyam_partners_create.html'
+    form_class = PartnerForm
+    success_message = 'Sakchyam Partner created'
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamAPartnersCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-partners')
+
+
+class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Partner
+    template_name = 'sakchyam_partner_edit.html'
+    form_class = PartnerForm
+    success_message = 'Sakchyam Partner data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamAPartnersEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['active'] = 'program'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-partners')
+
+
+class SakchyamAPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'sakchyam_partner_delete.html'
+    success_message = 'Sakchyam Partner deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Partner, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-partners')
+
+
+'''
+This function enables creating the record of Sakchyam Partner model using a csv or xls file.
+'''
+
+
+def sakchyamPartnerBulkCreate(request):
+    template = 'sakchyam_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Name, Code'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['myfile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                name = df['Name'][row]
+                if name == '' or name == 'NaN' or name == None:
+                    messages.add_message(
+                        request, messages.WARNING, "Data Format Error! Partner Number Missing for row " + str(row))
+                    continue
+                code = df['Code'][row]
+                if code == '' or code == 'NaN' or code == None:
+                    messages.add_message(
+                        request, messages.WARNING, "Data Format Error! Partner Code Missing for row " + str(row))
+                    continue
+                partner = Partner.objects.update_or_create(
+                    name=name,
+                    code=code
+                )
+                success_count += 1
+            except Exception as e:
+                messages.add_message(request, messages.WARNING, str(e))
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Sakchyam Partners Created ")
+        return redirect('/dashboard/sakchyam-partners/', messages)
+
+
+class MilestoneYearCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = MilestoneYear
+    template_name = 'milestone_year_create.html'
+    form_class = MilestoneYearForm
+    success_message = 'Milestone Year added'
+
+    def get_context_data(self, **kwargs):
+        data = super(MilestoneYearCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['years'] = {
+            'y1': 'Year 1',
+            'y2': 'Year 2',
+            'y3': 'Year 3',
+            'y4': 'Year 4',
+            'y5': 'Year 5',
+            'y6': 'Year 6',
+            'y7': 'Year 7',
+            'y8': 'Year 8',
+            'y9': 'Year 9',
+            'y10': 'Year 10'
+        }
+        data['user'] = user_data
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('logcat-list')
