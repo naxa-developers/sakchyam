@@ -18,7 +18,12 @@
             <a href="/dashboard/logcat-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
+        </div>
 
+        <div style="margin-left: 1441px; margin-top: 20px;">
+            <a href="/dashboard/milestone-year-add">
+                <button type=" submit" class="sakchyam-button sm-button"> Add Milestone Year</button>
+            </a>
         </div>
     </div>
     <div class="logframe">
@@ -34,56 +39,49 @@
             {% endif %}
             <table class="logframe-table dataTable">
                 <thead>
-                <tr>
+                    <tr>
 
-                    <th>Name</th>
-                    <th>Title</th>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Year Name</th>
 
-
-                    <th></th>
-                </tr>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for data in list %}
-                <tr>
-                    <td>
-
-
-                        <a href="/dashboard/logsubcat-list/{{ data.id }}">
-
-
-                            {{data.name}}
-                        </a>
-
-
-
-                    </td>
-                    <td>{{data.title}}</td>
-
-
-                    <td>
-                        <div class="table-action">
-                            <a href="#" class="more-action">
-                                <i class="material-icons">more_vert</i>
+                    {% for data in list %}
+                    <tr>
+                        <td>
+                            <a href="/dashboard/logsubcat-list/{{ data.id }}">
+                                {{data.name}}
                             </a>
-                            <ul class="dropdown-animation">
-                                <li>
-                                    <a href="/dashboard/logtitle-edit/{{data.id}}/{{ list.first.sub_category.id }}"
-                                       class="flex-start">
-                                        <i class="material-icons">edit</i> Edit
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
-                                    </a>
+                        </td>
+                        <td>{{data.title}}</td>
+                        <td>{{ data.yearname }}</td>
 
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
+                        <td>
+                            <div class="table-action">
+                                <a href="#" class="more-action">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-animation">
+                                    <li>
+                                        <a href="/dashboard/logtitle-edit/{{data.id}}/{{ list.first.sub_category.id }}"
+                                            class="flex-start">
+                                            <i class="material-icons">edit</i> Edit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex-start">
+                                            <i class="material-icons">delete</i>delete
+                                        </a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

@@ -51,23 +51,30 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_name" class="">Category Name</label>
-                        <input class="form-control" type="text" name="name" maxlength="100" required
-                               id="id_name"/>
+                        <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" />
+                    </div>
+                </div>
 
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_title" class="">Category Title</label>
+                        <input class="form-control" type="text" name="title" maxlength="100" required id="id_title" />
                     </div>
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_title" class="">Category Title</label>
-                        <input class="form-control" type="text" name="title" maxlength="100" required id="id_title"/>
-
+                    <div class="form-group ">
+                        <label for="id_yearname" class="">Period</label>
+                        <select class="selectpicker" data-live-search="true" name="yearname" required
+                            id="id_yearname">
+                            {% for code, year in years.items %}
+                                <option value="{{ year }}" selected>{{ year }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
-
             </div>
 
             <div class="form-group mrt-100">

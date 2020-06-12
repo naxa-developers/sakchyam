@@ -37,4 +37,6 @@ urlpatterns = [
     path('sakchyam-partners-edit/<int:pk>', views.SakchyamAPartnersEdit.as_view(), name='sakchyam-partners-edit'),
     path('sakchyam-partners-delete/<int:pk>', views.SakchyamAPartnersDelete.as_view(), name='sakchyam-partners-delete'),
     path('sakchyam-partners-bulk-add', views.sakchyamPartnerBulkCreate, name='sakchyam-partners-bulk-add'),
+
+    path('milestone-year-add/', views.MilestoneYearCreate.as_view(), name='milestone-year-add'),
 ]

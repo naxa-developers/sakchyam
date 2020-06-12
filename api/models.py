@@ -25,6 +25,7 @@ class AutomationPartner(models.Model):
 class LogCategory(models.Model):
     name = models.CharField(max_length=200)
     title = models.TextField(blank=True, null=True)
+    yearname = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.name
