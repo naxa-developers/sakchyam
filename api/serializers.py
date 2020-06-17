@@ -28,6 +28,12 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class InvestmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('id', 'investment_primary')
+
+
 class PartnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partner
