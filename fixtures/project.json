@@ -1,0 +1,802 @@
+[
+{
+  "model": "api.project",
+  "pk": 1,
+  "fields": {
+    "name": "Expanding the Outreach of Financial Services in Local",
+    "code": "4-3-175",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 2,
+  "fields": {
+    "name": "Extending Access to Finance to the un/underbanked customers",
+    "code": "1-2-050",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 3,
+  "fields": {
+    "name": "Sugarcane Invoice Discounting",
+    "code": "0-0-010",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Downscaling and Value Chain Financing By Banks"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 4,
+  "fields": {
+    "name": "Inclusive Micro Finance through Digitisation of Business Processes",
+    "code": "4-4-184",
+    "investment_primary": "Automation of MFIs",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 5,
+  "fields": {
+    "name": "Digital Mahila: Digital women channel partners for gender inclusive micro finance services",
+    "code": "2-2-108",
+    "investment_primary": "Automation of MFIs",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 6,
+  "fields": {
+    "name": "Bikash Ka Paila",
+    "code": "4-3-177",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 7,
+  "fields": {
+    "name": "Sahayog Ko Hath",
+    "code": "1-2-058",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 8,
+  "fields": {
+    "name": "On Line recipient authentication system featuring real-time biometric Verification and Interoperable Branchless Banking System ",
+    "code": "2-2-105",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 9,
+  "fields": {
+    "name": "eSewa Cash Point",
+    "code": "5-3-223",
+    "investment_primary": "Digital Financial Services ",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 10,
+  "fields": {
+    "name": "Enhanced QR-based Mobile Payments",
+    "code": "6-1-227",
+    "investment_primary": "Digital Financial Services ",
+    "investment_secondary": "Digital Financial Services"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 11,
+  "fields": {
+    "name": "Sakchyam Banking Access Project (SEBA Project)",
+    "code": "2-2-096",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 12,
+  "fields": {
+    "name": "SME Financing Through Technical Intervention",
+    "code": "4-3-169",
+    "investment_primary": "SME Financing",
+    "investment_secondary": "SME Financing"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 13,
+  "fields": {
+    "name": "Banking Solution Through Alternative Delivery Channels In Far Western and Mid Western Development Regions of Nepal",
+    "code": "1-1-046",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 14,
+  "fields": {
+    "name": "Warehouse Receipt Financing",
+    "code": "0-0-003",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Downscaling and Value Chain Financing By Banks"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 15,
+  "fields": {
+    "name": "Reestablish Branch at Barhabise Including 3 BLB Points",
+    "code": "1-2-055",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 16,
+  "fields": {
+    "name": "Banking Reach for Rural Area",
+    "code": "4-3-173",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 17,
+  "fields": {
+    "name": "Financially Prosperous & Inclusive Gaun",
+    "code": "5-3-221",
+    "investment_primary": "Digital Financial Services ",
+    "investment_secondary": "Digital Financial Services"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 18,
+  "fields": {
+    "name": "Sajilo Wallet",
+    "code": "2-4-126",
+    "investment_primary": "Digital Financial Services ",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 19,
+  "fields": {
+    "name": "Prosperous Local Units",
+    "code": "2-1-085E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 20,
+  "fields": {
+    "name": "Access to Rural Banking",
+    "code": "2-1-085",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 21,
+  "fields": {
+    "name": "Increasing Rural Access to Finance for Productive Energy Use",
+    "code": "3-3-157",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 22,
+  "fields": {
+    "name": "Expansion of Energy Financing for Productive Energy Use",
+    "code": "6-1-229",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 23,
+  "fields": {
+    "name": "Raising incomes of seed producing farmers of Kanchanpur, Kailali & Dadeldhura districts through increased financial access and value chain development",
+    "code": "3-1-135",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Downscaling and Value Chain Financing By Banks"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 24,
+  "fields": {
+    "name": "Kisan Rural Banking",
+    "code": "4-4-185",
+    "investment_primary": "Automation of MFIs",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 25,
+  "fields": {
+    "name": "Kisan Tab Banking for Enlargement of Micro Finance ",
+    "code": "1-2-048",
+    "investment_primary": "Automation of MFIs",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 26,
+  "fields": {
+    "name": "Sakchyam Kisan Rural Micro Finance",
+    "code": "1-1-041",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 27,
+  "fields": {
+    "name": "Sakchyam Kisan Access to Microfinance",
+    "code": "3-2-149",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 28,
+  "fields": {
+    "name": "Establish Three New Branches in Rural Municipality",
+    "code": "3-3-162E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 29,
+  "fields": {
+    "name": "Laxmi Grameen Sambriddhi Yojana",
+    "code": "1-2-064",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Downscaling and Value Chain Financing By Banks"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 30,
+  "fields": {
+    "name": "Implementation of psychometric credit score based micro loan product for Nepalese market in partnership with Sakchyam and Entrepreneurial Finance Lab (EFL)",
+    "code": "3-3-162",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 31,
+  "fields": {
+    "name": "Digitization of Microfinance Services to Deepen Financial Inclusion",
+    "code": "5-3-218",
+    "investment_primary": "Automation of MFIs",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 32,
+  "fields": {
+    "name": "Simplified Financial Services for Economic Empowerment of Women",
+    "code": "4-3-171",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 33,
+  "fields": {
+    "name": "Simplified Microcredit Service",
+    "code": "3-1-140",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 34,
+  "fields": {
+    "name": "Branch Expansion in Remote Parts of Darchula",
+    "code": "3-1-140E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 35,
+  "fields": {
+    "name": "Specially Designed Micro, Small and Medium Enterprises (MSMEs)",
+    "code": "2-2-102",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 36,
+  "fields": {
+    "name": "Linking Credits with Enterprise Development Service and Market",
+    "code": "2-2-102E",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 37,
+  "fields": {
+    "name": "Complete Banking Solution to Rural Populace through Branches, BLB and Alternative Channels",
+    "code": "0-0-014/15",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 38,
+  "fields": {
+    "name": "Branches in Rural Municipalities",
+    "code": "4-3-172",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 39,
+  "fields": {
+    "name": "Designing and Implementing a SME focused strategy to enhance banking services for SME segments in Nepal",
+    "code": "5-1-198",
+    "investment_primary": "SME Financing",
+    "investment_secondary": "SME Financing"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 40,
+  "fields": {
+    "name": "Promoting e-payments, establishing National Payments Interface (NPI) and extending Settlement Guarantee Fund (SGF)",
+    "code": "5-2-217",
+    "investment_primary": "Digital Financial Services ",
+    "investment_secondary": "Digital Financial Services"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 41,
+  "fields": {
+    "name": "Increased Capicity of Financial Cooperatives and Linkage with Wholesale Lending",
+    "code": "2-2-109",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 42,
+  "fields": {
+    "name": "NBL Rural Financial Empowerment",
+    "code": "4-3-174",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 43,
+  "fields": {
+    "name": "Micro-insurance to Low Income Households via MFIs",
+    "code": "3-3-160",
+    "investment_primary": "Increased uptake of microinsurance",
+    "investment_secondary": "Increased Uptake of Microinsurance"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 44,
+  "fields": {
+    "name": "NIBL Branchless Banking",
+    "code": "1-2-054",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 45,
+  "fields": {
+    "name": "NIBL BLB FWDR",
+    "code": "2-1-084",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 46,
+  "fields": {
+    "name": "Enterprise Development and Digitalization of Microfinance Services",
+    "code": "3-3-159",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 47,
+  "fields": {
+    "name": "NIBL Far Western Branches",
+    "code": "2-1-084E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 48,
+  "fields": {
+    "name": "Sathi Sangai Sakchyam Bandai- II",
+    "code": "3-2-151E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 49,
+  "fields": {
+    "name": "Sathi Sangai Sakchyam Bandai",
+    "code": "3-2-151",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 50,
+  "fields": {
+    "name": "Access to Finance in Remote Hill & Mountain Areas and Adoption of New Technologies for Financial Inclusion",
+    "code": "1-1-035",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 51,
+  "fields": {
+    "name": "Job creation through Micro and Small Enterprises Financing with Support from Financial Literacy and Entrepreneurship & Skill Trainings",
+    "code": "2-2-091",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 52,
+  "fields": {
+    "name": "Branchless Banking Expansion Project",
+    "code": "1-2-059",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 53,
+  "fields": {
+    "name": "Dairy Financing",
+    "code": "1-1-047",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Downscaling and Value Chain Financing By Banks"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 54,
+  "fields": {
+    "name": "Enhancing financial access to SME buiness groups, financial literacy and digitations of data",
+    "code": "2-4-134",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 55,
+  "fields": {
+    "name": "Development and management of centrally hosted integrated Core Banking and Management Information System for Microfinance Institutions and Microfinance Co-operatives",
+    "code": "2-3-113",
+    "investment_primary": "Automation of MFIs",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 56,
+  "fields": {
+    "name": "Promoting access to finance through EDS and Tablet banking services",
+    "code": "4-2-168",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 57,
+  "fields": {
+    "name": "Promoting economic opportunities of rural families by enhancing access to financial services in un/underserved areas of Rapti Zone",
+    "code": "1-1-038",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 58,
+  "fields": {
+    "name": "Retail Banking in Rural Municipalities of Dadeldhura, Humla and Dolpa",
+    "code": "2-2-090E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 59,
+  "fields": {
+    "name": "Implementation of Psychometric Test by EFL",
+    "code": "3-3-161",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 60,
+  "fields": {
+    "name": "Retail Banking and Branchless Banking in Manang, Rukum and Achham",
+    "code": "2-2-090",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 61,
+  "fields": {
+    "name": "Wealth-Building Financial Services for Nepali Migrant Workers and their Remittance Receiving Family Members",
+    "code": "5-1-202",
+    "investment_primary": "Remittance Based Products",
+    "investment_secondary": "Remittance Based Products"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 62,
+  "fields": {
+    "name": "Establishment of Branchless Banking",
+    "code": "1-2-056",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 63,
+  "fields": {
+    "name": "Quick Financial Access",
+    "code": "4-3-178",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 64,
+  "fields": {
+    "name": "Enhance inclusive financial frontier to the poor",
+    "code": "2-4-130",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 65,
+  "fields": {
+    "name": "Technology Enabled Poultry and Goat Value Chain",
+    "code": "4-2-166",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 66,
+  "fields": {
+    "name": "Scaling Up the Access to Financial Products and Services in Rural Nepal",
+    "code": "2-2-101",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 67,
+  "fields": {
+    "name": "Digitization of SFACLs and Expansion of Access to Finance in Karnali Province of Nepal",
+    "code": "4-3-180",
+    "investment_primary": "Automation of MFIs",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 68,
+  "fields": {
+    "name": "Expanding Financial Outreach in Local Level",
+    "code": "2-3-122E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "G2P Payment"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 69,
+  "fields": {
+    "name": "Developing Financial Platform for Agricultural Sector",
+    "code": "4-4-195",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Downscaling and Value Chain Financing By Banks"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 70,
+  "fields": {
+    "name": "Easy Pay for Easy Life",
+    "code": "1-2-061",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 71,
+  "fields": {
+    "name": "Deprived Sector is Our Priority",
+    "code": "2-3-122",
+    "investment_primary": "Downscaling and Value Chain Financing By Banks",
+    "investment_secondary": "Downscaling and Value Chain Financing By Banks"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 72,
+  "fields": {
+    "name": "Restructuring of SME vertical to achieve Bank's focused target on SME Banking",
+    "code": "4-3-181",
+    "investment_primary": "SME Financing",
+    "investment_secondary": "SME Financing"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 73,
+  "fields": {
+    "name": "Weather Index Insurance Initiative Nepal ",
+    "code": "2-3-112",
+    "investment_primary": "Increased uptake of microinsurance",
+    "investment_secondary": "Outreach Expansion"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 74,
+  "fields": {
+    "name": "Gorkha Earthquake : Branchless Banking Support Programme",
+    "code": "1-2-060",
+    "investment_primary": "Channel Innovations",
+    "investment_secondary": "Channel Innovation"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 75,
+  "fields": {
+    "name": "Increasing Access of Microfinance Services to Rural Areas",
+    "code": "0-0-017",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 76,
+  "fields": {
+    "name": "Saving Increasing Model",
+    "code": "3-2-153",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 77,
+  "fields": {
+    "name": "Improvement of Livelihood Situation of Disadvantaged Members through Access to Finance",
+    "code": "0-0-001",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Automation of MFIs"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 78,
+  "fields": {
+    "name": "Improvement of Livelihood Situation through Access to Finance III",
+    "code": "6-1-228",
+    "investment_primary": "Product Innovations",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 79,
+  "fields": {
+    "name": "Improvement of Livlihood Situation of Disadvantaged Members thorough access to finance",
+    "code": "0-0-001E",
+    "investment_primary": "Outreach Expansion",
+    "investment_secondary": "Product Innovations"
+  }
+},
+{
+  "model": "api.project",
+  "pk": 80,
+  "fields": {
+    "name": "Microinsurance product distribution via mobile technology in Nepal ",
+    "code": "4-4-194",
+    "investment_primary": "Increased uptake of microinsurance",
+    "investment_secondary": "Increased Uptake of Microinsurance"
+  }
+}
+]

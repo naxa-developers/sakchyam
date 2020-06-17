@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 #     boundary=GEOSGeometry(df['geom'][row]))
 
                 palika_update = Partner.objects.filter(code=df['Partner Name ID'][row]).update(
-                    name=df['Partner Name'][row])
+                    type=df['Partner Type'][row])
 
             if palika_update:
                 self.stdout.write('Successfully  updated data ..')

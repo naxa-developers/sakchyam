@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 # print(df['HLCIT'][row])
                 municipality = Municipality.objects.get(hlcit_code=df['HLCIT'][row])
                 AutomationPartner.objects.get(partner__code=df['code'][row])
-                automation = Automation.objects.get_or_create(
+                automation = Automation.objects.arjun(
                     partner=AutomationPartner.objects.get(partner__code=df['code'][row]),
                     branch=df['Name of branch'][row],
                     num_tablet_deployed=df['No. of Tablet Deployed'][row],
