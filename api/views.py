@@ -1,9 +1,10 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
-    Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy
+    Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
-    FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer
+    FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
+    PartnerSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -78,6 +79,22 @@ class AutomationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id', 'partner__partner__id', 'branch', 'province_id', 'district_id', 'municipality_id', ]
+
+
+class ProjectApi(viewsets.ModelViewSet):
+    serializer_class = ProjectSerializer
+    queryset = Project.objects.order_by('id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'name', 'code', 'investment_primary', 'investment_secondary', ]
+
+
+class PartnerApi(viewsets.ModelViewSet):
+    serializer_class = PartnerSerializer
+    queryset = Partner.objects.order_by('id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'name', 'code',]
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):

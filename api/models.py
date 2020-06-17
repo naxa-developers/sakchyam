@@ -175,3 +175,43 @@ class FinancialLiteracy(models.Model):
 
     def __str__(self):
         return self.partner_type
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=500, blank=True, null=True, )
+    code = models.CharField(max_length=500, blank=True, null=True, )
+    investment_primary = models.CharField(max_length=500, blank=True, null=True, )
+    investment_secondary = models.CharField(max_length=500, blank=True, null=True, )
+
+    def __str__(self):
+        return self.name
+
+
+class Partnership(models.Model):
+    partner_id = models.ForeignKey(Partner, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='PartnerPart')
+    project_id = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='ProjectPartner')
+    province_id = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='PartProvince', null=True,
+                                    blank=True)
+    district_id = models.ForeignKey(District, on_delete=models.CASCADE, related_name='PartDistrict', null=True,
+                                    blank=True)
+    municipality_id = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='PartMunicipality',
+                                        null=True,
+                                        blank=True)
+    branch = models.IntegerField(blank=True, null=True, default=0)
+    blb = models.IntegerField(blank=True, null=True, default=0)
+    extension_counter = models.IntegerField(blank=True, null=True, default=0)
+    tablet = models.IntegerField(blank=True, null=True, default=0)
+    other_products = models.IntegerField(blank=True, null=True, default=0)
+    beneficiary = models.IntegerField(blank=True, null=True, default=0)
+    scf_funds = models.IntegerField(blank=True, null=True, default=0)
+    allocated_budget = models.FloatField(blank=True, null=True, default=0)
+    allocated_beneficiary = models.FloatField(blank=True, null=True, default=0)
+    female_percentage = models.FloatField(blank=True, null=True, default=0)
+    total_beneficiary = models.IntegerField(blank=True, null=True, default=0)
+    female_beneficiary = models.IntegerField(blank=True, null=True, default=0)
+    status = models.CharField(max_length=500, blank=True, null=True, )
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    project_year = models.CharField(max_length=500, blank=True, null=True, )
