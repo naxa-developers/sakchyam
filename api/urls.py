@@ -34,5 +34,6 @@ urlpatterns = [
     path('partnership/partnership-all/', views.PartnershipApi.as_view({'get': 'list'}), name='partnership-all'),
     path('partnership/partnership-filter/', views.PartnershipFilter.as_view({'post': 'list'}),
          name='partnership-filter'),
-
+    path('partnership/partnership-investment/', views.InvestmentApi.as_view({'get': 'list'}),
+         name='partnership-investment'),
 ]

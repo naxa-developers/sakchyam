@@ -4,7 +4,7 @@ from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Prov
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
-    PartnerSerializer, PartnershipSerializer
+    PartnerSerializer, PartnershipSerializer, InvestmentSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -101,6 +101,21 @@ class ProjectApi(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         serializer_class = ProjectSerializer
+        return serializer_class
+
+
+class InvestmentApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'investment_primary', ]
+
+    def get_queryset(self):
+        queryset = Project.objects.distinct('investment_primary')
+
+        return queryset
+
+    def get_serializer_class(self):
+        serializer_class = InvestmentSerializer
         return serializer_class
 
 
