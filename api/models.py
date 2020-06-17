@@ -4,8 +4,13 @@ from django.db import models
 # Create your models here.
 
 class Partner(models.Model):
+    types = (
+        ('Microfinance Institutions/Cooperatives', 'Microfinance Institutions/Cooperatives'),
+        ('Commercial Bank and Other Partners', 'Commercial Bank and Other Partners'),
+    )
     name = models.CharField(max_length=200)
     code = models.IntegerField(blank=True, null=True)
+    type = models.CharField(max_length=200, blank=True, null=True, choices=types)
 
     def __str__(self):
         return self.name

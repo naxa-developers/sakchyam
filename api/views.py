@@ -1,10 +1,10 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
-    Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project
+    Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
-    PartnerSerializer
+    PartnerSerializer, PartnershipSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -94,7 +94,15 @@ class PartnerApi(viewsets.ModelViewSet):
     queryset = Partner.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'name', 'code',]
+    filterset_fields = ['id', 'name', 'code', 'type', ]
+
+
+class PartnershipApi(viewsets.ModelViewSet):
+    serializer_class = PartnershipSerializer
+    queryset = Partnership.objects.order_by('id')
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', ]
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):
@@ -900,6 +908,177 @@ class AutomationDataTable(viewsets.ModelViewSet):
                         'latitude': m.partner.latitude,
                         'longitude': m.partner.longitude,
 
+                    })
+
+        return Response(data)
+
+
+class PartnershipFilter(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+    serializer_class = PartnershipSerializer
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+        filter_data = request.data
+        prov_id = filter_data['province_id']
+        dist_id = filter_data['district_id']
+        mun_id = filter_data['municipality_id']
+        project_id = filter_data['project_id']
+        partner_id = filter_data['partner_id']
+        view = filter_data['view']
+        status = filter_data['status']
+        if partner_id:
+            if partner_id[0] == 0:
+                partner = Partner.objects.values_list('id', flat=True).order_by('id')
+            else:
+                partner = partner_id
+
+        if project_id:
+            if project_id[0] == 0:
+                project = Project.objects.values_list('id', flat=True).order_by('id')
+            else:
+                project = project_id
+
+        if prov_id:
+            if prov_id[0] == 0:
+                prov_data = Province.objects.order_by('id')
+                for provi in prov_data:
+                    if status:
+                        map_data = Partnership.objects.filter(province_id=provi.id).filter(
+                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
+                    else:
+                        map_data = Partnership.objects.filter(province_id=provi.id).filter(
+                            partner_id__in=partner, project_id__in=project).order_by('id')
+
+                    if map_data:
+                        count_data = map_data.aggregate(Sum(view))
+                        total = count_data[view + '__sum']
+                    else:
+                        total = 0
+                    data.append({
+                        'id': provi.id,
+                        'name': provi.name,
+                        'code': provi.code,
+                        view: total,
+                    })
+            else:
+                for i in range(0, len(prov_id)):
+                    prov_id[i] = int(prov_id[i])
+                    if status:
+                        map_data = Partnership.objects.filter(province_id=prov_id[i]).filter(
+                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
+                    else:
+                        map_data = Partnership.objects.filter(province_id=prov_id[i]).filter(
+                            partner_id__in=partner, project_id__in=project).order_by('id')
+
+                    if map_data:
+                        count_data = map_data.aggregate(Sum(view))
+                        total = count_data[view + '__sum']
+                    else:
+                        total = 0
+                    prov_data = Province.objects.get(code=int(prov_id[i]))
+                    # print(json.loads(serialize('json', map_data)))
+                    data.append({
+                        'id': prov_data.id,
+                        'name': prov_data.name,
+                        'code': prov_data.code,
+                        view: total,
+                    })
+
+        if dist_id:
+            if dist_id[0] == 0:
+                dist_data = District.objects.values('id', 'name', 'n_code').order_by('id')
+                for dist in dist_data:
+                    if status:
+                        map_data = Partnership.objects.filter(district_id=dist['id']).filter(
+                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
+                    else:
+                        map_data = Partnership.objects.filter(district_id=dist['id']).filter(
+                            partner_id__in=partner, project_id__in=project).order_by('id')
+
+                    if map_data:
+                        count_data = map_data.aggregate(Sum(view))
+                        total = count_data[view + '__sum']
+                    else:
+                        total = 0
+
+                    data.append({
+                        'id': dist['id'],
+                        'name': dist['name'],
+                        'code': dist['n_code'],
+                        view: total,
+                    })
+            else:
+                for i in range(0, len(dist_id)):
+                    dist_id[i] = int(dist_id[i])
+                    if status:
+                        map_data = Partnership.objects.filter(district_id__n_code=dist_id[i]).filter(
+                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
+                    else:
+                        map_data = Partnership.objects.filter(district_id__n_code=dist_id[i]).filter(
+                            partner_id__in=partner, project_id__in=project).order_by('id')
+
+                    if map_data:
+                        count_data = map_data.aggregate(Sum(view))
+                        total = count_data[view + '__sum']
+                    else:
+                        total = 0
+                    dist_data = District.objects.values('id', 'name', 'n_code').get(n_code=int(dist_id[i]))
+                    data.append({
+                        'id': dist_data['id'],
+                        'name': dist_data['name'],
+                        'code': dist_data['n_code'],
+                        view: total,
+                    })
+        if mun_id:
+            if mun_id[0] == 0:
+                mun_data = Municipality.objects.values('id', 'name', 'code').order_by('id')
+                for mun in mun_data:
+                    if status:
+                        map_data = Partnership.objects.filter(municipality_id=mun['id']).filter(
+                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
+                    else:
+                        map_data = Partnership.objects.filter(municipality_id=mun['id']).filter(
+                            partner_id__in=partner, project_id__in=project).order_by('id')
+
+                    if map_data:
+                        count_data = map_data.aggregate(Sum(view))
+                        total = count_data[view + '__sum']
+                    else:
+                        total = 0
+
+                    data.append({
+                        'id': mun['id'],
+                        'name': mun['name'],
+                        'code': mun['code'],
+                        view: total,
+                    })
+            else:
+                for i in range(0, len(mun_id)):
+                    mun_id[i] = int(mun_id[i])
+                    if status:
+                        map_data = Partnership.objects.filter(municipality_id__code=mun_id[i]).filter(
+                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
+                    else:
+                        map_data = Partnership.objects.filter(municipality_id__code=mun_id[i]).filter(
+                            partner_id__in=partner, project_id__in=project).order_by('id')
+
+                    if map_data:
+                        count_data = map_data.aggregate(Sum(view))
+                        total = count_data[view + '__sum']
+                    else:
+                        total = 0
+
+                    mun_data = Municipality.objects.values('id', 'name', 'code').get(code=int(mun_id[i]))
+                    data.append({
+                        'id': mun_data['id'],
+                        'name': mun_data['name'],
+                        'code': mun_data['code'],
+                        view: total,
                     })
 
         return Response(data)
