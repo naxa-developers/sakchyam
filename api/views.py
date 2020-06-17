@@ -1112,3 +1112,67 @@ class PartnershipFilter(viewsets.ModelViewSet):
                     })
 
         return Response(data)
+
+
+class PartnershipRadial(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        investment = []
+        view = 'allocated_budget'
+        # year = [d.year for d in AutomationPartner.objects.all().dates('date', 'year')]
+        partner_types = ['Microfinance Institutions/Cooperatives', 'Commercial Bank and Other Partners']
+        investment_list = Project.objects.values_list('investment_primary', flat=True).distinct()
+        for i in range(0, len(investment_list)):
+            invest_query = Partnership.objects.filter(project_id__investment_primary=investment_list[i])
+            invest_val = invest_query.aggregate(Sum(view))
+            total = invest_val[view + '__sum']
+            partner_type = []
+            for x in range(0, len(partner_types)):
+                p_type = invest_query.filter(partner_id__type=partner_types[x])
+                p_type_list = list(p_type.values_list('partner_id', flat=True).distinct('partner_id'))
+                p_data = []
+                if p_type_list:
+                    for y in range(0, len(p_type_list)):
+                        partner_q = p_type.filter(partner_id=int(p_type_list[y]))
+                        project_list = partner_q.values_list('project_id', flat=True).distinct('project_id')
+                        partner_data = []
+                        for z in range(0, len(project_list)):
+                            project_q = partner_q.filter(project_id=int(project_list[z]))
+                            project_count = project_q.aggregate(Sum(view))
+                            total_pro_b = project_count[view + '__sum']
+                            partner_data.append({
+                                "name": project_q[0].project_id.name,
+                                "size": total_pro_b,
+
+                            })
+
+                        partner_count = partner_q.aggregate(Sum(view))
+                        total_p_b = partner_count[view + '__sum']
+                        p_data.append({
+                            "name": partner_q[0].partner_id.name,
+                            "size": total_p_b,
+                            "children": partner_data,
+
+                        })
+
+                part_count = p_type.aggregate(Sum(view))
+                total_part = part_count[view + '__sum']
+                partner_type.append({
+                    "name": partner_types[x],
+                    "size": total_part,
+                    "children": p_data,
+
+                })
+
+            investment.append({
+                "name": investment_list[i],
+                "size": total,
+                "children": partner_type
+            })
+
+        return Response({"name": "Partnership", "size": 343242, "children": investment})
