@@ -82,11 +82,26 @@ class AutomationViewSet(viewsets.ModelViewSet):
 
 
 class ProjectApi(viewsets.ModelViewSet):
-    serializer_class = ProjectSerializer
-    queryset = Project.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id', 'name', 'code', 'investment_primary', 'investment_secondary', ]
+
+    def get_queryset(self):
+        filter_data = self.request.data
+        investment = filter_data['investment_primary']
+
+        # for i in range(0, len(id_indicator)):
+        #     id_indicator[i] = int(id_indicator[i])
+        if investment:
+            queryset = Project.objects.filter(investment_primary__in=investment).order_by('id')
+        else:
+            queryset = Project.objects.order_by('id')
+
+        return queryset
+
+    def get_serializer_class(self):
+        serializer_class = ProjectSerializer
+        return serializer_class
 
 
 class PartnerApi(viewsets.ModelViewSet):
