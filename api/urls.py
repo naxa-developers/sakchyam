@@ -29,7 +29,7 @@ urlpatterns = [
     path('financial/program/', views.FinancialProgramApi.as_view({'get': 'list'}), name='program'),
     path('financial/all-data/', views.FinancialLiteracyApi.as_view({'get': 'list'}), name='all-data'),
     path('financial/partner/', views.FinancialPartnerApi.as_view({'get': 'list'}), name='financial-partner'),
-    path('project/project/', views.ProjectApi.as_view({'get': 'list'}), name='project'),
+    path('project/project/', views.ProjectApi.as_view({'post': 'list'}), name='project'),
     path('partner/partner/', views.PartnerApi.as_view({'get': 'list'}), name='partner'),
     path('partnership/partnership-all/', views.PartnershipApi.as_view({'get': 'list'}), name='partnership-all'),
     path('partnership/partnership-filter/', views.PartnershipFilter.as_view({'post': 'list'}),
