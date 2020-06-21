@@ -132,7 +132,8 @@ class PartnershipApi(viewsets.ModelViewSet):
     queryset = Partnership.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', ]
+    filterset_fields = ['id', 'partner_id', 'partner_id__name', 'partner_id__type', 'project_id',
+                        'project_id__investment_primary']
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):
@@ -1122,11 +1123,50 @@ class PartnershipRadial(viewsets.ModelViewSet):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
-        investment = []
         view = 'allocated_budget'
-        # year = [d.year for d in AutomationPartner.objects.all().dates('date', 'year')]
-        partner_types = ['Microfinance Institutions/Cooperatives', 'Commercial Bank and Other Partners']
-        investment_list = Project.objects.values_list('investment_primary', flat=True).distinct()
+        investment = []
+        if request.GET.getlist('investment_filter'):
+            investment_get = request.GET['investment_filter']
+            investment_list = investment_get.split(",")
+            # for i in range(0, len(investment_filter_id)):
+            #     investment_filter_id[i] = int(investment_filter_id[i])
+            investment_list = list(
+                Project.objects.filter(investment_primary__in=investment_list).values_list('investment_primary',
+                                                                                           flat=True).distinct())
+        else:
+            investment_list = list(Project.objects.values_list('investment_primary', flat=True).distinct())
+
+        if request.GET.getlist('partner_type_filter'):
+            partner_type_get = request.GET['partner_type_filter']
+            partner_types = partner_type_get.split(",")
+            partner_types = list(
+                Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
+
+        else:
+            partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+
+        if request.GET.getlist('partner_filter'):
+            partner_get = request.GET['partner_filter']
+            partner_filter_list = partner_get.split(",")
+            for i in range(0, len(partner_filter_list)):
+                partner_filter_list[i] = int(partner_filter_list[i])
+            partner_filter_list = list(
+                Partner.objects.filter(id__in=partner_filter_list).values_list('id', flat=True).distinct())
+
+        else:
+            partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
+
+        if request.GET.getlist('project_filter'):
+            project_get = request.GET['project_filter']
+            project_filter_list = project_get.split(",")
+            for i in range(0, len(project_filter_list)):
+                project_filter_list[i] = int(project_filter_list[i])
+            project_filter_list = list(
+                Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
+
+        else:
+            project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+
         for i in range(0, len(investment_list)):
             invest_query = Partnership.objects.filter(project_id__investment_primary=investment_list[i])
             invest_val = invest_query.aggregate(Sum(view))
@@ -1134,12 +1174,17 @@ class PartnershipRadial(viewsets.ModelViewSet):
             partner_type = []
             for x in range(0, len(partner_types)):
                 p_type = invest_query.filter(partner_id__type=partner_types[x])
-                p_type_list = list(p_type.values_list('partner_id', flat=True).distinct('partner_id'))
+                p_type_list = list(
+                    p_type.filter(partner_id__in=partner_filter_list).values_list('partner_id', flat=True).distinct(
+                        'partner_id'))
                 p_data = []
                 if p_type_list:
                     for y in range(0, len(p_type_list)):
                         partner_q = p_type.filter(partner_id=int(p_type_list[y]))
-                        project_list = partner_q.values_list('project_id', flat=True).distinct('project_id')
+                        project_list = partner_q.filter(project_id__in=project_filter_list).values_list('project_id',
+                                                                                                        flat=True).distinct(
+                            'project_id')
+
                         partner_data = []
                         for z in range(0, len(project_list)):
                             project_q = partner_q.filter(project_id=int(project_list[z]))
@@ -1151,23 +1196,24 @@ class PartnershipRadial(viewsets.ModelViewSet):
 
                             })
 
-                        partner_count = partner_q.aggregate(Sum(view))
-                        total_p_b = partner_count[view + '__sum']
-                        p_data.append({
-                            "name": partner_q[0].partner_id.name,
-                            "size": total_p_b,
-                            "children": partner_data,
+                        if partner_q:
+                            partner_count = partner_q.aggregate(Sum(view))
+                            total_p_b = partner_count[view + '__sum']
+                            p_data.append({
+                                "name": partner_q[0].partner_id.name,
+                                "size": total_p_b,
+                                "children": partner_data,
 
-                        })
+                            })
+                if p_type:
+                    part_count = p_type.aggregate(Sum(view))
+                    total_part = part_count[view + '__sum']
+                    partner_type.append({
+                        "name": partner_types[x],
+                        "size": total_part,
+                        "children": p_data,
 
-                part_count = p_type.aggregate(Sum(view))
-                total_part = part_count[view + '__sum']
-                partner_type.append({
-                    "name": partner_types[x],
-                    "size": total_part,
-                    "children": p_data,
-
-                })
+                    })
 
             investment.append({
                 "name": investment_list[i],
