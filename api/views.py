@@ -1222,3 +1222,52 @@ class PartnershipRadial(viewsets.ModelViewSet):
             })
 
         return Response({"name": "Partnership", "size": 343242, "children": investment})
+
+
+class PartnershipRadar(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        view = 'allocated_budget'
+        investment = []
+        if request.GET.getlist('investment_filter'):
+            investment_get = request.GET['investment_filter']
+            investment_list = investment_get.split(",")
+            # for i in range(0, len(investment_filter_id)):
+            #     investment_filter_id[i] = int(investment_filter_id[i])
+            investment_list = list(
+                Project.objects.filter(investment_primary__in=investment_list).values_list('investment_primary',
+                                                                                           flat=True).distinct())
+        else:
+            investment_list = list(Project.objects.values_list('investment_primary', flat=True).distinct())
+
+        total_invest = Partnership.objects.values('id', 'branch', 'blb', 'extension_counter', 'tablet')
+        total_invest_branch = total_invest.aggregate(Sum('branch'))['branch__sum']
+        total_invest_blb = total_invest.aggregate(Sum('blb'))['blb__sum']
+        total_invest_extension_counter = total_invest.aggregate(Sum('extension_counter'))['extension_counter__sum']
+        total_invest_tablet = total_invest.aggregate(Sum('tablet'))['tablet__sum']
+
+        for i in range(0, len(investment_list)):
+            invest_query = Partnership.objects.values('id', 'branch', 'blb', 'extension_counter', 'tablet',
+                                                      'project_id__investment_primary').filter(
+                project_id__investment_primary=investment_list[i])
+            invest_branch = invest_query.aggregate(Sum('branch'))['branch__sum']
+            invest_blb = invest_query.aggregate(Sum('blb'))['blb__sum']
+            invest_extension_counter = invest_query.aggregate(Sum('extension_counter'))['extension_counter__sum']
+            invest_tablet = invest_query.aggregate(Sum('tablet'))['tablet__sum']
+
+            percentage_branch = int((invest_branch / total_invest_branch) * 100)
+            percentage_blb = int((invest_blb / total_invest_blb) * 100)
+            percentage_extension_counter = int((invest_extension_counter / total_invest_extension_counter) * 100)
+            percentage_tablet = int((invest_tablet / total_invest_tablet) * 100)
+            data = list([percentage_branch, percentage_blb, percentage_extension_counter, percentage_tablet])
+            investment.append({
+                'name': invest_query[0]['project_id__investment_primary'],
+                'data': data,
+            })
+
+        return Response(investment)
