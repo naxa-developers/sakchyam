@@ -40,4 +40,6 @@ urlpatterns = [
          name='radial'),
     path('partnership/radar/', views.PartnershipRadar.as_view({'get': 'list'}),
          name='radial'),
+    path('partnership/sankey/', views.InvestmentSankey.as_view({'get': 'list'}),
+         name='sankey'),
 ]
