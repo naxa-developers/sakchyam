@@ -1482,3 +1482,118 @@ class InvestmentSankey(viewsets.ModelViewSet):
             })
 
         return Response({"nodes": node, "links": links})
+
+
+class PartnershipOverview(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        investment = []
+
+        if request.GET.getlist('province_id'):
+            province_get = request.GET['province_id']
+            province_filter_list = province_get.split(",")
+            for i in range(0, len(province_filter_list)):
+                province_filter_list[i] = int(province_filter_list[i])
+
+        else:
+            province_filter_list = list(Province.objects.values_list('id', flat=True).distinct())
+
+        if request.GET.getlist('district_id'):
+            district_get = request.GET['district_id']
+            district_filter_list = district_get.split(",")
+            for i in range(0, len(district_filter_list)):
+                district_filter_list[i] = int(district_filter_list[i])
+
+        else:
+            district_filter_list = list(District.objects.values_list('id', flat=True).distinct())
+
+        if request.GET.getlist('municipality_id'):
+            municipality_get = request.GET['municipality_id']
+            municipality_filter_list = municipality_get.split(",")
+            for i in range(0, len(municipality_filter_list)):
+                municipality_filter_list[i] = int(municipality_filter_list[i])
+
+        else:
+            municipality_filter_list = list(Municipality.objects.values_list('id', flat=True).distinct())
+
+        if request.GET.getlist('view'):
+            view = request.GET['view']
+        else:
+            view = 'allocated_budget'
+
+        if request.GET.getlist('investment_filter'):
+            investment_get = request.GET['investment_filter']
+            investment_list = investment_get.split(",")
+            # for i in range(0, len(investment_filter_id)):
+            #     investment_filter_id[i] = int(investment_filter_id[i])
+            investment_list = list(
+                Project.objects.filter(investment_primary__in=investment_list).values_list('investment_primary',
+                                                                                           flat=True).distinct())
+        else:
+            investment_list = list(Project.objects.values_list('investment_primary', flat=True).distinct())
+
+        if request.GET.getlist('partner_type_filter'):
+            partner_type_get = request.GET['partner_type_filter']
+            partner_types = partner_type_get.split(",")
+            partner_types = list(
+                Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
+
+        else:
+            partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+
+        if request.GET.getlist('partner_filter'):
+            partner_get = request.GET['partner_filter']
+            partner_filter_list = partner_get.split(",")
+            for i in range(0, len(partner_filter_list)):
+                partner_filter_list[i] = int(partner_filter_list[i])
+            partner_filter_list = list(
+                Partner.objects.filter(id__in=partner_filter_list).values_list('id', flat=True).distinct())
+
+        else:
+            partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
+
+        if request.GET.getlist('project_filter'):
+            project_get = request.GET['project_filter']
+            project_filter_list = project_get.split(",")
+            for i in range(0, len(project_filter_list)):
+                project_filter_list[i] = int(project_filter_list[i])
+            project_filter_list = list(
+                Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
+
+        else:
+            project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+
+        partnership_query = Partnership.objects.filter(project_id__investment_primary__in=investment_list,
+                                                       project_id__in=project_filter_list,
+                                                       partner_id__type__in=partner_types,
+                                                       partner_id__in=partner_filter_list,
+                                                       province_id__in=province_filter_list,
+                                                       district_id__in=district_filter_list,
+                                                       municipality_id__in=municipality_filter_list,
+                                                       )
+        partner = partnership_query.values('partner_id').distinct().count()
+        project = partnership_query.values('project_id').distinct().count()
+        investment = partnership_query.values('project_id__investment_primary').distinct().count()
+        other_products = partnership_query.aggregate(Sum('other_products'))['other_products__sum']
+        tablet = partnership_query.aggregate(Sum('tablet'))['tablet__sum']
+        branch = partnership_query.aggregate(Sum('branch'))['branch__sum']
+        blb = partnership_query.aggregate(Sum('blb'))['blb__sum']
+        budget = partnership_query.aggregate(Sum('allocated_budget'))['allocated_budget__sum']
+        beneficiary = partnership_query.aggregate(Sum('total_beneficiary'))['total_beneficiary__sum']
+        return Response({
+            'investment_focus': investment,
+            'total_budget': budget,
+            'beneficiary': beneficiary,
+            'project': project,
+            'partner': partner,
+            'other_products': other_products,
+            'branch': branch,
+            'blb': blb,
+            'tablet': tablet,
+
+        })
