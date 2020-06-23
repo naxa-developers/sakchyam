@@ -1228,7 +1228,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
                             total_pro_b = project_count[view + '__sum']
                             partner_data.append({
                                 "name": project_q[0].project_id.name,
-                                "size": int(total_pro_b),
+                                "size": total_pro_b,
 
                             })
 
@@ -1237,7 +1237,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
                             total_p_b = partner_count[view + '__sum']
                             p_data.append({
                                 "name": partner_q[0].partner_id.name,
-                                "size": int(total_p_b),
+                                "size": total_p_b,
                                 "children": partner_data,
 
                             })
@@ -1246,18 +1246,19 @@ class PartnershipRadial(viewsets.ModelViewSet):
                     total_part = part_count[view + '__sum']
                     partner_type.append({
                         "name": partner_types[x],
-                        "size": int(total_part),
+                        "size": total_part,
                         "children": p_data,
 
                     })
 
             investment.append({
                 "name": investment_list[i],
-                "size": int(total),
+                "size": total,
                 "children": partner_type
             })
 
-        return Response({"name": "Partnership", "size": 343242, "children": investment})
+        overall = partnership_query.aggregate(Sum(view))[view + '__sum']
+        return Response({"name": "Partnership", "size": overall, "children": investment})
 
 
 class PartnershipRadar(viewsets.ModelViewSet):
@@ -1451,7 +1452,7 @@ class InvestmentSankey(viewsets.ModelViewSet):
             links.append({
                 'source': source,
                 'target': target,
-                'value': int(budget[view+'__sum']),
+                'value': int(budget[view + '__sum']),
             })
 
         for x in range(0, len(project_id)):
@@ -1464,7 +1465,7 @@ class InvestmentSankey(viewsets.ModelViewSet):
             links.append({
                 'source': source,
                 'target': target,
-                'value': int(budget[view+'__sum']),
+                'value': int(budget[view + '__sum']),
             })
 
         for x in range(0, len(partner_id)):
@@ -1477,7 +1478,7 @@ class InvestmentSankey(viewsets.ModelViewSet):
             links.append({
                 'source': source,
                 'target': target,
-                'value': int(budget[view+'__sum']),
+                'value': int(budget[view + '__sum']),
             })
 
         return Response({"nodes": node, "links": links})
