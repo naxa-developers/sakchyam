@@ -42,4 +42,6 @@ urlpatterns = [
          name='radial'),
     path('partnership/sankey/', views.InvestmentSankey.as_view({'get': 'list'}),
          name='sankey'),
+    path('partnership/overview/', views.PartnershipOverview.as_view({'get': 'list'}),
+         name='overview'),
 ]
