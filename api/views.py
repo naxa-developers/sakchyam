@@ -1597,3 +1597,182 @@ class PartnershipOverview(viewsets.ModelViewSet):
             'tablet': tablet,
 
         })
+
+
+class PartnershipMap(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+
+        if request.GET.getlist('status'):
+            status_get = request.GET['status']
+            status = status_get.split(",")
+        else:
+            status = ['Ongoing', 'Completed']
+
+        if request.GET.getlist('investment_filter'):
+            investment_get = request.GET['investment_filter']
+            investment_list = investment_get.split(",")
+            # for i in range(0, len(investment_filter_id)):
+            #     investment_filter_id[i] = int(investment_filter_id[i])
+            investment_list = list(
+                Project.objects.filter(investment_primary__in=investment_list).values_list('investment_primary',
+                                                                                           flat=True).distinct())
+        else:
+            investment_list = list(Project.objects.values_list('investment_primary', flat=True).distinct())
+
+        if request.GET.getlist('partner_type_filter'):
+            partner_type_get = request.GET['partner_type_filter']
+            partner_types = partner_type_get.split(",")
+            partner_types = list(
+                Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
+
+        else:
+            partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+
+        if request.GET.getlist('partner_filter'):
+            partner_get = request.GET['partner_filter']
+            partner_filter_list = partner_get.split(",")
+            for i in range(0, len(partner_filter_list)):
+                partner_filter_list[i] = int(partner_filter_list[i])
+            partner_filter_list = list(
+                Partner.objects.filter(id__in=partner_filter_list).values_list('id', flat=True).distinct())
+
+        else:
+            partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
+
+        if request.GET.getlist('project_filter'):
+            project_get = request.GET['project_filter']
+            project_filter_list = project_get.split(",")
+            for i in range(0, len(project_filter_list)):
+                project_filter_list[i] = int(project_filter_list[i])
+            project_filter_list = list(
+                Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
+
+        else:
+            project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+
+        partnership_query = Partnership.objects.filter(project_id__investment_primary__in=investment_list,
+                                                       project_id__in=project_filter_list,
+                                                       partner_id__type__in=partner_types,
+                                                       partner_id__in=partner_filter_list,
+                                                       status__in=status,
+                                                       ).values('project_id', 'project_id__name')
+
+        if request.GET.getlist('province_id'):
+            province_get = request.GET['province_id']
+            if province_get == '0':
+                province_filter_list = Province.objects.values('id', 'name', 'code').order_by('id')
+                for y in province_filter_list:
+                    prov = partnership_query.values('district_id', 'province_id', 'partner_id').filter(
+                        province_id=y['id'])
+                    project_list = prov.values_list('project_id__name', flat=True).distinct('project_id')
+                    count = prov.distinct('project_id').count()
+                    data.append({
+                        'id': y['id'],
+                        'name': y['name'],
+                        'code': y['code'],
+                        'project_list': project_list,
+                        'count': count,
+                    })
+
+            else:
+                province_filter_list = province_get.split(",")
+                for i in range(0, len(province_filter_list)):
+                    province_filter_list[i] = int(province_filter_list[i])
+                province_filter_list_id = Province.objects.filter(code__in=province_filter_list).values('id', 'name',
+                                                                                                        'code').order_by(
+                    'id')
+                for y in province_filter_list_id:
+                    prov = partnership_query.values('district_id', 'province_id', 'partner_id').filter(
+                        province_id=y['id'])
+                    project_list = prov.values_list('project_id__name', flat=True).distinct('project_id')
+                    count = prov.distinct('project_id').count()
+                    data.append({
+                        'id': y['id'],
+                        'name': y['name'],
+                        'code': y['code'],
+                        'project_list': project_list,
+                        'count': count,
+                    })
+
+        if request.GET.getlist('district_id'):
+            district_get = request.GET['district_id']
+            if district_get == '0':
+                district_filter_list = District.objects.values('id', 'n_code', 'name').order_by('id')
+                for x in district_filter_list:
+                    dist = partnership_query.values('project_id', 'project_id__name').filter(district_id=x['id'])
+
+                    project_list = dist.values_list('project_id__name', flat=True).distinct('project_id')
+                    count = dist.distinct('project_id').count()
+                    data.append({
+                        'id': x['id'],
+                        'name': x['name'],
+                        'code': x['n_code'],
+                        'project_list': project_list,
+                        'count': count,
+                    })
+
+            else:
+                district_filter_list = district_get.split(",")
+                for i in range(0, len(district_filter_list)):
+                    district_filter_list[i] = int(district_filter_list[i])
+                district_filter_list_id = District.objects.filter(n_code__in=district_filter_list).values('id',
+                                                                                                          'n_code',
+                                                                                                          'name').order_by(
+                    'id')
+                for x in district_filter_list_id:
+                    dist = partnership_query.values('project_id', 'project_id__name').filter(district_id=x['id'])
+
+                    project_list = dist.values_list('project_id__name', flat=True).distinct('project_id')
+                    count = dist.distinct('project_id').count()
+                    data.append({
+                        'id': x['id'],
+                        'name': x['name'],
+                        'code': x['n_code'],
+                        'project_list': project_list,
+                        'count': count,
+                    })
+
+        if request.GET.getlist('municipality_id'):
+            municipality_get = request.GET['municipality_id']
+            if municipality_get == '0':
+                municipality_filter_list = Municipality.objects.values('id', 'name', 'code').order_by('id')
+                for i in municipality_filter_list:
+                    mun = partnership_query.values('project_id', 'project_id__name').filter(
+                        municipality_id=i['id'])
+                    project_list = mun.values_list('project_id__name', flat=True).distinct('project_id')
+                    count = mun.distinct('project_id').count()
+                    data.append({
+                        'id': i['id'],
+                        'name': i['name'],
+                        'code': i['code'],
+                        'project_list': project_list,
+                        'count': count,
+                    })
+            else:
+                municipality_filter_list = municipality_get.split(",")
+                for i in range(0, len(municipality_filter_list)):
+                    municipality_filter_list[i] = int(municipality_filter_list[i])
+                municipality_filter_list_id = Municipality.objects.filter(code__in=municipality_filter_list).values(
+                    'id', 'name', 'code').order_by('id')
+
+                for i in municipality_filter_list_id:
+                    mun = partnership_query.values('project_id', 'project_id__name').filter(
+                        municipality_id=i['id'])
+                    project_list = mun.values_list('project_id__name', flat=True).distinct('project_id')
+                    count = mun.distinct('project_id').count()
+                    data.append({
+                        'id': i['id'],
+                        'name': i['name'],
+                        'code': i['code'],
+                        'project_list': project_list,
+                        'count': count,
+                    })
+
+        return Response(data)

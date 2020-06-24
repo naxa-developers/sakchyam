@@ -44,4 +44,6 @@ urlpatterns = [
          name='sankey'),
     path('partnership/overview/', views.PartnershipOverview.as_view({'get': 'list'}),
          name='overview'),
+    path('partnership/map-data/', views.PartnershipMap.as_view({'get': 'list'}),
+         name='map-data'),
 ]
