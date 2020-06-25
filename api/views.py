@@ -1657,12 +1657,13 @@ class PartnershipMap(viewsets.ModelViewSet):
         else:
             project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
 
-        partnership_query = Partnership.objects.filter(project_id__investment_primary__in=investment_list,
-                                                       project_id__in=project_filter_list,
-                                                       partner_id__type__in=partner_types,
-                                                       partner_id__in=partner_filter_list,
-                                                       status__in=status,
-                                                       ).values('project_id', 'project_id__name')
+        partnership_query = Partnership.objects.values('project_id', 'partner_id', ).filter(
+            project_id__investment_primary__in=investment_list,
+            project_id__id__in=project_filter_list,
+            partner_id__type__in=partner_types,
+            partner_id__id__in=partner_filter_list,
+            status__in=status,
+        )
 
         if request.GET.getlist('province_id'):
             province_get = request.GET['province_id']
@@ -1727,10 +1728,10 @@ class PartnershipMap(viewsets.ModelViewSet):
                                                                                                           'name').order_by(
                     'id')
                 for x in district_filter_list_id:
-                    dist = partnership_query.values('project_id', 'project_id__name').filter(district_id=x['id'])
-
-                    project_list = dist.values_list('project_id__name', flat=True).distinct('project_id')
-                    count = dist.distinct('project_id').count()
+                    mun = partnership_query.values_list('project_id', flat=True).filter(
+                        district_id__id=i['id'])
+                    project_list = Project.objects.filter(id__in=mun).values_list('name', flat=True)
+                    count = len(project_list)
                     data.append({
                         'id': x['id'],
                         'name': x['name'],
@@ -1742,12 +1743,12 @@ class PartnershipMap(viewsets.ModelViewSet):
         if request.GET.getlist('municipality_id'):
             municipality_get = request.GET['municipality_id']
             if municipality_get == '0':
-                municipality_filter_list = Municipality.objects.values('id', 'name', 'code').order_by('id')
+                municipality_filter_list = Municipality.objects.values('id', 'name', 'code')
                 for i in municipality_filter_list:
-                    mun = partnership_query.values('project_id', 'project_id__name').filter(
-                        municipality_id=i['id'])
-                    project_list = mun.values_list('project_id__name', flat=True).distinct('project_id')
-                    count = mun.distinct('project_id').count()
+                    mun = partnership_query.values_list('project_id', flat=True).filter(
+                        municipality_id__id=i['id'])
+                    project_list = Project.objects.filter(id__in=mun).values_list('name', flat=True)
+                    count = len(project_list)
                     data.append({
                         'id': i['id'],
                         'name': i['name'],
@@ -1763,10 +1764,10 @@ class PartnershipMap(viewsets.ModelViewSet):
                     'id', 'name', 'code').order_by('id')
 
                 for i in municipality_filter_list_id:
-                    mun = partnership_query.values('project_id', 'project_id__name').filter(
-                        municipality_id=i['id'])
-                    project_list = mun.values_list('project_id__name', flat=True).distinct('project_id')
-                    count = mun.distinct('project_id').count()
+                    mun = partnership_query.values_list('project_id', flat=True).filter(
+                        municipality_id__id=i['id'])
+                    project_list = Project.objects.filter(id__in=mun).values_list('name', flat=True)
+                    count = len(project_list)
                     data.append({
                         'id': i['id'],
                         'name': i['name'],
@@ -1775,4 +1776,5 @@ class PartnershipMap(viewsets.ModelViewSet):
                         'count': count,
                     })
 
+        print(mun.explain())
         return Response(data)
