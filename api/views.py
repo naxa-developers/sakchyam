@@ -1317,10 +1317,8 @@ class InvestmentSankey(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         node = []
         links = []
-        investment_id = []
         project_id = []
         partner_id = []
-        partner_id_t = []
 
         if request.GET.getlist('view'):
             view = request.GET['view']
@@ -1374,16 +1372,16 @@ class InvestmentSankey(viewsets.ModelViewSet):
         else:
             partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
 
-        if request.GET.getlist('project_filter'):
-            project_get = request.GET['project_filter']
-            project_filter_list = project_get.split(",")
-            for i in range(0, len(project_filter_list)):
-                project_filter_list[i] = int(project_filter_list[i])
-            project_filter_list = list(
-                Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
-
-        else:
-            project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+        # if request.GET.getlist('project_filter'):
+        #     project_get = request.GET['project_filter']
+        #     project_filter_list = project_get.split(",")
+        #     for i in range(0, len(project_filter_list)):
+        #         project_filter_list[i] = int(project_filter_list[i])
+        #     project_filter_list = list(
+        #         Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
+        #
+        # else:
+        #     project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
 
         if request.GET.getlist('investment_filter'):
             investment_get = request.GET['investment_filter']
@@ -1396,83 +1394,79 @@ class InvestmentSankey(viewsets.ModelViewSet):
         else:
             investment_list = list(Project.objects.values_list('investment_primary', flat=True).distinct())
 
-        partnership_query = Partnership.objects.filter(project_id__investment_primary__in=investment_list,
-                                                       project_id__in=project_filter_list,
-                                                       partner_id__type__in=partner_types,
-                                                       partner_id__in=partner_filter_list,
-                                                       province_id__in=province_filter_list,
-                                                       district_id__in=district_filter_list,
-                                                       municipality_id__in=municipality_filter_list,
-                                                       )
+        partnership_query = Partnership.objects.prefetch_related('project_id', 'partner_id').filter(
+            project_id__investment_primary__in=investment_list,
+            partner_id__type__in=partner_types,
+            partner_id__id__in=partner_filter_list,
+            province_id__id__in=province_filter_list,
+            district_id__id__in=district_filter_list,
+            municipality_id__id__in=municipality_filter_list,
+        )
 
-        investment = partnership_query.values("project_id__investment_primary").distinct(
-            'project_id__investment_primary')
+        # investment = partnership_query.values("project_id__investment_primary").distinct(
+        #     'project_id__investment_primary')
 
-        for p in investment:
+        for i in range(0, len(investment_list)):
             node.append({
-                'id': p['project_id__investment_primary'],
-                "color": "hsl(2, 70%, 50%)",
-                'type': 'investment',
-            })
-            investment_id.append(p['project_id__investment_primary'])
+                'id': investment_list[i],
 
-        project = partnership_query.values("project_id__name", "project_id").distinct('project_id')
-        for c in project:
-            node.append({
-                'id': c['project_id__name'],
-                "color": "hsl(205, 70%, 50%)",
-                'type': 'project',
             })
-            project_id.append(c['project_id'])
+            # investment_id.append(p['project_id__investment_primary'])
+
+        # project = partnership_query.values("project_id__name", "project_id").distinct('project_id')
+        # for c in project:
+        #     node.append({
+        #         'id': c['project_id__name'],
+        #
+        #     })
+        #     project_id.append(c['project_id'])
 
         partner_type = partnership_query.values("partner_id", "partner_id__type").distinct('partner_id__type')
         for part_tt in partner_type:
             node.append({
                 'id': part_tt['partner_id__type'],
-                "color": "hsl(262, 70%, 50%)",
-                'type': 'partner_type',
+
             })
-            partner_id_t.append(part_tt['partner_id__type'])
+            # partner_id_t.append(part_tt['partner_id__type'])
 
         partner = partnership_query.values("partner_id__name", "partner_id").distinct('partner_id')
         for part in partner:
             node.append({
                 'id': part['partner_id__name'],
-                "color": "hsl(262, 70%, 50%)",
-                'type': 'partner',
+
             })
             partner_id.append(part['partner_id'])
 
-        for i in range(0, len(project_id)):
-            q = partnership_query.values('project_id__investment_primary', 'project_id__name',
-                                         'allocated_budget').filter(project_id=project_id[i])
-            budget = q.aggregate(Sum(view))
-            source = q[0]['project_id__investment_primary']
-            target = q[0]['project_id__name']
-            links.append({
-                'source': source,
-                'target': target,
-                'value': int(budget[view + '__sum']),
-            })
-
-        for x in range(0, len(project_id)):
-            q = partnership_query.values('partner_id__type', 'partner_id__name', 'project_id__name', ).filter(
-                project_id=project_id[x])
-
-            budget = q.aggregate(Sum(view))
-            source = q[0]['project_id__name']
-            target = q[0]['partner_id__type']
-            links.append({
-                'source': source,
-                'target': target,
-                'value': int(budget[view + '__sum']),
-            })
+        # for i in range(0, len(investment_list)):
+        #     q = partnership_query.values('project_id__investment_primary', 'project_id__name',
+        #                                  'partner_id__type', 'partner_id__name', ).filter(
+        #         project_id__investment_primary=investment_list[i])
+        #     budget = q.aggregate(Sum(view))
+        #     source = q[0]['project_id__investment_primary']
+        #     target = q[0]['project_id__name']
+        #     links.append({
+        #         'source': source,
+        #         'target': target,
+        #         'value': int(budget[view + '__sum']),
+        #     })
+        #
+        #     links.append({
+        #         'source': q[0]['project_id__name'],
+        #         'target': q[0]['partner_id__type'],
+        #         'value': int(budget[view + '__sum']),
+        #     })
 
         for x in range(0, len(partner_id)):
-            q = partnership_query.values('partner_id', 'partner_id__name', 'partner_id__type', ).filter(
-                partner_id=partner_id[x])
+            q = partnership_query.values('partner_id', 'partner_id__name', 'partner_id__type',
+                                         'project_id__investment_primary', ).filter(
+                partner_id__id=partner_id[x])
 
             budget = q.aggregate(Sum(view))
+            links.append({
+                'source': q[0]['project_id__investment_primary'],
+                'target': q[0]['partner_id__type'],
+                'value': int(budget[view + '__sum']),
+            })
             source = q[0]['partner_id__type']
             target = q[0]['partner_id__name']
             links.append({
