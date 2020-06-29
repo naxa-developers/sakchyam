@@ -1022,7 +1022,7 @@ class PartnershipFilter(viewsets.ModelViewSet):
 
         if dist_id:
             if dist_id[0] == 0:
-                dist_data = District.objects.values('id', 'name', 'n_code').order_by('id')
+                dist_data = District.objects.values('id', 'name', 'n_code','province_id__code').order_by('id')
                 for dist in dist_data:
                     if status:
                         map_data = Partnership.objects.filter(district_id=dist['id']).filter(
@@ -1040,6 +1040,7 @@ class PartnershipFilter(viewsets.ModelViewSet):
                     data.append({
                         'id': dist['id'],
                         'name': dist['name'],
+                        'province_code': dist['province_id__code'],
                         'code': dist['n_code'],
                         view: total,
                     })
@@ -1058,16 +1059,18 @@ class PartnershipFilter(viewsets.ModelViewSet):
                         total = count_data[view + '__sum']
                     else:
                         total = 0
-                    dist_data = District.objects.values('id', 'name', 'n_code').get(n_code=int(dist_id[i]))
+                    dist_data = District.objects.values('id', 'name', 'n_code', 'province_id__code').get(n_code=int(dist_id[i]))
                     data.append({
                         'id': dist_data['id'],
                         'name': dist_data['name'],
+                        'province_code': dist_data['province_id__code'],
                         'code': dist_data['n_code'],
                         view: total,
                     })
         if mun_id:
             if mun_id[0] == 0:
-                mun_data = Municipality.objects.values('id', 'name', 'code').order_by('id')
+                mun_data = Municipality.objects.values('id', 'name', 'code', 'district_id__n_code',
+                                                       'province_id__code').order_by('id')
                 for mun in mun_data:
                     if status:
                         map_data = Partnership.objects.filter(municipality_id=mun['id']).filter(
@@ -1085,6 +1088,8 @@ class PartnershipFilter(viewsets.ModelViewSet):
                     data.append({
                         'id': mun['id'],
                         'name': mun['name'],
+                        'province_code': mun['province_id__code'],
+                        'district_code': mun['district_id__n_code'],
                         'code': mun['code'],
                         view: total,
                     })
@@ -1104,10 +1109,13 @@ class PartnershipFilter(viewsets.ModelViewSet):
                     else:
                         total = 0
 
-                    mun_data = Municipality.objects.values('id', 'name', 'code').get(code=int(mun_id[i]))
+                    mun_data = Municipality.objects.values('id', 'name', 'code', 'district_id__n_code',
+                                                           'province_id__code').get(code=int(mun_id[i]))
                     data.append({
                         'id': mun_data['id'],
                         'name': mun_data['name'],
+                        'province_code': mun_data['province_id__code'],
+                        'district_code': mun_data['district_id__n_code'],
                         'code': mun_data['code'],
                         view: total,
                     })
