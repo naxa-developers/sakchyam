@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 import pandas as pd
-from api.models import Partner
+from api.models import Partner, Project
 
 
 class Command(BaseCommand):
@@ -19,20 +19,19 @@ class Command(BaseCommand):
 
         try:
             for row in range(0, upper_range):
+                print(df['Project Code'][row])
+                print(int(df['Leverage'][row]))
                 # print(df['hlcitId'][row])
 
                 # palika_update = District.objects.filter(code=df['id'][row]).update(
                 #     boundary=GEOSGeometry(df['geom'][row]))
 
-                palika_update = Partner.objects.filter(code=df['Partner Name ID'][row]).update(
-                    type=df['Partner Type'][row])
-
+                # palika_update = Partner.objects.filter(code=df['Partner Name ID'][row]).update(
+                #     type=df['Partner Type'][row])
+                palika_update = Project.objects.filter(code=df['Project Code'][row]).update(
+                    leverage=int(df['Leverage'][row]))
             if palika_update:
                 self.stdout.write('Successfully  updated data ..')
-
-
-
-
 
         except Exception as e:
             print(e)
