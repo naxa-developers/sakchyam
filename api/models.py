@@ -188,6 +188,7 @@ class Project(models.Model):
     investment_primary = models.CharField(max_length=500, blank=True, null=True, )
     investment_secondary = models.CharField(max_length=500, blank=True, null=True, )
     leverage = models.BigIntegerField(blank=True, null=True, default=0)
+    scf_funds = models.BigIntegerField(blank=True, null=True, default=0)
 
     def __str__(self):
         return self.name

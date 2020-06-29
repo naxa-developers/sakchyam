@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 # palika_update = Partner.objects.filter(code=df['Partner Name ID'][row]).update(
                 #     type=df['Partner Type'][row])
                 palika_update = Project.objects.filter(code=df['Project Code'][row]).update(
-                    leverage=int(df['Leverage'][row]))
+                    scf_funds=int(df['S-CF Funds'][row]))
             if palika_update:
                 self.stdout.write('Successfully  updated data ..')
 
