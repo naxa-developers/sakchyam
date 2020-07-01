@@ -222,3 +222,25 @@ class Partnership(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     project_year = models.CharField(max_length=500, blank=True, null=True, )
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=500, blank=True, null=True, )
+    type = models.CharField(max_length=500, blank=True, null=True, )
+    code = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class ProductProcess(models.Model):
+    partner_id = models.ForeignKey(Partner, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='ProcessProduct')
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='ProcessProduct')
+    partner_type = models.CharField(max_length=500, blank=True, null=True, )
+    innovation_area = models.CharField(max_length=500, blank=True, null=True, )
+    market_failure = models.CharField(max_length=500, blank=True, null=True, )
+
+    def __str__(self):
+        return self.innovation_area

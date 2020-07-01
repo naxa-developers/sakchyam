@@ -1,0 +1,475 @@
+[
+{
+  "model": "api.productprocess",
+  "pk": 1,
+  "fields": {
+    "partner_id": 2,
+    "product_id": 11,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 2,
+  "fields": {
+    "partner_id": 2,
+    "product_id": 30,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 3,
+  "fields": {
+    "partner_id": 2,
+    "product_id": 15,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Downscaling by Commercial Banks",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 4,
+  "fields": {
+    "partner_id": 9,
+    "product_id": 36,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 5,
+  "fields": {
+    "partner_id": 14,
+    "product_id": 31,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 6,
+  "fields": {
+    "partner_id": 17,
+    "product_id": 18,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Low Cost Housing Finance",
+    "market_failure": "Lack of appropriate financing products for low cost housing"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 7,
+  "fields": {
+    "partner_id": 17,
+    "product_id": 14,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Downscaling by Commercial Banks",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 8,
+  "fields": {
+    "partner_id": 19,
+    "product_id": 16,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 9,
+  "fields": {
+    "partner_id": 33,
+    "product_id": 6,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 10,
+  "fields": {
+    "partner_id": 35,
+    "product_id": 27,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 11,
+  "fields": {
+    "partner_id": 35,
+    "product_id": 1,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Savings",
+    "market_failure": "Lack of approriate financial products for migrants/families."
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 12,
+  "fields": {
+    "partner_id": 12,
+    "product_id": 12,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Downscaling by Commercial Banks",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 13,
+  "fields": {
+    "partner_id": 21,
+    "product_id": 17,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Downscaling by Commercial Banks",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 14,
+  "fields": {
+    "partner_id": 40,
+    "product_id": 38,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Downscaling by Commercial Banks",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 15,
+  "fields": {
+    "partner_id": 40,
+    "product_id": 3,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Agriculture/Value Chain Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 16,
+  "fields": {
+    "partner_id": 8,
+    "product_id": 10,
+    "partner_type": "Payment Service Operator",
+    "innovation_area": "SME Financing",
+    "market_failure": "Lack of appropriate financial products for MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 17,
+  "fields": {
+    "partner_id": 22,
+    "product_id": 23,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "SME Financing",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 18,
+  "fields": {
+    "partner_id": 22,
+    "product_id": 22,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "SME Financing",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 19,
+  "fields": {
+    "partner_id": 22,
+    "product_id": 21,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "SME Financing",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 20,
+  "fields": {
+    "partner_id": 11,
+    "product_id": 9,
+    "partner_type": "Payment Service Provider",
+    "innovation_area": "Mobile Wallet",
+    "market_failure": "Lack of appropriate digital financial services"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 21,
+  "fields": {
+    "partner_id": 11,
+    "product_id": 25,
+    "partner_type": "Payment Service Provider",
+    "innovation_area": "Mobile Wallet",
+    "market_failure": "Lack of appropriate digital financial services"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 22,
+  "fields": {
+    "partner_id": 25,
+    "product_id": 24,
+    "partner_type": "Payment Service Operator",
+    "innovation_area": "Instant Payments",
+    "market_failure": "Lack of appropriate digital financial services"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 23,
+  "fields": {
+    "partner_id": 25,
+    "product_id": 4,
+    "partner_type": "Payment Service Operator",
+    "innovation_area": "Instant Payments",
+    "market_failure": "Lack of appropriate digital financial services"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 24,
+  "fields": {
+    "partner_id": 42,
+    "product_id": 33,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "SME Financing",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 25,
+  "fields": {
+    "partner_id": 42,
+    "product_id": 32,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "SME Financing",
+    "market_failure": "Lack of appropriate financial product for women-owned/run MSMEs"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 26,
+  "fields": {
+    "partner_id": 27,
+    "product_id": 20,
+    "partner_type": "Commercial Bank",
+    "innovation_area": "Mobile Wallet",
+    "market_failure": "Lack of appropriate digital financial services"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 27,
+  "fields": {
+    "partner_id": 13,
+    "product_id": 7,
+    "partner_type": "Microfinance",
+    "innovation_area": "Climate Resilient Technology Financing",
+    "market_failure": "Lack of appropriate products to finance climate resilient technologies"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 28,
+  "fields": {
+    "partner_id": 15,
+    "product_id": 13,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of appropriate financial products supporting commercialization of micro-enterprises"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 29,
+  "fields": {
+    "partner_id": 15,
+    "product_id": 34,
+    "partner_type": "Microfinance",
+    "innovation_area": "Savings",
+    "market_failure": "Lack of appropriate savings product"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 30,
+  "fields": {
+    "partner_id": 15,
+    "product_id": 28,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of appropriate financial products supporting commercialization of micro-enterprises"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 31,
+  "fields": {
+    "partner_id": 20,
+    "product_id": 2,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of appropriate financial products supporting commercialization of micro-enterprises"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 32,
+  "fields": {
+    "partner_id": 20,
+    "product_id": 8,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of necessary skills and auxillary services to start/expand enterprise"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 33,
+  "fields": {
+    "partner_id": 46,
+    "product_id": 19,
+    "partner_type": "Microfinance",
+    "innovation_area": "Migration Loan",
+    "market_failure": "Lack of approriate financial products for migrants/families."
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 34,
+  "fields": {
+    "partner_id": 46,
+    "product_id": 8,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of necessary skills and auxillary services to start/expand enterprise"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 35,
+  "fields": {
+    "partner_id": 30,
+    "product_id": 29,
+    "partner_type": "Microfinance",
+    "innovation_area": "Climate Resilient Technology Financing",
+    "market_failure": "Lack of appropriate products to finance climate resilient technologies"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 36,
+  "fields": {
+    "partner_id": 30,
+    "product_id": 8,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of necessary skills and auxillary services to start/expand enterprise"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 37,
+  "fields": {
+    "partner_id": 38,
+    "product_id": 3,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of appropriate financial products supporting commercialization of micro-enterprises"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 38,
+  "fields": {
+    "partner_id": 38,
+    "product_id": 29,
+    "partner_type": "Microfinance",
+    "innovation_area": "Climate Resilient Technology Financing",
+    "market_failure": "Lack of appropriate products to finance climate resilient technologies"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 39,
+  "fields": {
+    "partner_id": 41,
+    "product_id": 37,
+    "partner_type": "Insurance",
+    "innovation_area": "Microinsurance",
+    "market_failure": "Lack of simplified and scalable microinsurance product"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 40,
+  "fields": {
+    "partner_id": 44,
+    "product_id": 2,
+    "partner_type": "Microfinance",
+    "innovation_area": "Upscaling by MFI",
+    "market_failure": "Lack of appropriate financial products supporting commercialization of micro-enterprises"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 41,
+  "fields": {
+    "partner_id": 44,
+    "product_id": 35,
+    "partner_type": "Microfinance",
+    "innovation_area": "Climate Resilient Technology Financing",
+    "market_failure": "Lack of appropriate products to finance climate resilient technologies"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 42,
+  "fields": {
+    "partner_id": 44,
+    "product_id": 26,
+    "partner_type": "Microfinance",
+    "innovation_area": "Savings",
+    "market_failure": "Lack of appropriate savings product"
+  }
+},
+{
+  "model": "api.productprocess",
+  "pk": 43,
+  "fields": {
+    "partner_id": 44,
+    "product_id": 5,
+    "partner_type": "Microfinance",
+    "innovation_area": "Savings",
+    "market_failure": "Lack of appropriate savings product"
+  }
+}
+]
