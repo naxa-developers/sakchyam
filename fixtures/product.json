@@ -1,0 +1,344 @@
+[
+{
+  "model": "api.product",
+  "pk": 1,
+  "fields": {
+    "name": "Ashirvaad Bachat Khata",
+    "type": "Remittance Linked Financial Products",
+    "code": 1
+  }
+},
+{
+  "model": "api.product",
+  "pk": 2,
+  "fields": {
+    "name": "Business Loan",
+    "type": "Financial Products for MSMEs",
+    "code": 2
+  }
+},
+{
+  "model": "api.product",
+  "pk": 3,
+  "fields": {
+    "name": "Commercial Agriculture Loan",
+    "type": "Financial Products for MSMEs",
+    "code": 3
+  }
+},
+{
+  "model": "api.product",
+  "pk": 4,
+  "fields": {
+    "name": "Corporate Module - connectIPS",
+    "type": "Digital Financial Services",
+    "code": 4
+  }
+},
+{
+  "model": "api.product",
+  "pk": 5,
+  "fields": {
+    "name": "Daily Saving",
+    "type": "Savings Products",
+    "code": 5
+  }
+},
+{
+  "model": "api.product",
+  "pk": 6,
+  "fields": {
+    "name": "Dairy Financing Products",
+    "type": "Financial Products Linking BFIs",
+    "code": 6
+  }
+},
+{
+  "model": "api.product",
+  "pk": 7,
+  "fields": {
+    "name": "Energy Loan",
+    "type": "Climate Change Resilience Financing Products",
+    "code": 7
+  }
+},
+{
+  "model": "api.product",
+  "pk": 8,
+  "fields": {
+    "name": "Enterprise Development Service",
+    "type": "Financial Products for MSMEs",
+    "code": 8
+  }
+},
+{
+  "model": "api.product",
+  "pk": 9,
+  "fields": {
+    "name": "IME Pay Wallet",
+    "type": "Digital Financial Services",
+    "code": 9
+  }
+},
+{
+  "model": "api.product",
+  "pk": 10,
+  "fields": {
+    "name": "Instant Invoice Discounting Platform",
+    "type": "Financial Products for MSMEs",
+    "code": 10
+  }
+},
+{
+  "model": "api.product",
+  "pk": 11,
+  "fields": {
+    "name": "Invoice Discounting",
+    "type": "Financial Products for MSMEs",
+    "code": 11
+  }
+},
+{
+  "model": "api.product",
+  "pk": 12,
+  "fields": {
+    "name": "Janata Women Entrepreneur Loan",
+    "type": "Financial Products Tailored for Women",
+    "code": 12
+  }
+},
+{
+  "model": "api.product",
+  "pk": 13,
+  "fields": {
+    "name": "Kisan Sakchyam Business Loan",
+    "type": "Financial Products for MSMEs",
+    "code": 13
+  }
+},
+{
+  "model": "api.product",
+  "pk": 14,
+  "fields": {
+    "name": "Laxmi Udhyami Karja",
+    "type": "Financial Products for MSMEs",
+    "code": 14
+  }
+},
+{
+  "model": "api.product",
+  "pk": 15,
+  "fields": {
+    "name": "Mahila Udhyam Karja",
+    "type": "Financial Products Tailored for Women",
+    "code": 15
+  }
+},
+{
+  "model": "api.product",
+  "pk": 16,
+  "fields": {
+    "name": "MBL Sana-Kisan Karja (VCF)",
+    "type": "Financial Products Linking BFIs",
+    "code": 16
+  }
+},
+{
+  "model": "api.product",
+  "pk": 17,
+  "fields": {
+    "name": "Micro Women Group Loan",
+    "type": "Financial Products Tailored for Women",
+    "code": 17
+  }
+},
+{
+  "model": "api.product",
+  "pk": 18,
+  "fields": {
+    "name": "Micro-mortgage Home Loan",
+    "type": "Housing Finance",
+    "code": 18
+  }
+},
+{
+  "model": "api.product",
+  "pk": 19,
+  "fields": {
+    "name": "Migrant Loan",
+    "type": "Remittance Linked Financial Products",
+    "code": 19
+  }
+},
+{
+  "model": "api.product",
+  "pk": 20,
+  "fields": {
+    "name": "mVisa Card Virtualization",
+    "type": "Digital Financial Services",
+    "code": 20
+  }
+},
+{
+  "model": "api.product",
+  "pk": 21,
+  "fields": {
+    "name": "Nabil Nari Karja",
+    "type": "Financial Products Tailored for Women",
+    "code": 21
+  }
+},
+{
+  "model": "api.product",
+  "pk": 22,
+  "fields": {
+    "name": "Nabil Sajilo Express Karja",
+    "type": "Financial Products Tailored for Women",
+    "code": 22
+  }
+},
+{
+  "model": "api.product",
+  "pk": 23,
+  "fields": {
+    "name": "Nabil Sajilo Karja",
+    "type": "Financial Products Tailored for Women",
+    "code": 23
+  }
+},
+{
+  "model": "api.product",
+  "pk": 24,
+  "fields": {
+    "name": "National Payment Interface",
+    "type": "Digital Financial Services",
+    "code": 24
+  }
+},
+{
+  "model": "api.product",
+  "pk": 25,
+  "fields": {
+    "name": "NFC-enabled Paisa Cards",
+    "type": "Digital Financial Services",
+    "code": 25
+  }
+},
+{
+  "model": "api.product",
+  "pk": 26,
+  "fields": {
+    "name": "Plan Saving",
+    "type": "Savings Products",
+    "code": 26
+  }
+},
+{
+  "model": "api.product",
+  "pk": 27,
+  "fields": {
+    "name": "Prabhu Bhandaran Karja",
+    "type": "Financial Products for MSMEs",
+    "code": 27
+  }
+},
+{
+  "model": "api.product",
+  "pk": 28,
+  "fields": {
+    "name": "Project Loan",
+    "type": "Financial Products for MSMEs",
+    "code": 28
+  }
+},
+{
+  "model": "api.product",
+  "pk": 29,
+  "fields": {
+    "name": "Renewable Energy Loan",
+    "type": "Climate Change Resilience Financing Products",
+    "code": 29
+  }
+},
+{
+  "model": "api.product",
+  "pk": 30,
+  "fields": {
+    "name": "Sajilo Khetipati Karja",
+    "type": "Financial Products for MSMEs",
+    "code": 30
+  }
+},
+{
+  "model": "api.product",
+  "pk": 31,
+  "fields": {
+    "name": "Saral Biu-bijan Karja (Input Financing for Seed Producing Farmers)",
+    "type": "Financial Products for MSMEs",
+    "code": 31
+  }
+},
+{
+  "model": "api.product",
+  "pk": 32,
+  "fields": {
+    "name": "Siddhartha Nari Karja",
+    "type": "Financial Products Tailored for Women",
+    "code": 32
+  }
+},
+{
+  "model": "api.product",
+  "pk": 33,
+  "fields": {
+    "name": "Siddhartha Saral SME Karja",
+    "type": "Financial Products Tailored for Women",
+    "code": 33
+  }
+},
+{
+  "model": "api.product",
+  "pk": 34,
+  "fields": {
+    "name": "Student Future Saving",
+    "type": "Savings Products",
+    "code": 34
+  }
+},
+{
+  "model": "api.product",
+  "pk": 35,
+  "fields": {
+    "name": "Ujyalo Loan",
+    "type": "Climate Change Resilience Financing Products",
+    "code": 35
+  }
+},
+{
+  "model": "api.product",
+  "pk": 36,
+  "fields": {
+    "name": "Warehouse Receipt Financing",
+    "type": "Financial Products for MSMEs",
+    "code": 36
+  }
+},
+{
+  "model": "api.product",
+  "pk": 37,
+  "fields": {
+    "name": "Weather Insurance Index",
+    "type": "Climate Change Resilience Financing Products",
+    "code": 37
+  }
+},
+{
+  "model": "api.product",
+  "pk": 38,
+  "fields": {
+    "name": "Women Entrepreneur Loan",
+    "type": "Financial Products Tailored for Women",
+    "code": 38
+  }
+}
+]

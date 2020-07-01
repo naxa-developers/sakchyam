@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
-    Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership
+    Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership, Product, \
+    ProductProcess
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
-    PartnerSerializer, PartnershipSerializer, InvestmentSerializer
+    PartnerSerializer, PartnershipSerializer, InvestmentSerializer, ProductSerializer, ProductProcessSerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -53,6 +54,14 @@ class FinancialPartnerApi(viewsets.ModelViewSet):
     filterset_fields = ['partner_type', ]
 
 
+class ProductApi(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', ]
+
+
 class MilestoneYearViewSet(viewsets.ModelViewSet):
     serializer_class = MilestoneYearSerializer
     queryset = MilestoneYear.objects.all()
@@ -89,9 +98,6 @@ class ProjectApi(viewsets.ModelViewSet):
     def get_queryset(self):
         filter_data = self.request.data
         investment = filter_data['investment_primary']
-
-        # for i in range(0, len(id_indicator)):
-        #     id_indicator[i] = int(id_indicator[i])
         if investment:
             queryset = Project.objects.filter(investment_primary__in=investment).order_by('id')
         else:
@@ -101,6 +107,22 @@ class ProjectApi(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         serializer_class = ProjectSerializer
+        return serializer_class
+
+
+class ProductProcessApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'partner_id', 'partner_id__name', 'product_id', 'product_id__name', 'product_id__type',
+                        'innovation_area',
+                        'market_failure']
+
+    def get_queryset(self):
+        queryset = ProductProcess.objects.order_by('id')
+        return queryset
+
+    def get_serializer_class(self):
+        serializer_class = ProductProcessSerializer
         return serializer_class
 
 
@@ -1022,7 +1044,7 @@ class PartnershipFilter(viewsets.ModelViewSet):
 
         if dist_id:
             if dist_id[0] == 0:
-                dist_data = District.objects.values('id', 'name', 'n_code','province_id__code').order_by('id')
+                dist_data = District.objects.values('id', 'name', 'n_code', 'province_id__code').order_by('id')
                 for dist in dist_data:
                     if status:
                         map_data = Partnership.objects.filter(district_id=dist['id']).filter(
@@ -1059,7 +1081,8 @@ class PartnershipFilter(viewsets.ModelViewSet):
                         total = count_data[view + '__sum']
                     else:
                         total = 0
-                    dist_data = District.objects.values('id', 'name', 'n_code', 'province_id__code').get(n_code=int(dist_id[i]))
+                    dist_data = District.objects.values('id', 'name', 'n_code', 'province_id__code').get(
+                        n_code=int(dist_id[i]))
                     data.append({
                         'id': dist_data['id'],
                         'name': dist_data['name'],

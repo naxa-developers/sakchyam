@@ -1,6 +1,7 @@
 from django.contrib import admin
 from api.models import LogCategory, LogSubCategory, LogData, MilestoneYear, Province, Municipality, Automation, \
-    District, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership
+    District, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership, Product, \
+    ProductProcess
 
 # Register your models here.
 
@@ -18,3 +19,5 @@ admin.site.register(FinancialProgram)
 admin.site.register(FinancialLiteracy)
 admin.site.register(Project)
 admin.site.register(Partnership)
+admin.site.register(Product)
+admin.site.register(ProductProcess)
