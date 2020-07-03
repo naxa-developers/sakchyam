@@ -91,7 +91,7 @@ class LogData(models.Model):
     )
 
     # title = models.ForeignKey(Title, on_delete=models.CASCADE, related_name='LogTitle', blank=True, null=True)
-    data_type = models.CharField(max_length=30, choices=DATA_TYPE, blank=True, null=True)
+    data_type = models.CharField(max_length=300,  blank=True, null=True)
     planned_afp = models.CharField(max_length=30, blank=True, null=True, default=0)
     achieved = models.CharField(max_length=30, blank=True, null=True, default=0)
     year = models.ForeignKey(MilestoneYear, on_delete=models.CASCADE, related_name='LogYear')
