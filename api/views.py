@@ -1239,7 +1239,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
         partnership_query = Partnership.objects.filter(province_id__in=province_filter_list,
                                                        district_id__in=district_filter_list,
                                                        municipality_id__in=municipality_filter_list,
-                                                       status=status
+                                                       status__in=status
                                                        )
         for i in range(0, len(investment_list)):
             invest_query = partnership_query.filter(project_id__investment_primary=investment_list[i])
