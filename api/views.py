@@ -1667,12 +1667,16 @@ class InvestmentSankey(viewsets.ModelViewSet):
                                          'project_id__investment_primary', ).filter(
                 partner_id__id=partner_id[x])
 
-            budget = q.aggregate(Sum(view))
-            links.append({
-                'source': q[0]['project_id__investment_primary'],
-                'target': q[0]['partner_id__name'],
-                'value': int(budget[view + '__sum']),
-            })
+            # budget = q.aggregate(Sum(view))
+            budgets = q.annotate(Sum(view))
+            # print(budgets)
+            # print(budget)
+            for b in budgets:
+                links.append({
+                    'source': b['project_id__investment_primary'],
+                    'target': b['partner_id__name'],
+                    'value': int(b[view + '__sum']),
+                })
 
         return Response({"nodes": node, "links": links})
 
