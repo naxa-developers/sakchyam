@@ -1649,34 +1649,39 @@ class InvestmentSankey(viewsets.ModelViewSet):
             })
             partner_id.append(part['partner_id'])
 
-        for i in range(0, len(project_id)):
-            q = partnership_query.values('project_id__investment_primary', 'project_id__name',
-                                         'partner_id__type', 'partner_id__name', ).filter(
-                project_id=project_id[i])
-            budget = q.aggregate(Sum(view))
-            source = q[0]['project_id__name']
-            target = q[0]['project_id__investment_primary']
+        # for i in range(0, len(project_id)):
+        #     q = partnership_query.values('project_id__investment_primary', 'project_id__name',
+        #                                  'partner_id__type', 'partner_id__name', ).filter(
+        #         project_id=project_id[i])
+        #     budget = q.aggregate(Sum(view))
+        #     source = q[0]['project_id__name']
+        #     target = q[0]['project_id__investment_primary']
+        #     links.append({
+        #         'source': source,
+        #         'target': target,
+        #         'value': int(budget[view + '__sum']),
+        #     })
+
+        # for x in range(0, len(partner_id)):
+        q = partnership_query.values('partner_id', 'partner_id__name', 'project_id__name', 'partner_id__type',
+                                     'project_id__investment_primary', )
+
+        # budget = q.aggregate(Sum(view))
+        budgets = q.annotate(Sum(view))
+        # print(budgets)
+        # print(budget)
+        for b in budgets:
             links.append({
-                'source': source,
-                'target': target,
-                'value': int(budget[view + '__sum']),
+                'source': b['project_id__name'],
+                'target': b['project_id__investment_primary'],
+                'value': int(b[view + '__sum']),
             })
 
-        for x in range(0, len(partner_id)):
-            q = partnership_query.values('partner_id', 'partner_id__name', 'partner_id__type',
-                                         'project_id__investment_primary', ).filter(
-                partner_id__id=partner_id[x])
-
-            # budget = q.aggregate(Sum(view))
-            budgets = q.annotate(Sum(view))
-            # print(budgets)
-            # print(budget)
-            for b in budgets:
-                links.append({
-                    'source': b['project_id__investment_primary'],
-                    'target': b['partner_id__name'],
-                    'value': int(b[view + '__sum']),
-                })
+            links.append({
+                'source': b['project_id__investment_primary'],
+                'target': b['partner_id__name'],
+                'value': int(b[view + '__sum']),
+            })
 
         return Response({"nodes": node, "links": links})
 
