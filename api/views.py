@@ -1412,64 +1412,66 @@ class PartnershipRadial(viewsets.ModelViewSet):
         else:
             project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
 
-        partnership_query = Partnership.objects.filter(province_id__in=province_filter_list,
-                                                       district_id__in=district_filter_list,
-                                                       municipality_id__in=municipality_filter_list,
-                                                       status__in=status
-                                                       )
+        partnership_query = Partnership.objects.values('id', 'project_id__investment_primary', 'project_id',
+                                                       'project_id__name', 'partner_id__name',
+                                                       'partner_id', 'partner_id__name', 'allocated_budget').filter(
+            province_id__in=province_filter_list,
+            district_id__in=district_filter_list,
+            municipality_id__in=municipality_filter_list,
+            project_id__in=project_filter_list,
+            partner_id__in=partner_filter_list,
+            status__in=status
+        )
+
+        # print(partnership_query[0])
         for i in range(0, len(investment_list)):
-            invest_query = partnership_query.filter(project_id__investment_primary=investment_list[i])
-            invest_val = invest_query.aggregate(Sum(view))
-            total = invest_val[view + '__sum']
+            invest_query = partnership_query.values('project_id__investment_primary').filter(
+                project_id__investment_primary=investment_list[i]).annotate(Sum(view))
             partner_type = []
-            for x in range(0, len(partner_types)):
-                p_type = invest_query.filter(partner_id__type=partner_types[x])
-                p_type_list = list(
-                    p_type.filter(partner_id__in=partner_filter_list).values_list('partner_id', flat=True).distinct(
-                        'partner_id'))
-                p_data = []
-                if p_type_list:
-                    for y in range(0, len(p_type_list)):
-                        partner_q = p_type.filter(partner_id=int(p_type_list[y]))
-                        project_list = partner_q.filter(project_id__in=project_filter_list).values_list('project_id',
-                                                                                                        flat=True).distinct(
-                            'project_id')
+            if invest_query:
+                total = invest_query[0][view + '__sum']
+                investment.append({
+                    "name": investment_list[i],
+                    "size": total,
+                    "children": partner_type
+                })
 
-                        partner_data = []
-                        for z in range(0, len(project_list)):
-                            project_q = partner_q.filter(project_id=int(project_list[z]))
-                            project_count = project_q.aggregate(Sum(view))
-                            total_pro_b = project_count[view + '__sum']
-                            partner_data.append({
-                                "name": project_q[0].project_id.name,
-                                "size": total_pro_b,
+                for x in range(0, len(partner_types)):
+                    p_type = partnership_query.values('partner_id__type').filter(
+                        partner_id__type=partner_types[x],
+                        project_id__investment_primary=
+                        investment_list[i]).annotate(Sum(view))
+                    p_data = []
+                    if p_type:
+                        partner_type.append({
+                            "name": partner_types[x],
+                            "size": p_type[0][view + '__sum'],
+                            "children": p_data,
 
-                            })
+                        })
+                        partner_filter_list = p_type.values_list('partner_id', flat=True).distinct()
+                        for y in range(0, len(partner_filter_list)):
+                            partner_q = p_type.values('partner_id__name').filter(
+                                partner_id=partner_filter_list[y]).annotate(Sum(view))
+                            partner_data = []
+                            if partner_q:
+                                p_data.append({
+                                    "name": partner_q[0]['partner_id__name'],
+                                    "size": partner_q[0][view + '__sum'],
+                                    "children": partner_data,
 
-                        if partner_q:
-                            partner_count = partner_q.aggregate(Sum(view))
-                            total_p_b = partner_count[view + '__sum']
-                            p_data.append({
-                                "name": partner_q[0].partner_id.name,
-                                "size": total_p_b,
-                                "children": partner_data,
+                                })
+                                project_filter_list = partner_q.values_list('project_id', flat=True).distinct()
+                                for z in range(0, len(project_filter_list)):
+                                    project_q = partner_q.values('project_id__name').filter(
+                                        project_id=int(project_filter_list[z])).annotate(Sum(view))
 
-                            })
-                if p_type:
-                    part_count = p_type.aggregate(Sum(view))
-                    total_part = part_count[view + '__sum']
-                    partner_type.append({
-                        "name": partner_types[x],
-                        "size": total_part,
-                        "children": p_data,
+                                    if project_q:
+                                        partner_data.append({
+                                            "name": project_q[0]['project_id__name'],
+                                            "size": project_q[0][view + '__sum'],
 
-                    })
-
-            investment.append({
-                "name": investment_list[i],
-                "size": total,
-                "children": partner_type
-            })
+                                        })
 
         overall = partnership_query.aggregate(Sum(view))[view + '__sum']
         return Response({"name": "Partnership", "size": overall, "children": investment})
