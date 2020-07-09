@@ -1332,38 +1332,50 @@ class PartnershipRadial(viewsets.ModelViewSet):
         group = Group.objects.get(user=user)
         investment = []
 
+        partnership_query = Partnership.objects.values('id', 'project_id__investment_primary', 'project_id',
+                                                       'project_id__name', 'partner_id__name',
+                                                       'partner_id', 'partner_id__name', 'allocated_budget',
+                                                       'total_beneficiary')
+
         if request.GET.getlist('status'):
             status_get = request.GET['status']
             status = status_get.split(",")
+            partnership_query = partnership_query.filter(status__in=status)
         else:
             status = ['Ongoing', 'Completed']
+            partnership_query = partnership_query.filter(status__in=status)
 
         if request.GET.getlist('province_id'):
             province_get = request.GET['province_id']
             province_filter_list = province_get.split(",")
             for i in range(0, len(province_filter_list)):
                 province_filter_list[i] = int(province_filter_list[i])
+                partnership_query = partnership_query.filter(province_id__in=province_filter_list)
 
         else:
-            province_filter_list = list(Province.objects.values_list('id', flat=True).distinct())
+            # province_filter_list = list(Province.objects.values_list('id', flat=True).distinct())
+            partnership_query = partnership_query
 
         if request.GET.getlist('district_id'):
             district_get = request.GET['district_id']
             district_filter_list = district_get.split(",")
             for i in range(0, len(district_filter_list)):
                 district_filter_list[i] = int(district_filter_list[i])
+            partnership_query = partnership_query.filter(district_id__in=district_filter_list)
 
         else:
-            district_filter_list = list(District.objects.values_list('id', flat=True).distinct())
+            # district_filter_list = list(District.objects.values_list('id', flat=True).distinct())
+            partnership_query = partnership_query
 
         if request.GET.getlist('municipality_id'):
             municipality_get = request.GET['municipality_id']
             municipality_filter_list = municipality_get.split(",")
             for i in range(0, len(municipality_filter_list)):
                 municipality_filter_list[i] = int(municipality_filter_list[i])
-
+            partnership_query = partnership_query.filter(municipality_id__in=municipality_filter_list)
         else:
-            municipality_filter_list = list(Municipality.objects.values_list('id', flat=True).distinct())
+            # municipality_filter_list = list(Municipality.objects.values_list('id', flat=True).distinct())
+            partnership_query = partnership_query
 
         if request.GET.getlist('view'):
             view = request.GET['view']
@@ -1397,9 +1409,11 @@ class PartnershipRadial(viewsets.ModelViewSet):
                 partner_filter_list[i] = int(partner_filter_list[i])
             partner_filter_list = list(
                 Partner.objects.filter(id__in=partner_filter_list).values_list('id', flat=True).distinct())
+            partnership_query = partnership_query.filter(partner_id__in=partner_filter_list)
 
         else:
-            partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
+            # partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
+            partnership_query = partnership_query
 
         if request.GET.getlist('project_filter'):
             project_get = request.GET['project_filter']
@@ -1408,20 +1422,22 @@ class PartnershipRadial(viewsets.ModelViewSet):
                 project_filter_list[i] = int(project_filter_list[i])
             project_filter_list = list(
                 Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
+            partnership_query = partnership_query.filter(partner_id__in=project_filter_list)
 
         else:
-            project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+            # project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+            partnership_query = partnership_query
 
-        partnership_query = Partnership.objects.values('id', 'project_id__investment_primary', 'project_id',
-                                                       'project_id__name', 'partner_id__name',
-                                                       'partner_id', 'partner_id__name', 'allocated_budget').filter(
-            province_id__in=province_filter_list,
-            district_id__in=district_filter_list,
-            municipality_id__in=municipality_filter_list,
-            project_id__in=project_filter_list,
-            partner_id__in=partner_filter_list,
-            status__in=status
-        )
+        # partnership_query = Partnership.objects.values('id', 'project_id__investment_primary', 'project_id',
+        #                                                'project_id__name', 'partner_id__name',
+        #                                                'partner_id', 'partner_id__name', 'allocated_budget').filter(
+        #
+        #     district_id__in=district_filter_list,
+        #     municipality_id__in=municipality_filter_list,
+        #     project_id__in=project_filter_list,
+        #     partner_id__in=partner_filter_list,
+        #
+        # )
 
         # print(partnership_query[0])
         for i in range(0, len(investment_list)):
