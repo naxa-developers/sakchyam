@@ -16,7 +16,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User, Group, Permission
 from dashboard.models import UserProfile
 from django.core import serializers
-from django.db.models import Sum
+from django.db.models import Sum, Count
 import json
 from django.core.serializers import serialize
 from rest_framework.decorators import action
@@ -1836,11 +1836,15 @@ class PartnershipMap(viewsets.ModelViewSet):
         group = Group.objects.get(user=user)
         data = []
 
+        partnership_query = Partnership.objects.values('project_id', 'partner_id', )
+
         if request.GET.getlist('status'):
             status_get = request.GET['status']
             status = status_get.split(",")
+            partnership_query = partnership_query.filter(status__in=status)
         else:
-            status = ['Ongoing', 'Completed']
+            # status = ['Ongoing', 'Completed']
+            partnership_query = partnership_query
 
         if request.GET.getlist('investment_filter'):
             investment_get = request.GET['investment_filter']
@@ -1850,8 +1854,11 @@ class PartnershipMap(viewsets.ModelViewSet):
             investment_list = list(
                 Project.objects.filter(investment_primary__in=investment_list).values_list('investment_primary',
                                                                                            flat=True).distinct())
+            partnership_query = partnership_query.filter(project_id__investment_primary__in=investment_list)
+
         else:
-            investment_list = list(Project.objects.values_list('investment_primary', flat=True).distinct())
+            # investment_list = list(Project.objects.values_list('investment_primary', flat=True).distinct())
+            partnership_query = partnership_query
 
         if request.GET.getlist('partner_type_filter'):
             partner_type_get = request.GET['partner_type_filter']
@@ -1859,8 +1866,11 @@ class PartnershipMap(viewsets.ModelViewSet):
             partner_types = list(
                 Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
 
+            partnership_query = partnership_query.filter(partner_id__type__in=partner_types)
+
         else:
-            partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+            # partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+            partnership_query = partnership_query
 
         if request.GET.getlist('partner_filter'):
             partner_get = request.GET['partner_filter']
@@ -1869,9 +1879,10 @@ class PartnershipMap(viewsets.ModelViewSet):
                 partner_filter_list[i] = int(partner_filter_list[i])
             partner_filter_list = list(
                 Partner.objects.filter(id__in=partner_filter_list).values_list('id', flat=True).distinct())
-
+            partnership_query = partnership_query.filter(project_id__id__in=partner_filter_list)
         else:
-            partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
+            # partner_filter_list = list(Partner.objects.values_list('id', flat=True).distinct())
+            partnership_query = partnership_query
 
         if request.GET.getlist('project_filter'):
             project_get = request.GET['project_filter']
@@ -1880,127 +1891,207 @@ class PartnershipMap(viewsets.ModelViewSet):
                 project_filter_list[i] = int(project_filter_list[i])
             project_filter_list = list(
                 Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
-
+            partnership_query = partnership_query.filter(project_id__id__in=project_filter_list)
         else:
-            project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+            # project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
+            partnership_query = partnership_query
 
-        partnership_query = Partnership.objects.values('project_id', 'partner_id', ).filter(
-            project_id__investment_primary__in=investment_list,
-            project_id__id__in=project_filter_list,
-            partner_id__type__in=partner_types,
-            partner_id__id__in=partner_filter_list,
-            status__in=status,
-        )
+        # partnership_query = Partnership.objects.values('project_id', 'partner_id', ).filter(
+        #     project_id__investment_primary__in=investment_list,
+        #     project_id__id__in=project_filter_list,
+        #     partner_id__type__in=partner_types,
+        #     partner_id__id__in=partner_filter_list,
+        #     status__in=status,
+        # )
 
         if request.GET.getlist('province_id'):
             province_get = request.GET['province_id']
             if province_get == '0':
-                province_filter_list = Province.objects.values('id', 'name', 'code').order_by('id')
-                for y in province_filter_list:
-                    prov = partnership_query.values_list('project_id', flat=True).filter(
-                        province_id__id=y['id'])
-                    project_list = Project.objects.filter(id__in=prov).values_list('name', flat=True)
-                    count = len(project_list)
+                data_v = partnership_query.values('province_id__id', 'province_id__name',
+                                                  'province_id__code').annotate(Count('project_id', distinct=True))
+                for y in data_v:
+                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                        province_id__id=y['province_id__id']).annotate(Count('project_id', distinct=True))
+                    investment = []
+                    for pie in pie_invest:
+                        project = partnership_query.filter(
+                            project_id__investment_primary=pie['project_id__investment_primary'],
+                            province_id__id=y['province_id__id']).values_list('project_id__name', flat=True).distinct()
+
+                        investment.append({
+                            'investment_primary': pie['project_id__investment_primary'],
+                            'project_count': pie['project_id__count'],
+                            'project_list': project
+
+                        })
                     data.append({
-                        'id': y['id'],
-                        'name': y['name'],
-                        'code': y['code'],
-                        'project_list': project_list,
-                        'count': count,
+                        'id': y['province_id__id'],
+                        'name': y['province_id__name'],
+                        'code': y['province_id__code'],
+                        'pie': investment,
+                        'count': y['project_id__count'],
                     })
+
+                # for y in province_filter_list:
+                #     prov = partnership_query.values_list('project_id', flat=True).filter(
+                #         province_id__id=y['id'])
+                #     project_list = Project.objects.filter(id__in=prov).values_list('name', flat=True)
+                #     count = len(project_list)
+                #     data.append({
+                #         'id': y['id'],
+                #         'name': y['name'],
+                #         'code': y['code'],
+                #         'project_list': project_list,
+                #         'count': count,
+                #     })
 
             else:
                 province_filter_list = province_get.split(",")
                 for i in range(0, len(province_filter_list)):
                     province_filter_list[i] = int(province_filter_list[i])
-                province_filter_list_id = Province.objects.filter(code__in=province_filter_list).values('id', 'name',
-                                                                                                        'code').order_by(
-                    'id')
-                for y in province_filter_list_id:
-                    prov = partnership_query.values_list('project_id', flat=True).filter(
-                        province_id__id=y['id'])
-                    project_list = Project.objects.filter(id__in=prov).values_list('name', flat=True)
-                    count = len(project_list)
+                data_v = partnership_query.filter(province_id__code__in=province_filter_list).values('province_id__id',
+                                                                                                     'province_id__name',
+                                                                                                     'province_id__code').annotate(
+                    Count('project_id', distinct=True))
+                for y in data_v:
+                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                        province_id__id=y['province_id__id']).annotate(Count('project_id', distinct=True))
+                    investment = []
+                    for pie in pie_invest:
+                        project = partnership_query.filter(
+                            project_id__investment_primary=pie['project_id__investment_primary'],
+                            province_id__id=y['province_id__id']).values_list('project_id__name', flat=True).distinct()
+
+                        investment.append({
+                            'investment_primary': pie['project_id__investment_primary'],
+                            'project_count': pie['project_id__count'],
+                            'project_list': project
+
+                        })
                     data.append({
-                        'id': y['id'],
-                        'name': y['name'],
-                        'code': y['code'],
-                        'project_list': project_list,
-                        'count': count,
+                        'id': y['province_id__id'],
+                        'name': y['province_id__name'],
+                        'code': y['province_id__code'],
+                        'pie': investment,
+                        'count': y['project_id__count'],
                     })
 
         if request.GET.getlist('district_id'):
             district_get = request.GET['district_id']
             if district_get == '0':
-                district_filter_list = District.objects.values('id', 'n_code', 'name').order_by('id')
-                for x in district_filter_list:
-                    dist = partnership_query.values_list('project_id', flat=True).filter(
-                        district_id__id=x['id'])
-                    project_list = Project.objects.filter(id__in=dist).values_list('name', flat=True)
-                    count = len(project_list)
+                data_v = partnership_query.values('district_id__id', 'district_id__name',
+                                                  'district_id__n_code').annotate(Count('project_id', distinct=True))
+                for y in data_v:
+                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                        district_id__id=y['district_id__id']).annotate(Count('project_id', distinct=True))
+                    investment = []
+                    for pie in pie_invest:
+                        project = partnership_query.filter(
+                            project_id__investment_primary=pie['project_id__investment_primary'],
+                            district_id__id=y['district_id__id']).values_list('project_id__name', flat=True).distinct()
+
+                        investment.append({
+                            'investment_primary': pie['project_id__investment_primary'],
+                            'project_count': pie['project_id__count'],
+                            'project_list': project
+
+                        })
                     data.append({
-                        'id': x['id'],
-                        'name': x['name'],
-                        'code': x['n_code'],
-                        'project_list': project_list,
-                        'count': count,
+                        'id': y['district_id__id'],
+                        'name': y['district_id__name'],
+                        'code': y['district_id__n_code'],
+                        'pie': investment,
+                        'count': y['project_id__count'],
                     })
 
             else:
                 district_filter_list = district_get.split(",")
                 for i in range(0, len(district_filter_list)):
                     district_filter_list[i] = int(district_filter_list[i])
-                district_filter_list_id = District.objects.filter(n_code__in=district_filter_list).values('id',
-                                                                                                          'n_code',
-                                                                                                          'name').order_by(
-                    'id')
-                for x in district_filter_list_id:
-                    dist = partnership_query.values_list('project_id', flat=True).filter(
-                        district_id__id=x['id'])
-                    project_list = Project.objects.filter(id__in=dist).values_list('name', flat=True)
-                    count = len(project_list)
+                data_v = partnership_query.filter(district_id__n_code__in=district_filter_list).values(
+                    'district_id__id', 'district_id__name',
+                    'district_id__n_code').annotate(Count('project_id', distinct=True))
+                for y in data_v:
+                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                        district_id__id=y['district_id__id']).annotate(Count('project_id', distinct=True))
+                    investment = []
+                    for pie in pie_invest:
+                        project = partnership_query.filter(
+                            project_id__investment_primary=pie['project_id__investment_primary'],
+                            district_id__id=y['district_id__id']).values_list('project_id__name', flat=True).distinct()
+
+                        investment.append({
+                            'investment_primary': pie['project_id__investment_primary'],
+                            'project_count': pie['project_id__count'],
+                            'project_list': project
+
+                        })
                     data.append({
-                        'id': x['id'],
-                        'name': x['name'],
-                        'code': x['n_code'],
-                        'project_list': project_list,
-                        'count': count,
+                        'id': y['district_id__id'],
+                        'name': y['district_id__name'],
+                        'code': y['district_id__n_code'],
+                        'pie': investment,
+                        'count': y['project_id__count'],
                     })
 
         if request.GET.getlist('municipality_id'):
             municipality_get = request.GET['municipality_id']
             if municipality_get == '0':
-                municipality_filter_list = Municipality.objects.values('id', 'name', 'code')
-                for i in municipality_filter_list:
-                    mun = partnership_query.values_list('project_id', flat=True).filter(
-                        municipality_id__id=i['id'])
-                    project_list = Project.objects.filter(id__in=mun).values_list('name', flat=True)
-                    count = len(project_list)
+                data_v = partnership_query.values(
+                    'municipality_id__id', 'municipality_id__name',
+                    'municipality_id__code').annotate(Count('project_id', distinct=True))
+                for y in data_v:
+                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                        municipality_id__id=y['municipality_id__id']).annotate(Count('project_id', distinct=True))
+                    investment = []
+                    for pie in pie_invest:
+                        project = partnership_query.filter(
+                            project_id__investment_primary=pie['project_id__investment_primary'],
+                            municipality_id__id=y['municipality_id__id']).values_list('project_id__name',
+                                                                                      flat=True).distinct()
+
+                        investment.append({
+                            'investment_primary': pie['project_id__investment_primary'],
+                            'project_count': pie['project_id__count'],
+                            'project_list': project
+
+                        })
                     data.append({
-                        'id': i['id'],
-                        'name': i['name'],
-                        'code': i['code'],
-                        'project_list': project_list,
-                        'count': count,
+                        'id': y['municipality_id__id'],
+                        'name': y['municipality_id__name'],
+                        'code': y['municipality_id__code'],
+                        'pie': investment,
+                        'count': y['project_id__count'],
                     })
             else:
                 municipality_filter_list = municipality_get.split(",")
                 for i in range(0, len(municipality_filter_list)):
                     municipality_filter_list[i] = int(municipality_filter_list[i])
-                municipality_filter_list_id = Municipality.objects.filter(code__in=municipality_filter_list).values(
-                    'id', 'name', 'code').order_by('id')
+                data_v = partnership_query.filter(municipality_id__code__in=municipality_filter_list).values(
+                    'municipality_id__id', 'municipality_id__name',
+                    'municipality_id__code').annotate(Count('project_id', distinct=True))
+                for y in data_v:
+                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                        municipality_id__id=y['municipality_id__id']).annotate(Count('project_id', distinct=True))
+                    investment = []
+                    for pie in pie_invest:
+                        project = partnership_query.filter(
+                            project_id__investment_primary=pie['project_id__investment_primary'],
+                            municipality_id__id=y['municipality_id__id']).values_list('project_id__name',
+                                                                                      flat=True).distinct()
 
-                for i in municipality_filter_list_id:
-                    mun = partnership_query.values_list('project_id', flat=True).filter(
-                        municipality_id__id=i['id'])
-                    project_list = Project.objects.filter(id__in=mun).values_list('name', flat=True)
-                    count = len(project_list)
+                        investment.append({
+                            'investment_primary': pie['project_id__investment_primary'],
+                            'project_count': pie['project_id__count'],
+                            'project_list': project
+
+                        })
                     data.append({
-                        'id': i['id'],
-                        'name': i['name'],
-                        'code': i['code'],
-                        'project_list': project_list,
-                        'count': count,
+                        'id': y['municipality_id__id'],
+                        'name': y['municipality_id__name'],
+                        'code': y['municipality_id__code'],
+                        'pie': investment,
+                        'count': y['project_id__count'],
                     })
 
         return Response(data)
