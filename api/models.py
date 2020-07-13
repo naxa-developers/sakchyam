@@ -228,6 +228,7 @@ class Product(models.Model):
     name = models.CharField(max_length=500, blank=True, null=True, )
     type = models.CharField(max_length=500, blank=True, null=True, )
     code = models.IntegerField(blank=True, null=True)
+    date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.name
