@@ -92,13 +92,18 @@ class ProductProcessSerializer(serializers.ModelSerializer):
     partner_name = serializers.SerializerMethodField()
     product_name = serializers.SerializerMethodField()
     product_category = serializers.SerializerMethodField()
+    date = serializers.SerializerMethodField()
 
     class Meta:
         model = ProductProcess
         fields = (
-            'id', 'partner_id', 'partner_name', 'partner_type', 'product_id', 'product_name', 'product_category',
+            'id', 'partner_id', 'partner_name', 'partner_type', 'product_id', 'product_name', 'date', 'product_category',
             'innovation_area',
             'market_failure')
+
+    def get_date(self, obj):
+        date = obj.product_id.date
+        return date
 
     def get_partner_name(self, obj):
         partner_id = obj.partner_id.name
