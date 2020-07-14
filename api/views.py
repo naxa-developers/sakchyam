@@ -162,7 +162,7 @@ class ProvinceViewSet(viewsets.ModelViewSet):
     serializer_class = ProvinceSerializer
 
     def get_queryset(self):
-        print(self.request.POST.getlist('id'))
+        # print(self.request.POST.getlist('id'))
         province_id = self.request.POST.getlist('id')
         if province_id[0] == '0':
             queryset = Province.objects.order_by('id')
@@ -178,7 +178,7 @@ class DistrictViewSet(viewsets.ModelViewSet):
     serializer_class = DistrictSerializer
 
     def get_queryset(self):
-        print(self.request.POST.getlist('id'))
+        # print(self.request.POST.getlist('id'))
         province_id = self.request.POST.getlist('id')
         if province_id[0] == '0':
             queryset = District.objects.order_by('id')
@@ -194,7 +194,7 @@ class MunicipalityViewSet(viewsets.ModelViewSet):
     serializer_class = MunicipalitySerializer
 
     def get_queryset(self):
-        print(self.request.POST.getlist('id'))
+        # print(self.request.POST.getlist('id'))
         dist_id = self.request.POST.getlist('id')
         if dist_id[0] == '0':
             queryset = Municipality.objects.order_by('id')
@@ -237,12 +237,12 @@ class AutomationTimeline(viewsets.ModelViewSet):
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
         year = [d.year for d in AutomationPartner.objects.all().dates('date', 'year')]
-        print(year)
+        # print(year)
         year_data = []
 
         for i in range(0, len(year)):
             date_t = AutomationPartner.objects.filter(date__year=year[i])
-            print(date_t)
+            # print(date_t)
             partner_data = []
             for t in date_t:
                 partner_data.append({
@@ -614,7 +614,7 @@ class AutomationDataPartner(viewsets.ModelViewSet):
             if mun_id:
                 for i in range(0, len(mun_id)):
                     mun_id[i] = int(mun_id[i])
-                print(mun_id)
+                # print(mun_id)
                 partners_id = Automation.objects.values_list('partner__partner__id', flat=True).filter(
                     municipality_id__code__in=mun_id).distinct('partner')
 
@@ -777,7 +777,7 @@ class AutomationDataMap(viewsets.ModelViewSet):
                         })
 
                     else:
-                        print('a')
+                        # print('a')
                         data.append({
                             'id': mun['id'],
                             'name': mun['name'],
@@ -896,10 +896,10 @@ class AutomationDataTable(viewsets.ModelViewSet):
             else:
                 for i in range(0, len(dist_id)):
                     dist_id[i] = int(dist_id[i])
-                print(dist_id)
+                # print(dist_id)
                 map_data = Automation.objects.filter(district_id__code__in=dist_id).filter(
                     partner__partner__id__in=partner).order_by('id')
-                print(map_data)
+                # print(map_data)
                 for m in map_data:
                     data.append({
                         'id': m.id,
@@ -981,343 +981,178 @@ class PartnershipFilter(viewsets.ModelViewSet):
         dist_id = filter_data['district_id']
         mun_id = filter_data['municipality_id']
         investment = filter_data['investment']
+        investment_project = filter_data['investment_project']
         project_id = filter_data['project_id']
         partner_id = filter_data['partner_id']
         view = filter_data['view']
         status = filter_data['status']
+
+        partnership_query = Partnership.objects.all()
+
         if partner_id:
             if partner_id[0] == 0:
-                partner = Partner.objects.values_list('id', flat=True).order_by('id')
+                partnership_query = partnership_query
+                # partner = Partner.objects.values_list('id', flat=True).order_by('id')
             else:
                 partner = partner_id
+                partnership_query = partnership_query.filter(partner_id__in=partner)
 
         if project_id:
             if project_id[0] == 0:
-                project = Project.objects.values_list('id', flat=True).order_by('id')
+                partnership_query = partnership_query
+                # project = Project.objects.values_list('id', flat=True).order_by('id')
             else:
                 project = project_id
+                partnership_query = partnership_query.filter(project_id__in=project)
+
+        if status:
+            partnership_query = partnership_query.filter(status=status)
+
+        else:
+            partnership_query = partnership_query
+
+        if investment_project:
+            map_data = partnership_query.filter(project_id__investment_primary__in=investment_project).values(
+                'project_id', 'project_id__name').annotate(Sum(view), Sum('female_beneficiary'))
+            if map_data:
+                for d in map_data:
+                    data.append({
+                        'id': d['project_id'],
+                        'name': d['project_id__name'],
+                        'code': 0,
+                        view: d[view + '__sum'],
+                        'female': d['female_beneficiary__sum'],
+                    })
 
         if investment:
-            for i in range(0, len(investment)):
-                if status:
-                    map_data = Partnership.objects.filter(project_id__investment_primary=investment[i]).filter(
-                        partner_id__in=partner, project_id__in=project, status=status).order_by('id')
-                else:
-                    map_data = Partnership.objects.filter(project_id__investment_primary=investment[i]).filter(
-                        partner_id__in=partner, project_id__in=project).order_by('id')
-
-                if view == 'total_beneficiary':
-                    if map_data:
-                        count_data = map_data.aggregate(Sum(view))
-                        total = count_data[view + '__sum']
-                        female = map_data.aggregate(Sum('female_beneficiary'))['female_beneficiary__sum']
-                    else:
-                        total = 0
-                        female = 0
-
+            map_data = partnership_query.filter(project_id__investment_primary__in=investment).values(
+                'project_id__investment_primary').annotate(Sum(view), Sum('female_beneficiary'))
+            if map_data:
+                for d in map_data:
                     data.append({
                         'id': 1,
-                        'name': investment[i],
+                        'name': d['project_id__investment_primary'],
                         'code': 0,
-                        view: total,
-                        'female': female,
-                    })
-                else:
-                    if map_data:
-                        count_data = map_data.aggregate(Sum(view))
-                        total = count_data[view + '__sum']
-                    else:
-                        total = 0
-
-                    data.append({
-                        'id': 1,
-                        'name': investment[i],
-                        'code': 0,
-                        view: total,
+                        view: d[view + '__sum'],
+                        'female': d['female_beneficiary__sum'],
                     })
 
         if prov_id:
             if prov_id[0] == 0:
-                prov_data = Province.objects.order_by('id')
-                for provi in prov_data:
-                    if status:
-                        map_data = Partnership.objects.filter(province_id=provi.id).filter(
-                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
-                    else:
-                        map_data = Partnership.objects.filter(province_id=provi.id).filter(
-                            partner_id__in=partner, project_id__in=project).order_by('id')
+                map_data = partnership_query.values('province_id', 'province_id__name', 'province_id__code').annotate(
+                    Sum(view), Sum('female_beneficiary'))
 
-                    if view == 'total_beneficiary':
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                            female = map_data.aggregate(Sum('female_beneficiary'))['female_beneficiary__sum']
-                        else:
-                            total = 0
-                            female = 0
-
+                if map_data:
+                    for d in map_data:
                         data.append({
-                            'id': provi.id,
-                            'name': provi.name,
-                            'code': provi.code,
-                            view: total,
-                            'female': female
-                        })
-                    else:
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                        else:
-                            total = 0
-
-                        data.append({
-                            'id': provi.id,
-                            'name': provi.name,
-                            'code': provi.code,
-                            view: total,
+                            'id': d['province_id'],
+                            'name': d['province_id__name'],
+                            'code': d['province_id__code'],
+                            view: d[view + '__sum'],
+                            'female': d['female_beneficiary__sum'],
                         })
 
 
             else:
                 for i in range(0, len(prov_id)):
                     prov_id[i] = int(prov_id[i])
-                    if status:
-                        map_data = Partnership.objects.filter(province_id=prov_id[i]).filter(
-                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
-                    else:
-                        map_data = Partnership.objects.filter(province_id=prov_id[i]).filter(
-                            partner_id__in=partner, project_id__in=project).order_by('id')
+                    map_data = partnership_query.filter(province_id__code__in=prov_id).values('province_id',
+                                                                                              'province_id__name',
+                                                                                              'province_id__code').annotate(
+                        Sum(view), Sum('female_beneficiary'))
 
-                    prov_data = Province.objects.get(code=int(prov_id[i]))
-                    if view == 'total_beneficiary':
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                            female = map_data.aggregate(Sum('female_beneficiary'))['female_beneficiary__sum']
-                        else:
-                            total = 0
-                            female = 0
-
-                        data.append({
-                            'id': prov_data.id,
-                            'name': prov_data.name,
-                            'code': prov_data.code,
-                            view: total,
-                            'female': female
-                        })
-                    else:
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                        else:
-                            total = 0
-
-                        data.append({
-                            'id': prov_data.id,
-                            'name': prov_data.name,
-                            'code': prov_data.code,
-                            view: total,
-                        })
+                    if map_data:
+                        for d in map_data:
+                            data.append({
+                                'id': d['province_id'],
+                                'name': d['province_id__name'],
+                                'code': d['province_id__code'],
+                                view: d[view + '__sum'],
+                                'female': d['female_beneficiary__sum'],
+                            })
 
         if dist_id:
             if dist_id[0] == 0:
-                dist_data = District.objects.values('id', 'name', 'n_code', 'province_id__code').order_by('id')
-                for dist in dist_data:
-                    if status:
-                        map_data = Partnership.objects.filter(district_id=dist['id']).filter(
-                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
-                    else:
-                        map_data = Partnership.objects.filter(district_id=dist['id']).filter(
-                            partner_id__in=partner, project_id__in=project).order_by('id')
+                map_data = partnership_query.values('district_id__n_code', 'district_id__name', 'district_id__id',
+                                                    'province_id__code').annotate(
+                    Sum(view), Sum('female_beneficiary'))
 
-                    if view == 'total_beneficiary':
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                            female = map_data.aggregate(Sum('female_beneficiary'))['female_beneficiary__sum']
-                        else:
-                            total = 0
-                            female = 0
-
+                if map_data:
+                    for dist_data in map_data:
                         data.append({
-                            'id': dist['id'],
-                            'name': dist['name'],
-                            'province_code': dist['province_id__code'],
-                            'code': dist['n_code'],
-                            view: total,
-                            'female': female
-                        })
-                    else:
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                        else:
-                            total = 0
-
-                        data.append({
-                            'id': dist['id'],
-                            'name': dist['name'],
-                            'province_code': dist['province_id__code'],
-                            'code': dist['n_code'],
-                            view: total,
+                            'id': dist_data['district_id__id'],
+                            'name': dist_data['district_id__name'],
+                            'province_code': dist_data['province_id__code'],
+                            'code': dist_data['district_id__n_code'],
+                            view: dist_data[view + '__sum'],
+                            'female': dist_data['female_beneficiary__sum'],
                         })
 
 
             else:
                 for i in range(0, len(dist_id)):
                     dist_id[i] = int(dist_id[i])
-                    if status:
-                        map_data = Partnership.objects.filter(district_id__n_code=dist_id[i]).filter(
-                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
-                    else:
-                        map_data = Partnership.objects.filter(district_id__n_code=dist_id[i]).filter(
-                            partner_id__in=partner, project_id__in=project).order_by('id')
+                    map_data = partnership_query.filter(district_id__n_code__in=dist_id).values('district_id__n_code',
+                                                                                                'district_id__name',
+                                                                                                'district_id__id',
+                                                                                                'province_id__code').annotate(
+                        Sum(view), Sum('female_beneficiary'))
 
-                    dist_data = District.objects.values('id', 'name', 'n_code', 'province_id__code').get(
-                        n_code=int(dist_id[i]))
-
-                    if view == 'total_beneficiary':
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                            female = map_data.aggregate(Sum('female_beneficiary'))['female_beneficiary__sum']
-                        else:
-                            total = 0
-                            female = 0
-
-                        data.append({
-                            'id': dist_data['id'],
-                            'name': dist_data['name'],
-                            'province_code': dist_data['province_id__code'],
-                            'code': dist_data['n_code'],
-                            view: total,
-                            'female': female
-                        })
-                    else:
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                        else:
-                            total = 0
-
-                        data.append({
-                            'id': dist_data['id'],
-                            'name': dist_data['name'],
-                            'province_code': dist_data['province_id__code'],
-                            'code': dist_data['n_code'],
-                            view: total,
-                        })
+                    if map_data:
+                        for dist_data in map_data:
+                            data.append({
+                                'id': dist_data['district_id__id'],
+                                'name': dist_data['district_id__name'],
+                                'province_code': dist_data['province_id__code'],
+                                'code': dist_data['district_id__n_code'],
+                                view: dist_data[view + '__sum'],
+                                'female': dist_data['female_beneficiary__sum'],
+                            })
 
         if mun_id:
+
             if mun_id[0] == 0:
-                mun_data = Municipality.objects.values('id', 'name', 'code', 'district_id__n_code',
-                                                       'province_id__code').order_by('id')
-                for mun in mun_data:
-                    if status:
-                        map_data = Partnership.objects.filter(municipality_id=mun['id']).filter(
-                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
-                    else:
-                        map_data = Partnership.objects.filter(municipality_id=mun['id']).filter(
-                            partner_id__in=partner, project_id__in=project).order_by('id')
+                # mun_data = Municipality.objects.values('id', 'name', 'code', 'municipality_id__code',
+                #                                        'province_id__code').order_by('id')
+                map_data = partnership_query.values('municipality_id__code', 'municipality_id__name',
+                                                    'municipality_id__id',
+                                                    'province_id__code', 'district_id__n_code').annotate(
+                    Sum(view), Sum('female_beneficiary'))
 
-                    if view == 'total_beneficiary':
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                            female = map_data.aggregate(Sum('female_beneficiary'))['female_beneficiary__sum']
-                        else:
-                            total = 0
-                            female = 0
-
+                if map_data:
+                    for mun_data in map_data:
                         data.append({
-                            'id': mun['id'],
-                            'name': mun['name'],
-                            'province_code': mun['province_id__code'],
-                            'district_code': mun['district_id__n_code'],
-                            'code': mun['code'],
-                            view: total,
-                            'female': female,
-                        })
-                    else:
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                        else:
-                            total = 0
-
-                        data.append({
-                            'id': mun['id'],
-                            'name': mun['name'],
-                            'province_code': mun['province_id__code'],
-                            'district_code': mun['district_id__n_code'],
-                            'code': mun['code'],
-                            view: total,
+                            'id': mun_data['municipality_id__id'],
+                            'name': mun_data['municipality_id__name'],
+                            'province_code': mun_data['province_id__code'],
+                            'district_code': mun_data['district_id__n_code'],
+                            'code': mun_data['municipality_id__code'],
+                            view: mun_data[view + '__sum'],
+                            'female': mun_data['female_beneficiary__sum'],
                         })
 
 
             else:
                 for i in range(0, len(mun_id)):
                     mun_id[i] = int(mun_id[i])
-                    if status:
-                        map_data = Partnership.objects.filter(municipality_id__code=mun_id[i]).filter(
-                            partner_id__in=partner, project_id__in=project, status=status).order_by('id')
-                    else:
-                        map_data = Partnership.objects.filter(municipality_id__code=mun_id[i]).filter(
-                            partner_id__in=partner, project_id__in=project).order_by('id')
+                map_data = partnership_query.filter(municipality_id__code__in=mun_id).values('municipality_id__code',
+                                                                                             'municipality_id__name',
+                                                                                             'municipality_id__id',
+                                                                                             'province_id__code',
+                                                                                             'district_id__n_code').annotate(
+                    Sum(view), Sum('female_beneficiary'))
 
-                    mun_data = Municipality.objects.values('id', 'name', 'code', 'district_id__n_code',
-                                                           'province_id__code').get(code=int(mun_id[i]))
-
-                    if view == 'total_beneficiary':
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                            female = map_data.aggregate(Sum('female_beneficiary'))['female_beneficiary__sum']
-                        else:
-                            total = 0
-                            female = 0
-
+                if map_data:
+                    for mun_data in map_data:
                         data.append({
-                            'id': mun_data['id'],
-                            'name': mun_data['name'],
+                            'id': mun_data['municipality_id__id'],
+                            'name': mun_data['municipality_id__name'],
                             'province_code': mun_data['province_id__code'],
                             'district_code': mun_data['district_id__n_code'],
-                            'code': mun_data['code'],
-                            view: total,
-                            'female': female,
+                            'code': mun_data['municipality_id__code'],
+                            view: mun_data[view + '__sum'],
+                            'female': mun_data['female_beneficiary__sum'],
                         })
-                    else:
-                        if map_data:
-                            count_data = map_data.aggregate(Sum(view))
-                            total = count_data[view + '__sum']
-                        else:
-                            total = 0
-
-                        data.append({
-                            'id': mun_data['id'],
-                            'name': mun_data['name'],
-                            'province_code': mun_data['province_id__code'],
-                            'district_code': mun_data['district_id__n_code'],
-                            'code': mun_data['code'],
-                            view: total,
-                        })
-
-                    # if map_data:
-                    #     count_data = map_data.aggregate(Sum(view))
-                    #     total = count_data[view + '__sum']
-                    # else:
-                    #     total = 0
-                    #
-                    # mun_data = Municipality.objects.values('id', 'name', 'code', 'district_id__n_code',
-                    #                                        'province_id__code').get(code=int(mun_id[i]))
-                    # data.append({
-                    #     'id': mun_data['id'],
-                    #     'name': mun_data['name'],
-                    #     'province_code': mun_data['province_id__code'],
-                    #     'district_code': mun_data['district_id__n_code'],
-                    #     'code': mun_data['code'],
-                    #     view: total,
-                    # })
 
         return Response(data)
 
