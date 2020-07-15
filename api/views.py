@@ -1092,22 +1092,22 @@ class PartnershipFilter(viewsets.ModelViewSet):
             else:
                 for i in range(0, len(dist_id)):
                     dist_id[i] = int(dist_id[i])
-                    map_data = partnership_query.filter(district_id__n_code__in=dist_id).values('district_id__n_code',
-                                                                                                'district_id__name',
-                                                                                                'district_id__id',
-                                                                                                'province_id__code').annotate(
-                        Sum(view), Sum('female_beneficiary'))
+                map_data = partnership_query.filter(district_id__n_code__in=dist_id).values('district_id__n_code',
+                                                                                            'district_id__name',
+                                                                                            'district_id__id',
+                                                                                            'province_id__code').annotate(
+                    Sum(view), Sum('female_beneficiary'))
 
-                    if map_data:
-                        for dist_data in map_data:
-                            data.append({
-                                'id': dist_data['district_id__id'],
-                                'name': dist_data['district_id__name'],
-                                'province_code': dist_data['province_id__code'],
-                                'code': dist_data['district_id__n_code'],
-                                view: dist_data[view + '__sum'],
-                                'female': dist_data['female_beneficiary__sum'],
-                            })
+                if map_data:
+                    for dist_data in map_data:
+                        data.append({
+                            'id': dist_data['district_id__id'],
+                            'name': dist_data['district_id__name'],
+                            'province_code': dist_data['province_id__code'],
+                            'code': dist_data['district_id__n_code'],
+                            view: dist_data[view + '__sum'],
+                            'female': dist_data['female_beneficiary__sum'],
+                        })
 
         if mun_id:
 
