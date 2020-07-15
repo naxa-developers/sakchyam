@@ -1056,20 +1056,20 @@ class PartnershipFilter(viewsets.ModelViewSet):
             else:
                 for i in range(0, len(prov_id)):
                     prov_id[i] = int(prov_id[i])
-                    map_data = partnership_query.filter(province_id__code__in=prov_id).values('province_id',
-                                                                                              'province_id__name',
-                                                                                              'province_id__code').annotate(
-                        Sum(view), Sum('female_beneficiary'))
+                map_data = partnership_query.filter(province_id__code__in=prov_id).values('province_id',
+                                                                                          'province_id__name',
+                                                                                          'province_id__code').annotate(
+                    Sum(view), Sum('female_beneficiary'))
 
-                    if map_data:
-                        for d in map_data:
-                            data.append({
-                                'id': d['province_id'],
-                                'name': d['province_id__name'],
-                                'code': d['province_id__code'],
-                                view: d[view + '__sum'],
-                                'female': d['female_beneficiary__sum'],
-                            })
+                if map_data:
+                    for d in map_data:
+                        data.append({
+                            'id': d['province_id'],
+                            'name': d['province_id__name'],
+                            'code': d['province_id__code'],
+                            view: d[view + '__sum'],
+                            'female': d['female_beneficiary__sum'],
+                        })
 
         if dist_id:
             if dist_id[0] == 0:
