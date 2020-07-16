@@ -686,7 +686,7 @@ class AutomationDataPartner(viewsets.ModelViewSet):
 
 class AutomationDataMap(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ]
-    queryset = Automation.objects.all()
+    queryset = Automation.objects.values('id')
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id', 'partner', 'province_id', 'district_id', 'municipality_id']
 
@@ -796,165 +796,68 @@ class AutomationDataMap(viewsets.ModelViewSet):
 
 class AutomationDataTable(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ]
-    queryset = True
+    queryset = Automation.objects.values('id')
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'partner', 'province_id', 'district_id', 'municipality_id']
 
     def list(self, request, **kwargs):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         group = Group.objects.get(user=user)
         data = []
-        partners_id = request.GET.getlist('partner')
-        prov_id = request.GET.getlist('province')
-        dist_id = request.GET.getlist('district')
-        mun_id = request.GET.getlist('municipality')
 
-        if partners_id[0] == '0':
-            partner = AutomationPartner.objects.values_list('partner__id', flat=True).order_by('id')
+        automation_query = Automation.objects.values('id', 'partner__partner__name', 'partner__partner__id',
+                                                     'branch', 'province_id__name', 'province_id__code',
+                                                     'district_id__name', 'district_id__n_code',
+                                                     'municipality_id__name', 'municipality_id__code',
+                                                     'num_tablet_deployed', 'partner__latitude',
+                                                     'partner__longitude').order_by('id')
 
-        else:
+        if request.GET.getlist('partner'):
+            partners_ids = request.GET['partner']
+            partners_id = partners_ids.split(",")
             for i in range(0, len(partners_id)):
                 partners_id[i] = int(partners_id[i])
-                partner = AutomationPartner.objects.values_list('partner__id', flat=True).filter(
-                    partner__id__in=partners_id).order_by('id')
+            automation_query = automation_query.filter(partner__partner__id__in=partners_id)
 
-        if prov_id:
-            if prov_id[0] == '0':
-                prov_data = Province.objects.values_list('id', flat=True).order_by('id')
-                map_data = Automation.objects.only('id').filter(province_id__in=prov_data).filter(
-                    partner__partner__id__in=partner).order_by('id')
-                for m in map_data:
-                    data.append({
-                        'id': m.id,
-                        'partner': m.partner.partner.name,
-                        'partner_id': m.partner.partner.id,
-                        'branch': m.branch,
-                        'province': m.province_id.name,
-                        'province_code': m.province_id.code,
-                        'district': m.district_id.name,
-                        'district_code': m.district_id.code,
-                        'municipality': m.municipality_id.name,
-                        'municipality_code': m.municipality_id.code,
-                        'tablets': m.num_tablet_deployed,
-                        'latitude': m.partner.latitude,
-                        'longitude': m.partner.longitude,
+        if request.GET.getlist('province_id'):
+            prov_ids = request.GET['province_id']
+            prov_id = prov_ids.split(",")
+            for i in range(0, len(prov_id)):
+                prov_id[i] = int(prov_id[i])
+            automation_query = automation_query.filter(province_id__code__in=prov_id)
 
-                    })
-            else:
-                for i in range(0, len(prov_id)):
-                    prov_id[i] = int(prov_id[i])
-                map_data = Automation.objects.filter(province_id__code__in=prov_id).filter(
-                    partner__partner__id__in=partner).order_by('id')
+        if request.GET.getlist('district_id'):
+            dist_ids = request.GET['district_id']
+            dist_id = dist_ids.split(",")
+            for i in range(0, len(dist_id)):
+                dist_id[i] = int(dist_id[i])
+            automation_query = automation_query.filter(district_id__n_code__in=dist_id)
 
-                for m in map_data:
-                    data.append({
-                        'id': m.id,
-                        'partner': m.partner.partner.name,
-                        'partner_id': m.partner.partner.id,
-                        'branch': m.branch,
-                        'province': m.province_id.name,
-                        'province_code': m.province_id.code,
-                        'district': m.district_id.name,
-                        'district_code': m.district_id.code,
-                        'municipality': m.municipality_id.name,
-                        'municipality_code': m.municipality_id.code,
-                        'tablets': m.num_tablet_deployed,
-                        'latitude': m.partner.latitude,
-                        'longitude': m.partner.longitude,
+        if request.GET.getlist('municipality_id'):
+            mun_ids = request.GET['municipality_id']
+            mun_id = mun_ids.split(",")
+            for i in range(0, len(mun_id)):
+                mun_id[i] = int(mun_id[i])
+            automation_query = automation_query.filter(municipality_id__code__in=mun_id)
 
-                    })
+        for m in automation_query:
+            data.append({
+                'id': m['id'],
+                'partner': m['partner__partner__name'],
+                'partner_id': m['partner__partner__id'],
+                'branch': m['branch'],
+                'province': m['province_id__name'],
+                'province_code': m['province_id__code'],
+                'district': m['district_id__name'],
+                'district_code': m['district_id__n_code'],
+                'municipality': m['municipality_id__name'],
+                'municipality_code': m['municipality_id__code'],
+                'tablets': m['num_tablet_deployed'],
+                'latitude': m['partner__latitude'],
+                'longitude': m['partner__longitude'],
 
-        if dist_id:
-            if dist_id[0] == '0':
-                dist_data = District.objects.values_list('id', flat=True).order_by('id')
-                map_data = Automation.objects.filter(district_id__in=dist_data).filter(
-                    partner__partner__id__in=partner).order_by('id')
-                for m in map_data:
-                    data.append({
-                        'id': m.id,
-                        'partner': m.partner.partner.name,
-                        'partner_id': m.partner.partner.id,
-                        'branch': m.branch,
-                        'province': m.province_id.name,
-                        'province_code': m.province_id.code,
-                        'district': m.district_id.name,
-                        'district_code': m.district_id.code,
-                        'municipality': m.municipality_id.name,
-                        'municipality_code': m.municipality_id.code,
-                        'tablets': m.num_tablet_deployed,
-                        'latitude': m.partner.latitude,
-                        'longitude': m.partner.longitude,
-
-                    })
-
-            else:
-                for i in range(0, len(dist_id)):
-                    dist_id[i] = int(dist_id[i])
-                # print(dist_id)
-                map_data = Automation.objects.filter(district_id__code__in=dist_id).filter(
-                    partner__partner__id__in=partner).order_by('id')
-                # print(map_data)
-                for m in map_data:
-                    data.append({
-                        'id': m.id,
-                        'partner': m.partner.partner.name,
-                        'partner_id': m.partner.partner.id,
-                        'branch': m.branch,
-                        'province': m.province_id.name,
-                        'province_code': m.province_id.code,
-                        'district': m.district_id.name,
-                        'district_code': m.district_id.code,
-                        'municipality': m.municipality_id.name,
-                        'municipality_code': m.municipality_id.code,
-                        'tablets': m.num_tablet_deployed,
-                        'latitude': m.partner.latitude,
-                        'longitude': m.partner.longitude,
-
-                    })
-        if mun_id:
-            if mun_id[0] == '0':
-                mun_data = Municipality.objects.values_list('id', flat=True).order_by('id')
-                map_data = Automation.objects.filter(municipality_id__in=mun_data).filter(
-                    partner__partner__id__in=partner).order_by('id')
-                for m in map_data:
-                    data.append({
-                        'id': m.id,
-                        'partner': m.partner.partner.name,
-                        'partner_id': m.partner.partner.id,
-                        'branch': m.branch,
-                        'province': m.province_id.name,
-                        'province_code': m.province_id.code,
-                        'district': m.district_id.name,
-                        'district_code': m.district_id.code,
-                        'municipality': m.municipality_id.name,
-                        'municipality_code': m.municipality_id.code,
-                        'tablets': m.num_tablet_deployed,
-                        'latitude': m.partner.latitude,
-                        'longitude': m.partner.longitude,
-
-                    })
-            else:
-                for i in range(0, len(mun_id)):
-                    mun_id[i] = int(mun_id[i])
-                map_data = Automation.objects.filter(municipality_id__code__in=mun_id).filter(
-                    partner__partner__id__in=partner).order_by('id')
-
-                for m in map_data:
-                    data.append({
-                        'id': m.id,
-                        'partner': m.partner.partner.name,
-                        'partner_id': m.partner.partner.id,
-                        'branch': m.branch,
-                        'province': m.province_id.name,
-                        'province_code': m.province_id.code,
-                        'district': m.district_id.name,
-                        'district_code': m.district_id.code,
-                        'municipality': m.municipality_id.name,
-                        'municipality_code': m.municipality_id.code,
-                        'tablets': m.num_tablet_deployed,
-                        'latitude': m.partner.latitude,
-                        'longitude': m.partner.longitude,
-
-                    })
+            })
 
         return Response(data)
 
