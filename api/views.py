@@ -876,6 +876,7 @@ class PartnershipFilter(viewsets.ModelViewSet):
         prov_id = filter_data['province_id']
         dist_id = filter_data['district_id']
         mun_id = filter_data['municipality_id']
+        investment_filter = filter_data['investment_filter']
         investment = filter_data['investment']
         investment_project = filter_data['investment_project']
         project_id = filter_data['project_id']
@@ -884,6 +885,9 @@ class PartnershipFilter(viewsets.ModelViewSet):
         status = filter_data['status']
 
         partnership_query = Partnership.objects.all()
+
+        if investment_filter:
+            partnership_query = partnership_query.filter(project_id__investment_primary__in=investment_filter)
 
         if partner_id:
             if partner_id[0] == 0:
