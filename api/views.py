@@ -1666,21 +1666,21 @@ class PartnershipMap(viewsets.ModelViewSet):
                                 'partner_count': pie['partner_id__count'],
                                 'partner_list': project,
                                 'total_beneficiary': 0,
-                                'female_beneficiary': 0
+                                'allocated_budget': 0
 
                             })
 
                     if pie_type == 'total_beneficiary':
                         pie_invest = partnership_query.values('project_id__investment_primary').filter(
                             province_id__id=y['province_id__id']).annotate(Sum('total_beneficiary'),
-                                                                           Sum('female_beneficiary'))
+                                                                           Sum('allocated_budget'))
                         for pie in pie_invest:
                             investment.append({
                                 'investment_primary': pie['project_id__investment_primary'],
                                 'partner_count': 0,
                                 'partner_list': [],
                                 'total_beneficiary': pie['total_beneficiary__sum'],
-                                'female_beneficiary': pie['female_beneficiary__sum']
+                                'allocated_budget': pie['allocated_budget__sum']
 
                             })
 
@@ -1729,21 +1729,21 @@ class PartnershipMap(viewsets.ModelViewSet):
                                 'partner_count': pie['partner_id__count'],
                                 'partner_list': project,
                                 'total_beneficiary': 0,
-                                'female_beneficiary': 0
+                                'allocated_budget': 0
 
                             })
 
                     if pie_type == 'total_beneficiary':
                         pie_invest = partnership_query.values('project_id__investment_primary').filter(
                             province_id__id=y['province_id__id']).annotate(Sum('total_beneficiary'),
-                                                                           Sum('female_beneficiary'))
+                                                                           Sum('allocated_budget'))
                         for pie in pie_invest:
                             investment.append({
                                 'investment_primary': pie['project_id__investment_primary'],
                                 'partner_count': 0,
                                 'partner_list': [],
                                 'total_beneficiary': pie['total_beneficiary__sum'],
-                                'female_beneficiary': pie['female_beneficiary__sum']
+                                'allocated_budget': pie['allocated_budget__sum']
 
                             })
 
@@ -1776,21 +1776,21 @@ class PartnershipMap(viewsets.ModelViewSet):
                                 'partner_count': pie['partner_id__count'],
                                 'partner_list': project,
                                 'total_beneficiary': 0,
-                                'female_beneficiary': 0
+                                'allocated_budget': 0
 
                             })
 
                     if pie_type == 'total_beneficiary':
                         pie_invest = partnership_query.values('project_id__investment_primary').filter(
                             district_id__id=y['district_id__id']).annotate(Sum('total_beneficiary'),
-                                                                           Sum('female_beneficiary'))
+                                                                           Sum('allocated_budget'))
                         for pie in pie_invest:
                             investment.append({
                                 'investment_primary': pie['project_id__investment_primary'],
                                 'partner_count': 0,
                                 'partner_list': [],
                                 'total_beneficiary': pie['total_beneficiary__sum'],
-                                'female_beneficiary': pie['female_beneficiary__sum']
+                                'allocated_budget': pie['allocated_budget__sum']
 
                             })
 
@@ -1826,21 +1826,21 @@ class PartnershipMap(viewsets.ModelViewSet):
                                 'partner_count': pie['partner_id__count'],
                                 'partner_list': project,
                                 'total_beneficiary': 0,
-                                'female_beneficiary': 0
+                                'allocated_budget': 0
 
                             })
 
                     if pie_type == 'total_beneficiary':
                         pie_invest = partnership_query.values('project_id__investment_primary').filter(
                             district_id__id=y['district_id__id']).annotate(Sum('total_beneficiary'),
-                                                                           Sum('female_beneficiary'))
+                                                                           Sum('allocated_budget'))
                         for pie in pie_invest:
                             investment.append({
                                 'investment_primary': pie['project_id__investment_primary'],
                                 'partner_count': 0,
                                 'partner_list': [],
                                 'total_beneficiary': pie['total_beneficiary__sum'],
-                                'female_beneficiary': pie['female_beneficiary__sum']
+                                'allocated_budget': pie['allocated_budget__sum']
 
                             })
                     data.append({
@@ -1874,20 +1874,20 @@ class PartnershipMap(viewsets.ModelViewSet):
                                 'partner_count': pie['partner_id__count'],
                                 'partner_list': project,
                                 'total_beneficiary': 0,
-                                'female_beneficiary': 0
+                                'allocated_budget': 0
 
                             })
                     if pie_type == 'total_beneficiary':
                         pie_invest = partnership_query.values('project_id__investment_primary').filter(
                             municipality_id__id=y['municipality_id__id']).annotate(Sum('total_beneficiary'),
-                                                                                   Sum('female_beneficiary'))
+                                                                                   Sum('allocated_budget'))
                         for pie in pie_invest:
                             investment.append({
                                 'investment_primary': pie['project_id__investment_primary'],
                                 'partner_count': 0,
                                 'partner_list': [],
                                 'total_beneficiary': pie['total_beneficiary__sum'],
-                                'female_beneficiary': pie['female_beneficiary__sum']
+                                'allocated_budget': pie['allocated_budget__sum']
 
                             })
 
@@ -1922,20 +1922,20 @@ class PartnershipMap(viewsets.ModelViewSet):
                                 'partner_count': pie['partner_id__count'],
                                 'partner_list': project,
                                 'total_beneficiary': 0,
-                                'female_beneficiary': 0
+                                'allocated_budget': 0
 
                             })
                     if pie_type == 'total_beneficiary':
                         pie_invest = partnership_query.values('project_id__investment_primary').filter(
                             municipality_id__id=y['municipality_id__id']).annotate(Sum('total_beneficiary'),
-                                                                                   Sum('female_beneficiary'))
+                                                                                   Sum('allocated_budget'))
                         for pie in pie_invest:
                             investment.append({
                                 'investment_primary': pie['project_id__investment_primary'],
                                 'partner_count': 0,
                                 'partner_list': [],
                                 'total_beneficiary': pie['total_beneficiary__sum'],
-                                'female_beneficiary': pie['female_beneficiary__sum']
+                                'allocated_budget': pie['allocated_budget__sum']
 
                             })
 
