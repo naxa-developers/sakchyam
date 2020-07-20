@@ -1573,6 +1573,11 @@ class PartnershipMap(viewsets.ModelViewSet):
 
         partnership_query = Partnership.objects.values('project_id', 'partner_id', )
 
+        if request.GET.getlist('pie'):
+            pie_type = request.GET['pie']
+        else:
+            pie_type = 0
+
         if request.GET.getlist('status'):
             status_get = request.GET['status']
             status = status_get.split(",")
@@ -1645,20 +1650,40 @@ class PartnershipMap(viewsets.ModelViewSet):
                 data_v = partnership_query.values('province_id__id', 'province_id__name',
                                                   'province_id__code').annotate(Count('project_id', distinct=True))
                 for y in data_v:
-                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
-                        province_id__id=y['province_id__id']).annotate(Count('project_id', distinct=True))
                     investment = []
-                    for pie in pie_invest:
-                        project = partnership_query.filter(
-                            project_id__investment_primary=pie['project_id__investment_primary'],
-                            province_id__id=y['province_id__id']).values_list('project_id__name', flat=True).distinct()
+                    print(pie_type)
+                    if pie_type == 'investment':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            province_id__id=y['province_id__id']).annotate(Count('partner_id', distinct=True))
+                        for pie in pie_invest:
+                            project = partnership_query.filter(
+                                project_id__investment_primary=pie['project_id__investment_primary'],
+                                province_id__id=y['province_id__id']).values_list('partner_id__name',
+                                                                                  flat=True).distinct()
 
-                        investment.append({
-                            'investment_primary': pie['project_id__investment_primary'],
-                            'project_count': pie['project_id__count'],
-                            'project_list': project
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': pie['partner_id__count'],
+                                'partner_list': project,
+                                'total_beneficiary': 0,
+                                'female_beneficiary': 0
 
-                        })
+                            })
+
+                    if pie_type == 'total_beneficiary':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            province_id__id=y['province_id__id']).annotate(Sum('total_beneficiary'),
+                                                                           Sum('female_beneficiary'))
+                        for pie in pie_invest:
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': 0,
+                                'partner_list': [],
+                                'total_beneficiary': pie['total_beneficiary__sum'],
+                                'female_beneficiary': pie['female_beneficiary__sum']
+
+                            })
+
                     data.append({
                         'id': y['province_id__id'],
                         'name': y['province_id__name'],
@@ -1689,20 +1714,39 @@ class PartnershipMap(viewsets.ModelViewSet):
                                                                                                      'province_id__code').annotate(
                     Count('project_id', distinct=True))
                 for y in data_v:
-                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
-                        province_id__id=y['province_id__id']).annotate(Count('project_id', distinct=True))
                     investment = []
-                    for pie in pie_invest:
-                        project = partnership_query.filter(
-                            project_id__investment_primary=pie['project_id__investment_primary'],
-                            province_id__id=y['province_id__id']).values_list('project_id__name', flat=True).distinct()
+                    if pie_type == 'investment':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            province_id__id=y['province_id__id']).annotate(Count('partner_id', distinct=True))
+                        for pie in pie_invest:
+                            project = partnership_query.filter(
+                                project_id__investment_primary=pie['project_id__investment_primary'],
+                                province_id__id=y['province_id__id']).values_list('partner_id__name',
+                                                                                  flat=True).distinct()
 
-                        investment.append({
-                            'investment_primary': pie['project_id__investment_primary'],
-                            'project_count': pie['project_id__count'],
-                            'project_list': project
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': pie['partner_id__count'],
+                                'partner_list': project,
+                                'total_beneficiary': 0,
+                                'female_beneficiary': 0
 
-                        })
+                            })
+
+                    if pie_type == 'total_beneficiary':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            province_id__id=y['province_id__id']).annotate(Sum('total_beneficiary'),
+                                                                           Sum('female_beneficiary'))
+                        for pie in pie_invest:
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': 0,
+                                'partner_list': [],
+                                'total_beneficiary': pie['total_beneficiary__sum'],
+                                'female_beneficiary': pie['female_beneficiary__sum']
+
+                            })
+
                     data.append({
                         'id': y['province_id__id'],
                         'name': y['province_id__name'],
@@ -1718,19 +1762,38 @@ class PartnershipMap(viewsets.ModelViewSet):
                                                   'district_id__n_code').annotate(Count('project_id', distinct=True))
                 for y in data_v:
                     pie_invest = partnership_query.values('project_id__investment_primary').filter(
-                        district_id__id=y['district_id__id']).annotate(Count('project_id', distinct=True))
+                        district_id__id=y['district_id__id']).annotate(Count('partner_id', distinct=True))
                     investment = []
-                    for pie in pie_invest:
-                        project = partnership_query.filter(
-                            project_id__investment_primary=pie['project_id__investment_primary'],
-                            district_id__id=y['district_id__id']).values_list('project_id__name', flat=True).distinct()
+                    if pie_type == 'investment':
+                        for pie in pie_invest:
+                            project = partnership_query.filter(
+                                project_id__investment_primary=pie['project_id__investment_primary'],
+                                district_id__id=y['district_id__id']).values_list('partner_id__name',
+                                                                                  flat=True).distinct()
 
-                        investment.append({
-                            'investment_primary': pie['project_id__investment_primary'],
-                            'project_count': pie['project_id__count'],
-                            'project_list': project
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': pie['partner_id__count'],
+                                'partner_list': project,
+                                'total_beneficiary': 0,
+                                'female_beneficiary': 0
 
-                        })
+                            })
+
+                    if pie_type == 'total_beneficiary':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            district_id__id=y['district_id__id']).annotate(Sum('total_beneficiary'),
+                                                                           Sum('female_beneficiary'))
+                        for pie in pie_invest:
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': 0,
+                                'partner_list': [],
+                                'total_beneficiary': pie['total_beneficiary__sum'],
+                                'female_beneficiary': pie['female_beneficiary__sum']
+
+                            })
+
                     data.append({
                         'id': y['district_id__id'],
                         'name': y['district_id__name'],
@@ -1747,20 +1810,39 @@ class PartnershipMap(viewsets.ModelViewSet):
                     'district_id__id', 'district_id__name',
                     'district_id__n_code').annotate(Count('project_id', distinct=True))
                 for y in data_v:
-                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
-                        district_id__id=y['district_id__id']).annotate(Count('project_id', distinct=True))
+
                     investment = []
-                    for pie in pie_invest:
-                        project = partnership_query.filter(
-                            project_id__investment_primary=pie['project_id__investment_primary'],
-                            district_id__id=y['district_id__id']).values_list('project_id__name', flat=True).distinct()
+                    if pie_type == 'investment':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            district_id__id=y['district_id__id']).annotate(Count('partner_id', distinct=True))
+                        for pie in pie_invest:
+                            project = partnership_query.filter(
+                                project_id__investment_primary=pie['project_id__investment_primary'],
+                                district_id__id=y['district_id__id']).values_list('partner_id__name',
+                                                                                  flat=True).distinct()
 
-                        investment.append({
-                            'investment_primary': pie['project_id__investment_primary'],
-                            'project_count': pie['project_id__count'],
-                            'project_list': project
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': pie['partner_id__count'],
+                                'partner_list': project,
+                                'total_beneficiary': 0,
+                                'female_beneficiary': 0
 
-                        })
+                            })
+
+                    if pie_type == 'total_beneficiary':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            district_id__id=y['district_id__id']).annotate(Sum('total_beneficiary'),
+                                                                           Sum('female_beneficiary'))
+                        for pie in pie_invest:
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': 0,
+                                'partner_list': [],
+                                'total_beneficiary': pie['total_beneficiary__sum'],
+                                'female_beneficiary': pie['female_beneficiary__sum']
+
+                            })
                     data.append({
                         'id': y['district_id__id'],
                         'name': y['district_id__name'],
@@ -1776,21 +1858,39 @@ class PartnershipMap(viewsets.ModelViewSet):
                     'municipality_id__id', 'municipality_id__name',
                     'municipality_id__code').annotate(Count('project_id', distinct=True))
                 for y in data_v:
-                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
-                        municipality_id__id=y['municipality_id__id']).annotate(Count('project_id', distinct=True))
+
                     investment = []
-                    for pie in pie_invest:
-                        project = partnership_query.filter(
-                            project_id__investment_primary=pie['project_id__investment_primary'],
-                            municipality_id__id=y['municipality_id__id']).values_list('project_id__name',
-                                                                                      flat=True).distinct()
+                    if pie_type == 'investment':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            municipality_id__id=y['municipality_id__id']).annotate(Count('partner_id', distinct=True))
+                        for pie in pie_invest:
+                            project = partnership_query.filter(
+                                project_id__investment_primary=pie['project_id__investment_primary'],
+                                municipality_id__id=y['municipality_id__id']).values_list('partner_id__name',
+                                                                                          flat=True).distinct()
 
-                        investment.append({
-                            'investment_primary': pie['project_id__investment_primary'],
-                            'project_count': pie['project_id__count'],
-                            'project_list': project
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': pie['partner_id__count'],
+                                'partner_list': project,
+                                'total_beneficiary': 0,
+                                'female_beneficiary': 0
 
-                        })
+                            })
+                    if pie_type == 'total_beneficiary':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            municipality_id__id=y['municipality_id__id']).annotate(Sum('total_beneficiary'),
+                                                                                   Sum('female_beneficiary'))
+                        for pie in pie_invest:
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': 0,
+                                'partner_list': [],
+                                'total_beneficiary': pie['total_beneficiary__sum'],
+                                'female_beneficiary': pie['female_beneficiary__sum']
+
+                            })
+
                     data.append({
                         'id': y['municipality_id__id'],
                         'name': y['municipality_id__name'],
@@ -1806,21 +1906,39 @@ class PartnershipMap(viewsets.ModelViewSet):
                     'municipality_id__id', 'municipality_id__name',
                     'municipality_id__code').annotate(Count('project_id', distinct=True))
                 for y in data_v:
-                    pie_invest = partnership_query.values('project_id__investment_primary').filter(
-                        municipality_id__id=y['municipality_id__id']).annotate(Count('project_id', distinct=True))
+
                     investment = []
-                    for pie in pie_invest:
-                        project = partnership_query.filter(
-                            project_id__investment_primary=pie['project_id__investment_primary'],
-                            municipality_id__id=y['municipality_id__id']).values_list('project_id__name',
-                                                                                      flat=True).distinct()
+                    if pie_type == 'investment':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            municipality_id__id=y['municipality_id__id']).annotate(Count('partner_id', distinct=True))
+                        for pie in pie_invest:
+                            project = partnership_query.filter(
+                                project_id__investment_primary=pie['project_id__investment_primary'],
+                                municipality_id__id=y['municipality_id__id']).values_list('partner_id__name',
+                                                                                          flat=True).distinct()
 
-                        investment.append({
-                            'investment_primary': pie['project_id__investment_primary'],
-                            'project_count': pie['project_id__count'],
-                            'project_list': project
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': pie['partner_id__count'],
+                                'partner_list': project,
+                                'total_beneficiary': 0,
+                                'female_beneficiary': 0
 
-                        })
+                            })
+                    if pie_type == 'total_beneficiary':
+                        pie_invest = partnership_query.values('project_id__investment_primary').filter(
+                            municipality_id__id=y['municipality_id__id']).annotate(Sum('total_beneficiary'),
+                                                                                   Sum('female_beneficiary'))
+                        for pie in pie_invest:
+                            investment.append({
+                                'investment_primary': pie['project_id__investment_primary'],
+                                'partner_count': 0,
+                                'partner_list': [],
+                                'total_beneficiary': pie['total_beneficiary__sum'],
+                                'female_beneficiary': pie['female_beneficiary__sum']
+
+                            })
+
                     data.append({
                         'id': y['municipality_id__id'],
                         'name': y['municipality_id__name'],
