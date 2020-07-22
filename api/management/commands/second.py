@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 import pandas as pd
-from api.models import Project, Province, District, Municipality
+from api.models import Project, Province, District, Municipality, SecondaryData
 
 
 class Command(BaseCommand):
@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
         try:
             proj = [
-                Project(
+                SecondaryData(
                     province_id=Province.objects.get(code=df['Province No.'][row]),
                     district_id=District.objects.get(n_code=df['District_Code'][row]),
                     municipality_id=Municipality.objects.get(hlcit_code=df['HLCIT'][row]),
@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
                 ) for row in range(0, upper_range)
             ]
-            proj_data = Project.objects.bulk_create(proj)
+            proj_data = SecondaryData.objects.bulk_create(proj)
 
             if proj_data:
                 self.stdout.write('Successfully loaded Partner data ..')
