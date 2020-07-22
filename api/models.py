@@ -91,7 +91,7 @@ class LogData(models.Model):
     )
 
     # title = models.ForeignKey(Title, on_delete=models.CASCADE, related_name='LogTitle', blank=True, null=True)
-    data_type = models.CharField(max_length=300,  blank=True, null=True)
+    data_type = models.CharField(max_length=300, blank=True, null=True)
     planned_afp = models.CharField(max_length=30, blank=True, null=True, default=0)
     achieved = models.CharField(max_length=30, blank=True, null=True, default=0)
     year = models.ForeignKey(MilestoneYear, on_delete=models.CASCADE, related_name='LogYear')
@@ -245,3 +245,32 @@ class ProductProcess(models.Model):
 
     def __str__(self):
         return self.innovation_area
+
+
+class SecondaryData(models.Model):
+    province_id = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='SecondProvince', null=True,
+                                    blank=True)
+    district_id = models.ForeignKey(District, on_delete=models.CASCADE, related_name='SecondDistrict', null=True,
+                                    blank=True)
+    municipality_id = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='SecondMunicipality',
+                                        null=True,
+                                        blank=True)
+    hdi = models.FloatField(blank=True, null=True)
+    head_quarter = models.CharField(max_length=500, blank=True, null=True, )
+    population = models.IntegerField(blank=True, null=True)
+    yearly_fund = models.FloatField(blank=True, null=True)
+    social_security_recipients = models.IntegerField(blank=True, null=True)
+    yearly_social_security_payment = models.FloatField(blank=True, null=True)
+    nearest_branch_distance = models.FloatField(blank=True, null=True)
+    communication_landline = models.CharField(max_length=500, blank=True, null=True, )
+    communication_mobile = models.CharField(max_length=500, blank=True, null=True, )
+    communication_internet = models.CharField(max_length=500, blank=True, null=True, )
+    communication_internet_other = models.CharField(max_length=500, blank=True, null=True, )
+    available_electricity_maingrid = models.CharField(max_length=500, blank=True, null=True, )
+    available_electricity_micro_hydro = models.CharField(max_length=500, blank=True, null=True, )
+    nearest_road_location_name = models.CharField(max_length=500, blank=True, null=True, )
+    nearest_road_distance = models.FloatField(blank=True, null=True)
+    nearest_road_type = models.CharField(max_length=500, blank=True, null=True, )
+    nearest_police_location_name = models.CharField(max_length=500, blank=True, null=True, )
+    nearest_police_distance = models.FloatField(blank=True, null=True)
+    categorisation_by_sakchyam = models.CharField(max_length=500, blank=True, null=True, )
