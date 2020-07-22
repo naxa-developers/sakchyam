@@ -1542,6 +1542,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
         project = partnership_query.values('project_id').distinct().count()
         investment = partnership_query.values('project_id__investment_primary').distinct().count()
         other_products = partnership_query.aggregate(Sum('other_products'))['other_products__sum']
+        extension = partnership_query.aggregate(Sum('extension_counter'))['extension_counter__sum']
         tablet = partnership_query.aggregate(Sum('tablet'))['tablet__sum']
         branch = partnership_query.aggregate(Sum('branch'))['branch__sum']
         blb = partnership_query.aggregate(Sum('blb'))['blb__sum']
@@ -1554,7 +1555,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
             'project': project,
             'partner': partner,
             'other_products': other_products,
-            'branch': branch,
+            'branch': branch+extension,
             'blb': blb,
             'tablet': tablet,
 
