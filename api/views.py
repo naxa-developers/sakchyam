@@ -1,11 +1,12 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
     Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership, Product, \
-    ProductProcess
+    ProductProcess, SecondaryData
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
-    PartnerSerializer, PartnershipSerializer, InvestmentSerializer, ProductSerializer, ProductProcessSerializer
+    PartnerSerializer, PartnershipSerializer, InvestmentSerializer, ProductSerializer, ProductProcessSerializer, \
+    SecondarySerializer
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -25,6 +26,12 @@ from rest_framework.decorators import action
 class LogCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = LogCategorySerializer
     queryset = LogCategory.objects.all()
+    permission_classes = [IsAuthenticated, ]
+
+
+class SecondaryViewSet(viewsets.ModelViewSet):
+    serializer_class = SecondarySerializer
+    queryset = SecondaryData.objects.all()
     permission_classes = [IsAuthenticated, ]
 
 
@@ -1555,7 +1562,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
             'project': project,
             'partner': partner,
             'other_products': other_products,
-            'branch': branch+extension,
+            'branch': branch + extension,
             'blb': blb,
             'tablet': tablet,
 

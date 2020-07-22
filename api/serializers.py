@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
-    Automation, FinancialProgram, FinancialLiteracy, Project, Partner, Partnership, Product, ProductProcess
+    Automation, FinancialProgram, FinancialLiteracy, Project, Partner, Partnership, Product, ProductProcess, \
+    SecondaryData
 
 
 class LogCategorySerializer(serializers.ModelSerializer):
@@ -88,6 +89,18 @@ class ProductSerializer(serializers.ModelSerializer):
     #     return partner_id
 
 
+class SecondarySerializer(serializers.ModelSerializer):
+    # partner_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = SecondaryData
+        fields = '__all__'
+
+    # def get_partner_name(self, obj):
+    #     partner_id = obj.partner_id.name
+    #     return partner_id
+
+
 class ProductProcessSerializer(serializers.ModelSerializer):
     partner_name = serializers.SerializerMethodField()
     product_name = serializers.SerializerMethodField()
@@ -97,7 +110,8 @@ class ProductProcessSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductProcess
         fields = (
-            'id', 'partner_id', 'partner_name', 'partner_type', 'product_id', 'product_name', 'date', 'product_category',
+            'id', 'partner_id', 'partner_name', 'partner_type', 'product_id', 'product_name', 'date',
+            'product_category',
             'innovation_area',
             'market_failure')
 
