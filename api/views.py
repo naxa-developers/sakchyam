@@ -203,6 +203,7 @@ class MunicipalityViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         # print(self.request.POST.getlist('id'))
         dist_id = self.request.POST.getlist('id')
+
         if dist_id[0] == '0':
             queryset = Municipality.objects.order_by('id')
         else:

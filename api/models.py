@@ -274,3 +274,26 @@ class SecondaryData(models.Model):
     nearest_police_location_name = models.CharField(max_length=500, blank=True, null=True, )
     nearest_police_distance = models.FloatField(blank=True, null=True)
     categorisation_by_sakchyam = models.CharField(max_length=500, blank=True, null=True, )
+
+
+class Outreach(models.Model):
+    province_id = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='OutProvince', null=True,
+                                    blank=True)
+    district_id = models.ForeignKey(District, on_delete=models.CASCADE, related_name='OutDistrict', null=True,
+                                    blank=True)
+    municipality_id = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='OutMunicipality',
+                                        null=True,
+                                        blank=True)
+    partner_id = models.ForeignKey(Partner, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='OutreachPartner')
+    partner_type = models.CharField(max_length=500, blank=True, null=True, )
+    market_name = models.CharField(max_length=500, blank=True, null=True, )
+    expansion_driven_by = models.CharField(max_length=500, blank=True, null=True, )
+    point_service = models.CharField(max_length=500, blank=True, null=True, )
+    date_established = models.DateField(null=True, blank=True)
+    g2p_payment = models.CharField(max_length=500, blank=True, null=True, )
+    demonstration_effect = models.DateField(null=True, blank=True)
+    gps_point = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.expansion_driven_by
