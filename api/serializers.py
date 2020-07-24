@@ -162,9 +162,9 @@ class DistrictSerializer(serializers.ModelSerializer):
         model = District
         fields = fields = ('id', 'name', 'n_code', 'province_code', 'code')
 
-        def get_province_code(self, obj):
-            code = obj.province_id.code
-            return code
+    def get_province_code(self, obj):
+        code = obj.province_id.code
+        return code
 
 
 class MunicipalitySerializer(serializers.ModelSerializer):
