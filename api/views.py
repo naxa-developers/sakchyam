@@ -31,8 +31,31 @@ class LogCategoryViewSet(viewsets.ModelViewSet):
 
 class SecondaryViewSet(viewsets.ModelViewSet):
     serializer_class = SecondarySerializer
-    queryset = SecondaryData.objects.all()
     permission_classes = [IsAuthenticated, ]
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['id', 'province_id', 'district_id', 'municipality_id']
+
+    def get_queryset(self):
+        queryset = SecondaryData.objects.all()
+        if self.request.GET.getlist('province_id'):
+            province_id = self.request.GET['province_id'].split(",")
+            for i in range(0, len(province_id)):
+                province_id[i] = int(province_id[i])
+            queryset = SecondaryData.objects.filter(province_id__code__in=province_id)
+
+        if self.request.GET.getlist('district_id'):
+            district_id = self.request.GET['district_id'].split(",")
+            for i in range(0, len(district_id)):
+                district_id[i] = int(district_id[i])
+            queryset = SecondaryData.objects.filter(district_id__n_code__in=district_id)
+
+        if self.request.GET.getlist('municipality_id'):
+            municipality_id = self.request.GET['municipality_id'].split(",")
+            for i in range(0, len(municipality_id)):
+                municipality_id[i] = int(municipality_id[i])
+            queryset = SecondaryData.objects.filter(municipality_id__code__in=municipality_id)
+
+        return queryset
 
 
 class LogSubCategoryViewSet(viewsets.ModelViewSet):
