@@ -156,15 +156,32 @@ class ProvinceSerializer(serializers.ModelSerializer):
 
 
 class DistrictSerializer(serializers.ModelSerializer):
+    province_code = serializers.SerializerMethodField()
+
     class Meta:
         model = District
-        fields = '__all__'
+        fields = fields = ('id', 'name', 'n_code', 'province_code', 'code')
+
+        def get_province_code(self, obj):
+            code = obj.province_id.code
+            return code
 
 
 class MunicipalitySerializer(serializers.ModelSerializer):
+    province_code = serializers.SerializerMethodField()
+    district_code = serializers.SerializerMethodField()
+
     class Meta:
         model = Municipality
-        fields = '__all__'
+        fields = ('id', 'name', 'district_code', 'province_code', 'code')
+
+    def get_district_code(self, obj):
+        code = obj.district_id.n_code
+        return code
+
+    def get_province_code(self, obj):
+        code = obj.province_id.code
+        return code
 
 
 class AutomationSerializer(serializers.ModelSerializer):
