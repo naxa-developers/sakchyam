@@ -1985,9 +1985,10 @@ class PartnershipMap(viewsets.ModelViewSet):
 
 class OutreachApi(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ]
-    queryset = Automation.objects.values('id')
+    queryset = Outreach.objects.values('id')
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'partner_id', 'province_id', 'district_id', 'municipality_id']
+    filterset_fields = ['id', 'partner_id', 'province_id', 'district_id', 'municipality_id', 'expansion_driven_by',
+                        'partner_type', 'g2p_payment', 'demonstration_effect', 'point_service']
 
     def list(self, request, **kwargs):
         user = self.request.user
@@ -2030,6 +2031,41 @@ class OutreachApi(viewsets.ModelViewSet):
             for i in range(0, len(mun_id)):
                 mun_id[i] = int(mun_id[i])
             outreach_query = outreach_query.filter(municipality_id__code__in=mun_id)
+
+        if request.GET.getlist('expansion_driven_by'):
+            expansion = request.GET['expansion_driven_by']
+            exp = expansion.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(expansion_driven_by__in=exp)
+
+        if request.GET.getlist('partner_type'):
+            partner_types = request.GET['partner_type']
+            partner_type = partner_types.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(partner_type__in=partner_type)
+
+        if request.GET.getlist('g2p_payment'):
+            g2p_payment = request.GET['g2p_payment']
+            g2 = g2p_payment.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(g2p_payment__in=g2)
+
+        if request.GET.getlist('demonstration_effect'):
+            demonstration_effect = request.GET['demonstration_effect']
+            effect = demonstration_effect.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(demonstration_effect__in=effect)
+
+        if request.GET.getlist('point_service'):
+            point_service = request.GET['point_service']
+            point = point_service.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(point_service__in=point)
 
         for m in outreach_query:
             data.append({
