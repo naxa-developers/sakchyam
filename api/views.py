@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
     Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership, Product, \
-    ProductProcess, SecondaryData
+    ProductProcess, SecondaryData, Outreach
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
@@ -32,6 +32,7 @@ class LogCategoryViewSet(viewsets.ModelViewSet):
 class SecondaryViewSet(viewsets.ModelViewSet):
     serializer_class = SecondarySerializer
     permission_classes = [IsAuthenticated, ]
+
     # filter_backends = [DjangoFilterBackend]
     # filterset_fields = ['id', 'province_id', 'district_id', 'municipality_id']
 
@@ -1978,5 +1979,114 @@ class PartnershipMap(viewsets.ModelViewSet):
                         'pie': investment,
                         'count': y['project_id__count'],
                     })
+
+        return Response(data)
+
+
+class OutreachApi(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = Outreach.objects.values('id')
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'partner_id', 'province_id', 'district_id', 'municipality_id', 'expansion_driven_by',
+                        'partner_type', 'g2p_payment', 'demonstration_effect', 'point_service']
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+
+        outreach_query = Outreach.objects.values('id', 'partner_type', 'partner_id__id', 'partner_id__name',
+                                                 'market_name', 'province_id__name', 'province_id__code',
+                                                 'district_id__name', 'district_id__n_code',
+                                                 'municipality_id__name', 'municipality_id__code',
+                                                 'expansion_driven_by', 'point_service',
+                                                 'date_established', 'g2p_payment', 'demonstration_effect',
+                                                 'gps_point').order_by('id')
+
+        if request.GET.getlist('partner_id'):
+            partners_ids = request.GET['partner_id']
+            partners_id = partners_ids.split(",")
+            for i in range(0, len(partners_id)):
+                partners_id[i] = int(partners_id[i])
+            outreach_query = outreach_query.filter(partner_id__id__in=partners_id)
+
+        if request.GET.getlist('province_id'):
+            prov_ids = request.GET['province_id']
+            prov_id = prov_ids.split(",")
+            for i in range(0, len(prov_id)):
+                prov_id[i] = int(prov_id[i])
+            outreach_query = outreach_query.filter(province_id__code__in=prov_id)
+
+        if request.GET.getlist('district_id'):
+            dist_ids = request.GET['district_id']
+            dist_id = dist_ids.split(",")
+            for i in range(0, len(dist_id)):
+                dist_id[i] = int(dist_id[i])
+            outreach_query = outreach_query.filter(district_id__n_code__in=dist_id)
+
+        if request.GET.getlist('municipality_id'):
+            mun_ids = request.GET['municipality_id']
+            mun_id = mun_ids.split(",")
+            for i in range(0, len(mun_id)):
+                mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(municipality_id__code__in=mun_id)
+
+        if request.GET.getlist('expansion_driven_by'):
+            expansion = request.GET['expansion_driven_by']
+            exp = expansion.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(expansion_driven_by__in=exp)
+
+        if request.GET.getlist('partner_type'):
+            partner_types = request.GET['partner_type']
+            partner_type = partner_types.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(partner_type__in=partner_type)
+
+        if request.GET.getlist('g2p_payment'):
+            g2p_payment = request.GET['g2p_payment']
+            g2 = g2p_payment.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(g2p_payment__in=g2)
+
+        if request.GET.getlist('demonstration_effect'):
+            demonstration_effect = request.GET['demonstration_effect']
+            effect = demonstration_effect.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(demonstration_effect__in=effect)
+
+        if request.GET.getlist('point_service'):
+            point_service = request.GET['point_service']
+            point = point_service.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(point_service__in=point)
+
+        for m in outreach_query:
+            data.append({
+                'id': m['id'],
+                'partner': m['partner_id__name'],
+                'partner_id': m['partner_id__id'],
+                'partner_type': m['partner_type'],
+                'market_name': m['market_name'],
+                'province': m['province_id__name'],
+                'province_code': m['province_id__code'],
+                'district': m['district_id__name'],
+                'district_code': m['district_id__n_code'],
+                'municipality': m['municipality_id__name'],
+                'municipality_code': m['municipality_id__code'],
+                'gps_point': m['gps_point'],
+                'expansion_driven_by': m['expansion_driven_by'],
+                'date_established': m['date_established'],
+                'point_service': m['point_service'],
+                'g2p_payment': m['g2p_payment'],
+                'demonstration_effect': m['demonstration_effect'],
+
+            })
 
         return Response(data)
