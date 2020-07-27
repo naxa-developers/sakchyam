@@ -93,11 +93,17 @@ class SecondarySerializer(serializers.ModelSerializer):
     province_code = serializers.SerializerMethodField()
     district_code = serializers.SerializerMethodField()
     municipality_code = serializers.SerializerMethodField()
+    province_name = serializers.SerializerMethodField()
+    district_name = serializers.SerializerMethodField()
+    municipality_name = serializers.SerializerMethodField()
 
     class Meta:
         model = SecondaryData
         fields = ('id', 'province_code', 'district_code', 'municipality_code', 'hdi', 'head_quarter', 'population',
                   'yearly_fund', 'social_security_recipients',
+                  'province_name',
+                  'district_name',
+                  'municipality_name',
                   'yearly_social_security_payment',
                   'nearest_branch_distance',
                   'communication_landline',
@@ -125,6 +131,18 @@ class SecondarySerializer(serializers.ModelSerializer):
     def get_municipality_code(self, obj):
         code = obj.municipality_id.code
         return code
+
+    def get_province_name(self, obj):
+        name = obj.province_id.name
+        return name
+
+    def get_district_name(self, obj):
+        name = obj.district_id.name
+        return name
+
+    def get_municipality_name(self, obj):
+        name = obj.municipality_id.name
+        return name
 
 
 class ProductProcessSerializer(serializers.ModelSerializer):
