@@ -292,8 +292,8 @@ class Outreach(models.Model):
     point_service = models.CharField(max_length=500, blank=True, null=True, )
     date_established = models.DateField(null=True, blank=True)
     g2p_payment = models.CharField(max_length=500, blank=True, null=True, )
-    demonstration_effect = models.DateField(null=True, blank=True)
-    gps_point = models.DateField(null=True, blank=True)
+    demonstration_effect = models.CharField(max_length=500, blank=True, null=True, )
+    gps_point = models.CharField(max_length=500, blank=True, null=True, )
 
     def __str__(self):
         return self.expansion_driven_by
