@@ -2090,3 +2090,132 @@ class OutreachApi(viewsets.ModelViewSet):
             })
 
         return Response(data)
+
+
+class OutreachMap(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = Outreach.objects.values('id')
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'partner_id', 'province_id', 'district_id', 'municipality_id', 'expansion_driven_by',
+                        'partner_type', 'g2p_payment', 'demonstration_effect', 'point_service']
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+
+        outreach_query = Outreach.objects.values('id', 'point_service')
+
+        if request.GET.getlist('partner_id'):
+            partners_ids = request.GET['partner_id']
+            partners_id = partners_ids.split(",")
+            for i in range(0, len(partners_id)):
+                partners_id[i] = int(partners_id[i])
+            outreach_query = outreach_query.filter(partner_id__id__in=partners_id)
+
+        if request.GET.getlist('expansion_driven_by'):
+            expansion = request.GET['expansion_driven_by']
+            exp = expansion.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(expansion_driven_by__in=exp)
+
+        if request.GET.getlist('partner_type'):
+            partner_types = request.GET['partner_type']
+            partner_type = partner_types.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(partner_type__in=partner_type)
+
+        if request.GET.getlist('g2p_payment'):
+            g2p_payment = request.GET['g2p_payment']
+            g2 = g2p_payment.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(g2p_payment__in=g2)
+
+        if request.GET.getlist('demonstration_effect'):
+            demonstration_effect = request.GET['demonstration_effect']
+            effect = demonstration_effect.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(demonstration_effect__in=effect)
+
+        if request.GET.getlist('point_service'):
+            point_service = request.GET['point_service']
+            point = point_service.split(",")
+            # for i in range(0, len(mun_id)):
+            #     mun_id[i] = int(mun_id[i])
+            outreach_query = outreach_query.filter(point_service__in=point)
+
+        if request.GET.getlist('province_id'):
+            prov_ids = request.GET['province_id']
+            if prov_ids == '0':
+                data_v = outreach_query.values('province_id__id', 'province_id__name',
+                                               'province_id__code').annotate(Count('point_service'))
+
+            else:
+                prov_id = prov_ids.split(",")
+                for i in range(0, len(prov_id)):
+                    prov_id[i] = int(prov_id[i])
+                data_v = outreach_query.filter(province_id__code__in=prov_id).values('province_id__id',
+                                                                                     'province_id__name',
+                                                                                     'province_id__code').annotate(
+                    Count('point_service'))
+
+            for y in data_v:
+                data.append({
+                    'id': y['province_id__id'],
+                    'name': y['province_id__name'],
+                    'code': y['province_id__code'],
+                    'count': y['point_service__count'],
+                })
+
+        if request.GET.getlist('district_id'):
+            dist_ids = request.GET['district_id']
+            if dist_ids == '0':
+                data_v = outreach_query.values('district_id__id', 'district_id__name',
+                                               'district_id__n_code').annotate(Count('point_service'))
+
+            else:
+                dist_id = dist_ids.split(",")
+                for i in range(0, len(dist_id)):
+                    dist_id[i] = int(dist_id[i])
+                data_v = outreach_query.filter(district_id__n_code__in=dist_id).values('district_id__id',
+                                                                                       'district_id__name',
+                                                                                       'district_id__n_code').annotate(
+                    Count('point_service'))
+
+            for y in data_v:
+                data.append({
+                    'id': y['district_id__id'],
+                    'name': y['district_id__name'],
+                    'code': y['district_id__n_code'],
+                    'count': y['point_service__count'],
+                })
+
+        if request.GET.getlist('municipality_id'):
+            mun_ids = request.GET['municipality_id']
+            if mun_ids == '0':
+                data_v = outreach_query.values('municipality_id__id', 'municipality_id__name',
+                                               'municipality_id__code').annotate(Count('point_service'))
+
+            else:
+                mun_id = mun_ids.split(",")
+                for i in range(0, len(mun_id)):
+                    mun_id[i] = int(mun_id[i])
+                data_v = outreach_query.filter(municipality_id__code__in=mun_id).values('municipality_id__id',
+                                                                                        'municipality_id__name',
+                                                                                        'municipality_id__code').annotate(
+                    Count('point_service'))
+
+            for y in data_v:
+                data.append({
+                    'id': y['municipality_id__id'],
+                    'name': y['municipality_id__name'],
+                    'code': y['municipality_id__code'],
+                    'count': y['point_service__count'],
+                })
+
+        return Response(data)
