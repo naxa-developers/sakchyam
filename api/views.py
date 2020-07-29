@@ -905,6 +905,7 @@ class PartnershipFilter(viewsets.ModelViewSet):
         group = Group.objects.get(user=user)
         data = []
         filter_data = request.data
+        partner_type = filter_data['partner_type']
         prov_id = filter_data['province_id']
         dist_id = filter_data['district_id']
         mun_id = filter_data['municipality_id']
@@ -917,6 +918,9 @@ class PartnershipFilter(viewsets.ModelViewSet):
         status = filter_data['status']
 
         partnership_query = Partnership.objects.all()
+
+        if partner_type:
+            partnership_query = partnership_query.filter(partner_id__type__in=partner_type)
 
         if investment_filter:
             partnership_query = partnership_query.filter(project_id__investment_primary__in=investment_filter)
