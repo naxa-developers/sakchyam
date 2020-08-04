@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
     Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership, Product, \
-    ProductProcess, SecondaryData, Outreach
+    ProductProcess, SecondaryData, Outreach, MFS
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
@@ -2221,5 +2221,38 @@ class OutreachMap(viewsets.ModelViewSet):
                     'code': y['municipality_id__code'],
                     'count': y['point_service__count'],
                 })
+
+        return Response(data)
+
+
+class MfsData(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = MFS.objects.values('id')
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'partner_id', 'province_id', 'district_id', 'municipality_id',
+                        'key_innovation', 'achievement_type', 'achieved_number']
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+
+        mfs_query = MFS.objects.values('id', 'partner_id__code', 'province_id__code', 'district_id__n_code',
+                                       'municipality_id__code', 'partner_id__name',
+                                       'key_innovation', 'achievement_type', 'achieved_number').exclude(
+            province_id__isnull=True)
+        for y in mfs_query:
+            data.append({
+                'id': y['id'],
+                'partner_id': y['partner_id__code'],
+                'partner_name': y['partner_id__name'],
+                'province_code': y['province_id__code'],
+                'district_code': y['district_id__n_code'],
+                'municipality_code': y['municipality_id__code'],
+                'key_innovation': y['key_innovation'],
+                'achievement_type': y['achievement_type'],
+                'achieved_number': y['achieved_number'],
+            })
 
         return Response(data)

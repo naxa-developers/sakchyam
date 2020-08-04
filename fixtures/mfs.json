@@ -1,0 +1,5527 @@
+[
+{
+  "model": "api.mfs",
+  "pk": 1,
+  "fields": {
+    "province_id": 7,
+    "district_id": 26,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 15380
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 2,
+  "fields": {
+    "province_id": 7,
+    "district_id": 35,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 21186
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 3,
+  "fields": {
+    "province_id": 7,
+    "district_id": 30,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 7339
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 4,
+  "fields": {
+    "province_id": 7,
+    "district_id": 22,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 5694
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 5,
+  "fields": {
+    "province_id": 7,
+    "district_id": 27,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 98880
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 6,
+  "fields": {
+    "province_id": 7,
+    "district_id": 24,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 9499
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 7,
+  "fields": {
+    "province_id": 7,
+    "district_id": 25,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 21353
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 8,
+  "fields": {
+    "province_id": 7,
+    "district_id": 31,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 8628
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 9,
+  "fields": {
+    "province_id": 7,
+    "district_id": 28,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 9321
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 10,
+  "fields": {
+    "province_id": 7,
+    "district_id": 21,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4646
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 11,
+  "fields": {
+    "province_id": 7,
+    "district_id": 29,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1077
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 12,
+  "fields": {
+    "province_id": 7,
+    "district_id": 20,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6761
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 13,
+  "fields": {
+    "province_id": 7,
+    "district_id": 23,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 7264
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 14,
+  "fields": {
+    "province_id": 2,
+    "district_id": 45,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6239
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 15,
+  "fields": {
+    "province_id": 2,
+    "district_id": 36,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6300
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 16,
+  "fields": {
+    "province_id": 2,
+    "district_id": 40,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 18668
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 17,
+  "fields": {
+    "province_id": 2,
+    "district_id": 37,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4470
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 18,
+  "fields": {
+    "province_id": 2,
+    "district_id": 41,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 186
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 19,
+  "fields": {
+    "province_id": 2,
+    "district_id": 42,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 165
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 20,
+  "fields": {
+    "province_id": 2,
+    "district_id": 43,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1811
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 21,
+  "fields": {
+    "province_id": 2,
+    "district_id": 76,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 8620
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 22,
+  "fields": {
+    "province_id": 2,
+    "district_id": 44,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3239
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 23,
+  "fields": {
+    "province_id": 2,
+    "district_id": 39,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6257
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 24,
+  "fields": {
+    "province_id": 2,
+    "district_id": 38,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 7397
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 25,
+  "fields": {
+    "province_id": 3,
+    "district_id": 60,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 5259
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 26,
+  "fields": {
+    "province_id": 3,
+    "district_id": 62,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 458
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 27,
+  "fields": {
+    "province_id": 3,
+    "district_id": 66,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 498
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 28,
+  "fields": {
+    "province_id": 3,
+    "district_id": 61,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1572
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 29,
+  "fields": {
+    "province_id": 3,
+    "district_id": 63,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1369
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 30,
+  "fields": {
+    "province_id": 3,
+    "district_id": 64,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 2308
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 31,
+  "fields": {
+    "province_id": 3,
+    "district_id": 65,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 572
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 32,
+  "fields": {
+    "province_id": 3,
+    "district_id": 54,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 2897
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 33,
+  "fields": {
+    "province_id": 3,
+    "district_id": 55,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4820
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 34,
+  "fields": {
+    "province_id": 3,
+    "district_id": 59,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 13834
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 35,
+  "fields": {
+    "province_id": 1,
+    "district_id": 10,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4742
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 36,
+  "fields": {
+    "province_id": 1,
+    "district_id": 7,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6840
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 37,
+  "fields": {
+    "province_id": 1,
+    "district_id": 3,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 8290
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 38,
+  "fields": {
+    "province_id": 1,
+    "district_id": 4,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 31069
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 39,
+  "fields": {
+    "province_id": 1,
+    "district_id": 13,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4179
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 40,
+  "fields": {
+    "province_id": 1,
+    "district_id": 5,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 25457
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 41,
+  "fields": {
+    "province_id": 1,
+    "district_id": 12,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3300
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 42,
+  "fields": {
+    "province_id": 1,
+    "district_id": 2,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4373
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 43,
+  "fields": {
+    "province_id": 1,
+    "district_id": 9,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3314
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 44,
+  "fields": {
+    "province_id": 1,
+    "district_id": 11,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1676
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 45,
+  "fields": {
+    "province_id": 1,
+    "district_id": 6,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 34397
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 46,
+  "fields": {
+    "province_id": 1,
+    "district_id": 1,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 2110
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 47,
+  "fields": {
+    "province_id": 1,
+    "district_id": 8,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3045
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 48,
+  "fields": {
+    "province_id": 1,
+    "district_id": 14,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 9701
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 49,
+  "fields": {
+    "province_id": 4,
+    "district_id": 33,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 10005
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 50,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 12722
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 51,
+  "fields": {
+    "province_id": 4,
+    "district_id": 18,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 7217
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 52,
+  "fields": {
+    "province_id": 4,
+    "district_id": 34,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 9779
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 53,
+  "fields": {
+    "province_id": 4,
+    "district_id": 32,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 9436
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 54,
+  "fields": {
+    "province_id": 4,
+    "district_id": 15,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 10786
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 55,
+  "fields": {
+    "province_id": 4,
+    "district_id": 19,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 10265
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 56,
+  "fields": {
+    "province_id": 4,
+    "district_id": 16,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 9451
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 57,
+  "fields": {
+    "province_id": 6,
+    "district_id": 51,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3856
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 58,
+  "fields": {
+    "province_id": 6,
+    "district_id": 57,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 11073
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 59,
+  "fields": {
+    "province_id": 6,
+    "district_id": 58,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 10565
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 60,
+  "fields": {
+    "province_id": 6,
+    "district_id": 56,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 17875
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 61,
+  "fields": {
+    "province_id": 6,
+    "district_id": 46,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6281
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 62,
+  "fields": {
+    "province_id": 6,
+    "district_id": 50,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6806
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 63,
+  "fields": {
+    "province_id": 6,
+    "district_id": 48,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 5393
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 64,
+  "fields": {
+    "province_id": 6,
+    "district_id": 47,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3826
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 65,
+  "fields": {
+    "province_id": 6,
+    "district_id": 52,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3963
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 66,
+  "fields": {
+    "province_id": 6,
+    "district_id": 53,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3216
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 67,
+  "fields": {
+    "province_id": 6,
+    "district_id": 77,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 940
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 68,
+  "fields": {
+    "province_id": 6,
+    "district_id": 49,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 22531
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 69,
+  "fields": {
+    "province_id": 5,
+    "district_id": 69,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3953
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 70,
+  "fields": {
+    "province_id": 5,
+    "district_id": 74,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3048
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 71,
+  "fields": {
+    "province_id": 5,
+    "district_id": 68,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 2053
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 72,
+  "fields": {
+    "province_id": 5,
+    "district_id": 67,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1557
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 73,
+  "fields": {
+    "province_id": 5,
+    "district_id": 73,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1620
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 74,
+  "fields": {
+    "province_id": 5,
+    "district_id": 75,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1904
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 75,
+  "fields": {
+    "province_id": 5,
+    "district_id": 70,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1503
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 76,
+  "fields": {
+    "province_id": 5,
+    "district_id": 71,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 17682
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 77,
+  "fields": {
+    "province_id": 5,
+    "district_id": 72,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 12669
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 78,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 140841
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 79,
+  "fields": {
+    "province_id": 7,
+    "district_id": 26,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 444
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 80,
+  "fields": {
+    "province_id": 7,
+    "district_id": 35,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 594
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 81,
+  "fields": {
+    "province_id": 7,
+    "district_id": 30,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 211
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 82,
+  "fields": {
+    "province_id": 7,
+    "district_id": 22,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 153
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 83,
+  "fields": {
+    "province_id": 7,
+    "district_id": 27,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 2614
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 84,
+  "fields": {
+    "province_id": 7,
+    "district_id": 24,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 360
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 85,
+  "fields": {
+    "province_id": 7,
+    "district_id": 25,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 809
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 86,
+  "fields": {
+    "province_id": 7,
+    "district_id": 31,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 266
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 87,
+  "fields": {
+    "province_id": 7,
+    "district_id": 28,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 221
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 88,
+  "fields": {
+    "province_id": 7,
+    "district_id": 21,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 194
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 89,
+  "fields": {
+    "province_id": 7,
+    "district_id": 29,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 30
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 90,
+  "fields": {
+    "province_id": 7,
+    "district_id": 20,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 209
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 91,
+  "fields": {
+    "province_id": 7,
+    "district_id": 23,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 154
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 92,
+  "fields": {
+    "province_id": 2,
+    "district_id": 45,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 269
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 93,
+  "fields": {
+    "province_id": 2,
+    "district_id": 36,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 308
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 94,
+  "fields": {
+    "province_id": 2,
+    "district_id": 40,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 442
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 95,
+  "fields": {
+    "province_id": 2,
+    "district_id": 37,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 121
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 96,
+  "fields": {
+    "province_id": 2,
+    "district_id": 42,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 1
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 97,
+  "fields": {
+    "province_id": 2,
+    "district_id": 43,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 25
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 98,
+  "fields": {
+    "province_id": 2,
+    "district_id": 76,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 228
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 99,
+  "fields": {
+    "province_id": 2,
+    "district_id": 44,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 92
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 100,
+  "fields": {
+    "province_id": 2,
+    "district_id": 39,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 228
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 101,
+  "fields": {
+    "province_id": 2,
+    "district_id": 38,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 188
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 102,
+  "fields": {
+    "province_id": 3,
+    "district_id": 60,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 179
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 103,
+  "fields": {
+    "province_id": 3,
+    "district_id": 62,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 20
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 104,
+  "fields": {
+    "province_id": 3,
+    "district_id": 66,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 20
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 105,
+  "fields": {
+    "province_id": 3,
+    "district_id": 61,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 24
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 106,
+  "fields": {
+    "province_id": 3,
+    "district_id": 63,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 44
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 107,
+  "fields": {
+    "province_id": 3,
+    "district_id": 64,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 36
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 108,
+  "fields": {
+    "province_id": 3,
+    "district_id": 65,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 45
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 109,
+  "fields": {
+    "province_id": 3,
+    "district_id": 54,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 22
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 110,
+  "fields": {
+    "province_id": 3,
+    "district_id": 55,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 110
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 111,
+  "fields": {
+    "province_id": 3,
+    "district_id": 59,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 353
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 112,
+  "fields": {
+    "province_id": 1,
+    "district_id": 10,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 65
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 113,
+  "fields": {
+    "province_id": 1,
+    "district_id": 7,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 126
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 114,
+  "fields": {
+    "province_id": 1,
+    "district_id": 3,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 137
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 115,
+  "fields": {
+    "province_id": 1,
+    "district_id": 4,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 706
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 116,
+  "fields": {
+    "province_id": 1,
+    "district_id": 13,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 73
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 117,
+  "fields": {
+    "province_id": 1,
+    "district_id": 5,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 582
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 118,
+  "fields": {
+    "province_id": 1,
+    "district_id": 12,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 80
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 119,
+  "fields": {
+    "province_id": 1,
+    "district_id": 2,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 140
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 120,
+  "fields": {
+    "province_id": 1,
+    "district_id": 9,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 41
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 121,
+  "fields": {
+    "province_id": 1,
+    "district_id": 11,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 58
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 122,
+  "fields": {
+    "province_id": 1,
+    "district_id": 6,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 856
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 123,
+  "fields": {
+    "province_id": 1,
+    "district_id": 1,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 70
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 124,
+  "fields": {
+    "province_id": 1,
+    "district_id": 8,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 91
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 125,
+  "fields": {
+    "province_id": 1,
+    "district_id": 14,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 200
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 126,
+  "fields": {
+    "province_id": 4,
+    "district_id": 33,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 424
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 127,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 307
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 128,
+  "fields": {
+    "province_id": 4,
+    "district_id": 18,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 193
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 129,
+  "fields": {
+    "province_id": 4,
+    "district_id": 34,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 235
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 130,
+  "fields": {
+    "province_id": 4,
+    "district_id": 32,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 271
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 131,
+  "fields": {
+    "province_id": 4,
+    "district_id": 15,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 510
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 132,
+  "fields": {
+    "province_id": 4,
+    "district_id": 19,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 285
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 133,
+  "fields": {
+    "province_id": 4,
+    "district_id": 16,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 332
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 134,
+  "fields": {
+    "province_id": 6,
+    "district_id": 51,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 417
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 135,
+  "fields": {
+    "province_id": 6,
+    "district_id": 57,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 248
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 136,
+  "fields": {
+    "province_id": 6,
+    "district_id": 58,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 248
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 137,
+  "fields": {
+    "province_id": 6,
+    "district_id": 56,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 540
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 138,
+  "fields": {
+    "province_id": 6,
+    "district_id": 46,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 128
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 139,
+  "fields": {
+    "province_id": 6,
+    "district_id": 50,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 305
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 140,
+  "fields": {
+    "province_id": 6,
+    "district_id": 48,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 147
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 141,
+  "fields": {
+    "province_id": 6,
+    "district_id": 47,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 120
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 142,
+  "fields": {
+    "province_id": 6,
+    "district_id": 52,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 76
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 143,
+  "fields": {
+    "province_id": 6,
+    "district_id": 53,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 67
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 144,
+  "fields": {
+    "province_id": 6,
+    "district_id": 77,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 7
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 145,
+  "fields": {
+    "province_id": 6,
+    "district_id": 49,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 715
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 146,
+  "fields": {
+    "province_id": 5,
+    "district_id": 69,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 98
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 147,
+  "fields": {
+    "province_id": 5,
+    "district_id": 74,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 138
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 148,
+  "fields": {
+    "province_id": 5,
+    "district_id": 68,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 50
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 149,
+  "fields": {
+    "province_id": 5,
+    "district_id": 67,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 61
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 150,
+  "fields": {
+    "province_id": 5,
+    "district_id": 73,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 89
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 151,
+  "fields": {
+    "province_id": 5,
+    "district_id": 75,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 59
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 152,
+  "fields": {
+    "province_id": 5,
+    "district_id": 70,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 104
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 153,
+  "fields": {
+    "province_id": 5,
+    "district_id": 71,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 461
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 154,
+  "fields": {
+    "province_id": 5,
+    "district_id": 72,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 327
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 155,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Remittance Payment",
+    "achievement_type": "No. of remittance payment transactions facilitated",
+    "achieved_number": 51
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 156,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "NFC Cards",
+    "achievement_type": "No. of NFC cards sold",
+    "achieved_number": 4696
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 157,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Merchant Payment (QR)",
+    "achievement_type": "No. of merchants acquired and equipped with Micro-POS devices",
+    "achieved_number": 671
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 158,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed and equipped with EMV-POS devices",
+    "achieved_number": 48
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 159,
+  "fields": {
+    "province_id": 7,
+    "district_id": 26,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 690
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 160,
+  "fields": {
+    "province_id": 7,
+    "district_id": 35,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 716
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 161,
+  "fields": {
+    "province_id": 7,
+    "district_id": 30,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 125
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 162,
+  "fields": {
+    "province_id": 7,
+    "district_id": 22,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 169
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 163,
+  "fields": {
+    "province_id": 7,
+    "district_id": 27,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 4450
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 164,
+  "fields": {
+    "province_id": 7,
+    "district_id": 24,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 193
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 165,
+  "fields": {
+    "province_id": 7,
+    "district_id": 25,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 788
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 166,
+  "fields": {
+    "province_id": 7,
+    "district_id": 31,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 174
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 167,
+  "fields": {
+    "province_id": 7,
+    "district_id": 28,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 67
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 168,
+  "fields": {
+    "province_id": 7,
+    "district_id": 21,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 55
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 169,
+  "fields": {
+    "province_id": 7,
+    "district_id": 29,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 20
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 170,
+  "fields": {
+    "province_id": 7,
+    "district_id": 20,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 189
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 171,
+  "fields": {
+    "province_id": 7,
+    "district_id": 23,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 123
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 172,
+  "fields": {
+    "province_id": 2,
+    "district_id": 45,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 244
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 173,
+  "fields": {
+    "province_id": 2,
+    "district_id": 36,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 87
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 174,
+  "fields": {
+    "province_id": 2,
+    "district_id": 40,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 1315
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 175,
+  "fields": {
+    "province_id": 2,
+    "district_id": 37,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 144
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 176,
+  "fields": {
+    "province_id": 2,
+    "district_id": 42,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 1
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 177,
+  "fields": {
+    "province_id": 2,
+    "district_id": 43,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 81
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 178,
+  "fields": {
+    "province_id": 2,
+    "district_id": 76,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 398
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 179,
+  "fields": {
+    "province_id": 2,
+    "district_id": 44,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 159
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 180,
+  "fields": {
+    "province_id": 2,
+    "district_id": 39,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 154
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 181,
+  "fields": {
+    "province_id": 2,
+    "district_id": 38,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 328
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 182,
+  "fields": {
+    "province_id": 3,
+    "district_id": 60,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 145
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 183,
+  "fields": {
+    "province_id": 3,
+    "district_id": 62,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 12
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 184,
+  "fields": {
+    "province_id": 3,
+    "district_id": 66,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 4
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 185,
+  "fields": {
+    "province_id": 3,
+    "district_id": 61,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 55
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 186,
+  "fields": {
+    "province_id": 3,
+    "district_id": 63,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 40
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 187,
+  "fields": {
+    "province_id": 3,
+    "district_id": 64,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 120
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 188,
+  "fields": {
+    "province_id": 3,
+    "district_id": 65,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 8
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 189,
+  "fields": {
+    "province_id": 3,
+    "district_id": 54,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 103
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 190,
+  "fields": {
+    "province_id": 3,
+    "district_id": 55,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 92
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 191,
+  "fields": {
+    "province_id": 3,
+    "district_id": 59,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 689
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 192,
+  "fields": {
+    "province_id": 1,
+    "district_id": 10,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 111
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 193,
+  "fields": {
+    "province_id": 1,
+    "district_id": 7,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 322
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 194,
+  "fields": {
+    "province_id": 1,
+    "district_id": 3,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 501
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 195,
+  "fields": {
+    "province_id": 1,
+    "district_id": 4,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 1423
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 196,
+  "fields": {
+    "province_id": 1,
+    "district_id": 13,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 92
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 197,
+  "fields": {
+    "province_id": 1,
+    "district_id": 5,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 945
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 198,
+  "fields": {
+    "province_id": 1,
+    "district_id": 12,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 54
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 199,
+  "fields": {
+    "province_id": 1,
+    "district_id": 2,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 124
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 200,
+  "fields": {
+    "province_id": 1,
+    "district_id": 9,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 165
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 201,
+  "fields": {
+    "province_id": 1,
+    "district_id": 11,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 11
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 202,
+  "fields": {
+    "province_id": 1,
+    "district_id": 6,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 1312
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 203,
+  "fields": {
+    "province_id": 1,
+    "district_id": 1,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 19
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 204,
+  "fields": {
+    "province_id": 1,
+    "district_id": 8,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 102
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 205,
+  "fields": {
+    "province_id": 1,
+    "district_id": 14,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 269
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 206,
+  "fields": {
+    "province_id": 4,
+    "district_id": 33,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 340
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 207,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 492
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 208,
+  "fields": {
+    "province_id": 4,
+    "district_id": 18,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 220
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 209,
+  "fields": {
+    "province_id": 4,
+    "district_id": 34,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 324
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 210,
+  "fields": {
+    "province_id": 4,
+    "district_id": 32,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 451
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 211,
+  "fields": {
+    "province_id": 4,
+    "district_id": 15,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 537
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 212,
+  "fields": {
+    "province_id": 4,
+    "district_id": 19,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 377
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 213,
+  "fields": {
+    "province_id": 4,
+    "district_id": 16,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 623
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 214,
+  "fields": {
+    "province_id": 6,
+    "district_id": 51,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 83
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 215,
+  "fields": {
+    "province_id": 6,
+    "district_id": 57,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 482
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 216,
+  "fields": {
+    "province_id": 6,
+    "district_id": 58,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 357
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 217,
+  "fields": {
+    "province_id": 6,
+    "district_id": 56,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 554
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 218,
+  "fields": {
+    "province_id": 6,
+    "district_id": 46,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 93
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 219,
+  "fields": {
+    "province_id": 6,
+    "district_id": 50,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 238
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 220,
+  "fields": {
+    "province_id": 6,
+    "district_id": 48,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 169
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 221,
+  "fields": {
+    "province_id": 6,
+    "district_id": 47,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 67
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 222,
+  "fields": {
+    "province_id": 6,
+    "district_id": 52,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 167
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 223,
+  "fields": {
+    "province_id": 6,
+    "district_id": 53,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 95
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 224,
+  "fields": {
+    "province_id": 6,
+    "district_id": 77,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 16
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 225,
+  "fields": {
+    "province_id": 6,
+    "district_id": 49,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 686
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 226,
+  "fields": {
+    "province_id": 5,
+    "district_id": 69,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 44
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 227,
+  "fields": {
+    "province_id": 5,
+    "district_id": 74,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 43
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 228,
+  "fields": {
+    "province_id": 5,
+    "district_id": 68,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 80
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 229,
+  "fields": {
+    "province_id": 5,
+    "district_id": 67,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 23
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 230,
+  "fields": {
+    "province_id": 5,
+    "district_id": 73,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 28
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 231,
+  "fields": {
+    "province_id": 5,
+    "district_id": 75,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 30
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 232,
+  "fields": {
+    "province_id": 5,
+    "district_id": 70,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 54
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 233,
+  "fields": {
+    "province_id": 5,
+    "district_id": 71,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 654
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 234,
+  "fields": {
+    "province_id": 5,
+    "district_id": 72,
+    "municipality_id": null,
+    "partner_id": 11,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of normal agents deployed",
+    "achieved_number": 479
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 235,
+  "fields": {
+    "province_id": 6,
+    "district_id": 49,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 14219
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 236,
+  "fields": {
+    "province_id": 5,
+    "district_id": 71,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 8614
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 237,
+  "fields": {
+    "province_id": 1,
+    "district_id": 4,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 14479
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 238,
+  "fields": {
+    "province_id": 6,
+    "district_id": 57,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 5141
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 239,
+  "fields": {
+    "province_id": 1,
+    "district_id": 6,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 11096
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 240,
+  "fields": {
+    "province_id": 3,
+    "district_id": 59,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4109
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 241,
+  "fields": {
+    "province_id": 5,
+    "district_id": 72,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6645
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 242,
+  "fields": {
+    "province_id": 6,
+    "district_id": 58,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4337
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 243,
+  "fields": {
+    "province_id": 6,
+    "district_id": 50,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6234
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 244,
+  "fields": {
+    "province_id": 6,
+    "district_id": 56,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6394
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 245,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 9326
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 246,
+  "fields": {
+    "province_id": 4,
+    "district_id": 32,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 5791
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 247,
+  "fields": {
+    "province_id": 4,
+    "district_id": 19,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 7161
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 248,
+  "fields": {
+    "province_id": 4,
+    "district_id": 33,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6058
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 249,
+  "fields": {
+    "province_id": 4,
+    "district_id": 18,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 7060
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 250,
+  "fields": {
+    "province_id": 6,
+    "district_id": 51,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3031
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 251,
+  "fields": {
+    "province_id": 4,
+    "district_id": 16,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 6374
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 252,
+  "fields": {
+    "province_id": 1,
+    "district_id": 3,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 3648
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 253,
+  "fields": {
+    "province_id": 4,
+    "district_id": 34,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 5220
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 254,
+  "fields": {
+    "province_id": 3,
+    "district_id": 55,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1520
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 255,
+  "fields": {
+    "province_id": 7,
+    "district_id": 30,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4584
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 256,
+  "fields": {
+    "province_id": 5,
+    "district_id": 74,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1878
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 257,
+  "fields": {
+    "province_id": 3,
+    "district_id": 61,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 699
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 258,
+  "fields": {
+    "province_id": 7,
+    "district_id": 28,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 4543
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 259,
+  "fields": {
+    "province_id": 3,
+    "district_id": 60,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 2006
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 260,
+  "fields": {
+    "province_id": 4,
+    "district_id": 15,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 7256
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 261,
+  "fields": {
+    "province_id": 5,
+    "district_id": 67,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 786
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 262,
+  "fields": {
+    "province_id": 6,
+    "district_id": 52,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1933
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 263,
+  "fields": {
+    "province_id": 5,
+    "district_id": 75,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1442
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 264,
+  "fields": {
+    "province_id": 5,
+    "district_id": 69,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1580
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 265,
+  "fields": {
+    "province_id": 6,
+    "district_id": 53,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1458
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 266,
+  "fields": {
+    "province_id": 5,
+    "district_id": 73,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1186
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 267,
+  "fields": {
+    "province_id": 5,
+    "district_id": 70,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1127
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 268,
+  "fields": {
+    "province_id": 3,
+    "district_id": 63,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 755
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 269,
+  "fields": {
+    "province_id": 3,
+    "district_id": 64,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 787
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 270,
+  "fields": {
+    "province_id": 3,
+    "district_id": 62,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 251
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 271,
+  "fields": {
+    "province_id": 5,
+    "district_id": 68,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 1133
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 272,
+  "fields": {
+    "province_id": 3,
+    "district_id": 65,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 361
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 273,
+  "fields": {
+    "province_id": 3,
+    "district_id": 66,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 394
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 274,
+  "fields": {
+    "province_id": 2,
+    "district_id": 41,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Mobile Wallet",
+    "achievement_type": "No. of wallet accounts opened",
+    "achieved_number": 93
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 275,
+  "fields": {
+    "province_id": 6,
+    "district_id": 49,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 1229
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 276,
+  "fields": {
+    "province_id": 5,
+    "district_id": 71,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 981
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 277,
+  "fields": {
+    "province_id": 1,
+    "district_id": 4,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 889
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 278,
+  "fields": {
+    "province_id": 6,
+    "district_id": 57,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 624
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 279,
+  "fields": {
+    "province_id": 1,
+    "district_id": 6,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 560
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 280,
+  "fields": {
+    "province_id": 3,
+    "district_id": 59,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 461
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 281,
+  "fields": {
+    "province_id": 5,
+    "district_id": 72,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 430
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 282,
+  "fields": {
+    "province_id": 6,
+    "district_id": 58,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 378
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 283,
+  "fields": {
+    "province_id": 6,
+    "district_id": 50,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 351
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 284,
+  "fields": {
+    "province_id": 6,
+    "district_id": 56,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 347
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 285,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 321
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 286,
+  "fields": {
+    "province_id": 4,
+    "district_id": 32,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 275
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 287,
+  "fields": {
+    "province_id": 4,
+    "district_id": 19,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 267
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 288,
+  "fields": {
+    "province_id": 4,
+    "district_id": 33,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 218
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 289,
+  "fields": {
+    "province_id": 4,
+    "district_id": 18,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 198
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 290,
+  "fields": {
+    "province_id": 6,
+    "district_id": 51,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 187
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 291,
+  "fields": {
+    "province_id": 4,
+    "district_id": 16,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 173
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 292,
+  "fields": {
+    "province_id": 1,
+    "district_id": 3,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 123
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 293,
+  "fields": {
+    "province_id": 4,
+    "district_id": 34,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 121
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 294,
+  "fields": {
+    "province_id": 3,
+    "district_id": 55,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 118
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 295,
+  "fields": {
+    "province_id": 7,
+    "district_id": 30,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 108
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 296,
+  "fields": {
+    "province_id": 5,
+    "district_id": 74,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 98
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 297,
+  "fields": {
+    "province_id": 3,
+    "district_id": 61,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 90
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 298,
+  "fields": {
+    "province_id": 7,
+    "district_id": 28,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 84
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 299,
+  "fields": {
+    "province_id": 3,
+    "district_id": 60,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 84
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 300,
+  "fields": {
+    "province_id": 4,
+    "district_id": 15,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 76
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 301,
+  "fields": {
+    "province_id": 5,
+    "district_id": 67,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 74
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 302,
+  "fields": {
+    "province_id": 6,
+    "district_id": 52,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 70
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 303,
+  "fields": {
+    "province_id": 5,
+    "district_id": 75,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 68
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 304,
+  "fields": {
+    "province_id": 5,
+    "district_id": 69,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 61
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 305,
+  "fields": {
+    "province_id": 6,
+    "district_id": 53,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 53
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 306,
+  "fields": {
+    "province_id": 5,
+    "district_id": 73,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 49
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 307,
+  "fields": {
+    "province_id": 5,
+    "district_id": 70,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 47
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 308,
+  "fields": {
+    "province_id": 3,
+    "district_id": 63,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 28
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 309,
+  "fields": {
+    "province_id": 3,
+    "district_id": 64,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 28
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 310,
+  "fields": {
+    "province_id": 3,
+    "district_id": 62,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 24
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 311,
+  "fields": {
+    "province_id": 5,
+    "district_id": 68,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 22
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 312,
+  "fields": {
+    "province_id": 3,
+    "district_id": 65,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 21
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 313,
+  "fields": {
+    "province_id": 3,
+    "district_id": 66,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 6
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 314,
+  "fields": {
+    "province_id": 2,
+    "district_id": 41,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Cash in Cash Out",
+    "achievement_type": "No. of cashpoint agents deployed",
+    "achieved_number": 2
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 315,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Merchant Payment (QR)",
+    "achievement_type": "No. of merchants acquired",
+    "achieved_number": 5
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 316,
+  "fields": {
+    "province_id": 6,
+    "district_id": 49,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 2965
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 317,
+  "fields": {
+    "province_id": 5,
+    "district_id": 71,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 779
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 318,
+  "fields": {
+    "province_id": 1,
+    "district_id": 4,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 2087
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 319,
+  "fields": {
+    "province_id": 6,
+    "district_id": 57,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 956
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 320,
+  "fields": {
+    "province_id": 1,
+    "district_id": 6,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 1113
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 321,
+  "fields": {
+    "province_id": 3,
+    "district_id": 59,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 444
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 322,
+  "fields": {
+    "province_id": 5,
+    "district_id": 72,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 956
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 323,
+  "fields": {
+    "province_id": 6,
+    "district_id": 58,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 659
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 324,
+  "fields": {
+    "province_id": 6,
+    "district_id": 50,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 508
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 325,
+  "fields": {
+    "province_id": 6,
+    "district_id": 56,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 1515
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 326,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 289
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 327,
+  "fields": {
+    "province_id": 4,
+    "district_id": 32,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 4659
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 328,
+  "fields": {
+    "province_id": 4,
+    "district_id": 19,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 6677
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 329,
+  "fields": {
+    "province_id": 4,
+    "district_id": 33,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 1338
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 330,
+  "fields": {
+    "province_id": 4,
+    "district_id": 18,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 4137
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 331,
+  "fields": {
+    "province_id": 6,
+    "district_id": 51,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 663
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 332,
+  "fields": {
+    "province_id": 4,
+    "district_id": 16,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 205
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 333,
+  "fields": {
+    "province_id": 1,
+    "district_id": 3,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 229
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 334,
+  "fields": {
+    "province_id": 4,
+    "district_id": 34,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 5845
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 335,
+  "fields": {
+    "province_id": 3,
+    "district_id": 55,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 765
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 336,
+  "fields": {
+    "province_id": 7,
+    "district_id": 30,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 112
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 337,
+  "fields": {
+    "province_id": 7,
+    "district_id": 28,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 484
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 338,
+  "fields": {
+    "province_id": 3,
+    "district_id": 60,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 18
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 339,
+  "fields": {
+    "province_id": 5,
+    "district_id": 75,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 39
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 340,
+  "fields": {
+    "province_id": 6,
+    "district_id": 53,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 11
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 341,
+  "fields": {
+    "province_id": 5,
+    "district_id": 73,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 166
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 342,
+  "fields": {
+    "province_id": 5,
+    "district_id": 70,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of bank accounts opened",
+    "achieved_number": 75
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 343,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 6,
+    "key_innovation": "Bank Account Opening",
+    "achievement_type": "No. of banks linked for account opening",
+    "achieved_number": 12
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 344,
+  "fields": {
+    "province_id": 1,
+    "district_id": 10,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 488
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 345,
+  "fields": {
+    "province_id": 1,
+    "district_id": 7,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 488
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 346,
+  "fields": {
+    "province_id": 1,
+    "district_id": 3,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 874
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 347,
+  "fields": {
+    "province_id": 1,
+    "district_id": 4,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 3972
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 348,
+  "fields": {
+    "province_id": 1,
+    "district_id": 13,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 543
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 349,
+  "fields": {
+    "province_id": 1,
+    "district_id": 5,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 4094
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 350,
+  "fields": {
+    "province_id": 1,
+    "district_id": 12,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 550
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 351,
+  "fields": {
+    "province_id": 1,
+    "district_id": 2,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 396
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 352,
+  "fields": {
+    "province_id": 1,
+    "district_id": 9,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 465
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 353,
+  "fields": {
+    "province_id": 1,
+    "district_id": 11,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 398
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 354,
+  "fields": {
+    "province_id": 1,
+    "district_id": 6,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 2701
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 355,
+  "fields": {
+    "province_id": 1,
+    "district_id": 1,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 339
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 356,
+  "fields": {
+    "province_id": 1,
+    "district_id": 8,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 355
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 357,
+  "fields": {
+    "province_id": 1,
+    "district_id": 14,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 805
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 358,
+  "fields": {
+    "province_id": 4,
+    "district_id": 34,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1658
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 359,
+  "fields": {
+    "province_id": 4,
+    "district_id": 33,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1526
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 360,
+  "fields": {
+    "province_id": 4,
+    "district_id": 32,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1134
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 361,
+  "fields": {
+    "province_id": 4,
+    "district_id": 19,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1536
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 362,
+  "fields": {
+    "province_id": 4,
+    "district_id": 16,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1320
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 363,
+  "fields": {
+    "province_id": 4,
+    "district_id": 17,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1914
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 364,
+  "fields": {
+    "province_id": 4,
+    "district_id": 15,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1266
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 365,
+  "fields": {
+    "province_id": 4,
+    "district_id": 18,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1239
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 366,
+  "fields": {
+    "province_id": 7,
+    "district_id": 26,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 3787
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 367,
+  "fields": {
+    "province_id": 7,
+    "district_id": 35,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 3741
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 368,
+  "fields": {
+    "province_id": 7,
+    "district_id": 30,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1377
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 369,
+  "fields": {
+    "province_id": 7,
+    "district_id": 22,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1122
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 370,
+  "fields": {
+    "province_id": 7,
+    "district_id": 27,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 20628
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 371,
+  "fields": {
+    "province_id": 7,
+    "district_id": 24,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 2633
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 372,
+  "fields": {
+    "province_id": 7,
+    "district_id": 25,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 5578
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 373,
+  "fields": {
+    "province_id": 7,
+    "district_id": 31,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1644
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 374,
+  "fields": {
+    "province_id": 7,
+    "district_id": 28,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1506
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 375,
+  "fields": {
+    "province_id": 7,
+    "district_id": 21,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 835
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 376,
+  "fields": {
+    "province_id": 7,
+    "district_id": 29,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 174
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 377,
+  "fields": {
+    "province_id": 7,
+    "district_id": 20,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 826
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 378,
+  "fields": {
+    "province_id": 7,
+    "district_id": 23,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1178
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 379,
+  "fields": {
+    "province_id": 2,
+    "district_id": 45,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1129
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 380,
+  "fields": {
+    "province_id": 2,
+    "district_id": 36,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1320
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 381,
+  "fields": {
+    "province_id": 2,
+    "district_id": 40,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 3232
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 382,
+  "fields": {
+    "province_id": 2,
+    "district_id": 37,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 842
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 383,
+  "fields": {
+    "province_id": 2,
+    "district_id": 41,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 31
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 384,
+  "fields": {
+    "province_id": 2,
+    "district_id": 42,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 56
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 385,
+  "fields": {
+    "province_id": 2,
+    "district_id": 43,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 336
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 386,
+  "fields": {
+    "province_id": 2,
+    "district_id": 76,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1100
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 387,
+  "fields": {
+    "province_id": 2,
+    "district_id": 44,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 884
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 388,
+  "fields": {
+    "province_id": 2,
+    "district_id": 39,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1907
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 389,
+  "fields": {
+    "province_id": 2,
+    "district_id": 38,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1154
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 390,
+  "fields": {
+    "province_id": 6,
+    "district_id": 51,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 983
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 391,
+  "fields": {
+    "province_id": 6,
+    "district_id": 57,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1124
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 392,
+  "fields": {
+    "province_id": 6,
+    "district_id": 58,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 972
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 393,
+  "fields": {
+    "province_id": 6,
+    "district_id": 56,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1533
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 394,
+  "fields": {
+    "province_id": 6,
+    "district_id": 77,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 61
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 395,
+  "fields": {
+    "province_id": 6,
+    "district_id": 46,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1365
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 396,
+  "fields": {
+    "province_id": 6,
+    "district_id": 50,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 824
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 397,
+  "fields": {
+    "province_id": 6,
+    "district_id": 48,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 587
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 398,
+  "fields": {
+    "province_id": 6,
+    "district_id": 47,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 893
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 399,
+  "fields": {
+    "province_id": 6,
+    "district_id": 52,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 514
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 400,
+  "fields": {
+    "province_id": 6,
+    "district_id": 53,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 174
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 401,
+  "fields": {
+    "province_id": 6,
+    "district_id": 49,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 2935
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 402,
+  "fields": {
+    "province_id": 3,
+    "district_id": 60,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 321
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 403,
+  "fields": {
+    "province_id": 3,
+    "district_id": 62,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 63
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 404,
+  "fields": {
+    "province_id": 3,
+    "district_id": 66,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 90
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 405,
+  "fields": {
+    "province_id": 3,
+    "district_id": 61,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 210
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 406,
+  "fields": {
+    "province_id": 3,
+    "district_id": 63,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 234
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 407,
+  "fields": {
+    "province_id": 3,
+    "district_id": 64,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 182
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 408,
+  "fields": {
+    "province_id": 3,
+    "district_id": 65,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 79
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 409,
+  "fields": {
+    "province_id": 3,
+    "district_id": 54,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 308
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 410,
+  "fields": {
+    "province_id": 3,
+    "district_id": 55,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 360
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 411,
+  "fields": {
+    "province_id": 3,
+    "district_id": 59,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 890
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 412,
+  "fields": {
+    "province_id": 5,
+    "district_id": 69,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 451
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 413,
+  "fields": {
+    "province_id": 5,
+    "district_id": 74,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 461
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 414,
+  "fields": {
+    "province_id": 5,
+    "district_id": 68,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 258
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 415,
+  "fields": {
+    "province_id": 5,
+    "district_id": 67,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 145
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 416,
+  "fields": {
+    "province_id": 5,
+    "district_id": 73,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 305
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 417,
+  "fields": {
+    "province_id": 5,
+    "district_id": 75,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 296
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 418,
+  "fields": {
+    "province_id": 5,
+    "district_id": 70,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 219
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 419,
+  "fields": {
+    "province_id": 5,
+    "district_id": 71,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1855
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 420,
+  "fields": {
+    "province_id": 5,
+    "district_id": 72,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of connectIPS users acquired",
+    "achieved_number": 1338
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 421,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS - Retail Module",
+    "achievement_type": "No. of creditors/partners onboarded",
+    "achieved_number": 298
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 422,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "connectIPS-Corporate",
+    "achievement_type": "No. of corporates onboarded",
+    "achieved_number": 0
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 423,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "National Payment Interface",
+    "achievement_type": "No. of members onboarded (Govt / Semi Govt and large corporates)",
+    "achieved_number": 14
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 424,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "National Payment Interface",
+    "achievement_type": "No. of members onboarded (PSPs)",
+    "achieved_number": 6
+  }
+},
+{
+  "model": "api.mfs",
+  "pk": 425,
+  "fields": {
+    "province_id": null,
+    "district_id": null,
+    "municipality_id": null,
+    "partner_id": 25,
+    "key_innovation": "National Payment Interface",
+    "achievement_type": "No. of members onboarded (BFIs)",
+    "achieved_number": 35
+  }
+}
+]

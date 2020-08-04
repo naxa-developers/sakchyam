@@ -297,3 +297,18 @@ class Outreach(models.Model):
 
     def __str__(self):
         return self.expansion_driven_by
+
+
+class MFS(models.Model):
+    province_id = models.ForeignKey(Province, on_delete=models.CASCADE, related_name='MFProvince', null=True,
+                                    blank=True)
+    district_id = models.ForeignKey(District, on_delete=models.CASCADE, related_name='MFDistrict', null=True,
+                                    blank=True)
+    municipality_id = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='MFMunicipality',
+                                        null=True,
+                                        blank=True)
+    partner_id = models.ForeignKey(Partner, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='MFPartner')
+    key_innovation = models.CharField(max_length=500, blank=True, null=True, )
+    achievement_type = models.CharField(max_length=500, blank=True, null=True, )
+    achieved_number = models.IntegerField(blank=True, null=True)

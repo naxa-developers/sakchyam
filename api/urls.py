@@ -51,5 +51,6 @@ urlpatterns = [
     path('process-product/secondary-data/', views.SecondaryViewSet.as_view({'get': 'list'}), name='secondary-data'),
     path('outreach/outreach-data/', views.OutreachApi.as_view({'get': 'list'}), name='outreach-data'),
     path('outreach/outreach-map/', views.OutreachMap.as_view({'get': 'list'}), name='outreach-map'),
+    path('mfs/mfs-data/', views.MfsData.as_view({'get': 'list'}), name='mfs-data'),
 
 ]
