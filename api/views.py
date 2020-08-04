@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
     Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership, Product, \
-    ProductProcess, SecondaryData, Outreach, MFS
+    ProductProcess, SecondaryData, Outreach, MFS, Insurance
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
@@ -2253,6 +2253,44 @@ class MfsData(viewsets.ModelViewSet):
                 'key_innovation': y['key_innovation'],
                 'achievement_type': y['achievement_type'],
                 'achieved_number': y['achieved_number'],
+            })
+
+        return Response(data)
+
+
+class InsuranceData(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = Insurance.objects.values('id')
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'partner_id', 'distribution_channel', 'innovation',
+                        'product', 'description', 'amount_of_claim',
+                        'number_of_insurance_sold', 'amount_of_insurance',
+                        'amount_of_sum_insuranced']
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+
+        mfs_query = Insurance.objects.values('id', 'partner_id__code', 'distribution_channel', 'innovation',
+                                             'product', 'description', 'amount_of_claim',
+                                             'number_of_insurance_sold', 'amount_of_insurance',
+                                             'amount_of_sum_insuranced', 'partner_id__name')
+
+        for y in mfs_query:
+            data.append({
+                'id': y['id'],
+                'partner_id': y['partner_id__code'],
+                'partner_name': y['partner_id__name'],
+                'product': y['product'],
+                'description': y['description'],
+                'distribution_channel': y['distribution_channel'],
+                'amount_of_claim': y['amount_of_claim'],
+                'number_of_insurance_sold': y['number_of_insurance_sold'],
+                'amount_of_insurance': y['amount_of_insurance'],
+                'amount_of_sum_insuranced': y['amount_of_sum_insuranced'],
+                'innovation': y['innovation'],
             })
 
         return Response(data)

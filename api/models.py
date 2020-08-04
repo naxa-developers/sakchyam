@@ -312,3 +312,19 @@ class MFS(models.Model):
     key_innovation = models.CharField(max_length=500, blank=True, null=True, )
     achievement_type = models.CharField(max_length=500, blank=True, null=True, )
     achieved_number = models.IntegerField(blank=True, null=True)
+
+
+class Insurance(models.Model):
+    partner_id = models.ForeignKey(Partner, on_delete=models.CASCADE, null=True, blank=True, default=None,
+                                   related_name='InPartner')
+    distribution_channel = models.CharField(max_length=500, blank=True, null=True, )
+    innovation = models.CharField(max_length=500, blank=True, null=True, )
+    product = models.CharField(max_length=500, blank=True, null=True, )
+    description = models.TextField(blank=True, null=True)
+    number_of_insurance_sold = models.IntegerField(blank=True, null=True, default=0)
+    amount_of_insurance = models.FloatField(blank=True, null=True, default=0)
+    amount_of_sum_insuranced = models.FloatField(blank=True, null=True, default=0)
+    amount_of_claim = models.FloatField(blank=True, null=True, default=0)
+
+    def __str__(self):
+        return self.product
