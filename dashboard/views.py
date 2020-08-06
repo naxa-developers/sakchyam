@@ -3,10 +3,11 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner,FinancialLiteracy,\
+    FinancialProgram
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
+from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, FinancialLiteracyForm,\
     AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
@@ -94,6 +95,19 @@ class AutomationList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+class FinancialLiteracyList(LoginRequiredMixin, ListView):
+    template_name = 'financialliteracy_list.html'
+    model = FinancialLiteracy
+
+    def get_context_data(self, **kwargs):
+        data = super(FinancialLiteracyList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        # data['active'] = 'program'
+        query_data = FinancialLiteracy.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
 
 class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Automation
@@ -116,6 +130,26 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
+
+class FinancialLiteracyCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = FinancialLiteracy
+    template_name = 'financialliteracy_create.html'
+    form_class = FinancialLiteracyForm
+    success_message = 'FinancialLiteracy data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(FinancialLiteracyCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['partner'] = Partner.objects.order_by('id')
+        data['financialprogram'] = FinancialProgram.objects.order_by('id')
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('financialliteracy-list')
 
 # class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 #     model = Automation
@@ -218,6 +252,27 @@ class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return reverse_lazy('automation-list')
 
 
+class FinancialLiteracyEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = FinancialLiteracy
+    template_name = 'financialliteracy_edit.html'
+    form_class = FinancialLiteracyForm
+    success_message = 'FinancialLiteracy data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(FinancialLiteracyEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['partner_type'] = Partner.objects.order_by('id')
+        data['program_id'] = FinancialProgram.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('financialliteracy-list')
+
+
 class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'automation_delete.html'
     success_message = 'Automation deleted'
@@ -228,6 +283,17 @@ class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
+
+class FinancialLiteracyDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'financialliteracy_delete.html'
+    success_message = 'FinancialLiteracy deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(FinancialLiteracy, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('financialliteracy-list')
 
 
 class LogFrameList(LoginRequiredMixin, ListView):

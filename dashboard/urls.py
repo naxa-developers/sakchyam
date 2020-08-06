@@ -26,10 +26,14 @@ urlpatterns = [
     # path('logtitle-edit/<int:pk>/<int:subcat>', views.LogTitleUpdate.as_view(), name='logtitle-edit'),
 
     path('automation-list/', views.AutomationList.as_view(), name='automation-list'),
+    path('financialliteracy-list/', views.FinancialLiteracyList.as_view(), name='financialliteracy-list'),
     path('automation-add/', views.AutomationCreate.as_view(), name='automation-add'),
+    path('financialliteracy-add/', views.FinancialLiteracyCreate.as_view(), name='financialliteracy-add'),
     path('automation-bulk-add/', views.automationBulkCreate, name='automation-bulk-add'),
     path('automation-edit/<int:pk>', views.AutomationEdit.as_view(), name='automation-edit'),
     path('automation-delete/<int:pk>', views.AutomationDelete.as_view(), name='automation-delete'),
+    path('financialliteracy-delete/<int:pk>', views.FinancialLiteracyDelete.as_view(), name='financialliteracy-delete'),
+    path('financialliteracy-edit/<int:pk>', views.FinancialLiteracyEdit.as_view(), name='financialliteracy-edit'),
 
     #sakchyam partner urls
     path('sakchyam-partners/', views.SakchyamAPartnersList.as_view(), name='sakchyam-partners'),
