@@ -15,13 +15,13 @@
 
         </ul>
         <div style="margin-left: 1200px;">
-            <a href="/dashboard/automation-add">
+            <a href="/dashboard/outreach-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
         <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/automation-bulk-add">
+            <a href="/dashboard/outreach-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
@@ -46,8 +46,14 @@
                     <th>District</th>
                     <th>Municipality</th>
                     <th>Name of partner institution</th>
-                    <th>Branch Name</th>
-                    <th>Number of Tablets Deployed</th>
+                    <th>Partner Type</th>
+                    <th>Market Name</th>
+                    <th>Expansion Driven By</th>
+                    <th>Point Service</th>
+                    <th>Date Established</th>
+                    <th>G2p Payment</th>
+                    <th>Demonstration Effect</th>
+                    <th>Gps Point</th>
 
 
                     <th></th>
@@ -61,9 +67,15 @@
                     </td>
                     <td>{{ data.district_id.name }}</td>
                     <td>{{ data.municipality_id.name }}</td>
-                    <td>{{ data.partner }}</td>
-                    <td>{{ data.branch }}</td>
-                    <td>{{ data.num_tablet_deployed }}</td>
+                    <td>{{ data.partner_id.name }}</td>
+                    <td>{{ data.partner_type }}</td>
+                    <td>{{ data.market_name }}</td>
+                    <td>{{ data.expansion_driven_by }}</td>
+                    <td>{{ data.point_service }}</td>
+                    <td>{{ data.date_established }}</td>
+                    <td>{{ data.g2p_payment }}</td>
+                    <td>{{ data.demonstration_effect }}</td>
+                    <td>{{ data.gps_point }}</td>
 
 
                     <td>
@@ -73,13 +85,13 @@
                             </a>
                             <ul class="dropdown-animation">
                                 <li>
-                                    <a href="/dashboard/automation-edit/{{data.id}}"
+                                    <a href="/dashboard/outreach-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard/automation-delete/{{data.id}}" class="flex-start">
+                                    <a href="/dashboard/outreach-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 

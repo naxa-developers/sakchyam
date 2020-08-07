@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User, Permission, Group
-from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Automation, Partner
+from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Automation, Partner,FinancialLiteracy,Outreach,ProductProcess
 from .models import UserProfile
 
 
@@ -13,6 +13,16 @@ class LogCategoryForm(ModelForm):
 class LogDataForm(ModelForm):
     class Meta:
         model = LogData
+        fields = '__all__'
+
+class OutReachForm(ModelForm):
+    class Meta:
+        model = Outreach
+        fields = '__all__'
+
+class FinancialLiteracyForm(ModelForm):
+    class Meta:
+        model = FinancialLiteracy
         fields = '__all__'
 
 
@@ -37,6 +47,11 @@ class GroupForm(ModelForm):
 class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
+        fields = '__all__'
+
+class ProductProcessForm(ModelForm):
+    class Meta:
+        model = ProductProcess
         fields = '__all__'
 
 
