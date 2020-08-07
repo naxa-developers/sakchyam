@@ -4,11 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner,FinancialLiteracy,\
-    FinancialProgram
+    FinancialProgram,Outreach,ProductProcess,Product
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, FinancialLiteracyForm,\
-    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm
+    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm,OutReachForm,ProductProcessForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -95,6 +95,20 @@ class AutomationList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+
+class OutReachList(LoginRequiredMixin, ListView):
+    template_name = 'outreach_list.html'
+    model = Outreach
+
+    def get_context_data(self, **kwargs):
+        data = super(OutReachList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        # data['active'] = 'program'
+        query_data = Outreach.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
 class FinancialLiteracyList(LoginRequiredMixin, ListView):
     template_name = 'financialliteracy_list.html'
     model = FinancialLiteracy
@@ -105,6 +119,19 @@ class FinancialLiteracyList(LoginRequiredMixin, ListView):
         user_data = UserProfile.objects.get(user=user)
         # data['active'] = 'program'
         query_data = FinancialLiteracy.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class ProductProcessList(LoginRequiredMixin, ListView):
+    template_name = 'productprocess_list.html'
+    model = ProductProcess
+
+    def get_context_data(self, **kwargs):
+        data = super(ProductProcessList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        # data['active'] = 'program'
+        query_data = ProductProcess.objects.order_by('id')
         data['list'] = query_data
         return data
 
@@ -131,6 +158,28 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('automation-list')
 
+class OutReachCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Outreach
+    template_name = 'outreach_create.html'
+    form_class = OutReachForm
+    success_message = 'Outreach data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(OutReachCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['provinces'] = Province.objects.order_by('id')
+        data['districts'] = District.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        data['partners'] = Partner.objects.order_by('id')
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('outreach-list')
+
 class FinancialLiteracyCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = FinancialLiteracy
     template_name = 'financialliteracy_create.html'
@@ -150,6 +199,46 @@ class FinancialLiteracyCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
 
     def get_success_url(self):
         return reverse_lazy('financialliteracy-list')
+
+class ProductProcessCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = ProductProcess
+    template_name = 'productprocess_create.html'
+    form_class = ProductProcessForm
+    success_message = 'ProductProcess data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProductProcessCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['partner'] = Partner.objects.order_by('id')
+        data['product'] = Product.objects.order_by('id')
+        data['active'] = 'productprocess'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('productprocess-list')
+
+class ProductProcessEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = ProductProcess
+    template_name = 'productprocess_edit.html'
+    form_class = ProductProcessForm
+    success_message = 'ProductProcess data edited'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProductProcessEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['partner'] = Partner.objects.order_by('id')
+        data['product'] = Product.objects.order_by('id')
+        data['active'] = 'productprocess'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('productprocess-list')
 
 # class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 #     model = Automation
@@ -251,6 +340,27 @@ class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('automation-list')
 
+class OutReachEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Outreach
+    template_name = 'outreach_edit.html'
+    form_class = OutReachForm
+    success_message = 'OutReach data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(OutReachEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['provinces'] = Province.objects.order_by('id')
+        data['districts'] = District.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        data['partners'] = Partner.objects.all()
+        data['active'] = 'automation'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('outreach-list')
+
 
 class FinancialLiteracyEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = FinancialLiteracy
@@ -283,6 +393,28 @@ class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
+
+class ProductProcessDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'productprocess_delete.html'
+    success_message = 'ProductProcess deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(ProductProcess, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('productprocess-list')
+
+class OutReachDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'outreach_delete.html'
+    success_message = 'OutReach deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Outreach, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('outreach-list')
 
 class FinancialLiteracyDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'financialliteracy_delete.html'
