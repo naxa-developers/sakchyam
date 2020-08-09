@@ -6,29 +6,20 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Visualization</a>
+                <a href="#">MFS</a>
             </li>
 
-            <li>
-                Product Process
-            </li>
 
         </ul>
         <div style="margin-left: 1200px;">
-            <a href="/dashboard/productprocess-add">
+            <a href="/dashboard/mfs-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
         <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/productprocess-bulk-add">
+            <a href="/dashboard/mfs-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
-            </a>
-
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/product-add">
-                <button type="submit" class="sakchyam-button sm-button"> Add Product</button>
             </a>
 
         </div>
@@ -47,31 +38,25 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
-
-                    <th>Partner</th>
-                    <th>Product</th>
-                    <th>Product Type</th>
-                    <th>Innovation area</th>
-                    <th>Market Failure</th>
-                    
-
-
-                    <th></th>
+                    <th>Province Id</th>
+                    <th>District Id</th>
+                    <th>Municipality Id</th>
+                    <th>Partner Id</th>
+                    <th>Key Innovation</th>
+                    <th>Achievement Type</th>
+                    <th>Achieved Number</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for data in list %}
                 <tr>
-                    <td>
-                        {{ data.partner_id.name }}
-                    </td>
-                    <td>{{ data.product_id.name }}</td>
-                    <td>{{ data.partner_type }}</td>
-                    <td>{{ data.innovation_area }}</td>
-                    <td>{{ data.market_failure }}</td>
-                   
-
-
+                    <td>{{ data.province_id.name }}</td>
+                    <td>{{ data.district_id.name }}</td>
+                    <td>{{ data.municipality_id.name }}</td>
+                    <td>{{ data.partner_id.name }}</td>
+                    <td>{{ data.key_innovation }}</td>
+                    <td>{{ data.achievement_type }}</td>
+                    <td>{{ data.achieved_number }}</td>
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">
@@ -79,13 +64,13 @@
                             </a>
                             <ul class="dropdown-animation">
                                 <li>
-                                    <a href="/dashboard/productprocess-edit/{{data.id}}"
+                                    <a href="/dashboard/mfs-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard/productprocess-delete/{{data.id}}" class="flex-start">
+                                    <a href="/dashboard/mfs-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
