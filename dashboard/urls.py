@@ -89,4 +89,21 @@ urlpatterns = [
     path('automation_partners-add/', views.Automation_PartnersCreate.as_view(), name='automation_partners-add'),
 
 
+    path('mfs-list/', views.MfsList.as_view(), name='mfs-list'),
+    path('insurance-list/', views.InsuranceList.as_view(), name='insurance-list'),
+    path('secondary_data-list/', views.Secondary_DataList.as_view(), name='secondary_data-list'),
+
+    path('mfs-delete/<int:pk>', views.MfsDelete.as_view(), name='mfs-delete'),
+    path('insurance-delete/<int:pk>', views.InsuranceDelete.as_view(), name='insurance-delete'),
+    path('secondary_data-delete/<int:pk>', views.Secondary_DataDelete.as_view(), name='secondary_data-delete'),
+
+    path('mfs-edit/<int:pk>', views.MfsEdit.as_view(), name='mfs-edit'),
+    path('insurance-edit/<int:pk>', views.InsuranceEdit.as_view(), name='insurance-edit'),
+    path('secondary_data-edit/<int:pk>', views.Secondary_DataEdit.as_view(), name='secondary_data-edit'),
+
+    path('mfs-add/', views.MfsCreate.as_view(), name='mfs-add'),
+    path('insurance-add/', views.InsuranceCreate.as_view(), name='insurance-add'),
+    path('secondary_data-add/', views.Secondary_DataCreate.as_view(), name='secondary_data-add'),
+
+
 ]

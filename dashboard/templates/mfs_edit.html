@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Msf</a>
+            </li>
+
+
+            <li>Edit Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- default form -->
+        <div class="default-form">
+
+
+            <div style="display:block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_province_id" class="">Province</label>
+                            <select class="selectpicker" data-live-search="true" name="province_id" required
+                                id="id_province_id">
+                                {% for province in province %}
+                                <option value="{{province.id}}" selected>{{province.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_district_id" class="">District</label>
+                            <select class="selectpicker" data-live-search="true" name="district_id" required
+                                id="id_district_id">
+                                {% for district in district %}
+                                <option value="{{district.id}}" selected>{{district.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_municipality_id" class="">Municipality</label>
+                            <select class="selectpicker" data-live-search="true" name="municipality_id" required
+                                id="id_municipality_id">
+                                {% for municipality in municipality %}
+                                <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_partner_id" class="">Partner</label>
+                            <select class="selectpicker" data-live-search="true" name="partner_id" required
+                                id="id_partner_id">
+                                {% for partner in partner %}
+                                <option value="{{partner.id}}" selected>{{partner.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_key_innovation" class="">Key Innovation</label>
+                        <input class="form-control" type="text" name="key_innovation" maxlength="100" required id="id_key_innovation" value="{{ form.instance.key_innovation }}" />
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_achievement_type" class="">Achievement Type</label>
+                        <input class="form-control" type="text" name="achievement_type" value="{{ form.instance.achievement_type }}"
+                            id="id_achievement_type"></div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_achievement_number" class="">Achievement Number</label>
+                        <input class="form-control" type="number" name="achievement_number" value="{{ form.instance.achievement_number }}"
+                            id="id_achievement_number"></div>
+                </div>
+
+            </div>
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

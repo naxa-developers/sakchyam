@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User, Permission, Group
 from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Automation, Partner,FinancialLiteracy,Outreach,ProductProcess,Project,Product,Province,District,Municipality,\
-    FinancialProgram,LogData,LogSubCategory,AutomationPartner
+    FinancialProgram,LogData,LogSubCategory,AutomationPartner,MFS,Insurance,SecondaryData
 from .models import UserProfile
 
 
@@ -61,11 +61,25 @@ class OutReachForm(ModelForm):
         model = Outreach
         fields = '__all__'
 
+class MfsForm(ModelForm):
+    class Meta:
+        model = MFS
+        fields = '__all__'
+
+class InsuranceForm(ModelForm):
+    class Meta:
+        model = Insurance
+        fields = '__all__'
+
+class Secondary_DataForm(ModelForm):
+    class Meta:
+        model = SecondaryData
+        fields = '__all__'
+
 class FinancialLiteracyForm(ModelForm):
     class Meta:
         model = FinancialLiteracy
         fields = '__all__'
-
 
 class LogSubCategoryForm(ModelForm):
     class Meta:

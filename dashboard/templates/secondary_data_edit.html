@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Secondary Data</a>
+            </li>
+
+
+            <li>Edit Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- default form -->
+        <div class="default-form">
+
+
+            <div style="display:block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_province_id" class="">Province</label>
+                            <select class="selectpicker" data-live-search="true" name="province_id" required
+                                id="id_province_id">
+                                {% for province in provinces %}
+                                <option value="{{province.id}}" selected>{{province.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_district_id" class="">District</label>
+                            <select class="selectpicker" data-live-search="true" name="district_id" required
+                                id="id_district_id">
+                                {% for district in district %}
+                                <option value="{{district.id}}" selected>{{district.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_municipality_id" class="">Municipality</label>
+                            <select class="selectpicker" data-live-search="true" name="municipality_id" required
+                                id="id_municipality_id">
+                                {% for municipality in municipality %}
+                                <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_hdi" class="">HDI</label>
+                        <input class="form-control" type="number" name="hdi" value="{{ form.instance.hdi }}"
+                            id="id_hdi"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_population" class="">Population</label>
+                        <input class="form-control" type="number" name="population" value="{{ form.instance.population }}"
+                            id="id_population"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_social_security_recipients" class="">Social Security Recipients</label>
+                        <input class="form-control" type="number" name="social_security_recipients" value="{{ form.instance.social_security_recipients }}"
+                            id="id_social_security_recipients"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_yearly_social_security_payment" class="">Yearly Social Security Payment</label>
+                        <input class="form-control" type="number" name="yearly_social_security_payment" value="{{ form.instance.yearly_social_security_payment }}"
+                            id="id_yearly_social_security_payment"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_nearest_branch_distance" class="">Number Of Tablets Deployed</label>
+                        <input class="form-control" type="number" name="nearest_branch_distance" value="{{ form.instance.nearest_branch_distance }}"
+                            id="id_nearest_branch_distance"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_yearly_fund" class="">Yearly Fund</label>
+                        <input class="form-control" type="number" name="yearly_fund" value="{{ form.instance.yearly_fund }}"
+                            id="id_num_yearly_fund"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_nearest_road_distance" class="">Nearest road distance</label>
+                        <input class="form-control" type="number" name="nearest_road_distance" value="{{ form.instance.nearest_road_distance }}"
+                            id="id_nearest_road_distance"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_nearest_police_distance" class="">Nearest police distance</label>
+                        <input class="form-control" type="number" name="nearest_police_distance" value="{{ form.instance.nearest_police_distance }}"
+                            id="id_nearest_police_distance"></div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_head_quarter" class="">Head Quarter</label>
+                        <input class="form-control" type="text" name="head_quarter" maxlength="100" required id="id_head_quarter" value="{{ form.instance.head_quarter }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_communication_landline" class="">Communication landline</label>
+                        <input class="form-control" type="text" name="communication_landline" maxlength="100" required id="id_communication_landline" value="{{ form.instance.communication_landline}}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_communication_mobile" class="">Communication mobile</label>
+                        <input class="form-control" type="text" name="communication_mobile" maxlength="100" required id="id_communication_mobile" value="{{ form.instance.communication_mobile }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_communication_internet" class="">Communication internet</label>
+                        <input class="form-control" type="text" name="communication_internet" maxlength="100" required id="id_communication_internet" value="{{ form.instance.communication_internet }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_communication_internet_other" class="">Communication internet other</label>
+                        <input class="form-control" type="text" name="communication_internet_other" maxlength="100" required id="id_communication_internet_other" value="{{ form.instance.communication_internet_other }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_nearest_police_location_name" class="">Nearest police location name</label>
+                        <input class="form-control" type="text" name="nearest_police_location_name" maxlength="100" required id="id_nearest_police_location_name" value="{{ form.instance.nearest_police_location_name }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_available_electricity_maingrid" class="">Available electricity maingrid</label>
+                        <input class="form-control" type="text" name="available_electricity_maingrid" maxlength="100" required id="id_available_electricity_maingrid" value="{{ form.instance.available_electricity_maingrid }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_available_electricity_micro_hydro" class="">Available electricity micro hydro</label>
+                        <input class="form-control" type="text" name="available_electricity_micro_hydro" maxlength="100" required id="id_available_electricity_micro_hydro" value="{{ form.instance.available_electricity_micro_hydro }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_nearest_road_location_name" class="">Nearest road location name</label>
+                        <input class="form-control" type="text" name="nearest_road_location_name" maxlength="100" required id="id_nearest_road_location_name" value="{{ form.instance.nearest_road_location_name }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_categorisation_by_sakchyam" class="">Categorisation by sakchyam</label>
+                        <input class="form-control" type="text" name="categorisation_by_sakchyam" maxlength="100" required id="id_categorisation_by_sakchyam" value="{{ form.instance.categorisation_by_sakchyam }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_nearest_road_type" class="">Nearest road type</label>
+                        <input class="form-control" type="text" name="nearest_road_type" maxlength="100" required id="id_nearest_road_type" value="{{ form.instance.nearest_road_type }}" />
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}
