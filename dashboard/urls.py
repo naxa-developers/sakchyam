@@ -50,5 +50,43 @@ urlpatterns = [
     path('sakchyam-partners-delete/<int:pk>', views.SakchyamAPartnersDelete.as_view(), name='sakchyam-partners-delete'),
     path('sakchyam-partners-bulk-add', views.sakchyamPartnerBulkCreate, name='sakchyam-partners-bulk-add'),
 
+    path('sakchyam-project/', views.SakchyamProjectList.as_view(), name='sakchyam-project'),
+    path('project-delete/<int:pk>', views.ProjectDelete.as_view(), name='project-delete'),
+    path('sakchyam-product/', views.SakchyamProductList.as_view(), name='sakchyam-product'),
+    path('product-delete/<int:pk>', views.ProductDelete.as_view(), name='product-delete'),
+    path('project-add/', views.ProjectCreate.as_view(), name='project-add'),
+    path('product-add/', views.ProductCreate.as_view(), name='product-add'),
+    path('product-edit/<int:pk>', views.ProductEdit.as_view(), name='product-edit'),
+    path('project-edit/<int:pk>', views.ProjectEdit.as_view(), name='project-edit'),
+    path('province-edit/<int:pk>', views.ProvinceEdit.as_view(), name='province-edit'),
+    path('district-edit/<int:pk>', views.DistrictEdit.as_view(), name='district-edit'),
+    path('municipalities-edit/<int:pk>', views.MunicipalitiesEdit.as_view(), name='municipalities-edit'),
+    path('district-list/', views.DistrictList.as_view(), name='district-list'),
+    path('province-list/', views.ProvinceList.as_view(), name='province-list'),
+    path('municipalities-list/', views.MunicipalitiesList.as_view(), name='municipalities-list'),
+    path('province-add/', views.ProvinceCreate.as_view(), name='province-add'),
+    path('district-add/', views.DistrictCreate.as_view(), name='district-add'),
+    path('municipalities-add/', views.MunicipalitiesCreate.as_view(), name='municipalities-add'),
     path('milestone-year-add/', views.MilestoneYearCreate.as_view(), name='milestone-year-add'),
+    path('district-delete/<int:pk>', views.DistrictDelete.as_view(), name='district-delete'),
+    path('province-delete/<int:pk>', views.ProvinceDelete.as_view(), name='province-delete'),
+    path('municipalities-delete/<int:pk>', views.MunicipalitiesDelete.as_view(), name='municipalities-delete'),
+
+
+    path('financial_program-list/', views.Financial_ProgramList.as_view(), name='financial_program-list'),
+    path('automation_partners-list/', views.Automation_PartnersList.as_view(), name='automation_partners-list'),
+
+    path('financial_program-delete/<int:pk>', views.Financial_ProgramDelete.as_view(), name='project-delete'),
+
+    path('automation_partners-delete/<int:pk>', views.Automation_PartnersDelete.as_view(), name='project-delete'),
+
+    path('financial_program-edit/<int:pk>', views.Financial_ProgramEdit.as_view(), name='financial_program-edit'),
+
+    path('automation_partners-edit/<int:pk>', views.Automation_PartnersEdit.as_view(), name='automation_partners-edit'),
+
+    path('financial_program-add/', views.Financial_ProgramCreate.as_view(), name='financial_program-add'),
+
+    path('automation_partners-add/', views.Automation_PartnersCreate.as_view(), name='automation_partners-add'),
+
+
 ]

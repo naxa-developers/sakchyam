@@ -4,11 +4,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner,FinancialLiteracy,\
-    FinancialProgram,Outreach,ProductProcess,Product
+    FinancialProgram,Outreach,ProductProcess,Product,Project,AutomationPartner
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, FinancialLiteracyForm,\
-    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm,OutReachForm,ProductProcessForm
+    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm,OutReachForm,ProductProcessForm,ProjectForm,ProductForm,ProvinceForm,DistrictForm,MunicipalitiesForm,\
+        Financial_ProgramForm,Automation_PartnersForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -44,8 +45,272 @@ class LogCategoryList(LoginRequiredMixin, ListView):
         data = super(LogCategoryList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        # data['active'] = 'program'
+        data['logcat'] = 'active'
         query_data = LogCategory.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class Financial_ProgramList(LoginRequiredMixin, ListView):
+    template_name = 'financial_program_list.html'
+    model = FinancialProgram
+
+    def get_context_data(self, **kwargs):
+        data = super(Financial_ProgramList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['financial_program'] = 'active'
+        query_data = FinancialProgram.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class LogdataList(LoginRequiredMixin, ListView):
+    template_name = 'logdata_list.html'
+    model = LogData
+
+    def get_context_data(self, **kwargs):
+        data = super(LogdataList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['logdata'] = 'active'
+        query_data = LogData.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+
+class Automation_PartnersList(LoginRequiredMixin, ListView):
+    template_name = 'automation_partners_list.html'
+    model = AutomationPartner
+
+    def get_context_data(self, **kwargs):
+        data = super(Automation_PartnersList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['automation_partners'] = 'active'
+        query_data = AutomationPartner.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class ProvinceList(LoginRequiredMixin, ListView):
+    template_name = 'province_list.html'
+    model = Province
+
+    def get_context_data(self, **kwargs):
+        data = super(ProvinceList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['province'] = 'active'
+        query_data = Province.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class DistrictList(LoginRequiredMixin, ListView):
+    template_name = 'district_list.html'
+    model = District
+
+    def get_context_data(self, **kwargs):
+        data = super(DistrictList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['district'] = 'active'
+        query_data = District.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class MunicipalitiesList(LoginRequiredMixin, ListView):
+    template_name = 'municipalities_list.html'
+    model = Municipality
+
+    def get_context_data(self, **kwargs):
+        data = super(MunicipalitiesList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['municipality'] = 'active'
+        query_data = Municipality.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class ProvinceCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Province
+    template_name = 'province_create.html'
+    form_class = ProvinceForm
+    success_message = 'Province data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProvinceCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['province'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('province-list')
+
+class ProvinceEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Province
+    template_name = 'province_edit.html'
+    form_class = ProvinceForm
+    success_message = 'Province data edited'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProvinceEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['province'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('province-list')
+
+class DistrictCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = District
+    template_name = 'district_create.html'
+    form_class = DistrictForm
+    success_message = 'District data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(DistrictCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['provinces'] = Province.objects.order_by('id')
+        # data['active'] = 'program'
+        data['district'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('district-list')
+
+class DistrictEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = District
+    template_name = 'district_edit.html'
+    form_class = DistrictForm
+    success_message = 'District data edited'
+
+    def get_context_data(self, **kwargs):
+        data = super(DistrictEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['provinces'] = Province.objects.order_by('id')
+        # data['active'] = 'program'
+        data['district'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('district-list')
+
+
+
+class MunicipalitiesCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Municipality
+    template_name = 'municipalities_create.html'
+    form_class = MunicipalitiesForm
+    success_message = 'Municipality data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(MunicipalitiesCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['province'] = Province.objects.order_by('id')
+        data['district'] = District.objects.order_by('id')
+        # data['active'] = 'program'
+        data['municipalities'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('municipalities-list')
+
+
+class MunicipalitiesEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Municipality
+    template_name = 'municipalities_edit.html'
+    form_class = MunicipalitiesForm
+    success_message = 'Municipality data edit'
+
+    def get_context_data(self, **kwargs):
+        data = super(MunicipalitiesEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['province'] = Province.objects.order_by('id')
+        data['district'] = District.objects.order_by('id')
+        # data['active'] = 'program'
+        data['municipalities'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('municipalities-list')
+
+class Financial_ProgramCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = FinancialProgram
+    template_name = 'financial_program_create.html'
+    form_class = Financial_ProgramForm
+    success_message = 'Financial Program data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(Financial_ProgramCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+   
+        # data['active'] = 'program'
+        data['district'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('financial_program-list')
+
+
+
+
+
+class Automation_PartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = AutomationPartner
+    template_name = 'automation_partners_create.html'
+    form_class = Automation_PartnersForm
+    success_message = 'Automation Partners data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(Automation_PartnersCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['partner'] = Partner.objects.order_by('id')
+        # data['active'] = 'program'
+        data['district'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('automation_partners-list')
+
+class SakchyamProjectList(LoginRequiredMixin, ListView):
+    template_name = 'sakchyamprojects_list.html'
+    model = Project
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamProjectList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['project'] = 'active'
+        query_data = Project.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class SakchyamProductList(LoginRequiredMixin, ListView):
+    template_name = 'sakchyamproducts_list.html'
+    model = Product
+
+    def get_context_data(self, **kwargs):
+        data = super(SakchyamProductList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['product'] = 'active'
+        query_data = Product.objects.order_by('id')
         data['list'] = query_data
         return data
 
@@ -62,8 +327,7 @@ class LogCategoryCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-        # data['active'] = 'program'
-        data['active'] = 'logcat'
+        data['logcat'] = 'active'
         data['years'] = {
             'y1': 'Year 1',
             'y2': 'Year 2',
@@ -90,7 +354,7 @@ class AutomationList(LoginRequiredMixin, ListView):
         data = super(AutomationList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        # data['active'] = 'program'
+        data['automation'] = 'active'
         query_data = Automation.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -104,7 +368,7 @@ class OutReachList(LoginRequiredMixin, ListView):
         data = super(OutReachList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        # data['active'] = 'program'
+        data['outreach'] = 'active'
         query_data = Outreach.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -117,7 +381,7 @@ class FinancialLiteracyList(LoginRequiredMixin, ListView):
         data = super(FinancialLiteracyList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        # data['active'] = 'program'
+        data['financialliteracy'] = 'active'
         query_data = FinancialLiteracy.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -130,7 +394,7 @@ class ProductProcessList(LoginRequiredMixin, ListView):
         data = super(ProductProcessList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        # data['active'] = 'program'
+        data['productprocess'] = 'active'
         query_data = ProductProcess.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -152,11 +416,86 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
         data['partners'] = Partner.objects.order_by('id')
-        data['active'] = 'automation'
+        data['automation'] = 'active'
         return data
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
+
+
+
+class ProjectCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Project
+    template_name = 'project_create.html'
+    form_class = ProjectForm
+    success_message = 'Project data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProjectCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['project'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-project')
+
+class ProjectEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Project
+    template_name = 'project_edit.html'
+    form_class = ProjectForm
+    success_message = 'Project data edited'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProjectEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['project'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-project')
+
+
+class ProductCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Product
+    template_name = 'product_create.html'
+    form_class = ProductForm
+    success_message = 'product data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProductCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['product'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-product')
+
+class ProductEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Product
+    template_name = 'product_edit.html'
+    form_class = ProductForm
+    success_message = 'product data edited'
+
+    def get_context_data(self, **kwargs):
+        data = super(ProductEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['product'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-product')
 
 class OutReachCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Outreach
@@ -174,7 +513,7 @@ class OutReachCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
         data['partners'] = Partner.objects.order_by('id')
-        data['active'] = 'automation'
+        data['active'] = 'outreach'
         return data
 
     def get_success_url(self):
@@ -194,7 +533,7 @@ class FinancialLiteracyCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
         # data['active'] = 'program'
         data['partner'] = Partner.objects.order_by('id')
         data['financialprogram'] = FinancialProgram.objects.order_by('id')
-        data['active'] = 'automation'
+        data['active'] = 'financialliteracy'
         return data
 
     def get_success_url(self):
@@ -239,6 +578,48 @@ class ProductProcessEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('productprocess-list')
+
+class Financial_ProgramEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = FinancialProgram
+    template_name = 'financial_program_edit.html'
+    form_class = Financial_ProgramForm
+    success_message = 'Financial Program data '
+
+    def get_context_data(self, **kwargs):
+        data = super(Financial_ProgramEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        
+        # data['active'] = 'program'
+        data['district'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('financial_program-list')
+
+
+
+
+class Automation_PartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = AutomationPartner
+    template_name = 'automation_partners_edit.html'
+    form_class = Automation_PartnersForm
+    success_message = 'Automation Partners data edited'
+
+    def get_context_data(self, **kwargs):
+        data = super(Automation_PartnersEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        data['partner'] = Partner.objects.order_by('id')
+        data['product'] = Product.objects.order_by('id')
+        data['active'] = 'productprocess'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('automation_partners-list')
 
 # class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 #     model = Automation
@@ -393,6 +774,86 @@ class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
+
+class Financial_ProgramDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'financial_program_delete.html'
+    success_message = 'Financial Program deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(FinancialProgram, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('financial_program-list')
+
+
+
+class Automation_PartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'automation_partners_delete.html'
+    success_message = 'Automation Partners deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(AutomationPartner, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('automation_partners-list')
+
+class DistrictDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'district_delete.html'
+    success_message = 'District deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(District, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('district-list')
+
+class ProvinceDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'province_delete.html'
+    success_message = 'Province deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Province, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('province-list')
+
+class MunicipalitiesDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'municipalities_delete.html'
+    success_message = 'Municipalitiy deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Municipality, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('municipalities-list')
+
+
+class ProjectDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'project_delete.html'
+    success_message = 'Project deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Project, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-project')
+
+class ProductDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'product_delete.html'
+    success_message = 'Product deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Product, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('sakchyam-product')
 
 class ProductProcessDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'productprocess_delete.html'
@@ -713,6 +1174,7 @@ class SakchyamAPartnersList(LoginRequiredMixin, ListView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
+        data['partner'] = 'active'
         # data['active'] = 'program'
         query_data = Partner.objects.order_by('id')
         data['list'] = query_data
