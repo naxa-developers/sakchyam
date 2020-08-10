@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% if perms.api.view_financialprogram %}
+{% if perms.api.view_financialliteracy %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
@@ -15,7 +15,7 @@
 
 
         </ul>
-        {% if perms.api.add_financialprogram %}
+        {% if perms.api.add_financialliteracy %}
         <div style="margin-left: 1200px;">
             <a href="/dashboard/financial_program-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
@@ -65,7 +65,7 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
-                                {% if perms.api.change_financialprogram %}
+                                {% if perms.api.change_financialliteracy %}
                                 <li>
                                     <a href="/dashboard/financial_program-edit/{{data.id}}"
                                        class="flex-start">
@@ -74,7 +74,7 @@
                                 </li>
  
                                 {% endif %}
-                                {% if perms.api.delete_financialprogram %}
+                                {% if perms.api.delete_financialliteracy %}
                                 <li>
                                     <a href="/dashboard/financial_program-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
