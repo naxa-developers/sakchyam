@@ -34,7 +34,7 @@ class Dashboard(TemplateView):
         #     five = FiveW.objects.order_by('id')
         # else:
         #     five = FiveW.objects.select_related('supplier_id').filter(supplier_id=user_data.partner.id)[:10]
-        return render(request, 'dashboard.html', {"sidebar": sidebar})
+        return render(request, 'dashboard.html', {"sidebar": sidebar,"dashboard":"active"})
 
 
 class LogCategoryList(LoginRequiredMixin, ListView):

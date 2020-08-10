@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.view_logcategory %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
@@ -23,12 +24,14 @@
 
 
         </ul>
+        {% if perms.api.add_logcategory %}
         <div style="margin-left: 1441px;">
             <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
+        {% endif %}
     </div>
 
 
@@ -70,17 +73,21 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
+                                {% if perms.api.change_logcategory %}
                                 <li>
                                     <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}" class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
+                                {% endif %}
+                                {% if perms.api.delete_logcategory %}
                                 <li>
                                     <a href="#" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </td>
@@ -92,4 +99,5 @@
     </div>
 
 </main>
+{% endif%}
 {% endblock %}
