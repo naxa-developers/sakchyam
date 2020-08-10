@@ -105,5 +105,11 @@ urlpatterns = [
     path('insurance-add/', views.InsuranceCreate.as_view(), name='insurance-add'),
     path('secondary_data-add/', views.Secondary_DataCreate.as_view(), name='secondary_data-add'),
 
+    path('partnership-list/', views.PartnershipList.as_view(), name='partnership-list'),
+    path('partnership-add/', views.PartnershipCreate.as_view(), name='partnership-add'),
+    path('partnership-edit/<int:pk>', views.PartnershipEdit.as_view(), name='partnership-edit'),
+    path('partnership-delete/<int:pk>', views.PartnershipDelete.as_view(), name='partnership-delete'),
+
+
 
 ]

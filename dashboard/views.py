@@ -4,12 +4,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner,FinancialLiteracy,\
-    FinancialProgram,Outreach,ProductProcess,Product,Project,AutomationPartner,MFS,Insurance,SecondaryData
+    FinancialProgram,Outreach,ProductProcess,Product,Project,AutomationPartner,MFS,Insurance,SecondaryData,Partnership
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, FinancialLiteracyForm,\
     AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm,OutReachForm,ProductProcessForm,ProjectForm,ProductForm,ProvinceForm,DistrictForm,MunicipalitiesForm,\
-        Financial_ProgramForm,Automation_PartnersForm,MfsForm,InsuranceForm,Secondary_DataForm
+        Financial_ProgramForm,Automation_PartnersForm,MfsForm,InsuranceForm,Secondary_DataForm,PartnershipForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -71,7 +71,7 @@ class MfsList(LoginRequiredMixin, ListView):
         data = super(MfsList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        data['mfs'] = 'active'
+        data['mfss'] = 'active'
         query_data = MFS.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -97,7 +97,7 @@ class Secondary_DataList(LoginRequiredMixin, ListView):
         data = super(Secondary_DataList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        data['secondary_data'] = 'active'
+        data['secondarydata'] = 'active'
         query_data = SecondaryData.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -462,6 +462,76 @@ class SakchyamProjectList(LoginRequiredMixin, ListView):
         query_data = Project.objects.order_by('id')
         data['list'] = query_data
         return data
+
+class PartnershipList(LoginRequiredMixin, ListView):
+    template_name = 'partnership_list.html'
+    model = Partnership
+
+    def get_context_data(self, **kwargs):
+        data = super(PartnershipList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['partnership'] = 'active'
+        query_data = Partnership.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+class PartnershipCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Partnership
+    template_name = 'partnership_create.html'
+    form_class = PartnershipForm
+    success_message = 'Partnership data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(PartnershipCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['province'] = Province.objects.order_by('id')
+        data['district'] = District.objects.order_by('id')
+        data['partner'] = Partner.objects.order_by('id')
+        data['project'] = Project.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        # data['active'] = 'program'
+        data['partnership'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('partnership-list')
+
+class PartnershipEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Partnership
+    template_name = 'partnership_edit.html'
+    form_class = PartnershipForm
+    success_message = 'Partnership data edited'
+
+    def get_context_data(self, **kwargs):
+        data = super(PartnershipEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['province'] = Province.objects.order_by('id')
+        data['district'] = District.objects.order_by('id')
+        data['partner'] = Partner.objects.order_by('id')
+        data['project'] = Project.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        # data['active'] = 'program'
+        data['partnership'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('partnership-list')
+
+class PartnershipDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'partnership_delete.html'
+    success_message = 'Partnership deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Partnership, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('partnership-list')
 
 class SakchyamProductList(LoginRequiredMixin, ListView):
     template_name = 'sakchyamproducts_list.html'

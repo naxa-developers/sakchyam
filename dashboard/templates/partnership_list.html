@@ -6,20 +6,30 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                Secondary Data
+                <a href="#">Visualization</a>
             </li>
 
 
+            <li>
+                Partnership
+            </li>
+
         </ul>
         <div style="margin-left: 1200px;">
-            <a href="/dashboard/secondary_data-add">
+            <a href="/dashboard/partnership-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
         <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/secondary_data-bulk-add">
+            <a href="/dashboard/partnership-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
+            </a>
+
+        </div>
+        <div style="margin-left: 1200px; margin-top: 20px;">
+            <a href="/dashboard/sakchyam-partners/">
+                <button type="submit" class="sakchyam-button sm-button"> Manage Partner</button>
             </a>
 
         </div>
@@ -38,56 +48,62 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+
+                    <th>Partner ID</th>
+                    <th>Project Id</th>
                     <th>Province Id</th>
                     <th>District Id</th>
                     <th>Municipality Id</th>
-                    <th>Hdi</th>
-                    <th>Head Quarter</th>
-                    <th>Population</th>
-                    <th>Yearly Fund</th>
-                    <th>Social security recipients</th>
-                    <th>Yearly social security payment</th>
-                    <th>Nearest branch distance</th>
-                    <th>Communication landline</th>
-                    <th>Communication mobile</th>
-                    <th>Communication internet</th>
-                    <th>Communication internet other</th>
-                    <th>Available electricity maingrid</th>
-                    <th>Available electricity micro hydro</th>
-                    <th>Nearest road location name</th>
-                    <th>Nearest road distance</th>
-                    <th>Nearest road type</th>
-                    <th>Nearest police location name</th>
-                    <th>Nearest police distance</th>
-                    <th>Categorisation by sakchyam</th>
-                    
+                    <th>Branch</th>
+                    <th>Blb</th>
+                    <th>Extension Counter</th>
+                    <th>Tablet</th>
+                    <th>Other Product</th>
+                    <th>Beneficiary</th>
+                    <th>Scf Funds</th>
+                    <th>Allocated Budget</th>
+                    <th>Allocated Beneficiary</th>
+                    <th>Female Percentage</th>
+                    <th>Total Beneficiary</th>
+                    <th>Female Beneficiary</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Project Year</th>
+                
+
+
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for data in list %}
                 <tr>
+                    <td>
+                        {{ data.partner_id.name }}
+                    </td>
+                    <td>{{ data.project_id.name }}</td>
                     <td>{{ data.province_id.name }}</td>
                     <td>{{ data.district_id.name }}</td>
                     <td>{{ data.municipality_id.name }}</td>
-                    <td>{{ data.hdi }}</td>
-                    <td>{{ data.head_quarter }}</td>
-                    <td>{{ data.population }}</td>
-                    <td>{{ data.yearly_fund }}</td>
-                    <td>{{ data.social_security_recipients }}</td>
-                    <td>{{ data.yearly_social_security_payment }}</td>
-                    <td>{{ data.nearest_branch_distance }}</td>
-                    <td>{{ data.communication_landline }}</td>
-                    <td>{{ data.communication_mobile }}</td>
-                    <td>{{ data.communication_internet }}</td>
-                    <td>{{ data.communication_internet_other }}</td>
-                    <td>{{ data.available_electricity_maingrid }}</td>
-                    <td>{{ data.available_electricity_micro_hydro }}</td>
-                    <td>{{ data.nearest_road_location_name }}</td>
-                    <td>{{ data.nearest_road_distance }}</td>
-                    <td>{{ data.nearest_road_type }}</td>
-                    <td>{{ data.nearest_police_location_name }}</td>
-                    <td>{{ data.nearest_police_distance }}</td>
-                    <td>{{ data.categorisation_by_sakchyam }}</td>
+                    <td>{{ data.branch }}</td>
+                    <td>{{ data.blb }}</td>
+                    <td>{{ data.extension_counter }}</td>
+                    <td>{{ data.tablet }}</td>
+                    <td>{{ data.other_products }}</td>
+                    <td>{{ data.beneficiary }}</td>
+                    <td>{{ data.scf_funds }}</td>
+                    <td>{{ data.allocated_budget }}</td>
+                    <td>{{ data.allocated_beneficiary }}</td>
+                    <td>{{ data.female_percentage }}</td>
+                    <td>{{ data.total_beneficiary }}</td>
+                    <td>{{ data.female_beneficiary }}</td>
+                    <td>{{ data.status }}</td>
+                    <td>{{ data.start_date }}</td>
+                    <td>{{ data.end_date }}</td>
+                    <td>{{ data.project_year }}</td>
+
+
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">
@@ -95,13 +111,13 @@
                             </a>
                             <ul class="dropdown-animation">
                                 <li>
-                                    <a href="/dashboard/secondary_data-edit/{{data.id}}"
+                                    <a href="/dashboard/partnership-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard/secondary_data-delete/{{data.id}}" class="flex-start">
+                                    <a href="/dashboard/partnership-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
