@@ -2000,7 +2000,8 @@ class OutreachApi(viewsets.ModelViewSet):
         group = Group.objects.get(user=user)
         data = []
 
-        outreach_query = Outreach.objects.values('id', 'partner_type', 'partner_id__id', 'partner_id__name',
+        outreach_query = Outreach.objects.values('id', 'partner_id__outreach_expansion', 'partner_id__id',
+                                                 'partner_id__name',
                                                  'market_name', 'province_id__name', 'province_id__code',
                                                  'district_id__name', 'district_id__n_code',
                                                  'municipality_id__name', 'municipality_id__code',
@@ -2048,7 +2049,7 @@ class OutreachApi(viewsets.ModelViewSet):
             partner_type = partner_types.split(",")
             # for i in range(0, len(mun_id)):
             #     mun_id[i] = int(mun_id[i])
-            outreach_query = outreach_query.filter(partner_type__in=partner_type)
+            outreach_query = outreach_query.filter(partner_id__outreach_expansion__in=partner_type)
 
         if request.GET.getlist('g2p_payment'):
             g2p_payment = request.GET['g2p_payment']
@@ -2076,7 +2077,7 @@ class OutreachApi(viewsets.ModelViewSet):
                 'id': m['id'],
                 'partner': m['partner_id__name'],
                 'partner_id': m['partner_id__id'],
-                'partner_type': m['partner_type'],
+                'partner_type': m['partner_id__outreach_expansion'],
                 'market_name': m['market_name'],
                 'province': m['province_id__name'],
                 'province_code': m['province_id__code'],
@@ -2130,7 +2131,7 @@ class OutreachMap(viewsets.ModelViewSet):
             partner_type = partner_types.split(",")
             # for i in range(0, len(mun_id)):
             #     mun_id[i] = int(mun_id[i])
-            outreach_query = outreach_query.filter(partner_type__in=partner_type)
+            outreach_query = outreach_query.filter(partner_id__outreach_expansion__in=partner_type)
 
         if request.GET.getlist('g2p_payment'):
             g2p_payment = request.GET['g2p_payment']
