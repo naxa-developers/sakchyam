@@ -1,0 +1,316 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Partnership</a>
+            </li>
+
+
+            <li>Edit Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- default form -->
+        <div class="default-form">
+
+
+            <div style="display:block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_province_id" class="">Province</label>
+                            <select class="selectpicker" data-live-search="true" name="province_id" required
+                                id="id_province_id">
+                                {% for province in province %}
+                                <option value="{{province.id}}" selected>{{province.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_district_id" class="">District</label>
+                            <select class="selectpicker" data-live-search="true" name="district_id" required
+                                id="id_district_id">
+                                {% for district in district %}
+                                <option value="{{district.id}}" selected>{{district.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_municipality_id" class="">Municipality</label>
+                            <select class="selectpicker" data-live-search="true" name="municipality_id" required
+                                id="id_municipality_id">
+                                {% for municipality in municipalities %}
+                                <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_partner_id" class="">Partner</label>
+                            <select class="selectpicker" data-live-search="true" name="partner_id" required
+                                id="id_partner_id">
+                                {% for partner in partner %}
+                                <option value="{{partner.id}}" selected>{{partner.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_project_id" class="">Project</label>
+                            <select class="selectpicker" data-live-search="true" name="project_id" required
+                                id="id_project_id">
+                                {% for project in project %}
+                                <option value="{{project.id}}" selected>{{project.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_branch" class="">Branch</label>
+                        <input class="form-control" type="number" name="branch" value="{{ form.instance.branch }}"
+                            id="id_branch"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_blb" class="">Blb</label>
+                        <input class="form-control" type="number" name="blb" value="{{ form.instance.blb }}"
+                            id="id_blb"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_extension_counter" class="">Extension counter</label>
+                        <input class="form-control" type="number" name="extension_counter" value="{{ form.instance.extension_counter }}"
+                            id="id_extension_counter"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_tablet" class="">Tablet</label>
+                        <input class="form-control" type="number" name="tablet" value="{{ form.instance.tablet }}"
+                            id="id_tablet"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_other_products" class="">Other products</label>
+                        <input class="form-control" type="number" name="other_products" value="{{ form.instance.other_products }}"
+                            id="id_other_products"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_beneficiary" class="">Beneficiary</label>
+                        <input class="form-control" type="number" name="beneficiary" value="{{ form.instance.beneficiary }}"
+                            id="id_beneficiary"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_scf_funds" class="">Scf funds</label>
+                        <input class="form-control" type="number" name="scf_funds" value="{{ form.instance.scf_funds }}"
+                            id="id_scf_funds"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_allocated_budget" class="">Allocated budget</label>
+                        <input class="form-control" type="number" name="allocated_budget" value="{{ form.instance.allocated_budget }}"
+                            id="id_allocated_budget"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_allocated_beneficiary" class="">Allocated beneficiary</label>
+                        <input class="form-control" type="number" name="allocated_beneficiary" value="{{ form.instance.allocated_beneficiary }}"
+                            id="id_allocated_beneficiary"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_female_percentage" class="">Female percentage</label>
+                        <input class="form-control" type="number" name="female_percentage" value="{{ form.instance.female_percentage }}"
+                            id="id_female_percentage"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_total_beneficiary" class="">Total beneficiary</label>
+                        <input class="form-control" type="number" name="total_beneficiary" value="{{ form.instance.total_beneficiary }}"
+                            id="id_total_beneficiary"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_female_beneficiary" class="">Female beneficiary</label>
+                        <input class="form-control" type="number" name="female_beneficiary" value="{{ form.instance.female_beneficiary }}"
+                            id="id_female_beneficiary"></div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_status" class="">Status</label>
+                        <input class="form-control" type="text" name="status" maxlength="100" required id="id_status" value="{{ form.instance.status }}" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_start_date" class="">Start Date</label>
+                        <input class="form-control" type="date" name="start_date" maxlength="100" required id="id_start_date" value="{{ form.instance.start_date }}" />
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_end_date" class="">End Date</label>
+                        <input class="form-control" type="date" name="end_date" maxlength="100" required id="id_end_date" value="{{ form.instance.end_date }}" />
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_project_year" class="">Project Year</label>
+                        <input class="form-control" type="text" name="project_year" maxlength="100" required id="id_project_year" value="{{ form.instance.project_year }}" />
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

@@ -1,40 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% if perms.api.view_logdata %}
+{% if perms.api.view_outreach %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Log Frame</a>
+                <a href="#">Visualization</a>
             </li>
 
             <li>
-                <a href="/dashboard/logsubcat-list/{{ list.first.category.id }}">{{ list.first.category.name }}</a>
+                Outreach
             </li>
-            <li>
-                <a href="#">
-                    {{ list.first.sub_category.name }}
-                </a>
-            </li>
-            <li>
-                {{ list.first.sub_category.title }}
-            </li>
-
 
         </ul>
-        {% if perms.api.add_logdata %}
+        {% if perms.api.add_outreach %}
         <div style="margin-left: 1200px;">
-            <a href="/dashboard/log-frame-add/{{ list.first.category.id }}/{{ list.first.sub_category.id }}">
+            <a href="/dashboard/outreach-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
+            </a>
+
+        </div>
+        <div style="margin-left: 1200px; margin-top: 20px;">
+            <a href="/dashboard/outreach-bulk-add">
+                <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
         </div>
         {% endif %}
     </div>
-
-
     <div class="logframe">
         <!-- logframe table -->
         <div class="table-tesponsive ">
@@ -42,7 +37,7 @@
             {% for message in messages %}
             <div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> {{message}}
+                <strong>Alert!</strong> {{message}}
             </div>
             {% endfor %}
             {% endif %}
@@ -50,9 +45,18 @@
                 <thead>
                 <tr>
 
-                    <th>year</th>
-                    <th>planned_afp</th>
-                    <th>achieved</th>
+                    <th>Province</th>
+                    <th>District</th>
+                    <th>Municipality</th>
+                    <th>Name of partner institution</th>
+                    <th>Partner Type</th>
+                    <th>Market Name</th>
+                    <th>Expansion Driven By</th>
+                    <th>Point Service</th>
+                    <th>Date Established</th>
+                    <th>G2p Payment</th>
+                    <th>Demonstration Effect</th>
+                    <th>Gps Point</th>
 
 
                     <th></th>
@@ -61,10 +65,20 @@
                 <tbody>
                 {% for data in list %}
                 <tr>
-
-                    <td>{{data.year}}</td>
-                    <td>{{data.planned_afp}}</td>
-                    <td>{{data.achieved}}</td>
+                    <td>
+                        {{ data.province_id.name }}
+                    </td>
+                    <td>{{ data.district_id.name }}</td>
+                    <td>{{ data.municipality_id.name }}</td>
+                    <td>{{ data.partner_id.name }}</td>
+                    <td>{{ data.partner_type }}</td>
+                    <td>{{ data.market_name }}</td>
+                    <td>{{ data.expansion_driven_by }}</td>
+                    <td>{{ data.point_service }}</td>
+                    <td>{{ data.date_established }}</td>
+                    <td>{{ data.g2p_payment }}</td>
+                    <td>{{ data.demonstration_effect }}</td>
+                    <td>{{ data.gps_point }}</td>
 
 
                     <td>
@@ -73,16 +87,17 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
-                                {% if perms.api.change_logdata %}
+                                {% if perms.api.change_outreach %}
                                 <li>
-                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}" class="flex-start">
+                                    <a href="/dashboard/outreach-edit/{{data.id}}"
+                                       class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
                                 {% endif %}
-                                {% if perms.api.delete_logdata %}
+                                {% if perms.api.delete_outreach %}
                                 <li>
-                                    <a href="#" class="flex-start">
+                                    <a href="/dashboard/outreach-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
@@ -99,5 +114,5 @@
     </div>
 
 </main>
-{% endif%}
+{% endif %}
 {% endblock %}

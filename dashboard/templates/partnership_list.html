@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% if perms.api.view_automation %}
+{% if perms.api.view_partnership %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
@@ -10,33 +10,33 @@
                 <a href="#">Visualization</a>
             </li>
 
+
             <li>
-                Automation
+                Partnership
             </li>
 
         </ul>
-        {% if perms.api.add_automation %}
+        {% if perms.api.add_partnership %}
         <div style="margin-left: 1200px;">
-            <a href="/dashboard/automation-add">
+            <a href="/dashboard/partnership-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
-        
         <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/automation-bulk-add">
+            <a href="/dashboard/partnership-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
         </div>
-
+        {% endif %}
         <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/automation_partners-list">
-                <button type="submit" class="sakchyam-button sm-button"> Manage Partners</button>
+            <a href="/dashboard/sakchyam-partners/">
+                <button type="submit" class="sakchyam-button sm-button"> Manage Partner</button>
             </a>
 
         </div>
-        {% endif %}
+        
     </div>
     <div class="logframe">
         <!-- logframe table -->
@@ -53,12 +53,28 @@
                 <thead>
                 <tr>
 
-                    <th>Province</th>
-                    <th>District</th>
-                    <th>Municipality</th>
-                    <th>Name of partner institution</th>
-                    <th>Branch Name</th>
-                    <th>Number of Tablets Deployed</th>
+                    <th>Partner ID</th>
+                    <th>Project Id</th>
+                    <th>Province Id</th>
+                    <th>District Id</th>
+                    <th>Municipality Id</th>
+                    <th>Branch</th>
+                    <th>Blb</th>
+                    <th>Extension Counter</th>
+                    <th>Tablet</th>
+                    <th>Other Product</th>
+                    <th>Beneficiary</th>
+                    <th>Scf Funds</th>
+                    <th>Allocated Budget</th>
+                    <th>Allocated Beneficiary</th>
+                    <th>Female Percentage</th>
+                    <th>Total Beneficiary</th>
+                    <th>Female Beneficiary</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Project Year</th>
+                
 
 
                     <th></th>
@@ -68,13 +84,28 @@
                 {% for data in list %}
                 <tr>
                     <td>
-                        {{ data.province_id.name }}
+                        {{ data.partner_id.name }}
                     </td>
+                    <td>{{ data.project_id.name }}</td>
+                    <td>{{ data.province_id.name }}</td>
                     <td>{{ data.district_id.name }}</td>
                     <td>{{ data.municipality_id.name }}</td>
-                    <td>{{ data.partner }}</td>
                     <td>{{ data.branch }}</td>
-                    <td>{{ data.num_tablet_deployed }}</td>
+                    <td>{{ data.blb }}</td>
+                    <td>{{ data.extension_counter }}</td>
+                    <td>{{ data.tablet }}</td>
+                    <td>{{ data.other_products }}</td>
+                    <td>{{ data.beneficiary }}</td>
+                    <td>{{ data.scf_funds }}</td>
+                    <td>{{ data.allocated_budget }}</td>
+                    <td>{{ data.allocated_beneficiary }}</td>
+                    <td>{{ data.female_percentage }}</td>
+                    <td>{{ data.total_beneficiary }}</td>
+                    <td>{{ data.female_beneficiary }}</td>
+                    <td>{{ data.status }}</td>
+                    <td>{{ data.start_date }}</td>
+                    <td>{{ data.end_date }}</td>
+                    <td>{{ data.project_year }}</td>
 
 
                     <td>
@@ -83,17 +114,17 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
-                                {% if perms.api.change_automation %}
+                                {% if perms.api.change_partnership %}
                                 <li>
-                                    <a href="/dashboard/automation-edit/{{data.id}}"
+                                    <a href="/dashboard/partnership-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
                                 {% endif %}
-                                {% if perms.api.delete_automation %}
+                                {% if perms.api.delete_partnership %}
                                 <li>
-                                    <a href="/dashboard/automation-delete/{{data.id}}" class="flex-start">
+                                    <a href="/dashboard/partnership-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 

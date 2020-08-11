@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.auth.view_user %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
@@ -16,12 +17,15 @@
 
 
         </ul>
+        {% if perms.auth.add_user %}
         <div style="margin-left: 1441px;">
             <a href="/dashboard/add-role">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
+        {% endif %}
+
     </div>
 
 
@@ -60,18 +64,22 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
+                                {% if perms.auth.change_user %}
                                 <li>
                                     <a href="/dashboard/edit-role/{{group.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
+                                {% endif %}
+                                {% if perms.auth.delete_user %}
                                 <li>
                                     <a href="#" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </td>
@@ -83,4 +91,5 @@
     </div>
 
 </main>
+{% endif %}
 {% endblock %}

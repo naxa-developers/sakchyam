@@ -1,29 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.view_automation %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Log Frame</a>
+                <a href="#">Visualization</a>
             </li>
             <li>
-                <a href="/dashboard/logsubcat-list/{{ list.first.sub_category.category.id }}">
-                    {{list.first.sub_category.category.name }}
-                </a>
-            </li>
-            <li>
-                {{ list.first.sub_category.name }}
+                Automation Partner
             </li>
 
+
         </ul>
+        {% if perms.api.add_automation %}
         <div style="margin-left: 1200px;">
-            <a href="/dashboard/logtitle-add/{{ list.first.sub_category.id }}">
+            <a href="/dashboard/automation_partners-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
         </div>
+        <div style="margin-left: 1200px; margin-top: 20px;">
+            <a href="/dashboard/automation_partners-bulk-add">
+                <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
+            </a>
+
+        </div>
+        {% endif %}
     </div>
     <div class="logframe">
         <!-- logframe table -->
@@ -32,63 +37,50 @@
             {% for message in messages %}
             <div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> {{message}}
+                <strong>Alert!</strong> {{message}}
             </div>
             {% endfor %}
             {% endif %}
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
-
-                    <th>Title</th>
-                    <th>Source</th>
-                    <th>Description</th>
-
-
-                    <th></th>
+                    <th>Partner</th>
+                    <th>Date</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Beneficiary</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for data in list %}
                 <tr>
-                    <td>
-
-                        {% if data.LogTitle.all.count < 1 %}
-                        <a href="/dashboard/log-frame-add/{{ list.first.sub_category.category.id }}/{{ list.first.sub_category.id }}/{{ data.id }}">
-
-                            {{data.title}}
-                        </a>
-                        {% else %}
-                        <a href="/dashboard/logframe-list/{{ data.id }}">
-
-
-                            {{data.title}}
-                        </a>
-                        {% endif %}
-
-
-                    </td>
-                    <td>{{data.source}}</td>
-                    <td>{{data.description}}</td>
-
-
+                    <td>{{ data.partner.name }}</td>
+                    <td>{{ data.date }}</td>
+                    <td>{{ data.latitude }}</td>
+                    <td>{{ data.longitude }}</td>
+                    <td>{{ data.beneficiary }}</td>
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
+                                {% if perms.api.change_automation %}
                                 <li>
-                                    <a href="/dashboard/logtitle-edit/{{data.id}}/{{ list.first.sub_category.id }}" class="flex-start">
+                                    <a href="/dashboard/automation_partners-edit/{{data.id}}"
+                                       class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
+                                {% endif %}
+                                {% if perms.api.delete_automation %}
                                 <li>
-                                    <a href="#" class="flex-start">
+                                    <a href="/dashboard/automation_partners-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </td>
@@ -100,4 +92,5 @@
     </div>
 
 </main>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="#">Financial Literacy</a>
+            </li>
+
+
+            <li>Add Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- default form -->
+        <div class="default-form">
+
+
+            <div style="display:block">
+                <div class="row">
+
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_partner_type" class="">Partner Type</label>
+                            <select class="selectpicker" data-live-search="true" name="partner_type" required
+                                id="id_partner_type">
+                               
+                                <option value="Microfinance Institutions" >Microfinance Institutions</option>
+                                <option value="Commercial Bank and Other Partners" >Commercial Bank and Other Partners</option>
+                               
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_partner_id" class="">Partner</label>
+                            <select class="selectpicker" data-live-search="true" name="partner_id" required
+                                id="id_partner_id">
+                                {% for partner in partner %}
+                                <option value="{{partner.id}}" selected>{{partner.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_financialprogram_id" class="">Program</label>
+                            <select class="selectpicker" data-live-search="true" name="program_id" required
+                                id="id_program_id">
+                                {% for financialprogram in financialprogram %}
+                                <option value="{{financialprogram.id}}" selected>{{financialprogram.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_value" class="">Value</label>
+                        <input class="form-control" type="number" name="value" value="0"
+                            id="id_value"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_single_count" class="">Single Count</label>
+                        <input class="form-control" type="number" name="single_count" value="0"
+                            id="id_single_count"></div>
+                </div>
+
+            </div>
+
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

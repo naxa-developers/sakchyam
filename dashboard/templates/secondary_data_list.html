@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if perms.api.view_secondarydata %}
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+            <li>
+                Secondary Data
+            </li>
+
+
+        </ul>
+        {% if perms.api.add_secondarydata %}
+        <div style="margin-left: 1200px;">
+            <a href="/dashboard/secondary_data-add">
+                <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
+            </a>
+
+        </div>
+        <div style="margin-left: 1200px; margin-top: 20px;">
+            <a href="/dashboard/secondary_data-bulk-add">
+                <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
+            </a>
+
+        </div>
+        {% endif %}
+    </div>
+    <div class="logframe">
+        <!-- logframe table -->
+        <div class="table-tesponsive ">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Alert!</strong> {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <table class="logframe-table dataTable">
+                <thead>
+                <tr>
+                    <th>Province Id</th>
+                    <th>District Id</th>
+                    <th>Municipality Id</th>
+                    <th>Hdi</th>
+                    <th>Head Quarter</th>
+                    <th>Population</th>
+                    <th>Yearly Fund</th>
+                    <th>Social security recipients</th>
+                    <th>Yearly social security payment</th>
+                    <th>Nearest branch distance</th>
+                    <th>Communication landline</th>
+                    <th>Communication mobile</th>
+                    <th>Communication internet</th>
+                    <th>Communication internet other</th>
+                    <th>Available electricity maingrid</th>
+                    <th>Available electricity micro hydro</th>
+                    <th>Nearest road location name</th>
+                    <th>Nearest road distance</th>
+                    <th>Nearest road type</th>
+                    <th>Nearest police location name</th>
+                    <th>Nearest police distance</th>
+                    <th>Categorisation by sakchyam</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in list %}
+                <tr>
+                    <td>{{ data.province_id.name }}</td>
+                    <td>{{ data.district_id.name }}</td>
+                    <td>{{ data.municipality_id.name }}</td>
+                    <td>{{ data.hdi }}</td>
+                    <td>{{ data.head_quarter }}</td>
+                    <td>{{ data.population }}</td>
+                    <td>{{ data.yearly_fund }}</td>
+                    <td>{{ data.social_security_recipients }}</td>
+                    <td>{{ data.yearly_social_security_payment }}</td>
+                    <td>{{ data.nearest_branch_distance }}</td>
+                    <td>{{ data.communication_landline }}</td>
+                    <td>{{ data.communication_mobile }}</td>
+                    <td>{{ data.communication_internet }}</td>
+                    <td>{{ data.communication_internet_other }}</td>
+                    <td>{{ data.available_electricity_maingrid }}</td>
+                    <td>{{ data.available_electricity_micro_hydro }}</td>
+                    <td>{{ data.nearest_road_location_name }}</td>
+                    <td>{{ data.nearest_road_distance }}</td>
+                    <td>{{ data.nearest_road_type }}</td>
+                    <td>{{ data.nearest_police_location_name }}</td>
+                    <td>{{ data.nearest_police_distance }}</td>
+                    <td>{{ data.categorisation_by_sakchyam }}</td>
+                    <td>
+                        <div class="table-action">
+                            <a href="#" class="more-action">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-animation">
+                                {% if perms.api.change_secondarydata %}
+                                <li>
+                                    <a href="/dashboard/secondary_data-edit/{{data.id}}"
+                                       class="flex-start">
+                                        <i class="material-icons">edit</i> Edit
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.api.view_secondarydata %}
+                                <li>
+                                    <a href="/dashboard/secondary_data-delete/{{data.id}}" class="flex-start">
+                                        <i class="material-icons">delete</i>delete
+                                    </a>
+
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+{% endif %}
+{% endblock %}
