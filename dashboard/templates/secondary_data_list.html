@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.view_secondarydata %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Secondary Data</a>
+                Secondary Data
             </li>
 
 
         </ul>
+        {% if perms.api.add_secondarydata %}
         <div style="margin-left: 1200px;">
             <a href="/dashboard/secondary_data-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
@@ -23,6 +25,7 @@
             </a>
 
         </div>
+        {% endif %}
     </div>
     <div class="logframe">
         <!-- logframe table -->
@@ -94,18 +97,22 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
+                                {% if perms.api.change_secondarydata %}
                                 <li>
                                     <a href="/dashboard/secondary_data-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
+                                {% endif %}
+                                {% if perms.api.view_secondarydata %}
                                 <li>
                                     <a href="/dashboard/secondary_data-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </td>
@@ -117,4 +124,5 @@
     </div>
 
 </main>
+{% endif %}
 {% endblock %}

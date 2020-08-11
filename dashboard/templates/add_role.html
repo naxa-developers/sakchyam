@@ -98,6 +98,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Automation</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'automation' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="automation{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="automation{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!--                 <div class="col-md-6">-->
                     <!--                    <div class="category-sector select-list">-->
@@ -127,6 +154,413 @@
                     <!--                    </div>-->
                     <!--                </div>-->
 
+
+                </div>
+                <br>
+                <div class="row">
+
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Financial Literacy</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'financialliteracy' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="financialliteracy{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="financialliteracy{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Outreach</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'outreach' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="outreach{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="outreach{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Product Process</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'productprocess' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="productprocess{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="productprocess{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Partnership</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'partnership' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="partnership{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="partnership{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Sakchyam Partner</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'project' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="project{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="project{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Sakchyam Partners</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'partner' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="partner{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="partner{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Sakchyam Products</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'product' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="product{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="product{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Insurance</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'insurance' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="insurance{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="insurance{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Mfs</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'mfs' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="mfs{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="mfs{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Secondary Data</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'secondarydata' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="secondarydata{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="secondarydata{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Province</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'province' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="province{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="province{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Municipality</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'municipality' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="municipality{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="municipality{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>District</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'district' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="district{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="district{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="category-sector select-list">
+                            <h4>Add role</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'user' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="user{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="user{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

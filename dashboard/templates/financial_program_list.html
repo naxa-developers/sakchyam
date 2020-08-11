@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.view_financialliteracy %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Financial Program</a>
+                <a href="#">Visualization</a>
+            </li>
+            <li>
+                Financial Program
             </li>
 
 
         </ul>
+        {% if perms.api.add_financialliteracy %}
         <div style="margin-left: 1200px;">
             <a href="/dashboard/financial_program-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
@@ -22,7 +27,8 @@
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
-        </div>
+        </div> 
+        {% endif %}
     </div>
     <div class="logframe">
         <!-- logframe table -->
@@ -59,18 +65,24 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
+                                {% if perms.api.change_financialliteracy %}
                                 <li>
                                     <a href="/dashboard/financial_program-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
+ 
+                                {% endif %}
+                                {% if perms.api.delete_financialliteracy %}
                                 <li>
                                     <a href="/dashboard/financial_program-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
                                 </li>
+ 
+                                {% endif %}
                             </ul>
                         </div>
                     </td>
@@ -82,4 +94,7 @@
     </div>
 
 </main>
+
+
+{% endif %}
 {% endblock %}

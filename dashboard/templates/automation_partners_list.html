@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.view_automation %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">Automation Partner</a>
+                <a href="#">Visualization</a>
+            </li>
+            <li>
+                Automation Partner
             </li>
 
 
         </ul>
+        {% if perms.api.add_automation %}
         <div style="margin-left: 1200px;">
             <a href="/dashboard/automation_partners-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
@@ -23,6 +28,7 @@
             </a>
 
         </div>
+        {% endif %}
     </div>
     <div class="logframe">
         <!-- logframe table -->
@@ -59,18 +65,22 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
+                                {% if perms.api.change_automation %}
                                 <li>
                                     <a href="/dashboard/automation_partners-edit/{{data.id}}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
+                                {% endif %}
+                                {% if perms.api.delete_automation %}
                                 <li>
                                     <a href="/dashboard/automation_partners-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </td>
@@ -82,4 +92,5 @@
     </div>
 
 </main>
+{% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.view_logdata %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
@@ -14,17 +15,19 @@
             </li>
 
         </ul>
-        <div style="margin-left: 1441px;">
+        {% if perms.api.add_logdata %}
+        <div style="margin-left: 1200px;">
             <a href="/dashboard/logcat-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
         </div>
 
-        <div style="margin-left: 1441px; margin-top: 20px;">
+        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/milestone-year-add">
                 <button type=" submit" class="sakchyam-button sm-button"> Add Milestone Year</button>
             </a>
         </div>
+        {% endif %}
     </div>
     <div class="logframe">
         <!-- logframe table -->
@@ -65,18 +68,22 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <ul class="dropdown-animation">
+                                    {% if perms.api.change_logdata %}
                                     <li>
                                         <a href="/dashboard/logtitle-edit/{{data.id}}/{{ list.first.sub_category.id }}"
                                             class="flex-start">
                                             <i class="material-icons">edit</i> Edit
                                         </a>
                                     </li>
+                                    {% endif %}
+                                    {% if perms.api.delete_logdata %}
                                     <li>
                                         <a href="#" class="flex-start">
                                             <i class="material-icons">delete</i>delete
                                         </a>
 
                                     </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </td>
@@ -88,4 +95,5 @@
     </div>
 
 </main>
+{% endif %}
 {% endblock %}

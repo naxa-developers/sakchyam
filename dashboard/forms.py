@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User, Permission, Group
 from api.models import LogData, LogCategory, LogSubCategory, MilestoneYear, Automation, Partner,FinancialLiteracy,Outreach,ProductProcess,Project,Product,Province,District,Municipality,\
-    FinancialProgram,LogData,LogSubCategory,AutomationPartner,MFS,Insurance,SecondaryData
+    FinancialProgram,LogData,LogSubCategory,AutomationPartner,MFS,Insurance,SecondaryData,Partnership
 from .models import UserProfile
 
 
@@ -16,7 +16,10 @@ class Financial_ProgramForm(ModelForm):
         fields = '__all__'
 
 
-
+class PartnershipForm(ModelForm):
+    class Meta:
+        model = Partnership
+        fields = '__all__'
 
 class Automation_PartnersForm(ModelForm):
     class Meta:
