@@ -920,7 +920,7 @@ class PartnershipFilter(viewsets.ModelViewSet):
         partnership_query = Partnership.objects.all()
 
         if partner_type:
-            partnership_query = partnership_query.filter(partner_id__type__in=partner_type)
+            partnership_query = partnership_query.filter(partner_id__partnership__in=partner_type)
 
         if investment_filter:
             partnership_query = partnership_query.filter(project_id__investment_primary__in=investment_filter)
@@ -1168,10 +1168,10 @@ class PartnershipRadial(viewsets.ModelViewSet):
             partner_type_get = request.GET['partner_type_filter']
             partner_types = partner_type_get.split(",")
             partner_types = list(
-                Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
+                Partner.objects.filter(partnership__in=partner_types).values_list('type', flat=True).distinct())
 
         else:
-            partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+            partner_types = list(Partner.objects.values_list('partnership', flat=True).distinct())
 
         if request.GET.getlist('partner_filter'):
             partner_get = request.GET['partner_filter']
@@ -1224,8 +1224,8 @@ class PartnershipRadial(viewsets.ModelViewSet):
                 })
 
                 for x in range(0, len(partner_types)):
-                    p_type = partnership_query.values('partner_id__type').filter(
-                        partner_id__type=partner_types[x],
+                    p_type = partnership_query.values('partner_id__partnership').filter(
+                        partner_id__partnership=partner_types[x],
                         project_id__investment_primary=
                         investment_list[i]).annotate(Sum(view))
                     p_data = []
@@ -1366,10 +1366,10 @@ class InvestmentSankey(viewsets.ModelViewSet):
             partner_type_get = request.GET['partner_type_filter']
             partner_types = partner_type_get.split(",")
             partner_types = list(
-                Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
+                Partner.objects.filter(partnership__in=partner_types).values_list('type', flat=True).distinct())
 
         else:
-            partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+            partner_types = list(Partner.objects.values_list('partnership', flat=True).distinct())
 
         if request.GET.getlist('partner_filter'):
             partner_get = request.GET['partner_filter']
@@ -1408,7 +1408,7 @@ class InvestmentSankey(viewsets.ModelViewSet):
             status__in=status,
             project_id__in=project_filter_list,
             project_id__investment_primary__in=investment_list,
-            partner_id__type__in=partner_types,
+            partner_id__partnership__in=partner_types,
             partner_id__id__in=partner_filter_list,
             province_id__id__in=province_filter_list,
             district_id__id__in=district_filter_list,
@@ -1538,10 +1538,10 @@ class PartnershipOverview(viewsets.ModelViewSet):
             partner_type_get = request.GET['partner_type_filter']
             partner_types = partner_type_get.split(",")
             partner_types = list(
-                Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
+                Partner.objects.filter(partnership__in=partner_types).values_list('type', flat=True).distinct())
 
         else:
-            partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
+            partner_types = list(Partner.objects.values_list('partnership', flat=True).distinct())
 
         if request.GET.getlist('partner_filter'):
             partner_get = request.GET['partner_filter']
@@ -1568,7 +1568,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
         partnership_query = Partnership.objects.filter(project_id__investment_primary__in=investment_list,
                                                        status__in=status,
                                                        project_id__in=project_filter_list,
-                                                       partner_id__type__in=partner_types,
+                                                       partner_id__partnership__in=partner_types,
                                                        partner_id__in=partner_filter_list,
                                                        province_id__in=province_filter_list,
                                                        district_id__in=district_filter_list,
@@ -1641,9 +1641,9 @@ class PartnershipMap(viewsets.ModelViewSet):
             partner_type_get = request.GET['partner_type_filter']
             partner_types = partner_type_get.split(",")
             partner_types = list(
-                Partner.objects.filter(type__in=partner_types).values_list('type', flat=True).distinct())
+                Partner.objects.filter(partnership__in=partner_types).values_list('partnership', flat=True).distinct())
 
-            partnership_query = partnership_query.filter(partner_id__type__in=partner_types)
+            partnership_query = partnership_query.filter(partner_id__partnership__in=partner_types)
 
         else:
             # partner_types = list(Partner.objects.values_list('type', flat=True).distinct())
