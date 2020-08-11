@@ -931,6 +931,74 @@ def automationBulkCreate(request):
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
 
+def outreachBulkCreate(request):
+    template = 'outreach_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    name=df['Local Unit'][row])
+                
+                district = District.objects.get(
+                    name=df['District'][row])
+                province = district.province_id
+                partner = Partner.objects.get(
+                    name=df['Partner Name'][row])
+                partner_type = None if df['Type of FI'][row] == '' else df['Type of FI'][row]
+                market_name = None if df['Market Name'][row] == '' else df['Market Name'][row]
+                expansion_driven_by = None if df['Expansion Driven by'][row] == '' else df['Expansion Driven by'][row]
+                date_established = None if df['Date established'][row] == '' else df['Date established'][row]
+                point_service = None if df['Point of Service'][row] == '' else df['Point of Service'][row]
+                g2p_payment = None if df['G2P Payments (Yes/No)'][row] == '' else df['G2P Payments (Yes/No)'][row]
+                gps_point = None if df['GPS Point'][row] == '' else df['GPS Point'][row]
+                demonstration_effect = None if df['Demonstration effect '][row]=='' else df['Demonstration effect '][row]
+                
+                outreach = Outreach.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner_id=partner,
+                    partner_type=partner_type,
+                    market_name=market_name,
+                    expansion_driven_by=expansion_driven_by,
+                    date_established=date_established,
+                    point_service=point_service,
+                    g2p_payment=g2p_payment,
+                    gps_point=gps_point,
+                    demonstration_effect = demonstration_effect
+                    
+                    
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Outreach Created ")
+        return redirect('/dashboard/outreach-list/', messages)
+
 
 class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Automation
