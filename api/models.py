@@ -8,9 +8,29 @@ class Partner(models.Model):
         ('Microfinance Institutions/Cooperatives', 'Microfinance Institutions/Cooperatives'),
         ('Commercial Bank and Other Partners', 'Commercial Bank and Other Partners'),
     )
+
+    n_types = (
+        ('Microfinance/Cooperative', 'Microfinance/Cooperative'),
+        ('Commercial Banks and Mobile Network Operators', 'Commercial Banks and Mobile Network Operators'),
+        ('Commercial Bank', 'Commercial Bank'),
+        ('Microfinance', 'Microfinance'),
+        ('Digital Financial Service Providers', 'Digital Financial Service Providers'),
+        ('Cooperative', 'Cooperative'),
+        ('Digital Financial Service Operator', 'Digital Financial Service Operator'),
+        ('Insurance Provider', 'Insurance Provider'),
+        ('Apex Organization', 'Apex Organization'),
+        ('Mobile Network Operator', 'Mobile Network Operator'),
+        ('Insurance', 'Insurance'),
+    )
+
     name = models.CharField(max_length=200)
     code = models.IntegerField(blank=True, null=True)
     type = models.CharField(max_length=200, blank=True, null=True, choices=types)
+    financial_literacy = models.CharField(max_length=200, blank=True, null=True, choices=n_types)
+    partnership = models.CharField(max_length=200, blank=True, null=True, choices=n_types)
+    outreach_expansion = models.CharField(max_length=200, blank=True, null=True, choices=n_types)
+    mfs = models.CharField(max_length=200, blank=True, null=True, choices=n_types)
+    product_process = models.CharField(max_length=200, blank=True, null=True, choices=n_types)
 
     def __str__(self):
         return self.name

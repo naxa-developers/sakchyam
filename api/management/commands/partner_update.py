@@ -19,17 +19,22 @@ class Command(BaseCommand):
 
         try:
             for row in range(0, upper_range):
-                print(df['Project Code'][row])
-                print(int(df['Leverage'][row]))
+                # print(df['Project Code'][row])
+                # print(int(df['Leverage'][row]))
                 # print(df['hlcitId'][row])
 
                 # palika_update = District.objects.filter(code=df['id'][row]).update(
                 #     boundary=GEOSGeometry(df['geom'][row]))
 
-                # palika_update = Partner.objects.filter(code=df['Partner Name ID'][row]).update(
-                #     type=df['Partner Type'][row])
-                palika_update = Project.objects.filter(code=df['Project Code'][row]).update(
-                    scf_funds=int(df['S-CF Funds'][row]))
+                palika_update = Partner.objects.filter(code=df['Partner Name ID'][row]).update(
+                    financial_literacy=df['Financial Literacy'][row],
+                    partnership=df['Partnership'][row],
+                    outreach_expansion=df['Outreach Expansion'][row],
+                    mfs=df['MFS'][row],
+                    product_process=df['ProductProcess'][row],
+                )
+                # palika_update = Project.objects.filter(code=df['Project Code'][row]).update(
+                #     scf_funds=int(df['S-CF Funds'][row]))
             if palika_update:
                 self.stdout.write('Successfully  updated data ..')
 
