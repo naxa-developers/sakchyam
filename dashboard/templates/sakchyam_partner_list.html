@@ -6,28 +6,27 @@
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
-            <li>
-                <a href="#">Visualization</a>
-            </li>
+
 
             <li>
-                Sakchyam Partners
+                Partner
             </li>
 
         </ul>
         {% if perms.api.add_partner %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/sakchyam-partners-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/sakchyam-partners-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
+
         </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
@@ -44,6 +43,7 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+
                     <th>Code</th>
                     <th>Partner Name</th>
                     <th>Type</th>
@@ -52,6 +52,8 @@
                     <th>Outreach Expansion</th>
                     <th>Mfs</th>
                     <th>Product Process</th>
+
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,6 +67,8 @@
                     <td>{{ data.outreach_expansion }}</td>
                     <td>{{ data.mfs }}</td>
                     <td>{{ data.product_process }}</td>
+
+
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">
@@ -79,7 +83,7 @@
                                     </a>
                                 </li>
                                 {% endif %}
-                                {% if perms.api.delete_partner %}
+                                {% if perms.api.delete_province %}
                                 <li>
                                     <a href="/dashboard/sakchyam-partners-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete

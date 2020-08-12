@@ -11,23 +11,24 @@
             </li>
 
             <li>
-                Outreach
+                OutReach
             </li>
 
         </ul>
         {% if perms.api.add_outreach %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/outreach-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/outreach-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
+
         </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
@@ -57,7 +58,6 @@
                     <th>G2p Payment</th>
                     <th>Demonstration Effect</th>
                     <th>Gps Point</th>
-
 
                     <th></th>
                 </tr>

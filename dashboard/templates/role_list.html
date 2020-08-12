@@ -10,11 +10,9 @@
                 <a href="#">User Management</a>
             </li>
 
-
             <li>
                 Role List
             </li>
-
 
         </ul>
         {% if perms.auth.add_user %}
@@ -25,10 +23,7 @@
 
         </div>
         {% endif %}
-
     </div>
-
-
     <div class="logframe">
         <!-- logframe table -->
         <div class="table-tesponsive ">
@@ -36,13 +31,14 @@
             {% for message in messages %}
             <div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> {{message}}
+                <strong>Alert!</strong> {{message}}
             </div>
             {% endfor %}
             {% endif %}
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+
                     <th>Id</th>
                     <th>Name</th>
 
@@ -74,7 +70,7 @@
                                 {% endif %}
                                 {% if perms.auth.delete_user %}
                                 <li>
-                                    <a href="#" class="flex-start">
+                                    <a href="/dashboard/delete-role/{{group.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 
