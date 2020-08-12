@@ -17,10 +17,10 @@ $(function(){
 });
 
 $(function(){
-	$('#Beneficiary_table').DataTable({
-		"scrollX": "1000px",
+	$('.dataTable').DataTable({
+		"scrollX": "1440px",
 		"scrollCollapse": true,
-		'iDisplayLength': 3,
+		'iDisplayLength': 18,
 		
 	});
 });

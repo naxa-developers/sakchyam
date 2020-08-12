@@ -1326,7 +1326,7 @@ main.sakchyam-main {
   transition: all 0.5s ease-in-out;
   margin-left: 250px; }
 
-button.sakchyam-button, a.sakchyam-button {
+button.sakchyam-button, a.sakchyam-button, .common-button {
   padding: .5rem 1rem;
   text-align: center;
   text-transform: capitalize;
@@ -1341,26 +1341,64 @@ button.sakchyam-button, a.sakchyam-button {
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
   cursor: pointer;
-  display: inline-block; }
-  button.sakchyam-button:hover, a.sakchyam-button:hover {
+  display: inline-block;
+  border: none;
+  outline: none;
+  line-height: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  position: relative; }
+  button.sakchyam-button:hover, a.sakchyam-button:hover, .common-button:hover {
     -webkit-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
     -ms-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
     -o-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
     box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4); }
-  button.sakchyam-button.border-button, a.sakchyam-button.border-button {
+  button.sakchyam-button.border-button, a.sakchyam-button.border-button, .common-button.border-button {
     border: 1px solid #FEE748;
     background-color: transparent;
     color: #FEE748;
     text-transform: capitalize;
     padding: 0.5rem 1rem; }
-    button.sakchyam-button.border-button:hover, a.sakchyam-button.border-button:hover {
+    button.sakchyam-button.border-button:hover, a.sakchyam-button.border-button:hover, .common-button.border-button:hover {
       -webkit-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
       -ms-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
       -o-box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4);
       box-shadow: 0 10px 25px rgba(254, 231, 72, 0.4); }
-  button.sakchyam-button.sm-button, a.sakchyam-button.sm-button {
+  button.sakchyam-button.sm-button, a.sakchyam-button.sm-button, .common-button.sm-button {
     padding: 0.25rem 1rem;
     min-width: auto; }
+  button.sakchyam-button.is-border, a.sakchyam-button.is-border, .common-button.is-border {
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid;
+    border-color: #E2E2E2; }
+    button.sakchyam-button.is-border.is-icon, a.sakchyam-button.is-border.is-icon, .common-button.is-border.is-icon {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      color: #000000;
+      font-size: .9375rem; }
+      button.sakchyam-button.is-border.is-icon i, a.sakchyam-button.is-border.is-icon i, .common-button.is-border.is-icon i {
+        margin-right: .5rem; }
+    button.sakchyam-button.is-border:hover, a.sakchyam-button.is-border:hover, .common-button.is-border:hover {
+      background-color: #D9002A;
+      color: #ffffff;
+      border-color: #D9002A; }
 
 .action-btn {
   width: 100%; }
@@ -1401,6 +1439,39 @@ button {
   button:focus {
     -webkit-outline: none;
     outline: none; }
+
+.buttons button:not(:last-child), .buttons a:not(:last-child) {
+  margin-right: 10px; }
+.buttons.is-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+.buttons.is-between {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+.buttons.is-end {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
 
 .dataTable {
   width: 100% !important;
@@ -1552,20 +1623,58 @@ button {
   margin-top: 2rem; }
 
 .dataTables_paginate {
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  float: right; }
+  .dataTables_paginate .previous {
+    margin-right: 5px; }
+  .dataTables_paginate .next {
+    margin-left: 5px; }
+  .dataTables_paginate span a {
+    color: #000000;
+    background-color: #F7F7F7;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0 5px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer; }
+  .dataTables_paginate span:hover a {
+    border-color: #D9002A;
+    background-color: #D9002A;
+    color: #ffffff; }
 
-.dataTables_filter label input.form-control {
-  border: 1px solid #eaeaea;
-  color: #B6B6B6;
-  font-size: .875rem;
-  font-family: "Titillium Web", sans-serif;
-  -webkit-outline: none;
-  outline: none; }
-  .dataTables_filter label input.form-control:focus {
-    -webkit-outline: none;
-    outline: none;
-    box-shadow: none;
-    background-color: #E6E9F3; }
+.dataTables_length {
+  float: left; }
+  .dataTables_length label {
+    margin: 0; }
+
+.dataTables_filter {
+  float: right; }
+  .dataTables_filter label {
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 5px; }
+    .dataTables_filter label input[type=search] {
+      border: 1px solid #E2E2E2;
+      color: #B6B6B6;
+      font-size: .875rem;
+      font-family: "Titillium Web", sans-serif;
+      -webkit-outline: none;
+      outline: none;
+      margin-left: 10px; }
+      .dataTables_filter label input[type=search]:focus {
+        -webkit-outline: none;
+        outline: none;
+        box-shadow: none;
+        background-color: #E6E9F3; }
 
 .project_list {
   padding: 30px;
@@ -1599,9 +1708,9 @@ ul.pagination {
     ul.pagination li a.page-link:focus {
       outline: none; }
   ul.pagination li.active a.page-link, ul.pagination li:hover a.page-link {
-    background-color: #FEE748;
+    background-color: #D9002A;
     color: #ffffff;
-    border-color: #FEE748; }
+    border-color: #D9002A; }
 
 .sakchyam-breadcrumb {
   display: -webkit-box;

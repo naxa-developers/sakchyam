@@ -16,24 +16,22 @@
 
         </ul>
         {% if perms.api.add_financialliteracy %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/financialliteracy-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/financialliteracy-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/financial_program-list">
                 <button type="submit" class="sakchyam-button sm-button"> Manage Program</button>
             </a>
 
         </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
