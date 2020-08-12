@@ -45,11 +45,11 @@ urlpatterns = [
     path('financialliteracy-delete/<int:pk>', views.FinancialLiteracyDelete.as_view(), name='financialliteracy-delete'),
     path('financialliteracy-edit/<int:pk>', views.FinancialLiteracyEdit.as_view(), name='financialliteracy-edit'),
 
-    #sakchyam partner urls
+    # sakchyam partner urls
     path('sakchyam-partners/', views.SakchyamAPartnersList.as_view(), name='sakchyam-partners'),
     path('sakchyam-partners-add/', views.SakchyamAPartnersCreate.as_view(), name='sakchyam-partners-add'),
     path('sakchyam-partners-edit/<int:pk>', views.SakchyamAPartnersEdit.as_view(), name='sakchyam-partners-edit'),
-    path('sakchyam-partners-delete/<int:pk>', views.SakchyamAPartnersDelete.as_view(), name='sakchyam-partners-delete'),
+    path('sakchyam-partners-delete/<int:pk>', views.SakchyamPartnersDelete.as_view(), name='sakchyam-partners-delete'),
     path('sakchyam-partners-bulk-add', views.sakchyamPartnerBulkCreate, name='sakchyam-partners-bulk-add'),
 
     path('sakchyam-project/', views.SakchyamProjectList.as_view(), name='sakchyam-project'),
@@ -74,44 +74,40 @@ urlpatterns = [
     path('province-delete/<int:pk>', views.ProvinceDelete.as_view(), name='province-delete'),
     path('municipalities-delete/<int:pk>', views.MunicipalitiesDelete.as_view(), name='municipalities-delete'),
 
+    path('financial_program-list/', views.FinancialProgramList.as_view(), name='financial_program-list'),
+    path('automation_partners-list/', views.AutomationPartnersList.as_view(), name='automation_partners-list'),
 
-    path('financial_program-list/', views.Financial_ProgramList.as_view(), name='financial_program-list'),
-    path('automation_partners-list/', views.Automation_PartnersList.as_view(), name='automation_partners-list'),
+    path('financial_program-delete/<int:pk>', views.FinancialProgramDelete.as_view(), name='project-delete'),
 
-    path('financial_program-delete/<int:pk>', views.Financial_ProgramDelete.as_view(), name='project-delete'),
+    path('automation_partners-delete/<int:pk>', views.AutomationPartnersDelete.as_view(), name='project-delete'),
 
-    path('automation_partners-delete/<int:pk>', views.Automation_PartnersDelete.as_view(), name='project-delete'),
+    path('financial_program-edit/<int:pk>', views.FinancialProgramEdit.as_view(), name='financial_program-edit'),
 
-    path('financial_program-edit/<int:pk>', views.Financial_ProgramEdit.as_view(), name='financial_program-edit'),
+    path('automation_partners-edit/<int:pk>', views.AutomationPartnersEdit.as_view(), name='automation_partners-edit'),
 
-    path('automation_partners-edit/<int:pk>', views.Automation_PartnersEdit.as_view(), name='automation_partners-edit'),
+    path('financial_program-add/', views.FinancialProgramCreate.as_view(), name='financial_program-add'),
 
-    path('financial_program-add/', views.Financial_ProgramCreate.as_view(), name='financial_program-add'),
-
-    path('automation_partners-add/', views.Automation_PartnersCreate.as_view(), name='automation_partners-add'),
-
+    path('automation_partners-add/', views.AutomationPartnersCreate.as_view(), name='automation_partners-add'),
 
     path('mfs-list/', views.MfsList.as_view(), name='mfs-list'),
     path('insurance-list/', views.InsuranceList.as_view(), name='insurance-list'),
-    path('secondary_data-list/', views.Secondary_DataList.as_view(), name='secondary_data-list'),
+    path('secondary_data-list/', views.SecondaryDataList.as_view(), name='secondary_data-list'),
 
     path('mfs-delete/<int:pk>', views.MfsDelete.as_view(), name='mfs-delete'),
     path('insurance-delete/<int:pk>', views.InsuranceDelete.as_view(), name='insurance-delete'),
-    path('secondary_data-delete/<int:pk>', views.Secondary_DataDelete.as_view(), name='secondary_data-delete'),
+    path('secondary_data-delete/<int:pk>', views.SecondaryDataDelete.as_view(), name='secondary_data-delete'),
 
     path('mfs-edit/<int:pk>', views.MfsEdit.as_view(), name='mfs-edit'),
     path('insurance-edit/<int:pk>', views.InsuranceEdit.as_view(), name='insurance-edit'),
-    path('secondary_data-edit/<int:pk>', views.Secondary_DataEdit.as_view(), name='secondary_data-edit'),
+    path('secondary_data-edit/<int:pk>', views.SecondaryDataEdit.as_view(), name='secondary_data-edit'),
 
     path('mfs-add/', views.MfsCreate.as_view(), name='mfs-add'),
     path('insurance-add/', views.InsuranceCreate.as_view(), name='insurance-add'),
-    path('secondary_data-add/', views.Secondary_DataCreate.as_view(), name='secondary_data-add'),
+    path('secondary_data-add/', views.SecondaryDataCreate.as_view(), name='secondary_data-add'),
 
     path('partnership-list/', views.PartnershipList.as_view(), name='partnership-list'),
     path('partnership-add/', views.PartnershipCreate.as_view(), name='partnership-add'),
     path('partnership-edit/<int:pk>', views.PartnershipEdit.as_view(), name='partnership-edit'),
     path('partnership-delete/<int:pk>', views.PartnershipDelete.as_view(), name='partnership-delete'),
-
-
 
 ]
