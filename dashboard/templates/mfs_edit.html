@@ -47,7 +47,7 @@
                             <label for="id_province_id" class="">Province</label>
                             <select class="selectpicker" data-live-search="true" name="province_id" required
                                 id="id_province_id">
-                                {% for province in province %}
+                                {% for province in provinces %}
                                 <option value="{{province.id}}" selected>{{province.name}}</option>
                                 {% endfor %}
                             </select>
@@ -58,7 +58,7 @@
                             <label for="id_district_id" class="">District</label>
                             <select class="selectpicker" data-live-search="true" name="district_id" required
                                 id="id_district_id">
-                                {% for district in district %}
+                                {% for district in districts %}
                                 <option value="{{district.id}}" selected>{{district.name}}</option>
                                 {% endfor %}
                             </select>
@@ -69,7 +69,7 @@
                             <label for="id_municipality_id" class="">Municipality</label>
                             <select class="selectpicker" data-live-search="true" name="municipality_id" required
                                 id="id_municipality_id">
-                                {% for municipality in municipality %}
+                                {% for municipality in municipalities %}
                                 <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
                                 {% endfor %}
                             </select>
@@ -80,7 +80,7 @@
                             <label for="id_partner_id" class="">Partner</label>
                             <select class="selectpicker" data-live-search="true" name="partner_id" required
                                 id="id_partner_id">
-                                {% for partner in partner %}
+                                {% for partner in partners %}
                                 <option value="{{partner.id}}" selected>{{partner.name}}</option>
                                 {% endfor %}
                             </select>

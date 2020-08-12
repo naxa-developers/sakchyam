@@ -6,25 +6,27 @@
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
+
+
             <li>
                 Secondary Data
             </li>
 
-
         </ul>
         {% if perms.api.add_secondarydata %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/secondary_data-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/secondary_data-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
+
         </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
@@ -41,6 +43,7 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+
                     <th>Province Id</th>
                     <th>District Id</th>
                     <th>Municipality Id</th>
@@ -63,7 +66,8 @@
                     <th>Nearest police location name</th>
                     <th>Nearest police distance</th>
                     <th>Categorisation by sakchyam</th>
-                    
+
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -91,13 +95,15 @@
                     <td>{{ data.nearest_police_location_name }}</td>
                     <td>{{ data.nearest_police_distance }}</td>
                     <td>{{ data.categorisation_by_sakchyam }}</td>
+
+
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
-                                {% if perms.api.change_secondarydata %}
+                                {% if perms.api.change_product %}
                                 <li>
                                     <a href="/dashboard/secondary_data-edit/{{data.id}}"
                                        class="flex-start">
@@ -105,7 +111,7 @@
                                     </a>
                                 </li>
                                 {% endif %}
-                                {% if perms.api.view_secondarydata %}
+                                {% if perms.api.delete_product %}
                                 <li>
                                     <a href="/dashboard/secondary_data-delete/{{data.id}}" class="flex-start">
                                         <i class="material-icons">delete</i>delete

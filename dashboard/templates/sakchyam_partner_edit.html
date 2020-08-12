@@ -9,8 +9,9 @@
         <ul class="flex-start">
 
             <li>
-                <a href="#">Sakchyam Partners</a>
+                <a href="#">Sakchyam Partner</a>
             </li>
+
 
             <li>Edit Form</li>
         </ul>
@@ -46,29 +47,761 @@
         <!-- default form -->
         <div class="default-form">
 
-            <div class="row">
+            <div style="display:block">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group error">
+                            <label for="id_partner_name" class="">Partner Name</label>
+                            <input class="form-control" type="text" name="name" maxlength="150" value="{{ form.instance.name }}" required id="id_partner_name"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group error">
+                            <label for="id_code" class="">Code</label>
+                            <input class="form-control" type="text" name="code" maxlength="100" value="{{ form.instance.code }}" required id="id_code"/>
+    
+                        </div>
+                    </div>
+    
+                </div>
                 <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_name" class="">Name</label>
-                        <input class="form-control" type="text" value="{{ form.instance.name }}" name="name" required id="id_name"/>
+                    <div class="form-group ">
+                        <label for="id_type" class="">Type</label>
+                        <select class="selectpicker" data-live-search="true" name="type" required
+                            id="id_type">
+                            {% if form.instance.type == "Microfinance Institutions/Cooperatives" %}
+                            <option value="Microfinance Institutions/Cooperatives" selected >Microfinance Institutions/Cooperatives</option>
+                            <option value="Commercial Bank and Other Partners" >Commercial Bank and Other Partners</option>
+                            {% else %}
+                            <option value="Microfinance Institutions/Cooperatives"  >Microfinance Institutions/Cooperatives</option>
+                            <option value="Commercial Bank and Other Partners" selected >Commercial Bank and Other Partners</option>
+                            {% endif %}
+                           
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_financial_literacy" class="">Financial Literacy</label>
+                        <select class="selectpicker" data-live-search="true" name="financial_literacy" required
+                            id="id_financial_literacy">
+                            {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" selected >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" selected >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers"  selected>Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" selected>Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" selected >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" selected >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" selected >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% else %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" selected >Insurance</option>
+                            {% endif %}
+                           
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_partnership" class="">Partnership</label>
+                        <select class="selectpicker" data-live-search="true" name="partnernership" required
+                            id="id_partnership">
+                           
+                            {% if form.instance.partnership == "Microfinance/Cooperative" %}
+                            <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.partnership == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.partnership == "Commercial Bank" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" selected >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" selected >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers"  selected>Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" selected>Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" selected >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" selected >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" selected >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% else %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" selected >Insurance</option>
+                            {% endif %}
+                           
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_outreach_expansion" class="">Outreach Expansion</label>
+                        <select class="selectpicker" data-live-search="true" name="outreach_expansion" required
+                            id="id_outreach_expansion">
+                           
+                            {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" selected >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" selected >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers"  selected>Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" selected>Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" selected >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" selected >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" selected >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% else %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" selected >Insurance</option>
+                            {% endif %}
+                           
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_mfs" class="">Mfs</label>
+                        <select class="selectpicker" data-live-search="true" name="mfs" required
+                            id="id_mfs">
+                           
+                            {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" selected >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" selected >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers"  selected>Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" selected>Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" selected >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" selected >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" selected >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% else %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" selected >Insurance</option>
+                            {% endif %}
+                           
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_product_process" class="">Product Process</label>
+                        <select class="selectpicker" data-live-search="true" name="product_process" required
+                            id="id_product_process">
+                           
+                            {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" selected >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" selected >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers"  selected>Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" selected>Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" selected >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" selected >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" selected >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
+                            {% else %}
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" selected >Insurance</option>
+                            {% endif %}
+                           
                         </select>
                     </div>
                 </div>
             </div>
-
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_code" class="">Code</label>
-                        <input class="form-control" type="text" value="{{ form.instance.code }}" name="code" required id="id_code"/>
-                    </div>
-                </div>
-            </div>
-
             <div class="form-group mrt-100">
-                <button type="submit" class="sakchyam-button sm-button">Update</button>
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
             </div>
+        </div>
     </form>
 </main>
 

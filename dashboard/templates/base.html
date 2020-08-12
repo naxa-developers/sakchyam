@@ -24,7 +24,7 @@
         <!-- brand start -->
         <div class="navbar-brand">
 
-            <a href="index.html"><img src="{% static 'dashboard/images/sakchyam-logo.png' %}" width="100"
+            <a href="/dashboard/main"><img src="{% static 'dashboard/images/sakchyam-logo.png' %}" width="100"
                                       alt="sakchyam"></a>
         </div>
         <nav class="navbar navbar-static-top navbar-expand-lg">
@@ -152,13 +152,14 @@
 <script src="{% static 'dashboard/js/bootstrap-select.min.js' %}"></script>
 
 <script src="{% static 'dashboard/js/mainscripts.bundle.js' %}"></script>
+
+<script src="{% static 'dashboard/plugins/datatable/dataTables.min.js' %}"></script>
+<!-- <script src="plugins/datatable/dataTables.bootstrap.min.js"></script>
 <script src="{% static 'dashboard/js/equalHeight.js' %}"></script>
-<!-- <script src="plugins/datatable/dataTables.min.js"></script>
-<script src="plugins/datatable/dataTables.bootstrap.min.js"></script>
 <script src="plugins/datatable/dataTables.button.js"></script>
 <script src="plugins/datatable/jszip.min.js"></script>
-<script src="plugins/datatable/buttons.html5.min.js"></script>
-<script src="plugins/datatable/custom-datatables.js"></script> -->
+<script src="plugins/datatable/buttons.html5.min.js"></script> -->
+<script src="{% static 'dashboard/plugins/datatable/custom-datatables.js' %}"></script>
 </body>
 
 

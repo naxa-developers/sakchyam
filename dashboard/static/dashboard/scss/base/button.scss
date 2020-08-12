@@ -1,4 +1,4 @@
-button.sakchyam-button,a.sakchyam-button {
+button.sakchyam-button,a.sakchyam-button,.common-button {
     padding: .5rem 1rem;
     text-align: center;
     text-transform: capitalize;
@@ -12,6 +12,20 @@ button.sakchyam-button,a.sakchyam-button {
     font-weight: 600;
     cursor: pointer;
     display: inline-block;
+    border: none;
+    outline: none;
+    line-height: inherit;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer;
+    @include transition(all .3s ease-in-out);
+    position: relative;
+  
 
     &:hover {
         @include boxshadow($boxshadow:0 10px 25px rgba($color-secondary, 0.40));
@@ -31,6 +45,30 @@ button.sakchyam-button,a.sakchyam-button {
         padding: 0.25rem 1rem;
         min-width: auto;
     }
+    &.is-border {
+        background-color: transparent;
+        color: $color-primary;
+        border:1px solid;
+        border-color: $color-border;
+  
+        &.is-icon {
+            @include display-flex(flex);
+            @include justify-content-start;
+            @include align-items-center;
+            color: $color-primary;
+            font-size: .9375rem;
+  
+            i {
+                margin-right: .5rem;
+            }
+        }
+        &:hover{
+            background-color: $color-blue;
+            color:$color-white;
+            border-color: $color-blue;
+        }
+    }
+  
 }
 .action-btn{
     width:100%;
@@ -68,5 +106,29 @@ button {
     }
 
 }
+.buttons {
+  
+    button,a {
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+  
+    &.is-center {
+        @include display-flex(flex);
+        @include justify-content-center;
+        @include align-items-center;
+    }
+    &.is-between{
+        @include display-flex(flex);
+        @include justify-content-between;
+        @include align-items-center;
+    }
+    &.is-end {
+     @include display-flex(flex);
+     @include justify-content-end;
+     @include align-items-center;
+ }
+  }
 
 

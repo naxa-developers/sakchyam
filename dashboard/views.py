@@ -3,13 +3,17 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, Municipality, Automation, Partner, AutomationPartner,FinancialLiteracy,\
-    FinancialProgram,Outreach,ProductProcess,Product,Project,AutomationPartner,MFS,Insurance,SecondaryData,Partnership
+from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, \
+    Municipality, Automation, Partner, AutomationPartner, FinancialLiteracy, \
+    FinancialProgram, Outreach, ProductProcess, Product, Project, AutomationPartner, MFS, Insurance, SecondaryData, \
+    Partnership
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, FinancialLiteracyForm,\
-    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm,OutReachForm,ProductProcessForm,ProjectForm,ProductForm,ProvinceForm,DistrictForm,MunicipalitiesForm,\
-        Financial_ProgramForm,Automation_PartnersForm,MfsForm,InsuranceForm,Secondary_DataForm,PartnershipForm
+from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
+    FinancialLiteracyForm, \
+    AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm, OutReachForm, ProductProcessForm, ProjectForm, \
+    ProductForm, ProvinceForm, DistrictForm, MunicipalitiesForm, \
+    Financial_ProgramForm, Automation_PartnersForm, MfsForm, InsuranceForm, Secondary_DataForm, PartnershipForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -34,7 +38,7 @@ class Dashboard(TemplateView):
         #     five = FiveW.objects.order_by('id')
         # else:
         #     five = FiveW.objects.select_related('supplier_id').filter(supplier_id=user_data.partner.id)[:10]
-        return render(request, 'dashboard.html', {"sidebar": sidebar,"dashboard":"active"})
+        return render(request, 'dashboard.html', {"sidebar": sidebar, "dashboard": "active"})
 
 
 class LogCategoryList(LoginRequiredMixin, ListView):
@@ -50,18 +54,20 @@ class LogCategoryList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
-class Financial_ProgramList(LoginRequiredMixin, ListView):
+
+class FinancialProgramList(LoginRequiredMixin, ListView):
     template_name = 'financial_program_list.html'
     model = FinancialProgram
 
     def get_context_data(self, **kwargs):
-        data = super(Financial_ProgramList, self).get_context_data(**kwargs)
+        data = super(FinancialProgramList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['financial_program'] = 'active'
         query_data = FinancialProgram.objects.order_by('id')
         data['list'] = query_data
         return data
+
 
 class MfsList(LoginRequiredMixin, ListView):
     template_name = 'mfs_list.html'
@@ -76,6 +82,7 @@ class MfsList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+
 class InsuranceList(LoginRequiredMixin, ListView):
     template_name = 'insurance_list.html'
     model = Insurance
@@ -89,18 +96,20 @@ class InsuranceList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
-class Secondary_DataList(LoginRequiredMixin, ListView):
+
+class SecondaryDataList(LoginRequiredMixin, ListView):
     template_name = 'secondary_data_list.html'
     model = SecondaryData
 
     def get_context_data(self, **kwargs):
-        data = super(Secondary_DataList, self).get_context_data(**kwargs)
+        data = super(SecondaryDataList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['secondarydata'] = 'active'
         query_data = SecondaryData.objects.order_by('id')
         data['list'] = query_data
         return data
+
 
 class LogdataList(LoginRequiredMixin, ListView):
     template_name = 'logdata_list.html'
@@ -116,18 +125,19 @@ class LogdataList(LoginRequiredMixin, ListView):
         return data
 
 
-class Automation_PartnersList(LoginRequiredMixin, ListView):
+class AutomationPartnersList(LoginRequiredMixin, ListView):
     template_name = 'automation_partners_list.html'
     model = AutomationPartner
 
     def get_context_data(self, **kwargs):
-        data = super(Automation_PartnersList, self).get_context_data(**kwargs)
+        data = super(AutomationPartnersList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['automation_partners'] = 'active'
         query_data = AutomationPartner.objects.order_by('id')
         data['list'] = query_data
         return data
+
 
 class ProvinceList(LoginRequiredMixin, ListView):
     template_name = 'province_list.html'
@@ -142,6 +152,7 @@ class ProvinceList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+
 class DistrictList(LoginRequiredMixin, ListView):
     template_name = 'district_list.html'
     model = District
@@ -155,6 +166,7 @@ class DistrictList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+
 class MunicipalitiesList(LoginRequiredMixin, ListView):
     template_name = 'municipalities_list.html'
     model = Municipality
@@ -167,6 +179,7 @@ class MunicipalitiesList(LoginRequiredMixin, ListView):
         query_data = Municipality.objects.order_by('id')
         data['list'] = query_data
         return data
+
 
 class ProvinceCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Province
@@ -185,6 +198,7 @@ class ProvinceCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('province-list')
+
 
 class MfsCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = MFS
@@ -208,6 +222,7 @@ class MfsCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('mfs-list')
 
+
 class InsuranceCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Insurance
     template_name = 'insurance_create.html'
@@ -227,6 +242,7 @@ class InsuranceCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('insurance-list')
 
+
 class InsuranceEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Insurance
     template_name = 'insurance_edit.html'
@@ -238,6 +254,7 @@ class InsuranceEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
+        data['partner'] = Partner.objects.order_by('id')
         # data['active'] = 'program'
         data['insurance'] = 'active'
         return data
@@ -245,14 +262,15 @@ class InsuranceEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('insurance-list')
 
-class Secondary_DataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+
+class SecondaryDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = SecondaryData
     template_name = 'secondary_data_create.html'
     form_class = Secondary_DataForm
     success_message = 'Secondary Data data created'
 
     def get_context_data(self, **kwargs):
-        data = super(Secondary_DataCreate, self).get_context_data(**kwargs)
+        data = super(SecondaryDataCreate, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
@@ -267,14 +285,14 @@ class Secondary_DataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         return reverse_lazy('secondary_data-list')
 
 
-class Secondary_DataEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+class SecondaryDataEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = SecondaryData
     template_name = 'secondary_data_edit.html'
     form_class = Secondary_DataForm
     success_message = 'Secondary Data data edited'
 
     def get_context_data(self, **kwargs):
-        data = super(Secondary_DataEdit, self).get_context_data(**kwargs)
+        data = super(SecondaryDataEdit, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
@@ -287,7 +305,6 @@ class Secondary_DataEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('secondary_data-list')
-
 
 
 class MfsEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
@@ -301,6 +318,10 @@ class MfsEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
+        data['provinces'] = Province.objects.order_by('id')
+        data['districts'] = District.objects.order_by('id')
+        data['municipalities'] = Municipality.objects.order_by('id')
+        data['partners'] = Partner.objects.order_by('id')
         # data['active'] = 'program'
         data['mfs'] = 'active'
         return data
@@ -327,6 +348,7 @@ class ProvinceEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('province-list')
 
+
 class DistrictCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = District
     template_name = 'district_create.html'
@@ -346,6 +368,7 @@ class DistrictCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('district-list')
 
+
 class DistrictEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = District
     template_name = 'district_edit.html'
@@ -359,12 +382,12 @@ class DistrictEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['user'] = user_data
         data['provinces'] = Province.objects.order_by('id')
         # data['active'] = 'program'
-        data['district'] = 'active'
-        return data
 
     def get_success_url(self):
         return reverse_lazy('district-list')
 
+        data['district'] = 'active'
+        return data
 
 
 class MunicipalitiesCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -408,18 +431,19 @@ class MunicipalitiesEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('municipalities-list')
 
-class Financial_ProgramCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+
+class FinancialProgramCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = FinancialProgram
     template_name = 'financial_program_create.html'
     form_class = Financial_ProgramForm
     success_message = 'Financial Program data created'
 
     def get_context_data(self, **kwargs):
-        data = super(Financial_ProgramCreate, self).get_context_data(**kwargs)
+        data = super(FinancialProgramCreate, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-   
+
         # data['active'] = 'program'
         data['district'] = 'active'
         return data
@@ -428,17 +452,14 @@ class Financial_ProgramCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
         return reverse_lazy('financial_program-list')
 
 
-
-
-
-class Automation_PartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+class AutomationPartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = AutomationPartner
     template_name = 'automation_partners_create.html'
     form_class = Automation_PartnersForm
     success_message = 'Automation Partners data created'
 
     def get_context_data(self, **kwargs):
-        data = super(Automation_PartnersCreate, self).get_context_data(**kwargs)
+        data = super(AutomationPartnersCreate, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
@@ -449,6 +470,7 @@ class Automation_PartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateV
 
     def get_success_url(self):
         return reverse_lazy('automation_partners-list')
+
 
 class SakchyamProjectList(LoginRequiredMixin, ListView):
     template_name = 'sakchyamprojects_list.html'
@@ -463,6 +485,7 @@ class SakchyamProjectList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+
 class PartnershipList(LoginRequiredMixin, ListView):
     template_name = 'partnership_list.html'
     model = Partnership
@@ -472,9 +495,16 @@ class PartnershipList(LoginRequiredMixin, ListView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['partnership'] = 'active'
-        query_data = Partnership.objects.order_by('id')
+        query_data = Partnership.objects.values('id', 'province_id__name', 'district_id__name', 'municipality_id__name',
+                                                'partner_id__name', 'project_id__name', 'branch', 'blb',
+                                                'extension_counter', 'tablet', 'other_products', 'beneficiary',
+                                                'scf_funds', 'allocated_budget', 'allocated_beneficiary',
+                                                'female_percentage', 'total_beneficiary', 'female_beneficiary',
+                                                'status', 'start_date', 'end_date', 'project_year').order_by('id')
+
         data['list'] = query_data
         return data
+
 
 class PartnershipCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Partnership
@@ -499,6 +529,7 @@ class PartnershipCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('partnership-list')
 
+
 class PartnershipEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Partnership
     template_name = 'partnership_edit.html'
@@ -522,6 +553,7 @@ class PartnershipEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('partnership-list')
 
+
 class PartnershipDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'partnership_delete.html'
     success_message = 'Partnership deleted'
@@ -532,6 +564,7 @@ class PartnershipDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('partnership-list')
+
 
 class SakchyamProductList(LoginRequiredMixin, ListView):
     template_name = 'sakchyamproducts_list.html'
@@ -605,6 +638,7 @@ class OutReachList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+
 class FinancialLiteracyList(LoginRequiredMixin, ListView):
     template_name = 'financialliteracy_list.html'
     model = FinancialLiteracy
@@ -617,6 +651,7 @@ class FinancialLiteracyList(LoginRequiredMixin, ListView):
         query_data = FinancialLiteracy.objects.order_by('id')
         data['list'] = query_data
         return data
+
 
 class ProductProcessList(LoginRequiredMixin, ListView):
     template_name = 'productprocess_list.html'
@@ -647,13 +682,12 @@ class AutomationCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['provinces'] = Province.objects.order_by('id')
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
-        data['partners'] = Partner.objects.order_by('id')
+        data['partners'] = AutomationPartner.objects.order_by('id')
         data['automation'] = 'active'
         return data
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
-
 
 
 class ProjectCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -673,6 +707,7 @@ class ProjectCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('sakchyam-project')
+
 
 class ProjectEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Project
@@ -711,6 +746,7 @@ class ProductCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('sakchyam-product')
 
+
 class ProductEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Product
     template_name = 'product_edit.html'
@@ -728,6 +764,7 @@ class ProductEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('sakchyam-product')
+
 
 class OutReachCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Outreach
@@ -751,6 +788,7 @@ class OutReachCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('outreach-list')
 
+
 class FinancialLiteracyCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = FinancialLiteracy
     template_name = 'financialliteracy_create.html'
@@ -770,6 +808,7 @@ class FinancialLiteracyCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
 
     def get_success_url(self):
         return reverse_lazy('financialliteracy-list')
+
 
 class ProductProcessCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = ProductProcess
@@ -791,6 +830,7 @@ class ProductProcessCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('productprocess-list')
 
+
 class ProductProcessEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = ProductProcess
     template_name = 'productprocess_edit.html'
@@ -811,18 +851,19 @@ class ProductProcessEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('productprocess-list')
 
-class Financial_ProgramEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+
+class FinancialProgramEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = FinancialProgram
     template_name = 'financial_program_edit.html'
     form_class = Financial_ProgramForm
     success_message = 'Financial Program data '
 
     def get_context_data(self, **kwargs):
-        data = super(Financial_ProgramEdit, self).get_context_data(**kwargs)
+        data = super(FinancialProgramEdit, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-        
+
         # data['active'] = 'program'
         data['district'] = 'active'
         return data
@@ -831,16 +872,14 @@ class Financial_ProgramEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView)
         return reverse_lazy('financial_program-list')
 
 
-
-
-class Automation_PartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+class AutomationPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = AutomationPartner
     template_name = 'automation_partners_edit.html'
     form_class = Automation_PartnersForm
     success_message = 'Automation Partners data edited'
 
     def get_context_data(self, **kwargs):
-        data = super(Automation_PartnersEdit, self).get_context_data(**kwargs)
+        data = super(AutomationPartnersEdit, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
@@ -852,6 +891,7 @@ class Automation_PartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateVie
 
     def get_success_url(self):
         return reverse_lazy('automation_partners-list')
+
 
 # class AutomationBulkCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 #     model = Automation
@@ -932,6 +972,162 @@ def automationBulkCreate(request):
         return redirect('/dashboard/automation-list/', messages)
 
 
+def outreachBulkCreate(request):
+    template = 'outreach_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code=df['Local Unit_Code'][row])
+
+                district = District.objects.get(
+                    code=df['District_Code'][row])
+                province = district.province_id
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                partner_type = None if df['Type of FI'][row] == '' else df['Type of FI'][row]
+                market_name = None if df['Market Name'][row] == '' else df['Market Name'][row]
+                expansion_driven_by = None if df['Expansion Driven by'][row] == '' else df['Expansion Driven by'][row]
+                date_established = None if df['Date established'][row] == '' else df['Date established'][row]
+                point_service = None if df['Point of Service'][row] == '' else df['Point of Service'][row]
+                g2p_payment = None if df['G2P Payments (Yes/No)'][row] == '' else df['G2P Payments (Yes/No)'][row]
+                gps_point = None if df['GPS Point'][row] == '' else df['GPS Point'][row]
+                demonstration_effect = None if df['Demonstration effect '][row] == '' else df['Demonstration effect '][
+                    row]
+
+                outreach = Outreach.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner_id=partner,
+                    partner_type=partner_type,
+                    market_name=market_name,
+                    expansion_driven_by=expansion_driven_by,
+                    date_established=date_established,
+                    point_service=point_service,
+                    g2p_payment=g2p_payment,
+                    gps_point=gps_point,
+                    demonstration_effect=demonstration_effect
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Outreach Created ")
+        return redirect('/dashboard/outreach-list/', messages)
+
+
+def partnershipBulkCreate(request):
+    template = 'partnership_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code=df['Local Unit code'][row])
+
+                district = municipality.district_id
+                province = municipality.province_id
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                project = Partner.objects.get(
+                    code=df['Project Code'][row])
+                branch = None if df['Branch'][row] == '' else df['Branch'][row]
+                blb = None if df['BLB'][row] == '' else df['BLB'][row]
+                expansion_counter = None if df['Expansion Counter'][row] == '' else df['Expansion Counter'][row]
+                tablet = None if df['Tablet'][row] == '' else df['Tablet'][row]
+                other_products = None if df['Other Major Products (Local units coverage)'][row] == '' else \
+                    df['Other Major Products (Local units coverage)'][row]
+                beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
+                scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
+                allocated_budget = None if df['Allocated Funds to Local Units'][row] == '' else \
+                    df['Allocated Funds to Local Units'][row]
+                allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
+                    df['Allocated Beneficiaries at Local Units'][row]
+                female_beneficiary = None if df['Female Beneficiaries '][row] == '' else df['Female Beneficiaries'][row]
+                total_beneficiary = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries '][row]
+                status = None if df['Status '][row] == '' else df['Status'][row]
+                start_date = None if df['Status '][row] == '' else df['Status '][row]
+                end_date = None if df['End Date'][row] == '' else df['End Date '][row]
+                project_year = None if df['Project Year '][row] == '' else df['Project Year '][row]
+
+                outreach = Outreach.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner_id=partner,
+                    project_id=project,
+                    branch=branch,
+                    blb=blb,
+                    expansion_counter=expansion_counter,
+                    tablet=tablet,
+                    other_products=other_products,
+                    beneficiary=beneficiary,
+                    scf_funds=scf_funds,
+                    allocated_budget=allocated_budget,
+                    allocated_beneficiary=allocated_beneficiary,
+                    female_beneficiary=female_beneficiary,
+                    total_beneficiary=total_beneficiary,
+                    status=status,
+                    start_date=start_date,
+                    end_date=end_date,
+                    project_year=project_year
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Partnership Created ")
+        return redirect('/dashboard/partnership-list/', messages)
+
+
 class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Automation
     template_name = 'automation_edit.html'
@@ -946,12 +1142,13 @@ class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['provinces'] = Province.objects.order_by('id')
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
-        data['partners'] = Partner.objects.all()
+        data['partners'] = AutomationPartner.objects.all()
         data['active'] = 'automation'
         return data
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
+
 
 class OutReachEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Outreach
@@ -1019,6 +1216,7 @@ class MfsDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('mfs-list')
 
+
 class InsuranceDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'insurance_delete.html'
     success_message = 'Insurance deleted'
@@ -1030,7 +1228,8 @@ class InsuranceDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('insurance-list')
 
-class Secondary_DataDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+
+class SecondaryDataDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'secondary_data_delete.html'
     success_message = 'Secondary Data deleted'
 
@@ -1041,7 +1240,8 @@ class Secondary_DataDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('secondary_data-list')
 
-class Financial_ProgramDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+
+class FinancialProgramDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'financial_program_delete.html'
     success_message = 'Financial Program deleted'
 
@@ -1053,8 +1253,7 @@ class Financial_ProgramDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteVie
         return reverse_lazy('financial_program-list')
 
 
-
-class Automation_PartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+class AutomationPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'automation_partners_delete.html'
     success_message = 'Automation Partners deleted'
 
@@ -1064,6 +1263,7 @@ class Automation_PartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteV
 
     def get_success_url(self):
         return reverse_lazy('automation_partners-list')
+
 
 class DistrictDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'district_delete.html'
@@ -1076,6 +1276,7 @@ class DistrictDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('district-list')
 
+
 class ProvinceDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'province_delete.html'
     success_message = 'Province deleted'
@@ -1086,6 +1287,7 @@ class ProvinceDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('province-list')
+
 
 class MunicipalitiesDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'municipalities_delete.html'
@@ -1110,6 +1312,7 @@ class ProjectDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('sakchyam-project')
 
+
 class ProductDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'product_delete.html'
     success_message = 'Product deleted'
@@ -1120,6 +1323,7 @@ class ProductDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('sakchyam-product')
+
 
 class ProductProcessDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'productprocess_delete.html'
@@ -1132,6 +1336,7 @@ class ProductProcessDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('productprocess-list')
 
+
 class OutReachDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'outreach_delete.html'
     success_message = 'OutReach deleted'
@@ -1142,6 +1347,7 @@ class OutReachDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('outreach-list')
+
 
 class FinancialLiteracyDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'financialliteracy_delete.html'
@@ -1482,7 +1688,7 @@ class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView)
         return reverse_lazy('sakchyam-partners')
 
 
-class SakchyamAPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+class SakchyamPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'sakchyam_partner_delete.html'
     success_message = 'Sakchyam Partner deleted'
 

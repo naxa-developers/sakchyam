@@ -189,17 +189,49 @@
 
 .dataTables_paginate {
     margin-top: 2rem;
+    float:right;
+    .previous {
+        margin-right: 5px;
+    }
+    .next {
+        margin-left: 5px;
+    }
+    span{
+        a{
+            color: $color-primary;
+            background-color: $color-bg;
+            border: 1px solid rgba($color-primary, 0.1);
+            padding:0 5px;
+            @include transition (all .5s ease-in-out);
+            cursor: pointer;
+        }
+        &:hover{
+            a{
+                border-color: $color-blue;
+            background-color: $color-blue;
+            color:$color-white;
+            }
+        }
+    }
 }
-
-.dataTables_filter {
+.dataTables_length{
+    float: left;
+    label{
+        margin:0;
+    }
+}
+.dataTables_filter{
+    float: right;
     label {
-        input.form-control {
-            border: 1px solid darken($color-bg, 5%);
+        margin:0;
+        input[type=search] {
+            border: 1px solid $color-border;
             color: $color-bg-text;
             font-size: .875rem;
             font-family: $montserrat;
             -webkit-outline: none;
             outline: none;
+            margin-left: 10px;
 
             &:focus {
                 -webkit-outline: none;

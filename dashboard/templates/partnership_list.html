@@ -10,33 +10,29 @@
                 <a href="#">Visualization</a>
             </li>
 
-
             <li>
                 Partnership
             </li>
 
         </ul>
         {% if perms.api.add_partnership %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/partnership-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/partnership-bulk-add">
+            <a href="/dashboard/partnership-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
-        </div>
-        {% endif %}
-        <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/sakchyam-partners/">
+            <a href="/dashboard/partnership-list">
                 <button type="submit" class="sakchyam-button sm-button"> Manage Partner</button>
             </a>
 
         </div>
-        
+
+
+        {% endif %}
     </div>
     <div class="logframe">
         <!-- logframe table -->
@@ -74,8 +70,6 @@
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Project Year</th>
-                
-
 
                     <th></th>
                 </tr>
@@ -84,12 +78,12 @@
                 {% for data in list %}
                 <tr>
                     <td>
-                        {{ data.partner_id.name }}
+                         {{ data.partner_id__name }}
                     </td>
-                    <td>{{ data.project_id.name }}</td>
-                    <td>{{ data.province_id.name }}</td>
-                    <td>{{ data.district_id.name }}</td>
-                    <td>{{ data.municipality_id.name }}</td>
+                    <td>{{ data.project_id__name }}</td>
+                    <td>{{ data.province_id__name }}</td>
+                    <td>{{ data.district_id__name }}</td>
+                    <td>{{ data.municipality_id__name }}</td>
                     <td>{{ data.branch }}</td>
                     <td>{{ data.blb }}</td>
                     <td>{{ data.extension_counter }}</td>
@@ -116,7 +110,7 @@
                             <ul class="dropdown-animation">
                                 {% if perms.api.change_partnership %}
                                 <li>
-                                    <a href="/dashboard/partnership-edit/{{data.id}}"
+                                    <a href="/dashboard/partnership-edit/{{ data.id }}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
@@ -124,7 +118,7 @@
                                 {% endif %}
                                 {% if perms.api.delete_partnership %}
                                 <li>
-                                    <a href="/dashboard/partnership-delete/{{data.id}}" class="flex-start">
+                                    <a href="/dashboard/partnership-delete/{{ data.id }}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 

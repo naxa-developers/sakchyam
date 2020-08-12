@@ -16,26 +16,22 @@
 
         </ul>
         {% if perms.api.add_automation %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/automation-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/automation-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
-        </div>
-
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/automation_partners-list">
-                <button type="submit" class="sakchyam-button sm-button"> Manage Partners</button>
+                <button type="submit" class="sakchyam-button sm-button"> Manage Partner</button>
             </a>
 
         </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
@@ -59,7 +55,6 @@
                     <th>Name of partner institution</th>
                     <th>Branch Name</th>
                     <th>Number of Tablets Deployed</th>
-
 
                     <th></th>
                 </tr>

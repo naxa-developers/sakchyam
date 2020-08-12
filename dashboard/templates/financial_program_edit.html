@@ -66,7 +66,7 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_date" class="">Date</label>
-                        <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" value="{{ form.instance.date }}" />
+                        <input class="form-control" type="date" name="text" maxlength="100" required id="id_date" value="{{ form.instance.date |date:'m/d/Y' }}" />
                     </div>
                 </div>
 

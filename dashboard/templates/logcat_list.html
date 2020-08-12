@@ -16,17 +16,18 @@
 
         </ul>
         {% if perms.api.add_logdata %}
-        <div style="margin-left: 1200px;">
-            <a href="/dashboard/logcat-add">
+        <div class="buttons is-end">
+            <a href="/dashboard/logccat-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
+
+            <a href="/dashboard/logcat-bulk-add">
+                <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
+            </a>
+
         </div>
 
-        <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/milestone-year-add">
-                <button type=" submit" class="sakchyam-button sm-button"> Add Milestone Year</button>
-            </a>
-        </div>
+
         {% endif %}
     </div>
     <div class="logframe">
@@ -36,24 +37,25 @@
             {% for message in messages %}
             <div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> {{message}}
+                <strong>Alert!</strong> {{message}}
             </div>
             {% endfor %}
             {% endif %}
             <table class="logframe-table dataTable">
                 <thead>
-                    <tr>
+                <tr>
+
 
                         <th>Name</th>
                         <th>Title</th>
                         <th>Year Name</th>
 
-                        <th></th>
-                    </tr>
+                    <th></th>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for data in list %}
-                    <tr>
+                {% for data in list %}
+                <tr>
                         <td>
                             <a href="/dashboard/logsubcat-list/{{ data.id }}">
                                 {{data.name}}
@@ -62,33 +64,34 @@
                         <td>{{data.title}}</td>
                         <td>{{ data.yearname }}</td>
 
-                        <td>
-                            <div class="table-action">
-                                <a href="#" class="more-action">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-animation">
-                                    {% if perms.api.change_logdata %}
-                                    <li>
-                                        <a href="/dashboard/logtitle-edit/{{data.id}}/{{ list.first.sub_category.id }}"
-                                            class="flex-start">
-                                            <i class="material-icons">edit</i> Edit
-                                        </a>
-                                    </li>
-                                    {% endif %}
-                                    {% if perms.api.delete_logdata %}
-                                    <li>
-                                        <a href="#" class="flex-start">
-                                            <i class="material-icons">delete</i>delete
-                                        </a>
 
-                                    </li>
-                                    {% endif %}
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
+                    <td>
+                        <div class="table-action">
+                            <a href="#" class="more-action">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-animation">
+                                {% if perms.api.change_logdata %}
+                                <li>
+                                    <a href="/dashboard/logcat-edit/{{data.id}}"
+                                       class="flex-start">
+                                        <i class="material-icons">edit</i> Edit
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.api.delete_logdata %}
+                                <li>
+                                    <a href="/dashboard/logcat-delete/{{data.id}}" class="flex-start">
+                                        <i class="material-icons">delete</i>delete
+                                    </a>
+
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
