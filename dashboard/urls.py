@@ -35,6 +35,7 @@ urlpatterns = [
     path('financialliteracy-add/', views.FinancialLiteracyCreate.as_view(), name='financialliteracy-add'),
     path('automation-bulk-add/', views.automationBulkCreate, name='automation-bulk-add'),
     path('outreach-bulk-add/', views.outreachBulkCreate, name='outreach-bulk-add'),
+    path('partnership-bulk-add/', views.partnershipBulkCreate, name='partnership-bulk-add'),
     path('automation-edit/<int:pk>', views.AutomationEdit.as_view(), name='automation-edit'),
     path('outreach-edit/<int:pk>', views.OutReachEdit.as_view(), name='outreach-edit'),
     path('productprocess-edit/<int:pk>', views.ProductProcessEdit.as_view(), name='productprocess-edit'),
