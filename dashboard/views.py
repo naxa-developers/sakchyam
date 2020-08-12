@@ -472,7 +472,8 @@ class PartnershipList(LoginRequiredMixin, ListView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['partnership'] = 'active'
-        query_data = Partnership.objects.order_by('id')
+        query_data = Partnership.objects.values('province_id__name', 'district_id__name', 'municipality_id__name','partner_id__name','project_id__name','branch','blb','extension_counter','tablet','other_products','beneficiary','scf_funds','allocated_budget','allocated_beneficiary','female_percentage','total_beneficiary','female_beneficiary','status','start_date','end_date','project_year').order_by('id')
+        print(query_data)
         data['list'] = query_data
         return data
 
@@ -930,6 +931,158 @@ def automationBulkCreate(request):
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
+
+def outreachBulkCreate(request):
+    template = 'outreach_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code =df['Local Unit_Code'][row])
+                
+                district = District.objects.get(
+                    code=df['District_Code'][row])
+                province = district.province_id
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                partner_type = None if df['Type of FI'][row] == '' else df['Type of FI'][row]
+                market_name = None if df['Market Name'][row] == '' else df['Market Name'][row]
+                expansion_driven_by = None if df['Expansion Driven by'][row] == '' else df['Expansion Driven by'][row]
+                date_established = None if df['Date established'][row] == '' else df['Date established'][row]
+                point_service = None if df['Point of Service'][row] == '' else df['Point of Service'][row]
+                g2p_payment = None if df['G2P Payments (Yes/No)'][row] == '' else df['G2P Payments (Yes/No)'][row]
+                gps_point = None if df['GPS Point'][row] == '' else df['GPS Point'][row]
+                demonstration_effect = None if df['Demonstration effect '][row]=='' else df['Demonstration effect '][row]
+                
+                outreach = Outreach.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner_id=partner,
+                    partner_type=partner_type,
+                    market_name=market_name,
+                    expansion_driven_by=expansion_driven_by,
+                    date_established=date_established,
+                    point_service=point_service,
+                    g2p_payment=g2p_payment,
+                    gps_point=gps_point,
+                    demonstration_effect = demonstration_effect
+                    
+                    
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Outreach Created ")
+        return redirect('/dashboard/outreach-list/', messages)
+
+def partnershipBulkCreate(request):
+    template = 'partnership_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code =df['Local Unit code'][row])
+                
+                district = municipality.district_id
+                province = municipality.province_id
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                project = Partner.objects.get(
+                    code=df['Project Code'][row])
+                branch = None if df['Branch'][row] == '' else df['Branch'][row]
+                blb = None if df['BLB'][row] == '' else df['BLB'][row]
+                expansion_counter = None if df['Expansion Counter'][row] == '' else df['Expansion Counter'][row]
+                tablet = None if df['Tablet'][row] == '' else df['Tablet'][row]
+                other_products = None if df['Other Major Products (Local units coverage)'][row] == '' else df['Other Major Products (Local units coverage)'][row]
+                beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
+                scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
+                allocated_budget = None if df['Allocated Funds to Local Units'][row]=='' else df['Allocated Funds to Local Units'][row]
+                allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row]=='' else df['Allocated Beneficiaries at Local Units'][row]
+                female_beneficiary = None if df['Female Beneficiaries '][row]=='' else df['Female Beneficiaries'][row]
+                total_beneficiary = None if df['Total Beneficiaries'][row]=='' else df['Total Beneficiaries '][row]
+                status = None if df['Status '][row]=='' else df['Status'][row]
+                start_date = None if df['Status '][row]=='' else df['Status '][row]
+                end_date = None if df['End Date'][row]=='' else df['End Date '][row]
+                project_year = None if df['Project Year '][row]=='' else df['Project Year '][row]
+                
+                outreach = Outreach.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner_id=partner,
+                    project_id=project,
+                    branch=branch,
+                    blb=blb,
+                    expansion_counter=expansion_counter,
+                    tablet=tablet,
+                    other_products=other_products,
+                    beneficiary=beneficiary,
+                    scf_funds = scf_funds,
+                    allocated_budget = allocated_budget,
+                    allocated_beneficiary = allocated_beneficiary,
+                    female_beneficiary = female_beneficiary,
+                    total_beneficiary = total_beneficiary,
+                    status = status,
+                    start_date = start_date,
+                    end_date = end_date,
+                    project_year = project_year
+                    
+                    
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Partnership Created ")
+        return redirect('/dashboard/partnership-list/', messages)
 
 
 class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):

@@ -84,12 +84,12 @@
                 {% for data in list %}
                 <tr>
                     <td>
-                        {{ data.partner_id.name }}
+                         {{ data.partner_id__name }}
                     </td>
-                    <td>{{ data.project_id.name }}</td>
-                    <td>{{ data.province_id.name }}</td>
-                    <td>{{ data.district_id.name }}</td>
-                    <td>{{ data.municipality_id.name }}</td>
+                    <td>{{ data.project_id__name }}</td>
+                    <td>{{ data.province_id__name }}</td>
+                    <td>{{ data.district_id__name }}</td>
+                    <td>{{ data.municipality_id__name }}</td>
                     <td>{{ data.branch }}</td>
                     <td>{{ data.blb }}</td>
                     <td>{{ data.extension_counter }}</td>

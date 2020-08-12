@@ -9,11 +9,11 @@
         <ul class="flex-start">
 
             <li>
-                <a href="#">Product</a>
+                <a href="#">Project</a>
             </li>
 
 
-            <li>Add Form</li>
+            <li>Edit Form</li>
         </ul>
     </div>
     <!-- program form -->
@@ -40,78 +40,27 @@
 
 
             <div style="display:block">
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group ">
-                            <label for="id_province_id" class="">Province</label>
-                            <select class="selectpicker" data-live-search="true" name="province_id" required
-                                id="id_province_id">
-                                {% for province in provinces %}
-                                <option value="{{province.id}}" selected>{{province.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group ">
-                            <label for="id_district_id" class="">District</label>
-                            <select class="selectpicker" data-live-search="true" name="district_id" required
-                                id="id_district_id">
-                                {% for district in districts %}
-                                <option value="{{district.id}}" selected>{{district.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group ">
-                            <label for="id_municipality_id" class="">Municipality</label>
-                            <select class="selectpicker" data-live-search="true" name="municipality_id" required
-                                id="id_municipality_id">
-                                {% for municipality in municipalities %}
-                                <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-
-            </div>
-
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_partner_institution" class="">Name of Partner Institution</label>
-                        <select class="selectpicker" data-live-search="true" name="partner_institution" required
-                            id="id_partner_institution">
-                            {% for partner in partners %}
-                            <option value="{{partner.id}}" selected>{{partner.name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-            </div>
 
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group error">
-                        <label for="id_branch" class="">Branch Name</label>
-                        <input class="form-control" type="text" name="branch" maxlength="100" required id="id_branch" />
+                        <label for="id_name" class="">Name</label>
+                        <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" value="{{ form.instance.name }}" />
                     </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_code" class="">Code</label>
+                        <input class="form-control" type="text" name="code" value="{{ form.instance.code }}"
+                            id="id_code"></div>
                 </div>
 
             </div>
@@ -121,9 +70,45 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_num_tablet_deployed" class="">Number Of Tablets Deployed</label>
-                        <input class="form-control" type="number" name="num_tablet_deployed" value="0"
-                            id="id_num_tablet_deployed"></div>
+                        <label for="id_investment_primary" class="">Investment Primary</label>
+                        <input class="form-control" type="text" name="investment_primary" value="{{ form.instance.investment_primary }}"
+                            id="id_investment_primary"></div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_investment_primary" class="">Investment Secondary</label>
+                        <input class="form-control" type="text" name="investment_secondary" value="{{ form.instance.investment_secondary }}"
+                            id="investment_secondary"></div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_leverage" class="">Leverage</label>
+                        <input class="form-control" type="number" name="leverage" value="{{ form.instance.leverage }}"
+                            id="id_leverage"></div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_scf_funds" class="">SCF FUNDS</label>
+                        <input class="form-control" type="number" name="scf_funds" value="{{ form.instance.scf_funds }}"
+                            id="id_scf_funds"></div>
                 </div>
 
             </div>
