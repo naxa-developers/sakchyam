@@ -113,13 +113,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_partner_institution" class="">Name of Partner Institution</label>
-                        <select name="partner_institution" id="id_partner_institution" class="selectpicker" data-live-search="true" required>
+                        <label for="id_partner" class="">Name of Partner Institution</label>
+                        <select name="partner" id="id_partner" class="selectpicker" data-live-search="true" required>
                             {% for partner in partners %}
                                 {% if partner.id == form.instance.municipality_id.id %}
                                     <option value="{{ partner.id }}" selected>{{ partner.name }}</option>
                                 {% else %}
-                                    <option value="{{ partner.id }}" >{{ partner.name }}</option>
+                                    <option value="{{ partner.id }}" >{{partner.partner.name}}</option>
                                 {% endif %}
                             {% endfor %}
                         </select>

@@ -61,7 +61,7 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_date" class="">Date</label>
-                        <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" value="{{ form.instance.date }}" />
+                        <input class="form-control" type="text" name="date" maxlength="100" required id="id_date" value="{{ form.instance.date |date:'m/d/Y' }}" />
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_latitude" class="">Latitude</label>
-                        <input class="form-control" type="number" name="latitude" value="{{ form.instance.latitude }}" required
+                        <input class="form-control" type="float" name="latitude" value="{{ form.instance.latitude }}" required
                             id="id_latitude"></div>
                 </div>
 
@@ -85,7 +85,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_longitude" class="">Longitude</label>
-                        <input class="form-control" type="number" name="longitude" value="{{ form.instance.longitude }}" required
+                        <input class="form-control" type="float" name="longitude" value="{{ form.instance.longitude }}" required
                             id="id_longitude"></div>
                 </div>
 

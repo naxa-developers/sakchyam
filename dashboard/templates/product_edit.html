@@ -80,7 +80,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_date" class="">Date</label>
-                        <input class="form-control" type="date" name="date" value="{{ form.instance.date }}"
+                        <input class="form-control" type="text" name="date" value="{{ form.instance.date |date:'m/d/Y' }}"
                             id="id_date"></div>
                 </div>
 
