@@ -9,25 +9,25 @@
             <li>
                 <a href="#">Visualization</a>
             </li>
+
             <li>
                 Financial Program
             </li>
 
-
         </ul>
         {% if perms.api.add_financialliteracy %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/financial_program-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/financial_program-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
-        </div> 
+        </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
@@ -44,11 +44,14 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+
                     <th>Name</th>
                     <th>Code</th>
                     <th>Date</th>
                     <th>Total</th>
-                    
+
+
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,7 +61,8 @@
                     <td>{{ data.code }}</td>
                     <td>{{ data.date }}</td>
                     <td>{{ data.total }}</td>
-                    
+
+
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">
@@ -72,7 +76,6 @@
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
- 
                                 {% endif %}
                                 {% if perms.api.delete_financialliteracy %}
                                 <li>
@@ -81,7 +84,6 @@
                                     </a>
 
                                 </li>
- 
                                 {% endif %}
                             </ul>
                         </div>
@@ -94,7 +96,5 @@
     </div>
 
 </main>
-
-
 {% endif %}
 {% endblock %}

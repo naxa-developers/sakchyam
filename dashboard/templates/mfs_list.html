@@ -7,24 +7,27 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
+                <a href="#">Visualization</a>
+            </li>
+
+            <li>
                 MFS
             </li>
 
-
         </ul>
         {% if perms.api.add_mfs %}
-        <div style="margin-left: 1200px;">
+        <div class="buttons is-end">
             <a href="/dashboard/mfs-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/mfs-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
         </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
@@ -41,6 +44,7 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+
                     <th>Province Id</th>
                     <th>District Id</th>
                     <th>Municipality Id</th>
@@ -48,6 +52,8 @@
                     <th>Key Innovation</th>
                     <th>Achievement Type</th>
                     <th>Achieved Number</th>
+
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,6 +66,8 @@
                     <td>{{ data.key_innovation }}</td>
                     <td>{{ data.achievement_type }}</td>
                     <td>{{ data.achieved_number }}</td>
+
+
                     <td>
                         <div class="table-action">
                             <a href="#" class="more-action">

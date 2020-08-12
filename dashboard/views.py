@@ -382,11 +382,12 @@ class DistrictEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['user'] = user_data
         data['provinces'] = Province.objects.order_by('id')
         # data['active'] = 'program'
-        data['district'] = 'active'
-        return data
 
     def get_success_url(self):
         return reverse_lazy('district-list')
+
+        data['district'] = 'active'
+        return data
 
 
 class MunicipalitiesCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -494,13 +495,13 @@ class PartnershipList(LoginRequiredMixin, ListView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['partnership'] = 'active'
-        query_data = Partnership.objects.values('province_id__name', 'district_id__name', 'municipality_id__name',
+        query_data = Partnership.objects.values('id', 'province_id__name', 'district_id__name', 'municipality_id__name',
                                                 'partner_id__name', 'project_id__name', 'branch', 'blb',
                                                 'extension_counter', 'tablet', 'other_products', 'beneficiary',
                                                 'scf_funds', 'allocated_budget', 'allocated_beneficiary',
                                                 'female_percentage', 'total_beneficiary', 'female_beneficiary',
                                                 'status', 'start_date', 'end_date', 'project_year').order_by('id')
-        print(query_data)
+
         data['list'] = query_data
         return data
 
@@ -1080,13 +1081,13 @@ def partnershipBulkCreate(request):
                 expansion_counter = None if df['Expansion Counter'][row] == '' else df['Expansion Counter'][row]
                 tablet = None if df['Tablet'][row] == '' else df['Tablet'][row]
                 other_products = None if df['Other Major Products (Local units coverage)'][row] == '' else \
-                df['Other Major Products (Local units coverage)'][row]
+                    df['Other Major Products (Local units coverage)'][row]
                 beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
                 scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
                 allocated_budget = None if df['Allocated Funds to Local Units'][row] == '' else \
-                df['Allocated Funds to Local Units'][row]
+                    df['Allocated Funds to Local Units'][row]
                 allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
-                df['Allocated Beneficiaries at Local Units'][row]
+                    df['Allocated Beneficiaries at Local Units'][row]
                 female_beneficiary = None if df['Female Beneficiaries '][row] == '' else df['Female Beneficiaries'][row]
                 total_beneficiary = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries '][row]
                 status = None if df['Status '][row] == '' else df['Status'][row]

@@ -16,24 +16,22 @@
 
         </ul>
         {% if perms.api.add_productprocess %}
-        <div style="margin-left: 1200px;">
-            <a href="/dashboard/productprocess-add">
+        <div class="buttons is-end">
+            <a href="/dashboard/automation-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
             <a href="/dashboard/productprocess-bulk-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
             </a>
 
-        </div>
-        <div style="margin-left: 1200px; margin-top: 20px;">
-            <a href="/dashboard/sakchyam-product">
+            <a href="/dashboard/sakchyam-product/">
                 <button type="submit" class="sakchyam-button sm-button"> Manage Product</button>
             </a>
 
         </div>
+
+
         {% endif %}
     </div>
     <div class="logframe">
