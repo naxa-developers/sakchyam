@@ -30,6 +30,15 @@ class Dashboard(TemplateView):
 
     def get(self, request, *args, **kwargs):
         sidebar = LogCategory.objects.all()
+        context = {
+            "sidebar": sidebar,
+            "dashboard": "active",
+            "product_count": Product.objects.all().count(),
+            "project_count": Project.objects.all().count(),
+            "partner_count": Partner.objects.all().count(),
+            "user_count": User.objects.all().count()
+
+        }
         # user = self.request.user
         # user_data = UserProfile.objects.get(user=user)
         # group = Group.objects.get(user=user)
@@ -38,7 +47,7 @@ class Dashboard(TemplateView):
         #     five = FiveW.objects.order_by('id')
         # else:
         #     five = FiveW.objects.select_related('supplier_id').filter(supplier_id=user_data.partner.id)[:10]
-        return render(request, 'dashboard.html', {"sidebar": sidebar, "dashboard": "active"})
+        return render(request, 'dashboard.html', context)
 
 
 class LogCategoryList(LoginRequiredMixin, ListView):
@@ -175,7 +184,7 @@ class MunicipalitiesList(LoginRequiredMixin, ListView):
         data = super(MunicipalitiesList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        data['municipality'] = 'active'
+        data['municipalities'] = 'active'
         query_data = Municipality.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -577,38 +586,8 @@ class SakchyamProductList(LoginRequiredMixin, ListView):
         data['product'] = 'active'
         query_data = Product.objects.order_by('id')
         data['list'] = query_data
+
         return data
-
-
-class LogCategoryCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
-    model = LogCategory
-    template_name = 'logcat_add.html'
-    form_class = LogCategoryForm
-    success_message = 'Log Category data created'
-
-    def get_context_data(self, **kwargs):
-        print('Log Cat')
-        data = super(LogCategoryCreate, self).get_context_data(**kwargs)
-        user = self.request.user
-        user_data = UserProfile.objects.get(user=user)
-        data['user'] = user_data
-        data['logcat'] = 'active'
-        data['years'] = {
-            'y1': 'Year 1',
-            'y2': 'Year 2',
-            'y3': 'Year 3',
-            'y4': 'Year 4',
-            'y5': 'Year 5',
-            'y6': 'Year 6',
-            'y7': 'Year 7',
-            'y8': 'Year 8',
-            'y9': 'Year 9',
-            'y10': 'Year 10'
-        }
-        return data
-
-    def get_success_url(self):
-        return reverse_lazy('logcat-list')
 
 
 class AutomationList(LoginRequiredMixin, ListView):
@@ -972,6 +951,56 @@ def automationBulkCreate(request):
         return redirect('/dashboard/automation-list/', messages)
 
 
+def financialliteracyBulkCreate(request):
+    template = 'financialliteracy_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                partner_id = Partner.objects.get(
+                    code=df['PartnerID'][row])
+                partner_type = None if df['Partner Type'][row] == '' else df['Partner Type'][row]
+                program_id = FinancialProgram.objects.get(
+                    code=df['Programme code'][row])
+                value = 0 if df['Value'][row] == '' else df['Value'][row]
+                single_count = None if df['Total Single Count'][row] == '' else df['Total Single Count'][row]
+                financialliteracy = FinancialLiteracy.objects.update_or_create(
+                    partner_id=partner_id,
+                    partner_type=partner_type,
+                    program_id=program_id,
+                    value=value,
+                    single_count=single_count
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Financial Literacy Created ")
+        return redirect('/dashboard/financialliteracy-list/', messages)
+
+
 def outreachBulkCreate(request):
     template = 'outreach_bulk_upload.html'
 
@@ -1074,7 +1103,7 @@ def partnershipBulkCreate(request):
                 province = municipality.province_id
                 partner = Partner.objects.get(
                     code=df['Partner Code'][row])
-                project = Partner.objects.get(
+                project = Project.objects.get(
                     code=df['Project Code'][row])
                 branch = None if df['Branch'][row] == '' else df['Branch'][row]
                 blb = None if df['BLB'][row] == '' else df['BLB'][row]
@@ -1126,6 +1155,171 @@ def partnershipBulkCreate(request):
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Partnership Created ")
         return redirect('/dashboard/partnership-list/', messages)
+
+
+def productprocessBulkCreate(request):
+    template = 'productprocess_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                product = Product.objects.get(
+                    code=df['Product Code'][row])
+                partner_type = None if df['FI Type'][row] == '' else df['FI Type'][row]
+                innovation_area = None if df['Innovation Area'][row] == '' else df['Innovation Area'][row]
+                market_failure = None if df['Market Failures'][row] == '' else df['Market Failures'][row]
+
+                outreach = ProductProcess.objects.update_or_create(
+
+                    partner_id=partner,
+                    product_id=product,
+                    partner_type=partner_type,
+                    innovation_area=innovation_area,
+                    market_failure=market_failure
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " ProductProcess Created ")
+        return redirect('/dashboard/productprocess-list/', messages)
+
+
+def projectBulkCreate(request):
+    template = 'project_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                name = None if df['Name'][row] == '' else df['Name'][row]
+                code = 0 if df['Code'][row] == '' else df['Code'][row]
+                investment_primary = None if df['Investment Primary'][row] == '' else df['Investment Primary'][row]
+                investment_secondary = None if df['Investment Secondary'][row] == '' else df['Investment Secondary'][
+                    row]
+                leverage = 0 if df['Leverage'][row] == '' else df['Leverage'][row]
+                scf_funds = 0 if df['SCF FUNDS'][row] == '' else df['SCF FUNDS'][row]
+
+                outreach = Project.objects.update_or_create(
+
+                    name=name,
+                    code=code,
+                    investment_primary=investment_primary,
+                    investment_secondary=investment_secondary,
+                    leverage=leverage,
+                    scf_funds=scf_funds
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Project Created ")
+        return redirect('/dashboard/sakchyam-project/', messages)
+
+
+def partnerBulkCreate(request):
+    template = 'partner_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+
+                name = None if df['Name'][row] == '' else df['Name'][row]
+                code = 0 if df['Code'][row] == '' else df['Code'][row]
+                type = None if df['Type'][row] == '' else df['Type'][row]
+                financial_literacy = None if df['Financial Literacy'][row] == '' else df['Financial Literacy'][row]
+                partnership = None if df['Partnership'][row] == '' else df['Partnership'][row]
+                outreach_expansion = None if df['OutReach Expansion'][row] == '' else df['OutReach Expansion'][row]
+                mfs = None if df['MFS'][row] == '' else df['MFS'][row]
+                product_process = None if df['Product Process'][row] == '' else df['Product Process'][row]
+
+                outreach = Partner.objects.update_or_create(
+
+                    name=name,
+                    code=code,
+                    type=type,
+                    financial_literacy=financial_literacy,
+                    partnership=partnership,
+                    outreach_expansion=outreach_expansion,
+                    mfs=mfs,
+                    product_process=product_process
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Partner Created ")
+        return redirect('/dashboard/partner-list/', messages)
 
 
 class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
@@ -1203,6 +1397,21 @@ class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('automation-list')
+
+
+'''
+class LogCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'logcat_delete.html'
+    success_message = 'LogCategory deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(LogCategory, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('logcat-list')
+        
+        '''
 
 
 class MfsDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):

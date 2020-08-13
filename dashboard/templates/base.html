@@ -10,7 +10,7 @@
     <title>sakchyam Dashboard</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- Favicon-->
-    <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap-select.min.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Custom Css -->
@@ -76,11 +76,11 @@
                         <i class="material-icons">assignment</i>
                         <span>Visualization</span></a>
 
-                        <ul class="ml-menu">
+                        <ul class="  ml-menu">
 
                             <!--                            <li><a href="/dashboard/logsubcat-list/{{ log.id }}">{{log.name}}</a></li>-->
 
-                            <li class="{{ logcat }}"><a href="/dashboard/logcat-list/">Log Frame</a></li>
+                            <li class=" {{ logcat }}"><a href="/dashboard/logcat-list/">Log Frame</a></li>
 
                             <li class="{{ automation }}" ><a href="/dashboard/automation-list">Automation</a></li>
                             <li class="{{ financialliteracy }}"><a href="/dashboard/financialliteracy-list">Financial Literacy</a></li>
