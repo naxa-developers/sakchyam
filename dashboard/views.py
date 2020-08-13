@@ -950,6 +950,57 @@ def automationBulkCreate(request):
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
 
+def productBulkCreate(request):
+    template = 'product_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code=df['Municipality'][row])
+                province = municipality.province_id
+                district = municipality.district_id
+                partner = AutomationPartner.objects.get(
+                    partner__code=df['Partner'][row])
+                branch = None if df['Branch'][row] == '' else df['Branch'][row]
+                numTablets = 0 if df['No. of Tablets'][row] == '' else df['No. of Tablets'][row]
+                product = Automation.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner=partner,
+                    branch=branch,
+                    num_tablet_deployed=numTablets
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Product Created ")
+        return redirect('/dashboard/product-list/', messages)
+
 
 def financialliteracyBulkCreate(request):
     template = 'financialliteracy_bulk_upload.html'
@@ -1124,7 +1175,7 @@ def partnershipBulkCreate(request):
                 end_date = None if df['End Date'][row] == '' else df['End Date '][row]
                 project_year = None if df['Project Year '][row] == '' else df['Project Year '][row]
 
-                outreach = Outreach.objects.update_or_create(
+                productprocess = Partnership.objects.update_or_create(
                     province_id=province,
                     district_id=district,
                     municipality_id=municipality,
@@ -1191,7 +1242,7 @@ def productprocessBulkCreate(request):
                 innovation_area = None if df['Innovation Area'][row] == '' else df['Innovation Area'][row]
                 market_failure = None if df['Market Failures'][row] == '' else df['Market Failures'][row]
 
-                outreach = ProductProcess.objects.update_or_create(
+                productprocess = ProductProcess.objects.update_or_create(
 
                     partner_id=partner,
                     product_id=product,
@@ -1244,7 +1295,7 @@ def projectBulkCreate(request):
                 leverage = 0 if df['Leverage'][row] == '' else df['Leverage'][row]
                 scf_funds = 0 if df['SCF FUNDS'][row] == '' else df['SCF FUNDS'][row]
 
-                outreach = Project.objects.update_or_create(
+                project = Project.objects.update_or_create(
 
                     name=name,
                     code=code,
@@ -1300,7 +1351,7 @@ def partnerBulkCreate(request):
                 mfs = None if df['MFS'][row] == '' else df['MFS'][row]
                 product_process = None if df['Product Process'][row] == '' else df['Product Process'][row]
 
-                outreach = Partner.objects.update_or_create(
+                partner = Partner.objects.update_or_create(
 
                     name=name,
                     code=code,
