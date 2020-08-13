@@ -294,3 +294,24 @@
     @include radius(5px);
     margin-top:2rem;
 }
+.dashboard-view{
+    background-color: $color-white;
+    padding:1rem;
+    border:1px solid $color-border;
+    @include radius(5px);
+    margin-top:2rem;
+    .card-body{
+        text-align: center;
+        h3{
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-transform: capitalize;
+        }
+        p{
+            font-size: 1rem;
+            margin:0;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+    }
+}

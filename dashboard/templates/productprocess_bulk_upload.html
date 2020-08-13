@@ -9,7 +9,7 @@
         <ul class="flex-start">
 
             <li>
-                <a href="/dashboard/sakchyam-partners/">Sakchyam Partners</a>
+                <a href="/dashboard/partnership-list">ProductProcess</a>
             </li>
 
             <li>Upload Bulk Data</li>
@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="fileUpload">Upload your file</label>
             <br>
-            <input type="file" name="myfile" id="myfile" required>
+            <input type="file" name="autofile" id="autofile" required>
         </div>
         <div class="form-group">
             <button type="submit" class="sakchyam-button sm-button">Upload</button>
@@ -35,7 +35,7 @@
     </form>
     <h3 style="color: red;">Note:</h3>
     <p>1. Please upload a .csv or .xls file </p>
-    <p>2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets</p>
+    <p>2. Order of the file columns should be Partner Code,Product Code,Partner Type,Innovation Area,Market Failure </p>
     {% endif %}
 </main>
 

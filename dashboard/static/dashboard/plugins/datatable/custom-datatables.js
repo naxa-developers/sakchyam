@@ -18,9 +18,16 @@ $(function(){
 
 $(function(){
 	$('.dataTable').DataTable({
-		"scrollX": "1440px",
+		language: { search: '', searchPlaceholder: "Search..." },
+		"scrollX": true,
 		"scrollCollapse": true,
-		'iDisplayLength': 18,
+		'iDisplayLength': 3,
+		'paging': true,
+		dom: 'Bfrtip',
+        buttons: [
+            'excelHtml5',
+            'csvHtml5',
+        ]
 		
 	});
 });

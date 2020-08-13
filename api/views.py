@@ -2295,3 +2295,67 @@ class InsuranceData(viewsets.ModelViewSet):
             })
 
         return Response(data)
+
+
+class PartnershipTimeline(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        year_data = []
+        timeline_data = []
+
+        year = [d.year for d in Partnership.objects.values('start_date').dates('start_date', 'year')]
+        for i in range(0, len(year)):
+            month = 4
+            for m in range(month, 13):
+                if m % 4 == 0:
+                    print(m)
+                    quarter = str(year[i]) + '-' + str(m) + '-' + '1'
+                    print(quarter)
+                    year_data.append(quarter)
+
+        for y in range(0, len(year_data)):
+            project = []
+            if request.GET.getlist('province_id'):
+                timeline_query = Partnership.objects.values('province_id__code', 'province_id__name').filter(
+                    start_date__lte=year_data[y]).annotate(Count('project_id', distinct=True))
+                for t in timeline_query:
+                    project.append({
+                        'name': t['province_id__name'],
+                        'code': t['province_id__code'],
+                        'count': t['project_id__count']
+
+                    })
+
+            if request.GET.getlist('district_id'):
+                timeline_query = Partnership.objects.values('district_id__n_code', 'district_id__name').filter(
+                    start_date__lte=year_data[y]).annotate(Count('project_id', distinct=True))
+                for t in timeline_query:
+                    project.append({
+                        'name': t['district_id__name'],
+                        'code': t['district_id__n_code'],
+                        'count': t['project_id__count']
+
+                    })
+
+            if request.GET.getlist('municipality_id'):
+                timeline_query = Partnership.objects.values('municipality_id__code', 'municipality_id__name').filter(
+                    start_date__lte=year_data[y]).annotate(Count('project_id', distinct=True))
+                for t in timeline_query:
+                    project.append({
+                        'name': t['municipality_id__name'],
+                        'code': t['municipality_id__code'],
+                        'count': t['project_id__count']
+
+                    })
+
+            timeline_data.append({
+                'date': year_data[y],
+                'data': project
+            })
+
+        return Response(timeline_data)

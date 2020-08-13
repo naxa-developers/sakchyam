@@ -48,6 +48,9 @@ urlpatterns = [
          name='overview'),
     path('partnership/map-data/', views.PartnershipMap.as_view({'get': 'list'}),
          name='map-data'),
+    path('partnership/timeline/', views.PartnershipTimeline.as_view({'get': 'list'}),
+         name='timeline'),
+
     path('process-product/secondary-data/', views.SecondaryViewSet.as_view({'get': 'list'}), name='secondary-data'),
     path('outreach/outreach-data/', views.OutreachApi.as_view({'get': 'list'}), name='outreach-data'),
     path('outreach/outreach-map/', views.OutreachMap.as_view({'get': 'list'}), name='outreach-map'),
