@@ -976,21 +976,15 @@ def productBulkCreate(request):
         success_count = 0
         for row in range(0, upper_range):
             try:
-                municipality = Municipality.objects.get(
-                    code=df['Municipality'][row])
-                province = municipality.province_id
-                district = municipality.district_id
-                partner = AutomationPartner.objects.get(
-                    partner__code=df['Partner'][row])
-                branch = None if df['Branch'][row] == '' else df['Branch'][row]
-                numTablets = 0 if df['No. of Tablets'][row] == '' else df['No. of Tablets'][row]
-                product = Automation.objects.update_or_create(
-                    province_id=province,
-                    district_id=district,
-                    municipality_id=municipality,
-                    partner=partner,
-                    branch=branch,
-                    num_tablet_deployed=numTablets
+                name = None if df['Name'][row] == '' else df['Name'][row]
+                type = None if df['Type'][row] == '' else df['Type'][row]
+                code = 0 if df['Code'][row] == '' else df['Code'][row]
+                date = 0 if df['Date'][row] == '' else df['No. of Tablets'][row]
+                product = Product.objects.update_or_create(
+                    name=name,
+                    type=type,
+                    code=code,
+                    date=date
                 )
                 success_count += 1
             except ObjectDoesNotExist as e:

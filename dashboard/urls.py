@@ -33,6 +33,7 @@ urlpatterns = [
     path('financialliteracy-add/', views.FinancialLiteracyCreate.as_view(), name='financialliteracy-add'),
     path('automation-bulk-add/', views.automationBulkCreate, name='automation-bulk-add'),
     path('productprocess-bulk-add/', views.productprocessBulkCreate, name='productprocess-bulk-add'),
+    path('product-bulk-add/', views.productBulkCreate, name='product-bulk-add'),
     path('financialliteracy-bulk-add/', views.financialliteracyBulkCreate, name='financialliteracy-bulk-add'),
     path('project-bulk-add/', views.projectBulkCreate, name='project-bulk-add'),
     path('partner-bulk-add/', views.partnerBulkCreate, name='partner-bulk-add'),
