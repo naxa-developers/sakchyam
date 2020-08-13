@@ -65,7 +65,7 @@ function dropdownMenu(){
               } else {
                   // hides paragraph if its visible
                   $('.ml-menu').eq(i).slideUp();
-              }
+              }        
           });
       }  
       dropdown(i);
