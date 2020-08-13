@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                <a href="/dashboard/logcat-list">Log Category</a>
+            </li>
+
+
+            <li>Edit Form</li>
+        </ul>
+    </div>
+    <!-- program form -->
+    <form class="program-form" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ field.name|title }} {{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <!-- category form
+        <div class="category-form form-card">
+            <div class="form-title">
+                <h3>Indicator</h3>
+            </div>
+
+        </div> -->
+
+        <!-- default form -->
+        <div class="default-form">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_name" class="">Category Name</label>
+                        <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" value="{{ form.instance.name }}" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group error">
+                        <label for="id_title" class="">Category Title</label>
+                        <input class="form-control" type="text" name="title" maxlength="100" required id="id_title" value="{{ form.instance.title }}" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="id_yearname" class="">Period</label>
+                        <select class="selectpicker" data-live-search="true" name="yearname" required
+                            id="id_yearname">
+                            {% for code, year in years.items %}
+                                <option value="{{ year }}" selected>{{ year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mrt-100">
+                <button type="submit" class="sakchyam-button sm-button">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

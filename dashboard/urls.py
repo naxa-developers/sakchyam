@@ -22,8 +22,6 @@ urlpatterns = [
 
     # path('logtitle-add/<int:subcat>', views.LogTitleCreate.as_view(), name='logtitle-add'),
     path('logcat-list/', views.LogCategoryList.as_view(), name='logcat-list'),
-    path('logcat-add/', views.LogCategoryCreate.as_view(), name='logcat-add'),
-    # path('logtitle-edit/<int:pk>/<int:subcat>', views.LogTitleUpdate.as_view(), name='logtitle-edit'),
 
     path('automation-list/', views.AutomationList.as_view(), name='automation-list'),
     path('outreach-list/', views.OutReachList.as_view(), name='outreach-list'),
@@ -34,6 +32,10 @@ urlpatterns = [
     path('outreach-add/', views.OutReachCreate.as_view(), name='outreach-add'),
     path('financialliteracy-add/', views.FinancialLiteracyCreate.as_view(), name='financialliteracy-add'),
     path('automation-bulk-add/', views.automationBulkCreate, name='automation-bulk-add'),
+    path('productprocess-bulk-add/', views.productprocessBulkCreate, name='productprocess-bulk-add'),
+    path('financialliteracy-bulk-add/', views.financialliteracyBulkCreate, name='financialliteracy-bulk-add'),
+    path('project-bulk-add/', views.projectBulkCreate, name='project-bulk-add'),
+    path('partner-bulk-add/', views.partnerBulkCreate, name='partner-bulk-add'),
     path('outreach-bulk-add/', views.outreachBulkCreate, name='outreach-bulk-add'),
     path('partnership-bulk-add/', views.partnershipBulkCreate, name='partnership-bulk-add'),
     path('automation-edit/<int:pk>', views.AutomationEdit.as_view(), name='automation-edit'),
