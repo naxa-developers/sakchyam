@@ -9,7 +9,7 @@
         <ul class="flex-start">
 
             <li>
-                <a href="/dashboard/district-list">District</a>
+                <a href="/dashboard/municipalities-list">Municipality</a>
             </li>
 
 
@@ -43,12 +43,15 @@
                 <div class="row">
 
                     <div class="col-md-6">
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="id_province_id" class="">Province</label>
-                            <select class="selectpicker" data-live-search="true" name="province_id" required
-                                id="id_province_id">
-                                {% for province in provinces %}
-                                <option value="{{province.id}}" selected>{{province.name}}</option>
+                            <select name="province_id" id="id_province_id" class="selectpicker" data-live-search="true" required>
+                                {% for province in province %}
+                                    {% if province.id == form.instance.province_id.id %}
+                                        <option value="{{ province.id }}" selected>{{province.name}}</option>
+                                    {% else %}
+                                        <option value="{{ province.id }}" >{{ province.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
@@ -56,15 +59,11 @@
 
 
 
+
+
                 </div>
 
-
-
-
             </div>
-
-
-
 
             <div class="row">
                 <div class="col-md-6">
@@ -82,7 +81,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_code" class="">Code</label>
-                        <input class="form-control" type="number" name="code" value="{{ form.instance.code }}" required
+                        <input class="form-control" type="number" name="code" value="{{ form.instance.code }}"
                             id="id_code"></div>
                 </div>
 
@@ -92,7 +91,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_n_code" class="">N Code</label>
-                        <input class="form-control" type="number" name="n_code" value="{{  form.instance.n_code }}" required
+                        <input class="form-control" type="number" name="n_code" value="{{form.instance.n_code}}"
                             id="id_n_code"></div>
                 </div>
 

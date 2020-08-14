@@ -42,13 +42,16 @@
             <div style="display:block">
                 <div class="row">
 
-                    <div class="col-md-6">
-                        <div class="form-group ">
+                                        <div class="col-md-6">
+                        <div class="form-group">
                             <label for="id_province_id" class="">Province</label>
-                            <select class="selectpicker" data-live-search="true" name="province_id" required
-                                id="id_province_id">
+                            <select name="province_id" id="id_province_id" class="selectpicker" data-live-search="true" required>
                                 {% for province in provinces %}
-                                <option value="{{province.id}}" selected>{{province.name}}</option>
+                                    {% if province.id == form.instance.province_id.id %}
+                                        <option value="{{ province.id }}" selected>{{province.name}}</option>
+                                    {% else %}
+                                        <option value="{{ province.id }}" >{{ province.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
@@ -57,33 +60,34 @@
                     <div class="col-md-6">
                         <div class="form-group ">
                             <label for="id_district_id" class="">District</label>
-                            <select class="selectpicker" data-live-search="true" name="district_id" required
-                                id="id_district_id">
+                            <select name="district_id" id="id_district_id" class="selectpicker" data-live-search="true" required>
                                 {% for district in district %}
-                                <option value="{{district.id}}" selected>{{district.name}}</option>
+                                    {% if district.id == form.instance.district_id.id %}
+                                        <option value="{{ district.id }}" selected>{{district.name}}</option>
+                                    {% else %}
+                                        <option value="{{ district.id }}" >{{ district.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-
-
                 </div>
 
                 <div class="row">
-
                     <div class="col-md-6">
                         <div class="form-group ">
                             <label for="id_municipality_id" class="">Municipality</label>
-                            <select class="selectpicker" data-live-search="true" name="municipality_id" required
-                                id="id_municipality_id">
+                            <select name="municipality_id" id="id_municipality_id" class="selectpicker" data-live-search="true" required>
                                 {% for municipality in municipality %}
-                                <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
+                                    {% if municipality.id == form.instance.municipality_id.id %}
+                                        <option value="{{ municipality.id }}" selected>{{ municipality.name }}</option>
+                                    {% else %}
+                                        <option value="{{ municipality.id }}" >{{ municipality.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-
-
                 </div>
 
 
@@ -95,7 +99,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_hdi" class="">HDI</label>
-                        <input class="form-control" type="number" name="hdi" value="{{ form.instance.hdi }}"
+                        <input class="form-control" type="float" name="hdi" value="{{ form.instance.hdi }}"
                             id="id_hdi"></div>
                 </div>
 
@@ -128,7 +132,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_yearly_social_security_payment" class="">Yearly Social Security Payment</label>
-                        <input class="form-control" type="number" name="yearly_social_security_payment" value="{{ form.instance.yearly_social_security_payment }}"
+                        <input class="form-control" type="float" name="yearly_social_security_payment" value="{{ form.instance.yearly_social_security_payment }}"
                             id="id_yearly_social_security_payment"></div>
                 </div>
 
@@ -139,7 +143,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_nearest_branch_distance" class="">Number Of Tablets Deployed</label>
-                        <input class="form-control" type="number" name="nearest_branch_distance" value="{{ form.instance.nearest_branch_distance }}"
+                        <input class="form-control" type="float" name="nearest_branch_distance" value="{{ form.instance.nearest_branch_distance }}"
                             id="id_nearest_branch_distance"></div>
                 </div>
 
@@ -150,7 +154,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_yearly_fund" class="">Yearly Fund</label>
-                        <input class="form-control" type="number" name="yearly_fund" value="{{ form.instance.yearly_fund }}"
+                        <input class="form-control" type="float" name="yearly_fund" value="{{ form.instance.yearly_fund }}"
                             id="id_num_yearly_fund"></div>
                 </div>
 
@@ -161,7 +165,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_nearest_road_distance" class="">Nearest road distance</label>
-                        <input class="form-control" type="number" name="nearest_road_distance" value="{{ form.instance.nearest_road_distance }}"
+                        <input class="form-control" type="float" name="nearest_road_distance" value="{{ form.instance.nearest_road_distance }}"
                             id="id_nearest_road_distance"></div>
                 </div>
 
@@ -172,7 +176,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_nearest_police_distance" class="">Nearest police distance</label>
-                        <input class="form-control" type="number" name="nearest_police_distance" value="{{ form.instance.nearest_police_distance }}"
+                        <input class="form-control" type="float" name="nearest_police_distance" value="{{ form.instance.nearest_police_distance }}"
                             id="id_nearest_police_distance"></div>
                 </div>
 

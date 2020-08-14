@@ -116,8 +116,8 @@
                         <label for="id_partner" class="">Name of Partner Institution</label>
                         <select name="partner" id="id_partner" class="selectpicker" data-live-search="true" required>
                             {% for partner in partners %}
-                                {% if partner.id == form.instance.municipality_id.id %}
-                                    <option value="{{ partner.id }}" selected>{{ partner.name }}</option>
+                                {% if partner.id == form.instance.partner.id %}
+                                    <option value="{{ partner.id }}" selected>{{ partner.partner.name }}</option>
                                 {% else %}
                                     <option value="{{ partner.id }}" >{{partner.partner.name}}</option>
                                 {% endif %}
