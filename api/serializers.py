@@ -67,6 +67,7 @@ class FinancialLiteracySerializer(serializers.ModelSerializer):
 
 class FinancialPartnerSerializer(serializers.ModelSerializer):
     partner_name = serializers.SerializerMethodField()
+    partner_type = serializers.SerializerMethodField()
 
     class Meta:
         model = FinancialLiteracy
@@ -74,6 +75,10 @@ class FinancialPartnerSerializer(serializers.ModelSerializer):
 
     def get_partner_name(self, obj):
         partner_id = obj.partner_id.name
+        return partner_id
+
+    def get_partner_type(self, obj):
+        partner_id = obj.partner_id.financial_literacy
         return partner_id
 
 
@@ -149,6 +154,7 @@ class ProductProcessSerializer(serializers.ModelSerializer):
     partner_name = serializers.SerializerMethodField()
     product_name = serializers.SerializerMethodField()
     product_category = serializers.SerializerMethodField()
+    partner_type = serializers.SerializerMethodField()
     date = serializers.SerializerMethodField()
 
     class Meta:
@@ -165,6 +171,10 @@ class ProductProcessSerializer(serializers.ModelSerializer):
 
     def get_partner_name(self, obj):
         partner_id = obj.partner_id.name
+        return partner_id
+
+    def get_partner_type(self, obj):
+        partner_id = obj.partner_id.product_process
         return partner_id
 
     def get_product_name(self, obj):
