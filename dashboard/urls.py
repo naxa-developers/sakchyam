@@ -22,6 +22,9 @@ urlpatterns = [
 
     # path('logtitle-add/<int:subcat>', views.LogTitleCreate.as_view(), name='logtitle-add'),
     path('logcat-list/', views.LogCategoryList.as_view(), name='logcat-list'),
+    path('logcat-add/', views.LogCategoryCreate.as_view(), name='logcategory-add'),
+    path('logcat-edit/<int:pk>', views.LogCategoryUpdate.as_view(), name='logcategory-edit'),
+    path('logcat-delete/<int:pk>', views.LogCategoryDelete.as_view(), name='logcategory-delete'),
 
     path('automation-list/', views.AutomationList.as_view(), name='automation-list'),
     path('outreach-list/', views.OutReachList.as_view(), name='outreach-list'),
@@ -33,6 +36,8 @@ urlpatterns = [
     path('financialliteracy-add/', views.FinancialLiteracyCreate.as_view(), name='financialliteracy-add'),
     path('automation-bulk-add/', views.automationBulkCreate, name='automation-bulk-add'),
     path('productprocess-bulk-add/', views.productprocessBulkCreate, name='productprocess-bulk-add'),
+    path('mfs-bulk-add/', views.mfsBulkCreate, name='mfs-bulk-add'),
+    path('insurance-bulk-add/', views.insuranceBulkCreate, name='insurance-bulk-add'),
     path('product-bulk-add/', views.productBulkCreate, name='product-bulk-add'),
     path('financialliteracy-bulk-add/', views.financialliteracyBulkCreate, name='financialliteracy-bulk-add'),
     path('project-bulk-add/', views.projectBulkCreate, name='project-bulk-add'),

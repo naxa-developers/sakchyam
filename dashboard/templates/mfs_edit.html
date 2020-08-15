@@ -40,56 +40,58 @@
 
 
             <div style="display:block">
-                <div class="row">
+                    <div class="row">
 
-                    <div class="col-md-6">
-                        <div class="form-group ">
+                                        <div class="col-md-6">
+                        <div class="form-group">
                             <label for="id_province_id" class="">Province</label>
-                            <select class="selectpicker" data-live-search="true" name="province_id" required
-                                id="id_province_id">
+                            <select name="province_id" id="id_province_id" class="selectpicker" data-live-search="true" required>
                                 {% for province in provinces %}
-                                <option value="{{province.id}}" selected>{{province.name}}</option>
+                                    {% if province.id == form.instance.province_id.id %}
+                                        <option value="{{ province.id }}" selected>{{province.name}}</option>
+                                    {% else %}
+                                        <option value="{{ province.id }}" >{{ province.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="form-group ">
                             <label for="id_district_id" class="">District</label>
-                            <select class="selectpicker" data-live-search="true" name="district_id" required
-                                id="id_district_id">
+                            <select name="district_id" id="id_district_id" class="selectpicker" data-live-search="true" required>
                                 {% for district in districts %}
-                                <option value="{{district.id}}" selected>{{district.name}}</option>
+                                    {% if district.id == form.instance.district_id.id %}
+                                        <option value="{{ district.id }}" selected>{{district.name}}</option>
+                                    {% else %}
+                                        <option value="{{ district.id }}" >{{ district.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group ">
-                            <label for="id_municipality_id" class="">Municipality</label>
-                            <select class="selectpicker" data-live-search="true" name="municipality_id" required
-                                id="id_municipality_id">
-                                {% for municipality in municipalities %}
-                                <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
+                </div>
+
+
+            </div>
+
+
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group ">
                             <label for="id_partner_id" class="">Partner</label>
-                            <select class="selectpicker" data-live-search="true" name="partner_id" required
-                                id="id_partner_id">
+                            <select name="partner_id" id="id_partner_id" class="selectpicker" data-live-search="true" required>
                                 {% for partner in partners %}
-                                <option value="{{partner.id}}" selected>{{partner.name}}</option>
+                                    {% if partner.id == form.instance.partner_id.id %}
+                                        <option value="{{ partner.id }}" selected>{{ partner.name }}</option>
+                                    {% else %}
+                                        <option value="{{ partner.id }}" >{{ partner.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-
-
-
-
                 </div>
 
             </div>
@@ -119,9 +121,9 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_achievement_number" class="">Achievement Number</label>
-                        <input class="form-control" type="number" name="achievement_number" value="{{ form.instance.achievement_number }}"
-                            id="id_achievement_number"></div>
+                        <label for="id_achieved_number" class="">Achievement Number</label>
+                        <input class="form-control" type="number" name="achieved_number" value="{{ form.instance.achieved_number }}"
+                            id="id_achieved_number"></div>
                 </div>
 
             </div>

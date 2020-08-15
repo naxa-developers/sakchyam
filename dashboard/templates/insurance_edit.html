@@ -42,20 +42,21 @@
             <div style="display:block">
                 <div class="row">
 
+
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_partner_id" class="">Partner Name</label>
-                            <select class="selectpicker" data-live-search="true" name="partner_id" required
-                                id="id_province_id">
+                            <label for="id_partner_id" class="">Partner</label>
+                            <select name="partner_id" id="id_partner_id" class="selectpicker" data-live-search="true" required>
                                 {% for partner in partner %}
-                                <option value="{{partner.id}}" selected>{{partner.name}}</option>
+                                    {% if partner.id == form.instance.partner_id.id %}
+                                        <option value="{{ partner.id }}" selected>{{ partner.name }}</option>
+                                    {% else %}
+                                        <option value="{{ partner.id }}" >{{ partner.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
                     </div>
-
-
-
                 </div>
 
 
@@ -125,7 +126,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_amount_of_insurance" class="">Amount of Insurance</label>
-                        <input class="form-control" type="number" name="amount_of_insurance" value="{{  form.instance.amount_of_insurance }}"
+                        <input class="form-control" type="float" name="amount_of_insurance" value="{{  form.instance.amount_of_insurance }}"
                             id="amount_of_insurance"></div>
                 </div>
 
@@ -136,7 +137,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_amount_of_sum_insuranced" class="">Amount of Sum Insuranced</label>
-                        <input class="form-control" type="number" name="amount_of_sum_insuranced" value="{{  form.instance.amount_of_sum_insuranced }}"
+                        <input class="form-control" type="float" name="amount_of_sum_insuranced" value="{{  form.instance.amount_of_sum_insuranced }}"
                             id="id_amount_of_sum_insuranced"></div>
                 </div>
 
@@ -147,7 +148,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_amount_of_claim" class="">Amount of Claim</label>
-                        <input class="form-control" type="number" name="amount_of_claim" value="{{  form.instance.amount_of_claim }}"
+                        <input class="form-control" type="float" name="amount_of_claim" value="{{  form.instance.amount_of_claim }}"
                             id="id_amount_of_claim"></div>
                 </div>
 

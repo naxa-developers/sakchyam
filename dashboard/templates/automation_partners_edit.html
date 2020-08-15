@@ -44,11 +44,14 @@
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_partner" class="">Partner</label>
-                            <select class="selectpicker" data-live-search="true" name="partner" required
-                                id="id_partner">
+                            <label for="id_partner_id" class="">Partner</label>
+                            <select name="partner" id="id_partner_id" class="selectpicker" data-live-search="true" required>
                                 {% for partner in partner %}
-                                <option value="{{partner.id}}" selected>{{partner.name}}</option>
+                                    {% if partner.id == form.instance.partner.id %}
+                                        <option value="{{ partner.id }}" selected>{{partner.name}}</option>
+                                    {% else %}
+                                        <option value="{{ partner.id }}" >{{ partner.name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>

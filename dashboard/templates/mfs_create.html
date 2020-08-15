@@ -66,17 +66,6 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_municipality_id" class="">Municipality</label>
-                            <select class="selectpicker" data-live-search="true" name="municipality_id" required
-                                id="id_municipality_id">
-                                {% for municipality in municipality %}
-                                <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group ">
                             <label for="id_partner_id" class="">Partner</label>
                             <select class="selectpicker" data-live-search="true" name="partner_id" required
                                 id="id_partner_id">

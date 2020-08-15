@@ -63,6 +63,41 @@ class LogCategoryList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+class LogCategoryUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = LogCategory
+    template_name = 'logcat_edit.html'
+    form_class = LogCategoryForm
+    success_message = 'Log Category Successfully Updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(LogCategoryUpdate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['logcat']="active"
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('logcat-list')
+
+
+class LogCategoryCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = LogCategory
+    template_name = 'logcat_create.html'
+    form_class = LogCategoryForm
+    success_message = 'LogCategory data created'
+
+    def get_context_data(self, **kwargs):
+        data = super(LogCategoryCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        # data['active'] = 'program'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('logcat-list')
+
 
 class FinancialProgramList(LoginRequiredMixin, ListView):
     template_name = 'financial_program_list.html'
@@ -382,21 +417,20 @@ class DistrictEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = District
     template_name = 'district_edit.html'
     form_class = DistrictForm
-    success_message = 'District data edited'
+    success_message = 'District data edit'
 
     def get_context_data(self, **kwargs):
         data = super(DistrictEdit, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-        data['provinces'] = Province.objects.order_by('id')
+        data['province'] = Province.objects.order_by('id')
         # data['active'] = 'program'
+        data['district'] = 'active'
+        return data
 
     def get_success_url(self):
         return reverse_lazy('district-list')
-
-        data['district'] = 'active'
-        return data
 
 
 class MunicipalitiesCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -926,13 +960,13 @@ def automationBulkCreate(request):
         for row in range(0, upper_range):
             try:
                 municipality = Municipality.objects.get(
-                    code=df['Municipality'][row])
+                    code=df['Local Unit Code'][row])
                 province = municipality.province_id
                 district = municipality.district_id
                 partner = AutomationPartner.objects.get(
-                    partner__code=df['Partner'][row])
-                branch = None if df['Branch'][row] == '' else df['Branch'][row]
-                numTablets = 0 if df['No. of Tablets'][row] == '' else df['No. of Tablets'][row]
+                    partner__code=df['Partner Code'][row])
+                branch = None if df['Name of branch'][row] == '' else df['Name of branch'][row]
+                numTablets = 0 if df['No. of Tablet Deployed'][row] == '' else df['No. of Tablet Deployed'][row]
                 automation = Automation.objects.update_or_create(
                     province_id=province,
                     district_id=district,
@@ -949,6 +983,122 @@ def automationBulkCreate(request):
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
+
+
+def mfsBulkCreate(request):
+    template = 'mfs_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                district = District.objects.get(
+                    code=df['District Code'][row])
+                province = Province.objects.get(
+                    code=df['Province Code'][row])
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                key_innovation = None if df['Key Innovation'][row] == '' else df['Key Innovation'][row]
+                achievement_type = None if df['Achievement Type'][row] == '' else df['Achievement Type'][row]
+                achieved_number = 0 if df['Achieved Number'][row] == '' else df['Achieved Number'][row]
+                mfs = MFS.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    partner_id=partner,
+                    key_innovation=key_innovation,
+                    achievement_type=achievement_type,
+                    achieved_number=achieved_number
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Mfs Created ")
+        return redirect('/dashboard/mfs-list/', messages)
+
+
+def insuranceBulkCreate(request):
+    template = 'insurance_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                innovation = None if df['Innovation'][row] == '' else df['Innovation'][row]
+                distribution_channel = None if df['Distribution Channel'][row] == '' else df['Distribution Channel'][
+                    row]
+                product = None if df['Product'][row] == '' else df['Product'][row]
+                description = None if df['Description'][row] == '' else df['Description'][row]
+                number_of_insurance_sold = 0 if df['Number of Insurance Policies Sold during project period'][
+                                                row] == '' else \
+                df['Number of Insurance Policies Sold during project period'][row]
+                amount_of_insurance = 0 if df['Amount of Insurance Premium'][row] == '' else \
+                df['Amount of Insurance Premium'][row]
+                amount_of_sum_insuranced = 0 if df['Amount of Sum-Insured'][row] == '' else df['Amount of Sum-Insured'][
+                    row]
+                amount_of_claim = 0 if df['Amount of Claim'][row] == '' else df['Amount of Claim'][row]
+                insurance = Insurance.objects.update_or_create(
+                    partner_id=partner,
+                    innovation=innovation,
+                    distribution_channel=distribution_channel,
+                    product=product,
+                    description=description,
+                    number_of_insurance_sold=number_of_insurance_sold,
+                    amount_of_insurance=amount_of_insurance,
+                    amount_of_sum_insuranced=amount_of_sum_insuranced,
+                    amount_of_claim=amount_of_claim
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Insurance Created ")
+        return redirect('/dashboard/insurance-list/', messages)
+
 
 def productBulkCreate(request):
     template = 'product_bulk_upload.html'
@@ -976,10 +1126,10 @@ def productBulkCreate(request):
         success_count = 0
         for row in range(0, upper_range):
             try:
-                name = None if df['Name'][row] == '' else df['Name'][row]
-                type = None if df['Type'][row] == '' else df['Type'][row]
-                code = 0 if df['Code'][row] == '' else df['Code'][row]
-                date = 0 if df['Date'][row] == '' else df['No. of Tablets'][row]
+                name = None if df['Product Name'][row] == '' else df['Product Name'][row]
+                type = None if df['Product Category'][row] == '' else df['Product Category'][row]
+                code = 0 if df['Product Code'][row] == '' else df['Product Code'][row]
+                date = 0 if df['Launch Date'][row] == '' else df['Launch Date'][row]
                 product = Product.objects.update_or_create(
                     name=name,
                     type=type,
@@ -993,7 +1143,7 @@ def productBulkCreate(request):
                 continue
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Product Created ")
-        return redirect('/dashboard/product-list/', messages)
+        return redirect('/dashboard/sakchyam-product/', messages)
 
 
 def financialliteracyBulkCreate(request):
@@ -1023,10 +1173,10 @@ def financialliteracyBulkCreate(request):
         for row in range(0, upper_range):
             try:
                 partner_id = Partner.objects.get(
-                    code=df['PartnerID'][row])
+                    code=df['Partner Code'][row])
                 partner_type = None if df['Partner Type'][row] == '' else df['Partner Type'][row]
                 program_id = FinancialProgram.objects.get(
-                    code=df['Programme code'][row])
+                    code=df['Financial Literacy Initiative Code'][row])
                 value = 0 if df['Value'][row] == '' else df['Value'][row]
                 single_count = None if df['Total Single Count'][row] == '' else df['Total Single Count'][row]
                 financialliteracy = FinancialLiteracy.objects.update_or_create(
@@ -1073,21 +1223,21 @@ def outreachBulkCreate(request):
         for row in range(0, upper_range):
             try:
                 municipality = Municipality.objects.get(
-                    code=df['Local Unit_Code'][row])
+                    code=df['Local Unit Code'][row])
 
                 district = District.objects.get(
-                    code=df['District_Code'][row])
+                    code=df['District Code'][row])
                 province = district.province_id
                 partner = Partner.objects.get(
                     code=df['Partner Code'][row])
-                partner_type = None if df['Type of FI'][row] == '' else df['Type of FI'][row]
+                partner_type = None if df['Partner Type'][row] == '' else df['Partner Type'][row]
                 market_name = None if df['Market Name'][row] == '' else df['Market Name'][row]
                 expansion_driven_by = None if df['Expansion Driven by'][row] == '' else df['Expansion Driven by'][row]
                 date_established = None if df['Date established'][row] == '' else df['Date established'][row]
                 point_service = None if df['Point of Service'][row] == '' else df['Point of Service'][row]
-                g2p_payment = None if df['G2P Payments (Yes/No)'][row] == '' else df['G2P Payments (Yes/No)'][row]
+                g2p_payment = None if df['G2P Payments'][row] == '' else df['G2P Payments'][row]
                 gps_point = None if df['GPS Point'][row] == '' else df['GPS Point'][row]
-                demonstration_effect = None if df['Demonstration effect '][row] == '' else df['Demonstration effect '][
+                demonstration_effect = None if df['Demonstration effect'][row] == '' else df['Demonstration effect'][
                     row]
 
                 outreach = Outreach.objects.update_or_create(
@@ -1142,7 +1292,7 @@ def partnershipBulkCreate(request):
         for row in range(0, upper_range):
             try:
                 municipality = Municipality.objects.get(
-                    code=df['Local Unit code'][row])
+                    code=df['Local Unit Code'][row])
 
                 district = municipality.district_id
                 province = municipality.province_id
@@ -1152,24 +1302,23 @@ def partnershipBulkCreate(request):
                     code=df['Project Code'][row])
                 branch = None if df['Branch'][row] == '' else df['Branch'][row]
                 blb = None if df['BLB'][row] == '' else df['BLB'][row]
-                expansion_counter = None if df['Expansion Counter'][row] == '' else df['Expansion Counter'][row]
+                extension_counter = None if df['Extension Counter'][row] == '' else df['Extension Counter'][row]
                 tablet = None if df['Tablet'][row] == '' else df['Tablet'][row]
-                other_products = None if df['Other Major Products (Local units coverage)'][row] == '' else \
-                    df['Other Major Products (Local units coverage)'][row]
+                other_products = None if df['Other Major Products'][row] == '' else df['Other Major Products'][row]
                 beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
                 scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
                 allocated_budget = None if df['Allocated Funds to Local Units'][row] == '' else \
                     df['Allocated Funds to Local Units'][row]
                 allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
                     df['Allocated Beneficiaries at Local Units'][row]
-                female_beneficiary = None if df['Female Beneficiaries '][row] == '' else df['Female Beneficiaries'][row]
-                total_beneficiary = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries '][row]
-                status = None if df['Status '][row] == '' else df['Status'][row]
-                start_date = None if df['Status '][row] == '' else df['Status '][row]
-                end_date = None if df['End Date'][row] == '' else df['End Date '][row]
-                project_year = None if df['Project Year '][row] == '' else df['Project Year '][row]
+                female_beneficiary = None if df['Female Beneficiaries'][row] == '' else df['Female Beneficiaries'][row]
+                total_beneficiary = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries'][row]
+                status = None if df['Status'][row] == '' else df['Status'][row]
+                start_date = None if df['Start Date'][row] == '' else df['Start Date'][row]
+                end_date = None if df['End Date'][row] == '' else df['End Date'][row]
+                project_year = None if df['Project Year'][row] == '' else df['Project Year'][row]
 
-                productprocess = Partnership.objects.update_or_create(
+                partnership = Partnership.objects.update_or_create(
                     province_id=province,
                     district_id=district,
                     municipality_id=municipality,
@@ -1177,7 +1326,7 @@ def partnershipBulkCreate(request):
                     project_id=project,
                     branch=branch,
                     blb=blb,
-                    expansion_counter=expansion_counter,
+                    extension_counter=extension_counter,
                     tablet=tablet,
                     other_products=other_products,
                     beneficiary=beneficiary,
@@ -1232,7 +1381,7 @@ def productprocessBulkCreate(request):
                     code=df['Partner Code'][row])
                 product = Product.objects.get(
                     code=df['Product Code'][row])
-                partner_type = None if df['FI Type'][row] == '' else df['FI Type'][row]
+                partner_type = None if df['Partner Type'][row] == '' else df['Partner Type'][row]
                 innovation_area = None if df['Innovation Area'][row] == '' else df['Innovation Area'][row]
                 market_failure = None if df['Market Failures'][row] == '' else df['Market Failures'][row]
 
@@ -1281,13 +1430,13 @@ def projectBulkCreate(request):
         success_count = 0
         for row in range(0, upper_range):
             try:
-                name = None if df['Name'][row] == '' else df['Name'][row]
-                code = 0 if df['Code'][row] == '' else df['Code'][row]
-                investment_primary = None if df['Investment Primary'][row] == '' else df['Investment Primary'][row]
-                investment_secondary = None if df['Investment Secondary'][row] == '' else df['Investment Secondary'][
+                name = None if df['Project Name'][row] == '' else df['Project Name'][row]
+                code = 0 if df['Project Code'][row] == '' else df['Project Code'][row]
+                investment_primary = None if df['Primary Investment Focus'][row] == '' else df['Primary Investment Focus'][row]
+                investment_secondary = None if df['Secondary Investment Focus'][row] == '' else df['Secondary Investment Focus'][
                     row]
                 leverage = 0 if df['Leverage'][row] == '' else df['Leverage'][row]
-                scf_funds = 0 if df['SCF FUNDS'][row] == '' else df['SCF FUNDS'][row]
+                scf_funds = 0 if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
 
                 project = Project.objects.update_or_create(
 
@@ -1309,7 +1458,7 @@ def projectBulkCreate(request):
         return redirect('/dashboard/sakchyam-project/', messages)
 
 
-def partnerBulkCreate(request):
+def sakchyamPartnerBulkCreate(request):
     template = 'partner_bulk_upload.html'
 
     # prompt = {
@@ -1336,20 +1485,18 @@ def partnerBulkCreate(request):
         for row in range(0, upper_range):
             try:
 
-                name = None if df['Name'][row] == '' else df['Name'][row]
-                code = 0 if df['Code'][row] == '' else df['Code'][row]
-                type = None if df['Type'][row] == '' else df['Type'][row]
+                name = None if df['Partner Institution'][row] == '' else df['Partner Institution'][row]
+                code = 0 if df['Partner Code'][row] == '' else df['Partner Code'][row]
                 financial_literacy = None if df['Financial Literacy'][row] == '' else df['Financial Literacy'][row]
                 partnership = None if df['Partnership'][row] == '' else df['Partnership'][row]
-                outreach_expansion = None if df['OutReach Expansion'][row] == '' else df['OutReach Expansion'][row]
+                outreach_expansion = None if df['Outreach Expansion'][row] == '' else df['Outreach Expansion'][row]
                 mfs = None if df['MFS'][row] == '' else df['MFS'][row]
-                product_process = None if df['Product Process'][row] == '' else df['Product Process'][row]
+                product_process = None if df['ProductProcess'][row] == '' else df['ProductProcess'][row]
 
                 partner = Partner.objects.update_or_create(
 
                     name=name,
                     code=code,
-                    type=type,
                     financial_literacy=financial_literacy,
                     partnership=partnership,
                     outreach_expansion=outreach_expansion,
@@ -1364,7 +1511,7 @@ def partnerBulkCreate(request):
                 continue
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Partner Created ")
-        return redirect('/dashboard/partner-list/', messages)
+        return redirect('/dashboard/sakchyam-partners/', messages)
 
 
 class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
@@ -1444,7 +1591,7 @@ class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         return reverse_lazy('automation-list')
 
 
-'''
+
 class LogCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'logcat_delete.html'
     success_message = 'LogCategory deleted'
@@ -1455,8 +1602,7 @@ class LogCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('logcat-list')
-        
-        '''
+
 
 
 class MfsDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
@@ -1958,8 +2104,7 @@ class SakchyamPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView
 This function enables creating the record of Sakchyam Partner model using a csv or xls file.
 '''
 
-
-def sakchyamPartnerBulkCreate(request):
+def partnerBulkCreate(request):
     template = 'sakchyam_bulk_upload.html'
 
     # prompt = {
