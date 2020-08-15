@@ -69,22 +69,6 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group ">
-                        <label for="id_type" class="">Type</label>
-                        <select class="selectpicker" data-live-search="true" name="type" required
-                            id="id_type">
-                            {% if form.instance.type == "Microfinance Institutions/Cooperatives" %}
-                            <option value="Microfinance Institutions/Cooperatives" selected >Microfinance Institutions/Cooperatives</option>
-                            <option value="Commercial Bank and Other Partners" >Commercial Bank and Other Partners</option>
-                            {% else %}
-                            <option value="Microfinance Institutions/Cooperatives"  >Microfinance Institutions/Cooperatives</option>
-                            <option value="Commercial Bank and Other Partners" selected >Commercial Bank and Other Partners</option>
-                            {% endif %}
-                           
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group ">
                         <label for="id_financial_literacy" class="">Financial Literacy</label>
                         <select class="selectpicker" data-live-search="true" name="financial_literacy" required
                             id="id_financial_literacy">
@@ -228,7 +212,7 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_partnership" class="">Partnership</label>
-                        <select class="selectpicker" data-live-search="true" name="partnernership" required
+                        <select class="selectpicker" data-live-search="true" name="partnership" required
                             id="id_partnership">
                            
                             {% if form.instance.partnership == "Microfinance/Cooperative" %}

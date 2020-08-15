@@ -1,0 +1,11 @@
+"S.N.","Partner Name","Partner Code","Type of FI","Point of Service","Province Code","District","District_Code","Local Unit","Local Unit_Code","Market Name","Date established","GPS Point","Expansion Driven by","G2P Payments (Yes/No)","Demonstration effect ","Municipality Code"
+1,"Rastriya Banijya Bank",36,"Commerical Bank","Branch",7,"Baitadi",74,"Dasharathchanda",255,"Gothalapani","2015-01-01",,"Expand Financial Service","Yes","Yes",55
+2,"Rastriya Banijya Bank",36,"Commerical Bank","BLB",6,"Dolpa",62,"Dolpobuddha",555,"Dolpobuddha","2015-03-02",,"Expand Financial Service","No","No",66
+3,"Rastriya Banijya Bank",36,"Commerical Bank","Branch",5,"Rupandehi",48,"Butwal",654,"Kalikanagar","2015-05-01",,"Launch New Product/Tap new Market","Yes","Yes",58
+4,"Mega Bank",21,"Commerical Bank","Branch",7,"Dadeldhura",73,"Parshuram",524,"Jogbudha","2015-06-30",,"Support BLB Operation (Hub and Spoke)","No","Yes",99
+5,"Nepal Investment Bank",27,"Commerical Bank","Branch",7,"Doti",70,"Dipayal Silgadhi",44,"Dipayal","2015-08-29",,"Support BLB Operation (Hub and Spoke)","Yes","No",44
+6,"Nepal Investment Bank",27,"Commerical Bank","BLB",7,"Doti",70,"Dipayal Silgadhi",322,"Jaygadh","2015-10-28",,"Expand Financial Service","Yes","No",89
+7,"Prabhu Bank",35,"Commerical Bank","Branch",5,"Achham",69,"Kamalbazar",662,"Kamalbazar","2015-12-27",,"Launch New Product/Tap new Market","Yes","No",69
+8,"RMDC Laghubitta",37,"Apex Organisation","Branch",5,"Banke",57,"Kohalpur",661,"Kohalpur","2016-02-25",,"Capacity Building of other FIs","N/A","Yes",53
+9,"NEFSCUN",23,"Apex Organisation","Branch",5,"Dang",56,"Ghorahi",785,"Ghorahi","2016-04-25",,"Capacity Building of other FIs","N/A","Yes",51
+10,"Sahara Cooperative",38,"Cooperative","Branch",1,"Jhapa",4,"Birtamod",667,"Charpane","2016-06-24",,"Expand Financial Service","N/A","Yes",22

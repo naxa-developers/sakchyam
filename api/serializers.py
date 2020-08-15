@@ -60,9 +60,15 @@ class FinancialProgramSerializer(serializers.ModelSerializer):
 
 
 class FinancialLiteracySerializer(serializers.ModelSerializer):
+    partner_type = serializers.SerializerMethodField()
+
     class Meta:
         model = FinancialLiteracy
-        fields = '__all__'
+        fields = ('id', 'partner_id', 'partner_type', 'program_id', 'value', 'single_count')
+
+    def get_partner_type(self, obj):
+        partner_id = obj.partner_id.financial_literacy
+        return partner_id
 
 
 class FinancialPartnerSerializer(serializers.ModelSerializer):

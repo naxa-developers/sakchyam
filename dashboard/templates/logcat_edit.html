@@ -65,14 +65,9 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group ">
-                        <label for="id_yearname" class="">Period</label>
-                        <select class="selectpicker" data-live-search="true" name="yearname" required
-                            id="id_yearname">
-                            {% for code, year in years.items %}
-                                <option value="{{ year }}" selected>{{ year }}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="form-group error">
+                        <label for="id_yearname" class="">Year Name</label>
+                        <input class="form-control" type="text" name="yearname" maxlength="100" value="{{ form.instance.yearname }}" required id="id_yearname" />
                     </div>
                 </div>
             </div>
