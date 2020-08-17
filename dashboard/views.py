@@ -21,6 +21,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 import pandas as pd
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -63,6 +64,7 @@ class LogCategoryList(LoginRequiredMixin, ListView):
         data['list'] = query_data
         return data
 
+
 class LogCategoryUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = LogCategory
     template_name = 'logcat_edit.html'
@@ -74,7 +76,7 @@ class LogCategoryUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-        data['logcat']="active"
+        data['logcat'] = "active"
         return data
 
     def get_success_url(self):
@@ -92,6 +94,7 @@ class LogCategoryCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
+        data['logcat'] = "active"
         # data['active'] = 'program'
         return data
 
@@ -107,7 +110,7 @@ class FinancialProgramList(LoginRequiredMixin, ListView):
         data = super(FinancialProgramList, self).get_context_data(**kwargs)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
-        data['financial_program'] = 'active'
+        data['financialliteracy'] = 'active'
         query_data = FinancialProgram.objects.order_by('id')
         data['list'] = query_data
         return data
@@ -260,7 +263,7 @@ class MfsCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['municipality'] = Municipality.objects.order_by('id')
         data['partner'] = Partner.objects.order_by('id')
         # data['active'] = 'program'
-        data['mfs'] = 'active'
+        data['mfss'] = 'active'
         return data
 
     def get_success_url(self):
@@ -322,7 +325,7 @@ class SecondaryDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['district'] = District.objects.order_by('id')
         data['municipality'] = Municipality.objects.order_by('id')
         # data['active'] = 'program'
-        data['secondary_data'] = 'active'
+        data['secondarydata'] = 'active'
         return data
 
     def get_success_url(self):
@@ -344,7 +347,7 @@ class SecondaryDataEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['district'] = District.objects.order_by('id')
         data['municipality'] = Municipality.objects.order_by('id')
         # data['active'] = 'program'
-        data['secondary_data'] = 'active'
+        data['secondarydata'] = 'active'
         return data
 
     def get_success_url(self):
@@ -367,7 +370,7 @@ class MfsEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['municipalities'] = Municipality.objects.order_by('id')
         data['partners'] = Partner.objects.order_by('id')
         # data['active'] = 'program'
-        data['mfs'] = 'active'
+        data['mfss'] = 'active'
         return data
 
     def get_success_url(self):
@@ -508,7 +511,7 @@ class AutomationPartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVi
         data['user'] = user_data
         data['partner'] = Partner.objects.order_by('id')
         # data['active'] = 'program'
-        data['district'] = 'active'
+        data['automation'] = 'active'
         return data
 
     def get_success_url(self):
@@ -532,6 +535,7 @@ class SakchyamProjectList(LoginRequiredMixin, ListView):
 class PartnershipList(LoginRequiredMixin, ListView):
     template_name = 'partnership_list.html'
     model = Partnership
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         data = super(PartnershipList, self).get_context_data(**kwargs)
@@ -544,8 +548,21 @@ class PartnershipList(LoginRequiredMixin, ListView):
                                                 'scf_funds', 'allocated_budget', 'allocated_beneficiary',
                                                 'female_percentage', 'total_beneficiary', 'female_beneficiary',
                                                 'status', 'start_date', 'end_date', 'project_year').order_by('id')
+        paginator = Paginator(query_data, 10)
+        page_numbers_range = 500
+        max_index = len(paginator.page_range)
+        page_number = self.request.GET.get('page')
+        current_page = int(page_number) if page_number else 1
+        page_obj = paginator.get_page(page_number)
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
 
-        data['list'] = query_data
+        page_range = paginator.page_range[start_index:end_index]
+        data['page_range'] = page_range
+
+        data['list'] = page_obj
         return data
 
 
@@ -795,7 +812,7 @@ class OutReachCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
         data['partners'] = Partner.objects.order_by('id')
-        data['active'] = 'outreach'
+        data['outreach'] = 'active'
         return data
 
     def get_success_url(self):
@@ -816,7 +833,7 @@ class FinancialLiteracyCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
         # data['active'] = 'program'
         data['partner'] = Partner.objects.order_by('id')
         data['financialprogram'] = FinancialProgram.objects.order_by('id')
-        data['active'] = 'financialliteracy'
+        data['financialliteracy'] = 'active'
         return data
 
     def get_success_url(self):
@@ -837,7 +854,7 @@ class ProductProcessCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         # data['active'] = 'program'
         data['partner'] = Partner.objects.order_by('id')
         data['product'] = Product.objects.order_by('id')
-        data['active'] = 'productprocess'
+        data['productprocess'] = 'active'
         return data
 
     def get_success_url(self):
@@ -858,7 +875,7 @@ class ProductProcessEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         # data['active'] = 'program'
         data['partner'] = Partner.objects.order_by('id')
         data['product'] = Product.objects.order_by('id')
-        data['active'] = 'productprocess'
+        data['productprocess'] = 'active'
         return data
 
     def get_success_url(self):
@@ -899,7 +916,7 @@ class AutomationPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView
         # data['active'] = 'program'
         data['partner'] = Partner.objects.order_by('id')
         data['product'] = Product.objects.order_by('id')
-        data['active'] = 'productprocess'
+        data['automation'] = 'active'
         return data
 
     def get_success_url(self):
@@ -1072,10 +1089,10 @@ def insuranceBulkCreate(request):
                 product = None if df['Product'][row] == '' else df['Product'][row]
                 description = None if df['Description'][row] == '' else df['Description'][row]
                 number_of_insurance_sold = 0 if df['Number of Insurance Policies Sold during project period'][
-                                                row] == '' else \
-                df['Number of Insurance Policies Sold during project period'][row]
+                                                    row] == '' else \
+                    df['Number of Insurance Policies Sold during project period'][row]
                 amount_of_insurance = 0 if df['Amount of Insurance Premium'][row] == '' else \
-                df['Amount of Insurance Premium'][row]
+                    df['Amount of Insurance Premium'][row]
                 amount_of_sum_insuranced = 0 if df['Amount of Sum-Insured'][row] == '' else df['Amount of Sum-Insured'][
                     row]
                 amount_of_claim = 0 if df['Amount of Claim'][row] == '' else df['Amount of Claim'][row]
@@ -1432,9 +1449,11 @@ def projectBulkCreate(request):
             try:
                 name = None if df['Project Name'][row] == '' else df['Project Name'][row]
                 code = 0 if df['Project Code'][row] == '' else df['Project Code'][row]
-                investment_primary = None if df['Primary Investment Focus'][row] == '' else df['Primary Investment Focus'][row]
-                investment_secondary = None if df['Secondary Investment Focus'][row] == '' else df['Secondary Investment Focus'][
-                    row]
+                investment_primary = None if df['Primary Investment Focus'][row] == '' else \
+                    df['Primary Investment Focus'][row]
+                investment_secondary = None if df['Secondary Investment Focus'][row] == '' else \
+                    df['Secondary Investment Focus'][
+                        row]
                 leverage = 0 if df['Leverage'][row] == '' else df['Leverage'][row]
                 scf_funds = 0 if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
 
@@ -1529,7 +1548,7 @@ class AutomationEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
         data['partners'] = AutomationPartner.objects.all()
-        data['active'] = 'automation'
+        data['automation'] = 'active'
         return data
 
     def get_success_url(self):
@@ -1551,7 +1570,7 @@ class OutReachEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['districts'] = District.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
         data['partners'] = Partner.objects.all()
-        data['active'] = 'automation'
+        data['automation'] = 'active'
         return data
 
     def get_success_url(self):
@@ -1572,7 +1591,7 @@ class FinancialLiteracyEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView)
         data['partner_type'] = Partner.objects.order_by('id')
         data['program_id'] = FinancialProgram.objects.order_by('id')
         data['municipalities'] = Municipality.objects.order_by('id')
-        data['active'] = 'automation'
+        data['automation'] = 'active'
         return data
 
     def get_success_url(self):
@@ -1591,7 +1610,6 @@ class AutomationDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         return reverse_lazy('automation-list')
 
 
-
 class LogCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'logcat_delete.html'
     success_message = 'LogCategory deleted'
@@ -1602,7 +1620,6 @@ class LogCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('logcat-list')
-
 
 
 class MfsDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
@@ -1774,6 +1791,7 @@ class LogFrameList(LoginRequiredMixin, ListView):
         query_data = LogData.objects.filter(
             sub_category__id=self.kwargs['id']).order_by('id')
         data['list'] = query_data
+        data['logcat'] = 'active'
         data['sidebar'] = sidebar
         return data
 
@@ -1790,6 +1808,7 @@ class LogSubCategoryList(LoginRequiredMixin, ListView):
         print()
         sidebar = LogCategory.objects.order_by('id')
         data['sidebar'] = sidebar
+        data['logcat'] = 'active'
         query_data = LogSubCategory.objects.filter(
             category__id=self.kwargs['id']).order_by('id')
         data['list'] = query_data
@@ -1815,7 +1834,8 @@ class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['sub_categories'] = LogSubCategory.objects.filter(
             id=self.kwargs['subcat']).order_by('id')
         data['years'] = MilestoneYear.objects.order_by('id')
-        data['active'] = 'log_data'
+        data['active'] = 'logcat'
+
         return data
 
     def get_success_url(self):
@@ -1838,7 +1858,7 @@ class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         data['sidebar'] = sidebar
         data['categories'] = LogCategory.objects.filter(
             id=self.kwargs['cat']).order_by('id')
-        data['active'] = 'log_data'
+        data['active'] = 'logcat'
         return data
 
     def get_success_url(self):
@@ -1861,7 +1881,7 @@ class LogSubCatUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['sidebar'] = sidebar
         data['categories'] = LogCategory.objects.filter(
             id=self.kwargs['cat']).order_by('id')
-        data['active'] = 'log_data'
+        data['active'] = 'logcat'
         return data
 
     def get_success_url(self):
@@ -1887,7 +1907,7 @@ class LogDataUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         data['sub_categories'] = LogSubCategory.objects.filter(
             id=self.kwargs['subcat']).order_by('id')
         data['years'] = MilestoneYear.objects.order_by('id')
-        data['active'] = 'log_data'
+        data['active'] = 'logcat'
         return data
 
     def get_success_url(self):
@@ -1907,7 +1927,7 @@ class UserList(LoginRequiredMixin, ListView):
         data['sidebar'] = sidebar
         data['list'] = user_list
         data['user'] = user_data
-        data['active'] = 'user'
+        data['userman'] = 'active'
         return data
 
 
@@ -1924,7 +1944,7 @@ class RoleList(LoginRequiredMixin, ListView):
         data['sidebar'] = sidebar
         data['list'] = role_list
         data['user'] = user_data
-        data['active'] = 'permission'
+        data['userman'] = 'active'
         return data
 
 
@@ -1936,8 +1956,11 @@ def signup(request, **kwargs):
             user.is_active = False
             user.save()
 
-            UserProfile.objects.create(user=user, full_name=request.POST['full_name'], email=request.POST['email'],
-                                       image=request.FILES['image'])
+            data = UserProfile.objects.create(user=user, full_name=request.POST['full_name'],
+                                              email=request.POST['email'],
+                                              image=request.FILES['image'])
+            user = User.objects.create_user(id=user.id, email=request.POST['email'],username=request.POST['username'])
+            user.save()
             return redirect('user')
         else:
             return render(request, 'create_user.html', {'form': form, })
@@ -1958,7 +1981,7 @@ class RoleCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-        data['active'] = 'role'
+        data['userman'] = 'active'
         data['permissions'] = Permission.objects.all()
         return data
 
@@ -1977,7 +2000,7 @@ class RoleUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-        data['active'] = 'role'
+        data['userman'] = 'active'
         data['permissions'] = Permission.objects.all()
         return data
 
@@ -2064,6 +2087,7 @@ class SakchyamAPartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
+        data['partner'] = 'active'
         return data
 
     def get_success_url(self):
@@ -2081,7 +2105,7 @@ class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView)
         user = self.request.user
         user_data = UserProfile.objects.get(user=user)
         data['user'] = user_data
-        data['active'] = 'program'
+        data['partner'] = 'active'
         return data
 
     def get_success_url(self):
@@ -2103,6 +2127,7 @@ class SakchyamPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView
 '''
 This function enables creating the record of Sakchyam Partner model using a csv or xls file.
 '''
+
 
 def partnerBulkCreate(request):
     template = 'sakchyam_bulk_upload.html'

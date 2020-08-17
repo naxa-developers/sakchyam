@@ -43,30 +43,36 @@
 
 
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_partner_id" class="">Name of Partner </label>
-                        <select class="selectpicker" data-live-search="true" name="partner_id" required
-                            id="id_partner_id">
-                            {% for partner in partner %}
-                            <option value="{{partner.id}}" selected>{{partner.name}}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_partner_id" class="">Partner</label>
+                            <select name="partner_id" id="id_partner_id" class="selectpicker" data-live-search="true" required>
+                                {% for partner in partner %}
+                                    {% if partner.id == form.instance.partner_id.id %}
+                                        <option value="{{ partner.id }}" selected>{{ partner.name }}</option>
+                                    {% else %}
+                                        <option value="{{ partner.id }}" >{{ partner.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
-                </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_product_id" class="">Product</label>
-                        <select class="selectpicker" data-live-search="true" name="product_id" required
-                            id="id_product_id">
-                            {% for product in product %}
-                            <option value="{{product.id}}" selected>{{product.name}}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="id_product_id" class="">Product</label>
+                            <select name="product_id" id="id_product_id" class="selectpicker" data-live-search="true" required>
+                                {% for product in product %}
+                                    {% if product.id == form.instance.product_id.id %}
+                                        <option value="{{ product.id }}" selected>{{ product.name }}</option>
+                                    {% else %}
+                                        <option value="{{ product.id }}" >{{ product.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
-                </div>
             </div>
 
 
