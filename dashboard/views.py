@@ -548,8 +548,8 @@ class PartnershipList(LoginRequiredMixin, ListView):
                                                 'scf_funds', 'allocated_budget', 'allocated_beneficiary',
                                                 'female_percentage', 'total_beneficiary', 'female_beneficiary',
                                                 'status', 'start_date', 'end_date', 'project_year').order_by('id')
-        paginator = Paginator(query_data, 10)
-        page_numbers_range = 500
+        paginator = Paginator(query_data, 500)
+        page_numbers_range = 1000
         max_index = len(paginator.page_range)
         page_number = self.request.GET.get('page')
         current_page = int(page_number) if page_number else 1
