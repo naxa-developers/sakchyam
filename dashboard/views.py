@@ -644,6 +644,7 @@ class SakchyamProductList(LoginRequiredMixin, ListView):
 class AutomationList(LoginRequiredMixin, ListView):
     template_name = 'automation_list.html'
     model = Automation
+    paginate_by=2
 
     def get_context_data(self, **kwargs):
         data = super(AutomationList, self).get_context_data(**kwargs)
@@ -651,7 +652,20 @@ class AutomationList(LoginRequiredMixin, ListView):
         user_data = UserProfile.objects.get(user=user)
         data['automation'] = 'active'
         query_data = Automation.objects.order_by('id')
-        data['list'] = query_data
+        paginator = Paginator(query_data, 500)
+        page_numbers_range = 1000
+        max_index = len(paginator.page_range)
+        page_number = self.request.GET.get('page')
+        current_page = int(page_number) if page_number else 1
+        page_obj = paginator.get_page(page_number)
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+
+        page_range = paginator.page_range[start_index:end_index]
+        data['page_range'] = page_range
+        data['list'] = page_obj
         return data
 
 
