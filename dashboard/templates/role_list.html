@@ -7,7 +7,7 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="#">User Management</a>
+                <a href="/dashboard/role/">User Management</a>
             </li>
 
             <li>
@@ -68,14 +68,14 @@
                                     </a>
                                 </li>
                                 {% endif %}
-                                {% if perms.auth.delete_user %}
+                        <!--        {% if perms.auth.delete_user %}
                                 <li>
-                                    <a href="/dashboard/delete-role/{{group.id}}" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
+                                    <a href="/dashboard/delete-role/{{group.id}}"
+                                       class="flex-start">
+                                        <i class="material-icons">delete</i> Delete
                                     </a>
-
                                 </li>
-                                {% endif %}
+                                {% endif %}  -->
                             </ul>
                         </div>
                     </td>

@@ -1168,7 +1168,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
             partner_type_get = request.GET['partner_type_filter']
             partner_types = partner_type_get.split(",")
             partner_types = list(
-                Partner.objects.filter(partnership__in=partner_types).values_list('type', flat=True).distinct())
+                Partner.objects.filter(partnership__in=partner_types).values_list('partnership', flat=True).distinct())
 
         else:
             partner_types = list(Partner.objects.values_list('partnership', flat=True).distinct())

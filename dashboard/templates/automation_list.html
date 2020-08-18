@@ -7,7 +7,7 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="/dashboard/automation-list">Visualization</a>
+                <a href="/dashboard/automation-list">Visualiation</a>
             </li>
 
             <li>
@@ -45,7 +45,7 @@
             </div>
             {% endfor %}
             {% endif %}
-            <table class="logframe-table dataTable">
+            <table class="logframe-table dataTablePartner">
                 <thead>
                 <tr>
 
@@ -103,6 +103,33 @@
             </table>
         </div>
     </div>
+    <div class="pagination">
+                    <div class="paging-left">
+                        <div class="page-item">
+                            <p>Showing <span class="show-start">1</span>to<span class="show-end">10</span>of<span class="total-entries"></span>{{ page_obj.paginator.num_pages }}</p>
+                        </div>
+
+                    </div>
+                    <div class="paging-right">
+                        {% if page_obj.has_previous %}
+                        <div class="page-item pre-page">
+                            <a href="?page={{ page_obj.previous_page_number }}" >previous page</a>
+                        </div>
+                        {% endif %}
+                        <ul>
+                            {% for page in page_range %}
+                            <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        {% if page_obj.has_next %}
+                        <div class="next-page page-item">
+                            <a href="?page={{ page_obj.next_page_number }}">next page</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    </div>
+
+        </div>
 
 </main>
 {% endif %}
