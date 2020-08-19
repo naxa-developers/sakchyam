@@ -112,27 +112,21 @@
                     </td>
 
 
-<!--                    <td>-->
-<!--                        <div class="table-action">-->
-<!--                            <a href="#" class="more-action">-->
-<!--                                <i class="material-icons">more_vert</i>-->
-<!--                            </a>-->
-<!--                            <ul class="dropdown-animation">-->
-<!--                                <li>-->
-<!--                                    <a href="/dashboard/logdata-edit/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}/{{ list.first.title.id }}"-->
-<!--                                       class="flex-start">-->
-<!--                                        <i class="material-icons">edit</i> Edit-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#" class="flex-start">-->
-<!--                                        <i class="material-icons">delete</i>delete-->
-<!--                                    </a>-->
-
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </td>-->
+                 <td>
+                      <div class="table-action">
+                           <a href="#" class="more-action">
+                              <i class="material-icons">more_vert</i>
+                          </a>
+                           <ul class="dropdown-animation">
+                               <li>
+                                    <a href="/dashboard/useredit-role/{{ user.user.id }}"
+                                      class="flex-start">
+                                        <i class="material-icons">edit</i> Change Role
+                                   </a>
+                               </li>
+                           </ul>
+                       </div>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>

@@ -9,11 +9,15 @@
         <ul class="flex-start">
 
             <li>
-                <a href="/dashboard/logcat-list">Log Category</a>
+                <a href="#">User Management</a>
+            </li>
+
+            <li>
+                <a href="/dashboard/user">User List</a>
             </li>
 
 
-            <li>Edit Form</li>
+            <li>Edit Role</li>
         </ul>
     </div>
     <!-- program form -->
@@ -47,27 +51,32 @@
         <!-- default form -->
         <div class="default-form">
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_name" class="">Category Name</label>
-                        <input class="form-control" type="text" name="name" maxlength="100" required id="id_name" value="{{ form.instance.name }}" />
+            <div style="display:block">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="id_group">Roles :</label>
+                        <select name="group_id" id="id_group" class="custom-select">
+                            {% for group in groups %}
+                            <option value={{ group.id }}>{{ group.name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
+
+
                 </div>
 
-                <div class="col-md-6">
-                    <div class="form-group error">
-                        <label for="id_title" class="">Category Title</label>
-                        <input class="form-control" type="text" name="title" maxlength="100" required id="id_title" value="{{ form.instance.title }}" />
-                    </div>
-                </div>
+
             </div>
+
+
+            <input type="text" class="form-control" name="user" maxlength="100" id="id_user"
+                   placeholder="Name" value="{{ user_id }}" hidden/>
 
 
             <div class="form-group mrt-100">
                 <button type="submit" class="sakchyam-button sm-button">Save</button>
             </div>
-        </div>
     </form>
 </main>
 

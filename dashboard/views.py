@@ -22,6 +22,8 @@ from django.contrib import messages
 import pandas as pd
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 
 # Create your views here.
@@ -62,6 +64,8 @@ class LogCategoryList(LoginRequiredMixin, ListView):
         data['logcat'] = 'active'
         query_data = LogCategory.objects.order_by('id')
         data['list'] = query_data
+
+
         return data
 
 
@@ -2068,6 +2072,42 @@ def assign_role(request, **kwargs):
         #                                      link='/dashboard/user-list')
         return redirect('user')
 
+def usereditrole(request, **kwargs):
+    if "GET" == request.method:
+        groups = Group.objects.all()
+        user = request.user
+        user_data = UserProfile.objects.get(user=user)
+        return render(request, 'user-edit-role.html', {'user': user_data, 'groups': groups, 'user_id': kwargs['id']})
+    else:
+        user_id = request.POST['user']
+        group_id = request.POST['group_id']
+        user = User.objects.get(id=user_id)
+        group = Group.objects.get(id=group_id)
+        test = user.groups.through.objects.get(user=user_id)
+        test.group = group
+        test.save()
+        messages.info(request,'Role Edited')
+        # notify_message = user.username + ' was assigned ' + group.name + ' role by ' + request.user.username
+        # notify = Notification.objects.create(user=user, message=notify_message, type='role',
+        #                                      link='/dashboard/user-list')
+        return redirect('user')
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('user')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'changepassword.html', {
+        'form': form
+    })
 
 '''
 Sakchyam Partner display list on dashboard

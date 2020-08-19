@@ -66,12 +66,12 @@
                             <label for="id_partner_type" class="">Partner Type</label>
                             <select name="partner_type" id="id_province_id" class="selectpicker" data-live-search="true" required>
                                 
-                                    {% if form.instance.partner_type == "Microfinance Institutions" %}
-                                        <option value="Microfinance Institutions" selected>Microfinance Institutions</option>
-                                        <option value="Commercial Bank and Other Partners">Commercial Bank and Other Partners</option>
+                                    {% if form.instance.partner_type == "Microfinance/Cooperative" %}
+                                        <option value="Microfinance/Cooperative" selected>Microfinance/Cooperative</option>
+                                        <option value="Commercial Banks and Mobile Network Operators">Commercial Banks and Mobile Network Operators</option>
                                     {% else %}
-                                        <option value="Commercial Bank and Other Partners" selected>Commercial Bank and Other Partners</option>
-                                        <option value="Microfinance Institutions" >Microfinance Institutions</option>
+                                        <option value="Commercial Banks and Mobile Network Operators" selected>Commercial Banks and Mobile Network Operators</option>
+                                        <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                                     {% endif %}
                               
                             </select>
