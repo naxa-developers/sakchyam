@@ -2083,14 +2083,18 @@ def usereditrole(request, **kwargs):
         group_id = request.POST['group_id']
         user = User.objects.get(id=user_id)
         group = Group.objects.get(id=group_id)
-        test = user.groups.through.objects.get(user=user_id)
-        test.group = group
-        test.save()
-        messages.info(request,'Role Edited')
-        # notify_message = user.username + ' was assigned ' + group.name + ' role by ' + request.user.username
-        # notify = Notification.objects.create(user=user, message=notify_message, type='role',
-        #                                      link='/dashboard/user-list')
-        return redirect('user')
+        if user.is_superuser:
+            messages.info(request, 'Admin cannot be edited')
+            return redirect('user')
+        else:
+            test = user.groups.through.objects.get(user=user_id)
+            test.group = group
+            test.save()
+            messages.info(request,'Role Edited')
+            # notify_message = user.username + ' was assigned ' + group.name + ' role by ' + request.user.username
+            # notify = Notification.objects.create(user=user, message=notify_message, type='role',
+            #                                      link='/dashboard/user-list')
+            return redirect('user')
 
 
 def change_password(request):
