@@ -186,8 +186,8 @@ class FinancialProgram(models.Model):
 
 class FinancialLiteracy(models.Model):
     type = (
-        ('Microfinance Institutions', 'Microfinance Institutions'),
-        ('Commercial Bank and Other Partners', 'Commercial Bank and Other Partners'),
+        ('Microfinance/Cooperative', 'Microfinance/Cooperative'),
+        ('Commercial Banks and Mobile Network Operators', 'Commercial Banks and Mobile Network Operators'),
     )
 
     partner_type = models.CharField(max_length=200, blank=True, null=True, choices=type)

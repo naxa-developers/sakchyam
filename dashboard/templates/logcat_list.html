@@ -46,9 +46,9 @@
                 <tr>
 
 
-                        <th>Name</th>
-                        <th>Title</th>
-                      <!--  <th>Year Name</th>  -->
+                    <th>Name</th>
+                    <th>Title</th>
+                    <!--  <th>Year Name</th>  -->
 
                     <th></th>
                 </tr>
@@ -56,13 +56,21 @@
                 <tbody>
                 {% for data in list %}
                 <tr>
-                        <td>
-                            <a href="/dashboard/logsubcat-list/{{ data.id }}">
-                                {{data.name}}
-                            </a>
-                        </td>
-                        <td>{{data.title}}</td>
-                     <!--   <td>{{ data.yearname }}</td> -->
+                    {% if data.Category.all.count < 1 %}
+                    <td>
+                        <a href="/dashboard/logsubcat-add/{{ data.id }}">
+                            {{data.name}}
+                        </a>
+                    </td>
+                    {% else %}
+                    <td>
+                        <a href="/dashboard/logsubcat-list/{{ data.id }}">
+                            {{data.name}}
+                        </a>
+                    </td>
+                    {% endif %}
+                    <td>{{data.title}}</td>
+                    <!--   <td>{{ data.yearname }}</td> -->
 
 
                     <td>
