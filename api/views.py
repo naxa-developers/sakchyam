@@ -952,13 +952,13 @@ class PartnershipFilter(viewsets.ModelViewSet):
 
         if investment_project:
             if investment_province:
-                partnership_query = partnership_query.filter(province_id__in=investment_province)
+                partnership_query = partnership_query.filter(province_id__code__in=investment_province)
 
             if investment_district:
-                partnership_query = partnership_query.filter(district_id__in=investment_district)
+                partnership_query = partnership_query.filter(district_id__n_code__in=investment_district)
 
             if investment_municipality:
-                partnership_query = partnership_query.filter(municipality_id__in=investment_municipality)
+                partnership_query = partnership_query.filter(municipality_id__code__in=investment_municipality)
 
             map_data = partnership_query.filter(project_id__investment_primary__in=investment_project).values(
                 'project_id', 'project_id__name').annotate(Sum(view), Sum('female_beneficiary'))
