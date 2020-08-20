@@ -3,7 +3,7 @@ from dashboard import views
 
 urlpatterns = [
     path('create-user/', views.signup, name='create-user'),
-    # path('add-role/', views.create_role, name='add-role'),
+    path('useredit-role/<int:id>', views.usereditrole, name='user-edit-role'),
     path('activate/<int:id>', views.activate_user, name='activate'),
     path('main/', views.Dashboard.as_view(), name='main'),
     path('user/', views.UserList.as_view(), name='user'),
@@ -11,7 +11,7 @@ urlpatterns = [
     path('add-role/', views.RoleCreate.as_view(), name='add-role'),
     path('edit-role/<int:pk>', views.RoleUpdate.as_view(), name='edit-role'),
     path('assign-role/<int:id>', views.assign_role, name='assign-role'),
-
+    path('changepassword/', views.change_password, name='changepassword'),
     path('log-frame-add/<int:cat>/<int:subcat>', views.LogDataCreate.as_view(), name='log-frame-add'),
     path('logframe-list/<int:id>', views.LogFrameList.as_view(), name='logframe-list'),
     path('logdata-edit/<int:pk>/<int:cat>/<int:subcat>', views.LogDataUpdate.as_view(), name='logdata-edit'),
