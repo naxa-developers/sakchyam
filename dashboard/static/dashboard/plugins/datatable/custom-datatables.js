@@ -21,7 +21,7 @@ $(function(){
 		language: { search: '', searchPlaceholder: "Search..." },
 		"scrollX": true,
 		"scrollCollapse": true,
-		'iDisplayLength': 3,
+		'iDisplayLength': 50,
 		'paging': true,
 		dom: 'Bfrtip',
         buttons: [
