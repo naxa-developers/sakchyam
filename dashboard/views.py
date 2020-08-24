@@ -2301,3 +2301,5 @@ class MilestoneYearCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('logcat-list')
+
+
