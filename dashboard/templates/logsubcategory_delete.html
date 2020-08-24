@@ -7,12 +7,14 @@
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
-
             <li>
-                <a href="/dashboard/outreach-list">Logcat</a>
+                <a href="/dashboard/logsubcat-list/{{object.id}}">Log Subcategory</a>
+            </li>
+            <li>
+                Delete
             </li>
 
-            <li>Delete Form</li>
+
         </ul>
     </div>
     <!-- program form -->
@@ -37,7 +39,7 @@
         <h2>Do you want to delete {{ object.name }}</h2>
         <p><button type="submit" class="sakchyam-button sm-button">Delete</button>
             <span></span>
-            <a class="sakchyam-button sm-button" href="/dashboard/logcat-list/">Cancel</a>
+            <a class="sakchyam-button sm-button" href="/dashboard/logsubcat-list/">Cancel</a>
         </p>
     </form>
 </main>
