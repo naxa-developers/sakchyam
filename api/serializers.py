@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
     Automation, FinancialProgram, FinancialLiteracy, Project, Partner, Partnership, Product, ProductProcess, \
-    SecondaryData
+    SecondaryData, Payment
 
 
 class LogCategorySerializer(serializers.ModelSerializer):
@@ -261,3 +261,21 @@ class AutomationSerializer(serializers.ModelSerializer):
     def get_mun_code(self, obj):
         code = obj.municipality_id.code
         return code
+
+
+class PaymentSerial(serializers.ModelSerializer):
+    direct_links = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Payment
+        fields = ('id', 'component', 'direct_links', 'indirect_links', 'link_with_indirect', 'description', 'title',
+                  'component_value')
+
+    def get_direct_links(self, obj):
+        data = []
+        qs = obj.direct_links.all().values('components')
+        for q in qs:
+            data.append(
+                q['components']
+            )
+        return data

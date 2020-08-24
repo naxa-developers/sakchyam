@@ -348,3 +348,47 @@ class Insurance(models.Model):
 
     def __str__(self):
         return self.product
+
+
+class DirectLink(models.Model):
+    type = (
+        ('null', 'null'),
+        ('RTGS', 'RTGS'),
+        ('National Switch', 'National Switch'),
+        ('CSD', 'CSD'),
+        ('Card and Switch System', 'Card and Switch System'),
+        ('PSPs/PSOs', 'PSPs/PSOs'),
+        ('NCHL', 'NCHL'),
+        ('BFIS', 'BFIS'),
+        ('Capital Market Players', 'Capital Market Players'),
+    )
+    components = models.CharField(max_length=500, choices=type)
+
+    def __str__(self):
+        return self.components
+
+
+class Payment(models.Model):
+    type = (
+        ('null','null'),
+        ('RTGS', 'RTGS'),
+        ('National Switch', 'National Switch'),
+        ('CSD', 'CSD'),
+        ('Card and Switch System', 'Card and Switch System'),
+        ('PSPs/PSOs', 'PSPs/PSOs'),
+        ('NCHL', 'NCHL'),
+        ('BFIS', 'BFIS'),
+        ('Capital Market Players', 'Capital Market Players'),
+    )
+
+    component = models.CharField(max_length=500, choices=type)
+    indirect_links = models.CharField(max_length=500,choices=type,default='null')
+    link_with_indirect = models.CharField(max_length=500,choices=type,default='null')
+    direct_links = models.ManyToManyField(DirectLink)
+    description = models.TextField(blank=True,null=True)
+    title = models.CharField(max_length=100,blank=True,null=True)
+    component_value = models.CharField(max_length=100,blank=True,null=True)
+
+
+
+
