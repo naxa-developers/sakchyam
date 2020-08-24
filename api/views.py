@@ -1,12 +1,12 @@
 from rest_framework import viewsets
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, District, Municipality, \
     Automation, Partner, AutomationPartner, FinancialProgram, FinancialLiteracy, Project, Partnership, Product, \
-    ProductProcess, SecondaryData, Outreach, MFS, Insurance
+    ProductProcess, SecondaryData, Outreach, MFS, Insurance, Payment
 from api.serializers import LogCategorySerializer, LogSubCategorySerializer, LogDataSerializer, MilestoneYearSerializer, \
     LogDataAlternativeSerializer, ProvinceSerializer, DistrictSerializer, MunicipalitySerializer, AutomationSerializer, \
     FinancialProgramSerializer, FinancialLiteracySerializer, FinancialPartnerSerializer, ProjectSerializer, \
     PartnerSerializer, PartnershipSerializer, InvestmentSerializer, ProductSerializer, ProductProcessSerializer, \
-    SecondarySerializer
+    SecondarySerializer, PaymentSerial
 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -973,6 +973,14 @@ class PartnershipFilter(viewsets.ModelViewSet):
                     })
 
         if investment:
+            if investment_province:
+                partnership_query = partnership_query.filter(province_id__code__in=investment_province)
+
+            if investment_district:
+                partnership_query = partnership_query.filter(district_id__n_code__in=investment_district)
+
+            if investment_municipality:
+                partnership_query = partnership_query.filter(municipality_id__code__in=investment_municipality)
             map_data = partnership_query.filter(project_id__investment_primary__in=investment).values(
                 'project_id__investment_primary').annotate(Sum(view), Sum('female_beneficiary'))
             if map_data:
@@ -2371,3 +2379,12 @@ class PartnershipTimeline(viewsets.ModelViewSet):
             })
 
         return Response(timeline_data)
+
+
+class APIPayment(viewsets.ReadOnlyModelViewSet):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerial
+    permission_classes = [IsAuthenticated, ]
+
+
+

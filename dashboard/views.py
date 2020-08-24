@@ -65,7 +65,6 @@ class LogCategoryList(LoginRequiredMixin, ListView):
         query_data = LogCategory.objects.order_by('id')
         data['list'] = query_data
 
-
         return data
 
 
@@ -648,7 +647,7 @@ class SakchyamProductList(LoginRequiredMixin, ListView):
 class AutomationList(LoginRequiredMixin, ListView):
     template_name = 'automation_list.html'
     model = Automation
-    paginate_by=2
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         data = super(AutomationList, self).get_context_data(**kwargs)
@@ -1833,6 +1832,22 @@ class LogSubCategoryList(LoginRequiredMixin, ListView):
         return data
 
 
+class LogSubCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'logsubcategory_delete.html'
+    success_message = 'LogSubCategory deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(LogSubCategory, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('logcat-list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(LogSubCategoryDelete, self).delete(request, *args, **kwargs)
+
+
 class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = LogData
     template_name = 'log_frame_add.html'
@@ -1858,6 +1873,28 @@ class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return '/dashboard/logframe-list/' + str(self.kwargs['subcat'])
+
+
+class LogDataDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'logdata_delete.html'
+    success_message = 'LogData deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(LogData, id=id)
+
+    def get_success_url(self,**kwargs):
+        return '/dashboard/logsubcat-list/' + str(self.kwargs['cat'])
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(LogDataDelete, self).delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        data = super(LogDataDelete, self).get_context_data(**kwargs)
+        id = self.kwargs.get('subcat')
+        data['id'] = id
+        return data
 
 
 class LogSubCatCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -1977,7 +2014,7 @@ def signup(request, **kwargs):
             data = UserProfile.objects.create(user=user, full_name=request.POST['full_name'],
                                               email=request.POST['email'],
                                               image=request.FILES['image'])
-            user = User.objects.create_user(id=user.id, email=request.POST['email'],username=request.POST['username'])
+            user = User.objects.create_user(id=user.id, email=request.POST['email'], username=request.POST['username'])
             user.save()
             return redirect('user')
         else:
@@ -2072,6 +2109,7 @@ def assign_role(request, **kwargs):
         #                                      link='/dashboard/user-list')
         return redirect('user')
 
+
 def usereditrole(request, **kwargs):
     if "GET" == request.method:
         groups = Group.objects.all()
@@ -2090,7 +2128,7 @@ def usereditrole(request, **kwargs):
             test = user.groups.through.objects.get(user=user_id)
             test.group = group
             test.save()
-            messages.info(request,'Role Edited')
+            messages.info(request, 'Role Edited')
             # notify_message = user.username + ' was assigned ' + group.name + ' role by ' + request.user.username
             # notify = Notification.objects.create(user=user, message=notify_message, type='role',
             #                                      link='/dashboard/user-list')
@@ -2112,6 +2150,7 @@ def change_password(request):
     return render(request, 'changepassword.html', {
         'form': form
     })
+
 
 '''
 Sakchyam Partner display list on dashboard
@@ -2262,3 +2301,5 @@ class MilestoneYearCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('logcat-list')
+
+

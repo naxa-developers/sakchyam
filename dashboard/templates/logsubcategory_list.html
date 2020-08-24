@@ -7,13 +7,10 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="/dashboard/logcat-list">Log Frame</a>
+                <a href="/dashboard/logcat-list">Log Category</a>
             </li>
             <li>
                 <a href="/dashboard/logsubcat-list/{{ list.first.category.id }}">  {{ list.first.category.name }}</a>
-            </li>
-            <li>
-                {{ list.first.category.title }}
             </li>
 
         </ul>
@@ -81,7 +78,7 @@
                                 {% endif %}
                                 {% if perms.api.delete_logdata %}
                                 <li>
-                                    <a href="#" class="flex-start">
+                                    <a href="/dashboard/logsubcat-delete/{{data.id}}/{{ list.first.category.id }}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 

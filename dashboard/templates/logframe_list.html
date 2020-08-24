@@ -7,16 +7,11 @@
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
             <li>
-                <a href="/dashboard/logcat-list">Log Frame</a>
+                <a href="/dashboard/logcat-list">Log Data</a>
             </li>
 
             <li>
                 <a href="/dashboard/logsubcat-list/{{ list.first.category.id }}">{{ list.first.category.name }}</a>
-            </li>
-            <li>
-                <a href="#">
-                    {{ list.first.sub_category.name }}
-                </a>
             </li>
             <li>
                 {{ list.first.sub_category.title }}
@@ -53,8 +48,7 @@
                  <!--   <th>year</th> -->
                     <th>Target</th>
                     <th>Achievement</th>
-
-
+                    <th>Milestone Year</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -64,6 +58,7 @@
                    <!-- <td>{{data.year}}</td> -->
                     <td>{{data.planned_afp}}</td>
                     <td>{{data.achieved}}</td>
+                    <td>{{ data.year }}</td>
 
 
                     <td>
@@ -81,7 +76,7 @@
                                 {% endif %}
                                 {% if perms.api.delete_logdata %}
                                 <li>
-                                    <a href="#" class="flex-start">
+                                    <a href="/dashboard/logdata-delete/{{data.id}}/{{ list.first.category.id }}/{{ list.first.sub_category.id }}" class="flex-start">
                                         <i class="material-icons">delete</i>delete
                                     </a>
 

@@ -15,9 +15,10 @@ urlpatterns = [
     path('log-frame-add/<int:cat>/<int:subcat>', views.LogDataCreate.as_view(), name='log-frame-add'),
     path('logframe-list/<int:id>', views.LogFrameList.as_view(), name='logframe-list'),
     path('logdata-edit/<int:pk>/<int:cat>/<int:subcat>', views.LogDataUpdate.as_view(), name='logdata-edit'),
-
+    path('logdata-delete/<int:pk>/<int:cat>/<int:subcat>', views.LogDataDelete.as_view(), name='logdata-delete'),
     path('logsubcat-add/<int:cat>', views.LogSubCatCreate.as_view(), name='logsubcat-add'),
     path('logsubcat-edit/<int:pk>/<int:cat>', views.LogSubCatUpdate.as_view(), name='logsubcat-edit'),
+    path('logsubcat-delete/<int:pk>/<int:cat>', views.LogSubCategoryDelete.as_view(), name='logsubcat-delete'),
     path('logsubcat-list/<int:id>', views.LogSubCategoryList.as_view(), name='logsubcat-list'),
 
     # path('logtitle-add/<int:subcat>', views.LogTitleCreate.as_view(), name='logtitle-add'),
