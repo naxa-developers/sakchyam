@@ -352,7 +352,6 @@ class Insurance(models.Model):
 
 class DirectLink(models.Model):
     type = (
-        ('null', 'null'),
         ('RTGS', 'RTGS'),
         ('National Switch', 'National Switch'),
         ('CSD', 'CSD'),
@@ -370,7 +369,6 @@ class DirectLink(models.Model):
 
 class Payment(models.Model):
     type = (
-        ('null','null'),
         ('RTGS', 'RTGS'),
         ('National Switch', 'National Switch'),
         ('CSD', 'CSD'),
@@ -382,12 +380,11 @@ class Payment(models.Model):
     )
 
     component = models.CharField(max_length=500, choices=type)
-    indirect_links = models.CharField(max_length=500,choices=type,default='null')
-    link_with_indirect = models.CharField(max_length=500,choices=type,default='null')
-    direct_links = models.ManyToManyField(DirectLink)
+    indirect_links = models.CharField(max_length=500,choices=type,blank=True,null=True)
+    link_with_indirect = models.CharField(max_length=500,choices=type,blank=True,null=True)
+    direct_links = models.ManyToManyField(DirectLink,blank=True,null=True)
     description = models.TextField(blank=True,null=True)
     title = models.CharField(max_length=100,blank=True,null=True)
-    partner_id = models.ForeignKey(Partner,on_delete=models.CASCADE,related_name='paymentpartner',blank=True,null=True)
     component_value = models.CharField(max_length=100,blank=True,null=True)
 
 
