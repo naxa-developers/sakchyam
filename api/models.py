@@ -387,6 +387,7 @@ class Payment(models.Model):
     direct_links = models.ManyToManyField(DirectLink)
     description = models.TextField(blank=True,null=True)
     title = models.CharField(max_length=100,blank=True,null=True)
+    partner_id = models.ForeignKey(Partner,on_delete=models.CASCADE,related_name='paymentpartner',blank=True,null=True)
     component_value = models.CharField(max_length=100,blank=True,null=True)
 
 
