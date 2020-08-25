@@ -265,12 +265,11 @@ class AutomationSerializer(serializers.ModelSerializer):
 
 class PaymentSerial(serializers.ModelSerializer):
     direct_links = serializers.SerializerMethodField()
-    partner_id = serializers.SerializerMethodField()
 
     class Meta:
         model = Payment
         fields = ('id', 'component', 'direct_links', 'indirect_links', 'link_with_indirect', 'description', 'title',
-                  'partner_id','component_value' )
+                  'component_value' )
 
     def get_direct_links(self, obj):
         data = []
@@ -281,11 +280,4 @@ class PaymentSerial(serializers.ModelSerializer):
             )
         return data
 
-    def get_partner_id(self, obj):
-        try:
-            partner_id = obj.partner_id.name
-            return partner_id
 
-        except AttributeError:
-            partner_id = 'null'
-            return partner_id
