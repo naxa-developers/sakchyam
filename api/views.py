@@ -1213,7 +1213,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
                 project_filter_list[i] = int(project_filter_list[i])
             project_filter_list = list(
                 Project.objects.filter(id__in=project_filter_list).values_list('id', flat=True).distinct())
-            partnership_query = partnership_query.filter(partner_id__in=project_filter_list)
+            partnership_query = partnership_query.filter(project_id__in=project_filter_list)
 
         else:
             # project_filter_list = list(Project.objects.values_list('id', flat=True).distinct())
