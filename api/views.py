@@ -1518,7 +1518,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
                 province_filter_list[i] = int(province_filter_list[i])
 
         else:
-            province_filter_list = list(Province.objects.values_list('id', flat=True).distinct())
+            province_filter_list = list(Province.objects.values_list('code', flat=True).distinct())
 
         if request.GET.getlist('district_id'):
             district_get = request.GET['district_id']
@@ -1527,7 +1527,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
                 district_filter_list[i] = int(district_filter_list[i])
 
         else:
-            district_filter_list = list(District.objects.values_list('id', flat=True).distinct())
+            district_filter_list = list(District.objects.values_list('n_code', flat=True).distinct())
 
         if request.GET.getlist('municipality_id'):
             municipality_get = request.GET['municipality_id']
@@ -1536,7 +1536,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
                 municipality_filter_list[i] = int(municipality_filter_list[i])
 
         else:
-            municipality_filter_list = list(Municipality.objects.values_list('id', flat=True).distinct())
+            municipality_filter_list = list(Municipality.objects.values_list('code', flat=True).distinct())
 
         if request.GET.getlist('view'):
             view = request.GET['view']
@@ -1590,9 +1590,9 @@ class PartnershipOverview(viewsets.ModelViewSet):
                                                        project_id__in=project_filter_list,
                                                        partner_id__partnership__in=partner_types,
                                                        partner_id__in=partner_filter_list,
-                                                       province_id__in=province_filter_list,
-                                                       district_id__in=district_filter_list,
-                                                       municipality_id__in=municipality_filter_list,
+                                                       province_id__code__in=province_filter_list,
+                                                       district_id__n_code__in=district_filter_list,
+                                                       municipality_id__code__in=municipality_filter_list,
                                                        )
         partner = partnership_query.values('partner_id').distinct().count()
         project = partnership_query.values('project_id').distinct().count()
