@@ -1606,14 +1606,15 @@ class PartnershipOverview(viewsets.ModelViewSet):
         beneficiary = partnership_query.aggregate(Sum('total_beneficiary'))['total_beneficiary__sum']
         return Response({
             'investment_focus': investment,
-            'total_budget': budget,
-            'beneficiary': beneficiary,
+            'total_budget': budget if budget else 0,
+            'beneficiary': beneficiary if beneficiary else 0,
             'project': project,
             'partner': partner,
-            'other_products': other_products,
-            'branch': branch + extension,
-            'blb': blb,
-            'tablet': tablet,
+            'other_products': other_products if other_products else 0,
+            'branch': branch if branch else 0 + extension if extension else 0,
+            'extension': extension if extension else 0,
+            'blb': blb if blb else 0,
+            'tablet': tablet if tablet else 0,
 
         })
 
@@ -2385,6 +2386,3 @@ class APIPayment(viewsets.ReadOnlyModelViewSet):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerial
     permission_classes = [IsAuthenticated, ]
-
-
-
