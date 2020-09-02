@@ -625,10 +625,26 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         data = []
         total_data = []
         filter_type = request.GET['filter_type']
-        partners_id = request.GET.getlist('partner')
-        prov_id = request.GET.getlist('province')
-        dist_id = request.GET.getlist('district')
-        mun_id = request.GET.getlist('municipality')
+        if request.GET.getlist('partner'):
+            partners_id = request.GET['partner'].split(",")
+        else:
+            partners_id = []
+
+        if request.GET.getlist('province'):
+            prov_id = request.GET['province'].split(",")
+        else:
+            prov_id = []
+
+        if request.GET.getlist('district'):
+            dist_id = request.GET['district'].split(",")
+        else:
+            dist_id = []
+
+        if request.GET.getlist('municipality'):
+            mun_id = request.GET['municipality'].split(",")
+        else:
+            mun_id = []
+
         if filter_type == 'partner':
             for i in range(0, len(partners_id)):
                 partners_id[i] = int(partners_id[i])
@@ -1558,7 +1574,7 @@ class PartnershipOverview(viewsets.ModelViewSet):
             partner_type_get = request.GET['partner_type_filter']
             partner_types = partner_type_get.split(",")
             partner_types = list(
-                Partner.objects.filter(partnership__in=partner_types).values_list('type', flat=True).distinct())
+                Partner.objects.filter(partnership__in=partner_types).values_list('partnership', flat=True).distinct())
 
         else:
             partner_types = list(Partner.objects.values_list('partnership', flat=True).distinct())
