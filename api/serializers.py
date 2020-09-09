@@ -42,27 +42,28 @@ class PartnerSerializer(serializers.ModelSerializer):
 
 
 class PartnershipSerializer(serializers.ModelSerializer):
-    province_code = serializers.SerializerMethodField()
-    district_code = serializers.SerializerMethodField()
-    municipality_code = serializers.SerializerMethodField()
+    # province_code = serializers.SerializerMethodField()
+    # district_code = serializers.SerializerMethodField()
+    # municipality_code = serializers.SerializerMethodField()
 
     class Meta:
         model = Partnership
-        fields = (
-            'id', 'start_date', 'partner_id', 'project_id', 'province_id', 'district_id',
-            'municipality_id', 'province_code', 'district_code', 'municipality_code')
+        # fields = (
+        #     'id', 'start_date', 'partner_id', 'project_id', 'province_id', 'district_id',
+        #     'municipality_id')
+        fields = ('id', 'partner_id')
 
-    def get_province_code(self, obj):
-        code = obj.province_id.code
-        return code
-
-    def get_district_code(self, obj):
-        code = obj.district_id.n_code
-        return code
-
-    def get_municipality_code(self, obj):
-        code = obj.municipality_id.code
-        return code
+    # def get_province_code(self, obj):
+    #     code = obj.province_id.code
+    #     return code
+    #
+    # def get_district_code(self, obj):
+    #     code = obj.district_id.n_code
+    #     return code
+    #
+    # def get_municipality_code(self, obj):
+    #     code = obj.municipality_id.code
+    #     return code
 
 
 class MilestoneYearSerializer(serializers.ModelSerializer):
