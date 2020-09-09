@@ -42,9 +42,27 @@ class PartnerSerializer(serializers.ModelSerializer):
 
 
 class PartnershipSerializer(serializers.ModelSerializer):
+    province_code = serializers.SerializerMethodField()
+    district_code = serializers.SerializerMethodField()
+    municipality_code = serializers.SerializerMethodField()
+
     class Meta:
         model = Partnership
-        fields = '__all__'
+        fields = (
+            'id', 'start_date', 'partner_id', 'project_id', 'province_id', 'district_id',
+            'municipality_id', 'province_code', 'district_code', 'municipality_code')
+
+    def get_province_code(self, obj):
+        code = obj.province_id.code
+        return code
+
+    def get_district_code(self, obj):
+        code = obj.district_id.n_code
+        return code
+
+    def get_municipality_code(self, obj):
+        code = obj.municipality_id.code
+        return code
 
 
 class MilestoneYearSerializer(serializers.ModelSerializer):
@@ -269,7 +287,7 @@ class PaymentSerial(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = ('id', 'component', 'direct_links', 'indirect_links', 'link_with_indirect', 'description', 'title',
-                  'component_value' )
+                  'component_value')
 
     def get_direct_links(self, obj):
         data = []
@@ -279,5 +297,3 @@ class PaymentSerial(serializers.ModelSerializer):
                 q['components']
             )
         return data
-
-
