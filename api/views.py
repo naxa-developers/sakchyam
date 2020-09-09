@@ -182,11 +182,31 @@ class PartnerApi(viewsets.ModelViewSet):
 
 class PartnershipApi(viewsets.ModelViewSet):
     serializer_class = PartnershipSerializer
-    queryset = Partnership.objects.order_by('id')
     permission_classes = [IsAuthenticated, ]
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'partner_id', 'partner_id__name', 'partner_id__type', 'project_id',
-                        'project_id__investment_primary']
+    queryset = True
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        permission = Permission.objects.values_list('codename', flat=True).filter(group=group)
+        queryset = Partnership.objects.values('id', 'start_date', 'partner_id__id', 'project_id__id',
+                                              'province_id__code',
+                                              'district_id__n_code', 'municipality_id__code').order_by('id')
+
+        partner_data = []
+        for t in queryset:
+            partner_data.append({
+                'id': t['id'],
+                'partner_id': t['partner_id__id'],
+                'project_id': t['project_id__id'],
+                'province_id': t['province_id__code'],
+                'district_id': t['district_id__n_code'],
+                'municipality_id': t['municipality_id__code'],
+
+            })
+
+        return Response(partner_data)
 
 
 class ProvinceViewSet(viewsets.ModelViewSet):
