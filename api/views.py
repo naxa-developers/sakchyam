@@ -200,6 +200,7 @@ class PartnershipApi(viewsets.ModelViewSet):
                 'id': t['id'],
                 'partner_id': t['partner_id__id'],
                 'project_id': t['project_id__id'],
+                'start_date': t['start_date'],
                 'province_id': t['province_id__code'],
                 'district_id': t['district_id__n_code'],
                 'municipality_id': t['municipality_id__code'],
