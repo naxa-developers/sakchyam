@@ -1046,7 +1046,7 @@ def mfsBulkCreate(request):
         for row in range(0, upper_range):
             try:
                 district = District.objects.get(
-                    code=df['District Code'][row])
+                    n_code=df['District Code'][row])
                 province = Province.objects.get(
                     code=df['Province Code'][row])
                 partner = Partner.objects.get(
@@ -1260,7 +1260,7 @@ def outreachBulkCreate(request):
                     code=df['Local Unit Code'][row])
 
                 district = District.objects.get(
-                    code=df['District Code'][row])
+                    n_code=df['District Code'][row])
                 province = district.province_id
                 partner = Partner.objects.get(
                     code=df['Partner Code'][row])
