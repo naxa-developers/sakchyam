@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'api',
     'dashboard',
+    'ckeditor',
 ]
 
 REST_FRAMEWORK = {
