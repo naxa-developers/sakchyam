@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -383,7 +384,7 @@ class Payment(models.Model):
     indirect_links = models.CharField(max_length=500,choices=type,blank=True,null=True)
     link_with_indirect = models.CharField(max_length=500,choices=type,blank=True,null=True)
     direct_links = models.ManyToManyField(DirectLink,blank=True,null=True)
-    description = models.TextField(blank=True,null=True)
+    description = RichTextField(blank=True,null=True)
     title = models.CharField(max_length=100,blank=True,null=True)
     component_value = models.CharField(max_length=100,blank=True,null=True)
 
