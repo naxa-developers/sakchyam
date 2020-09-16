@@ -1047,8 +1047,7 @@ def mfsBulkCreate(request):
             try:
                 district = District.objects.get(
                     n_code=df['District Code'][row])
-                province = Province.objects.get(
-                    code=df['Province Code'][row])
+                province = district.province_id
                 partner = Partner.objects.get(
                     code=df['Partner Code'][row])
                 key_innovation = None if df['Key Innovation'][row] == '' else df['Key Innovation'][row]
@@ -1258,10 +1257,8 @@ def outreachBulkCreate(request):
             try:
                 municipality = Municipality.objects.get(
                     code=df['Local Unit Code'][row])
-
-                district = District.objects.get(
-                    n_code=df['District Code'][row])
-                province = district.province_id
+                province = municipality.province_id
+                district = municipality.district_id
                 partner = Partner.objects.get(
                     code=df['Partner Code'][row])
                 partner_type = None if df['Partner Type'][row] == '' else df['Partner Type'][row]
