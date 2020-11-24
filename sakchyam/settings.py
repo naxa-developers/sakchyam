@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'api',
     'dashboard',
     'ckeditor',
+    'import_export',
 ]
 
 REST_FRAMEWORK = {
@@ -119,6 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 157286400
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'

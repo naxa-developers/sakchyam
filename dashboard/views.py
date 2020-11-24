@@ -1317,66 +1317,83 @@ def partnershipBulkCreate(request):
         else:
             messages.error(request, "Please upload a .csv or .xls file")
 
-        upper_range = len(df)
-
+        total_range = len(df)
         success_count = 0
-        for row in range(0, upper_range):
-            try:
-                municipality = Municipality.objects.get(
-                    code=df['Local Unit Code'][row])
+        range1 = 0
+        range2 = 1000
+        loopcount = 0
+        overallloop = 0
+        while range1 < total_range:
+            for row in range(range1, range2):
+                overallloop += 1
+                if overallloop <= total_range:
+                    try:
+                        municipality = Municipality.objects.get(
+                            code=df['Local Unit Code'][row])
 
-                district = municipality.district_id
-                province = municipality.province_id
-                partner = Partner.objects.get(
-                    code=df['Partner Code'][row])
-                project = Project.objects.get(
-                    code=df['Project Code'][row])
-                branch = None if df['Branch'][row] == '' else df['Branch'][row]
-                blb = None if df['BLB'][row] == '' else df['BLB'][row]
-                extension_counter = None if df['Extension Counter'][row] == '' else df['Extension Counter'][row]
-                tablet = None if df['Tablet'][row] == '' else df['Tablet'][row]
-                other_products = None if df['Other Major Products'][row] == '' else df['Other Major Products'][row]
-                beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
-                scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
-                allocated_budget = None if df['Allocated Funds to Local Units'][row] == '' else \
-                    df['Allocated Funds to Local Units'][row]
-                allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
-                    df['Allocated Beneficiaries at Local Units'][row]
-                female_beneficiary = None if df['Female Beneficiaries'][row] == '' else df['Female Beneficiaries'][row]
-                total_beneficiary = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries'][row]
-                status = None if df['Status'][row] == '' else df['Status'][row]
-                start_date = None if df['Start Date'][row] == '' else df['Start Date'][row]
-                end_date = None if df['End Date'][row] == '' else df['End Date'][row]
-                project_year = None if df['Project Year'][row] == '' else df['Project Year'][row]
+                        district = municipality.district_id
+                        province = municipality.province_id
+                        partner = Partner.objects.get(
+                            code=df['Partner Code'][row])
+                        project = Project.objects.get(
+                            code=df['Project Code'][row])
+                        branch = None if df['Branch'][row] == '' else df['Branch'][row]
+                        blb = None if df['BLB'][row] == '' else df['BLB'][row]
+                        extension_counter = None if df['Extension Counter'][row] == '' else df['Extension Counter'][row]
+                        tablet = None if df['Tablet'][row] == '' else df['Tablet'][row]
+                        other_products = None if df['Other Major Products'][row] == '' else df['Other Major Products'][
+                            row]
+                        beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
+                        scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
+                        allocated_budget = None if df['Allocated Funds to Local Units'][row] == '' else \
+                            df['Allocated Funds to Local Units'][row]
+                        allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
+                            df['Allocated Beneficiaries at Local Units'][row]
+                        female_beneficiary = None if df['Female Beneficiaries'][row] == '' else \
+                        df['Female Beneficiaries'][row]
+                        total_beneficiary = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries'][
+                            row]
+                        status = None if df['Status'][row] == '' else df['Status'][row]
+                        start_date = None if df['Start Date'][row] == '' else df['Start Date'][row]
+                        end_date = None if df['End Date'][row] == '' else df['End Date'][row]
+                        project_year = None if df['Project Year'][row] == '' else df['Project Year'][row]
+                        partnership = Partnership.objects.update_or_create(
+                            province_id=province,
+                            district_id=district,
+                            municipality_id=municipality,
+                            partner_id=partner,
+                            project_id=project,
+                            branch=branch,
+                            blb=blb,
+                            extension_counter=extension_counter,
+                            tablet=tablet,
+                            other_products=other_products,
+                            beneficiary=beneficiary,
+                            scf_funds=scf_funds,
+                            allocated_budget=allocated_budget,
+                            allocated_beneficiary=allocated_beneficiary,
+                            female_beneficiary=female_beneficiary,
+                            total_beneficiary=total_beneficiary,
+                            status=status,
+                            start_date=start_date,
+                            end_date=end_date,
+                            project_year=project_year
 
-                partnership = Partnership.objects.update_or_create(
-                    province_id=province,
-                    district_id=district,
-                    municipality_id=municipality,
-                    partner_id=partner,
-                    project_id=project,
-                    branch=branch,
-                    blb=blb,
-                    extension_counter=extension_counter,
-                    tablet=tablet,
-                    other_products=other_products,
-                    beneficiary=beneficiary,
-                    scf_funds=scf_funds,
-                    allocated_budget=allocated_budget,
-                    allocated_beneficiary=allocated_beneficiary,
-                    female_beneficiary=female_beneficiary,
-                    total_beneficiary=total_beneficiary,
-                    status=status,
-                    start_date=start_date,
-                    end_date=end_date,
-                    project_year=project_year
+                        )
+                        loopcount += 1
+                        if loopcount == 999:
+                            range1 += 1000
+                            range2 += 1000
 
-                )
-                success_count += 1
-            except ObjectDoesNotExist as e:
-                messages.add_message(request, messages.WARNING, str(
-                    e) + " for row " + str(row))
-                continue
+                        success_count += 1
+                    except ObjectDoesNotExist as e:
+                        messages.add_message(request, messages.WARNING, str(
+                            e) + " for row " + str(row))
+                        continue
+                if overallloop > total_range:
+                    range1 += 1000
+            loopcount = 0
+
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Partnership Created ")
         return redirect('/dashboard/partnership-list/', messages)
@@ -1433,6 +1450,154 @@ def productprocessBulkCreate(request):
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " ProductProcess Created ")
         return redirect('/dashboard/productprocess-list/', messages)
+
+
+def MunicipalityBulkCreate(request):
+    template = 'municipality_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                district = District.objects.get(
+                    n_code=df['District N Code'][row])
+                province = district.province_id
+                name = None if df['Name'][row] == '' else df['Name'][row]
+                municipality_type = None if df['Municipality Type'][row] == '' else df['Municipality Type'][row]
+                hlcit_code = 0 if df['Hlcit Code'][row] == '' else df['Hlcit Code'][row]
+                code = 0 if df['Code'][row] == '' else df['Code'][row]
+
+                municipality = Municipality.objects.update_or_create(
+
+                    name=name,
+                    code=code,
+                    district_id=district,
+                    province_id=province,
+                    municipality_type=municipality_type,
+                    hlcit_code=hlcit_code
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Municipality Created ")
+        return redirect('/dashboard/municipalities-list/', messages)
+
+
+def DistrictBulkCreate(request):
+    template = 'district_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                province = Province.objects.get(
+                    code=df['Province Code'][row])
+                name = None if df['Name'][row] == '' else df['Name'][row]
+                code = 0 if df['Code'][row] == '' else df['Code'][row]
+                n_code = 0 if df['N Code'][row] == '' else df['N Code'][row]
+
+                district = District.objects.update_or_create(
+
+                    name=name,
+                    code=code,
+                    province_id=province,
+                    n_code=n_code
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + "District Created ")
+        return redirect('/dashboard/district-list/', messages)
+
+
+def ProvinceBulkCreate(request):
+    template = 'province_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                name = None if df['Name'][row] == '' else df['Name'][row]
+                code = 0 if df['Code'][row] == '' else df['Code'][row]
+
+                province = Province.objects.update_or_create(
+
+                    name=name,
+                    code=code,
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Province Created ")
+        return redirect('/dashboard/province-list/', messages)
 
 
 def projectBulkCreate(request):
@@ -1880,7 +2045,7 @@ class LogDataDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         id = self.kwargs.get('pk')
         return get_object_or_404(LogData, id=id)
 
-    def get_success_url(self,**kwargs):
+    def get_success_url(self, **kwargs):
         return '/dashboard/logsubcat-list/' + str(self.kwargs['cat'])
 
     def delete(self, request, *args, **kwargs):
@@ -2298,5 +2463,3 @@ class MilestoneYearCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('logcat-list')
-
-
