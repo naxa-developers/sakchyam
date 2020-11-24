@@ -1350,7 +1350,7 @@ def partnershipBulkCreate(request):
                         allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
                             df['Allocated Beneficiaries at Local Units'][row]
                         female_beneficiary = None if df['Female Beneficiaries'][row] == '' else \
-                        df['Female Beneficiaries'][row]
+                            df['Female Beneficiaries'][row]
                         total_beneficiary = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries'][
                             row]
                         status = None if df['Status'][row] == '' else df['Status'][row]
@@ -2176,7 +2176,8 @@ def signup(request, **kwargs):
             data = UserProfile.objects.create(user=user, full_name=request.POST['full_name'],
                                               email=request.POST['email'],
                                               image=request.FILES['image'])
-            user = User.objects.create_user(id=user.id, email=request.POST['email'], username=request.POST['username'])
+            user = User.objects.create_user(id=user.id, email=request.POST['email'], username=request.POST['username'],
+                                            password=request.POST['password1'])
             user.save()
             return redirect('user')
         else:
