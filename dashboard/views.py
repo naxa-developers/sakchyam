@@ -1161,8 +1161,8 @@ def productBulkCreate(request):
             try:
                 name = None if df['Product Name'][row] == '' else df['Product Name'][row]
                 type = None if df['Product Category'][row] == '' else df['Product Category'][row]
-                code = 0 if df['Product Code'][row] == '' else df['Product Code'][row]
-                date = 0 if df['Launch Date'][row] == '' else df['Launch Date'][row]
+                code = None if df['Product Code'][row] == '' else df['Product Code'][row]
+                date = None if df['Launch Date'][row] == '' else df['Launch Date'][row]
                 product = Product.objects.update_or_create(
                     name=name,
                     type=type,
@@ -1479,7 +1479,7 @@ def MunicipalityBulkCreate(request):
         for row in range(0, upper_range):
             try:
                 district = District.objects.get(
-                    n_code=df['District N Code'][row])
+                    n_code=df['District Code'][row])
                 province = district.province_id
                 name = None if df['Name'][row] == '' else df['Name'][row]
                 municipality_type = None if df['Municipality Type'][row] == '' else df['Municipality Type'][row]
@@ -1504,6 +1504,57 @@ def MunicipalityBulkCreate(request):
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Municipality Created ")
         return redirect('/dashboard/municipalities-list/', messages)
+
+
+def AutomationPartnerBulkCreate(request):
+    template = 'automation_partner_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                partner_code = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                latitude = None if df['Latitude'][row] == '' else df['Latitude'][row]
+                date = None if df['Date'][row] == '' else df['Date'][row]
+                longitude = None if df['Longitude'][row] == '' else df['Longitude'][row]
+                beneficiary = 0 if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
+
+                automation_partner = AutomationPartner.objects.update_or_create(
+                    partner=partner_code,
+                    latitude=latitude,
+                    date=date,
+                    longitude=longitude,
+                    beneficiary=beneficiary
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Automation Partner Created ")
+        return redirect('/dashboard/automation_partners-list/', messages)
 
 
 def DistrictBulkCreate(request):
