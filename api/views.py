@@ -1186,7 +1186,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
             province_filter_list = province_get.split(",")
             for i in range(0, len(province_filter_list)):
                 province_filter_list[i] = int(province_filter_list[i])
-                partnership_query = partnership_query.filter(province_id__in=province_filter_list)
+                partnership_query = partnership_query.filter(province_id__code__in=province_filter_list)
 
         else:
             # province_filter_list = list(Province.objects.values_list('id', flat=True).distinct())
@@ -1197,7 +1197,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
             district_filter_list = district_get.split(",")
             for i in range(0, len(district_filter_list)):
                 district_filter_list[i] = int(district_filter_list[i])
-            partnership_query = partnership_query.filter(district_id__in=district_filter_list)
+            partnership_query = partnership_query.filter(district_id__n_code__in=district_filter_list)
 
         else:
             # district_filter_list = list(District.objects.values_list('id', flat=True).distinct())
@@ -1208,7 +1208,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
             municipality_filter_list = municipality_get.split(",")
             for i in range(0, len(municipality_filter_list)):
                 municipality_filter_list[i] = int(municipality_filter_list[i])
-            partnership_query = partnership_query.filter(municipality_id__in=municipality_filter_list)
+            partnership_query = partnership_query.filter(municipality_id__code__in=municipality_filter_list)
         else:
             # municipality_filter_list = list(Municipality.objects.values_list('id', flat=True).distinct())
             partnership_query = partnership_query
@@ -1407,7 +1407,7 @@ class InvestmentSankey(viewsets.ModelViewSet):
                 province_filter_list[i] = int(province_filter_list[i])
 
         else:
-            province_filter_list = list(Province.objects.values_list('id', flat=True).distinct())
+            province_filter_list = list(Province.objects.values_list('code', flat=True).distinct())
 
         if request.GET.getlist('district_id'):
             district_get = request.GET['district_id']
@@ -1416,7 +1416,7 @@ class InvestmentSankey(viewsets.ModelViewSet):
                 district_filter_list[i] = int(district_filter_list[i])
 
         else:
-            district_filter_list = list(District.objects.values_list('id', flat=True).distinct())
+            district_filter_list = list(District.objects.values_list('n_code', flat=True).distinct())
 
         if request.GET.getlist('municipality_id'):
             municipality_get = request.GET['municipality_id']
@@ -1425,7 +1425,7 @@ class InvestmentSankey(viewsets.ModelViewSet):
                 municipality_filter_list[i] = int(municipality_filter_list[i])
 
         else:
-            municipality_filter_list = list(Municipality.objects.values_list('id', flat=True).distinct())
+            municipality_filter_list = list(Municipality.objects.values_list('code', flat=True).distinct())
 
         if request.GET.getlist('partner_type_filter'):
             partner_type_get = request.GET['partner_type_filter']
@@ -1475,9 +1475,9 @@ class InvestmentSankey(viewsets.ModelViewSet):
             project_id__investment_primary__in=investment_list,
             partner_id__partnership__in=partner_types,
             partner_id__id__in=partner_filter_list,
-            province_id__id__in=province_filter_list,
-            district_id__id__in=district_filter_list,
-            municipality_id__id__in=municipality_filter_list,
+            province_id__code__in=province_filter_list,
+            district_id__n_code__in=district_filter_list,
+            municipality_id__code__in=municipality_filter_list,
         )
 
         project = partnership_query.values("project_id__name", "project_id").distinct('project_id')
