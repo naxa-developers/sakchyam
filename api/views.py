@@ -1163,7 +1163,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
         partnership_query = Partnership.objects.values('id', 'project_id__investment_primary', 'project_id',
                                                        'project_id__name', 'partner_id__name',
                                                        'partner_id', 'partner_id__name', 'allocated_budget',
-                                                       'total_beneficiary')
+                                                       'total_beneficiary','leverage')
 
         if request.GET.getlist('status'):
             status_get = request.GET['status']
