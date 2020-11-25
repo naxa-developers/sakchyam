@@ -1354,7 +1354,7 @@ def secondarydataBulkCreate(request):
         return render(request, template)
 
     if request.method == 'POST':
-        uploaded_file = request.FILES['autofile']
+        uploaded_file = request.FILES['myfile']
 
         if uploaded_file.name.endswith('.csv'):
             df = pd.read_csv(uploaded_file).fillna('')
@@ -1372,31 +1372,50 @@ def secondarydataBulkCreate(request):
                     code=df['Local Unit Code'][row])
                 province = municipality.province_id
                 district = municipality.district_id
-                partner = Partner.objects.get(
-                    code=df['Partner Code'][row])
-                partner_type = None if df['Partner Type'][row] == '' else df['Partner Type'][row]
-                market_name = None if df['Market Name'][row] == '' else df['Market Name'][row]
-                expansion_driven_by = None if df['Expansion Driven by'][row] == '' else df['Expansion Driven by'][row]
-                date_established = None if df['Date established'][row] == '' else df['Date established'][row]
-                point_service = None if df['Point of Service'][row] == '' else df['Point of Service'][row]
-                g2p_payment = None if df['G2P Payments'][row] == '' else df['G2P Payments'][row]
-                gps_point = None if df['GPS Point'][row] == '' else df['GPS Point'][row]
-                demonstration_effect = None if df['Demonstration effect'][row] == '' else df['Demonstration effect'][
-                    row]
+                hdi = None if df['Head-Quarter of the Local Unit'][row] == '' else df['Head-Quarter of the Local Unit'][row]
+                head_quarter = None if df['HDI of District'][row] == '' else df['HDI of District'][row]
+                population = None if df['Population in the Local Unit'][row] == '' else df['Population in the Local Unit'][row]
+                yearly_fund = None if df['Yearly Central Government Funding'][row] == '' else df['Yearly Central Government Funding'][row]
+                social_security_recipients = None if df['Social Security Payment Recipients'][row] == '' else df['Social Security Payment Recipients'][row]
+                yearly_social_security_payment = None if df['Yearly Social Security Payments'][row] == '' else df['Yearly Social Security Payments'][row]
+                nearest_branch_distance = None if df['Road distance from nearest Commercial Bank Branch (in KM)'][row] == '' else df['Road distance from nearest Commercial Bank Branch (in KM)'][row]
+                communication_landline = None if df['Available Means of Communication_Landline'][row] == '' else df['Available Means of Communication_Landline'][row]
+                communication_mobile = None if df['Available Means of Communication_Mobile'][row] == '' else df['Available Means of Communication_Mobile'][row]
+                communication_internet = None if df['Available Means of Communication_Internet'][row] == '' else df['Available Means of Communication_Internet'][row]
+                communication_internet_other = None if df['Available Means of Communication_OtherInternet'][row] == '' else df['Available Means of Communication_OtherInternet'][row]
+                available_electricity_maingrid = None if df['Availability of Electricity_MainGrid'][row] == '' else df['Availability of Electricity_MainGrid'][row]
+                available_electricity_micro_hydro = None if df['Availability of Electricity_Micro-Hydro'][row] == '' else df['Availability of Electricity_Micro-Hydro'][row]
+                nearest_road_location_name = None if df['Nearest Road Access_LocationName'][row] == '' else df['Nearest Road Access_LocationName'][row]
+                nearest_road_distance = None if df['Nearest Road Access_Distance'][row] == '' else df['Nearest Road Access_Distance'][row]
+                nearest_road_type = None if df['Nearest Road Access_TypeOfRoad'][row] == '' else df['Nearest Road Access_TypeOfRoad'][row]
+                nearest_police_location_name = None if df['Nearest Police Presence_LocationName'][row] == '' else df['Nearest Police Presence_LocationName'][row]
+                nearest_police_distance = None if df['Nearest Police Presence_Distance'][row] == '' else df['Nearest Police Presence_Distance'][row]
+                categorisation_by_sakchyam = None if df['Categorisation by Sakchyam'][row] == '' else df['Categorisation by Sakchyam'][row]
 
-                outreach = Outreach.objects.update_or_create(
+                outreach = SecondaryData.objects.update_or_create(
                     province_id=province,
                     district_id=district,
                     municipality_id=municipality,
-                    partner_id=partner,
-                    partner_type=partner_type,
-                    market_name=market_name,
-                    expansion_driven_by=expansion_driven_by,
-                    date_established=date_established,
-                    point_service=point_service,
-                    g2p_payment=g2p_payment,
-                    gps_point=gps_point,
-                    demonstration_effect=demonstration_effect
+                    hdi=hdi,
+                    head_quarter=head_quarter,
+                    population = population,
+                    yearly_fund=yearly_fund,
+                    social_security_recipients=social_security_recipients,
+                    yearly_social_security_payment=yearly_social_security_payment,
+                    nearest_police_distance=nearest_police_distance,
+                    communication_landline=communication_landline,
+                    communication_mobile=communication_mobile,
+                    communication_internet=communication_internet,
+                    communication_internet_other=communication_internet_other,
+                    available_electricity_maingrid=available_electricity_maingrid,
+                    available_electricity_micro_hydro=available_electricity_micro_hydro,
+                    nearest_police_location_name=nearest_police_location_name,
+                    nearest_road_location_name=nearest_road_location_name,
+                    nearest_road_distance=nearest_road_distance,
+                    nearest_road_type=nearest_road_type,
+                    categorisation_by_sakchyam=categorisation_by_sakchyam,
+                    nearest_branch_distance=nearest_branch_distance
+
 
                 )
                 success_count += 1
@@ -1405,8 +1424,8 @@ def secondarydataBulkCreate(request):
                     e) + " for row " + str(row))
                 continue
         messages.add_message(request, messages.SUCCESS, str(
-            success_count) + " Outreach Created ")
-        return redirect('/dashboard/outreach-list/', messages)
+            success_count) + " Secondary Created ")
+        return redirect('/dashboard/secondary_data-list/', messages)
 
 
 def partnershipBulkCreate(request):
