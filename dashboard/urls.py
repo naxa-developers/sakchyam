@@ -122,5 +122,7 @@ urlpatterns = [
     path('partnership-add/', views.PartnershipCreate.as_view(), name='partnership-add'),
     path('partnership-edit/<int:pk>', views.PartnershipEdit.as_view(), name='partnership-edit'),
     path('partnership-delete/<int:pk>', views.PartnershipDelete.as_view(), name='partnership-delete'),
+    path('programme-bulk-add', views.programmeBulkCreate, name='programme-bulk-create'),
+    path('secondarydata-bulk-add', views.secondarydataBulkCreate, name='secondary-bulk-create')
 
 ]

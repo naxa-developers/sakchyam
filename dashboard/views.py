@@ -1020,6 +1020,51 @@ def automationBulkCreate(request):
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
 
+def programmeBulkCreate(request):
+    template = 'financial_programme_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                name = None if df['Programme'][row] == '' else df['Programme'][row]
+                code = None if df['Programme Code'][row] == '' else df['Programme Code'][row]
+                date = None if df['Date'][row] == '' else df['Date'][row]
+                total = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries'][row]
+                automation = FinancialProgram.objects.update_or_create(
+                    name=name,
+                    code=code,
+                    date=date,
+                    total=total
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Financial Program Bulk Created ")
+        return redirect('/dashboard/financial_program-list/', messages)
+
 
 def mfsBulkCreate(request):
     template = 'mfs_bulk_upload.html'
@@ -1233,6 +1278,72 @@ def financialliteracyBulkCreate(request):
 
 def outreachBulkCreate(request):
     template = 'outreach_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code=df['Local Unit Code'][row])
+                province = municipality.province_id
+                district = municipality.district_id
+                partner = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                partner_type = None if df['Partner Type'][row] == '' else df['Partner Type'][row]
+                market_name = None if df['Market Name'][row] == '' else df['Market Name'][row]
+                expansion_driven_by = None if df['Expansion Driven by'][row] == '' else df['Expansion Driven by'][row]
+                date_established = None if df['Date established'][row] == '' else df['Date established'][row]
+                point_service = None if df['Point of Service'][row] == '' else df['Point of Service'][row]
+                g2p_payment = None if df['G2P Payments'][row] == '' else df['G2P Payments'][row]
+                gps_point = None if df['GPS Point'][row] == '' else df['GPS Point'][row]
+                demonstration_effect = None if df['Demonstration effect'][row] == '' else df['Demonstration effect'][
+                    row]
+
+                outreach = Outreach.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    partner_id=partner,
+                    partner_type=partner_type,
+                    market_name=market_name,
+                    expansion_driven_by=expansion_driven_by,
+                    date_established=date_established,
+                    point_service=point_service,
+                    g2p_payment=g2p_payment,
+                    gps_point=gps_point,
+                    demonstration_effect=demonstration_effect
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Outreach Created ")
+        return redirect('/dashboard/outreach-list/', messages)
+
+def secondarydataBulkCreate(request):
+    template = 'secondary_bulk_upload.html'
 
     # prompt = {
     #     'order': '''1. Please upload a .csv or .xls file \n
