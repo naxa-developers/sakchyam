@@ -55,6 +55,7 @@ urlpatterns = [
     path('outreach/outreach-data/', views.OutreachApi.as_view({'get': 'list'}), name='outreach-data'),
     path('outreach/outreach-map/', views.OutreachMap.as_view({'get': 'list'}), name='outreach-map'),
     path('mfs/mfs-data/', views.MfsData.as_view({'get': 'list'}), name='mfs-data'),
+    path('mfs/all-mfs-data/', views.AllMfsData.as_view({'get': 'list'}), name='all-mfs-data'),
     path('insurance/insurance-data/', views.InsuranceData.as_view({'get': 'list'}), name='insurance-data'),
     path('paymentapi', views.APIPayment.as_view({'get': 'list'}))
 

@@ -82,6 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'dashboard.context_processors.message_processor',
             ],
         },
     },
@@ -122,6 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 157286400
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
+INCREASE_BY = 500
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'

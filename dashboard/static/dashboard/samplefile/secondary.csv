@@ -1,0 +1,55 @@
+Province No.,District,District_Code,Name of the Municipality / Rural Municipality,Local Unit Code,HLCIT,Head-Quarter of the Local Unit,HDI of District,Population in the Local Unit,Yearly Central Government Funding,Social Security Payment Recipients,Yearly Social Security Payments,Road distance from nearest Commercial Bank Branch (in KM),Available Means of Communication_Landline,Available Means of Communication_Mobile,Available Means of Communication_Internet,Available Means of Communication_OtherInternet,Availability of Electricity_MainGrid,Availability of Electricity_Micro-Hydro,Nearest Road Access_LocationName,Nearest Road Access_Distance,Nearest Road Access_TypeOfRoad,Nearest Police Presence_LocationName,Nearest Police Presence_Distance,Categorisation by Sakchyam
+7,Baitadi,74,Pancheswor Rural Municipality,750,524 7 74 4 004,Aam Chaura,0.416,18766,237703000,3001,40622400,21,No,Yes,Yes,No,No,No,Aam Chaura,0,Soil,Kalau,5,A
+7,Baitadi,74,Sigas Rural Municipality,754,524 7 74 4 006,Sigas,0.416,21510,303551000,2397,32757600,20,No,Yes,Yes,No,No,Yes,Sigas,-1,Soil,Gajari,6,A
+7,Dadeldhura,73,Nava Durga Rural Municipality,744,524 7 73 4 003,Banchaura,0.442,19957,233961000,2600,41059200,8,No,Yes,Yes,No,No,Yes,Banchura,-1,Soil,Seri,1.5,B
+7,Darchula,75,Api Himal Rural Municipality,756,524 7 75 4 003,Khandeshori,0.436,6719,151657000,399,7653600,18,No,Yes,Yes,No,No,Yes,Khandeshowi,0,Soil,Khandeshori,-1,B
+7,Darchula,75,Duhu Rural Municipality,758,524 7 75 4 002,Hikila,0.436,10818,170933000,932,14208000,16,No,Yes,Yes,Yes,No,Yes,Hikila,-1,soil,Huti,5,A
+7,Darchula,75,Lekam Rural Municipality,759,524 7 75 4 006,Kharkada,0.436,14838,225767000,1827,29457600,16,No,Yes,Yes,Yes,No,Yes,Airichhina,20,0,Chaupata,7.5,A
+7,Darchula,75,Byas Rural Municipality,757,524 7 75 4 001,Sunsera,0.436,10347,196824000,815,13296000,-1,No,Yes,No,Yes,No,Yes,Dunhu,20,0,Sunsera,-1,A
+7, Kailali,71, Mohnyal Rural Municipality,727,524 7 71 4 003, Khimdi,0.460,22053,295427000,2258,32666400,-1, No, Yes, Yes, No, No, No, Sukhad,  40 , Soil, Khimadi,-1, C
+7,Doti,70,Sayal Rural Municipality,713,524 7 70 4 002,Daud (Dudaligada),0.407,19551,237321000,2479,31394400,45,No,Yes,Yes,No,No,No,Dudaligada,0,Soil,Dewarmandau,2,A
+7, Bajhang,67,Masta Rural Municiaplity,690,524 7 67 4 008,Bhatekhola,0.365,14951,211957000,4338,39508800,20,No,yes,Yes,No,No,Yes,Bhatekhola,-1,soil,Chainpur,20,A
+7, Bajhang,67,Kedar Syeu Rural Municipality,688,524 7 67 4 005,Deura,0.365,21307,283004000,5486,51266400,40,No,Yes,Yes,No,Yes,Yes,Deura,-1,pitched and soil,Bagthala,6,A
+7,Achham,69,Turmakhand Rural Municipality,704,524 7 69 4 006,Turmakhand,0.378,24940,325228000,6289,62512800,26,No,Yes,Yes,No,No,No,Turmakhad,0,Soil,Turmakhand,-1,A
+7,Achham,69,Dhakari Rural Municipality,697,524 7 69 4 005,Dhakari Bazaar,0.378,21562,304827000,5666,54468000,26,No,Yes,Yes,No,No,No,Dhakari Bazaar,0,Soil,Dhakari Bazaar,-1,A
+7,Achham,69,Ramaroshan Rural Municipality,702,524 7 69 4 004,Santada (Muza Bagar),0.378,25166,307762000,5987,57429600,40,No,Yes,Yes,No,No,No,Muza Bagar,0,Soil,Santada,-1,C
+7,Bajura,68,Himali Rural Municipality,677,524 7 68 4 001,Baandhu,0.364,9214,184137000,975,15148800,35,No,Yes,Yes,No,Yes,No,Kolti,12,Soil,Kolti,12.5,A
+7,Bajura,68,Chhededah Rural Municipality,675,524 7 68 4 003,Dogadi Bazaar,0.364,18545,233963000,2074,30055200,30,No,Yes,Yes,No,No,Yes,Taprisera,10,Soil,Dogadi,-1,A
+7,Bajura,68,Swami Kartik Rural Municipality,679,524 7 68 4 005,Wai,0.364,12784,214786000,1835,21890400,38,No,Yes,Yes,No,No,Yes,Kolti,7.5,Soil,Piluchaur,2.5,A
+7,Bajura,68,Pandab Gufa Rural Municipality,678,524 7 68 4 004,Jagannath (Juddhi),0.364,9432,157655000,1330,16610400,37,No,Yes,Yes,No,No,Yes,Piluchaur,7.5,Soil,Piluchaur,7.5,A
+7,Bajura,68,Triveni Municipality,680,524 7 68 3 004,Toli Dewal,0.364,18363,235521000,2419,33739200,12,No,Yes,Yes,Yes,No,Yes,Toli Dewal,-1,soil,Toli Dewal,-1,B
+6,Jajarkot,60,Triveni Nalgadh Rural Municipality,635,524 6 60 3 003,Khagenkot,0.393,25597,336563000,2875,33770400,31,No,Yes,Yes,No,No,Yes,Khalanga,31,gravel road,Dalli,-1,A
+6,Jajarkot,60,Barekot Rural Municipality,629,524 6 60 4 003,Nayakwada,0.393,18083,263190000,1715,20335200,50,No,Yes,Yes,No,No,Yes,Kalimato To Jumla Goreto,0.2,Gravel,Nayakbada,-1,A
+6,Jajarkot,60,Junichande Rural Municipality,632,524 6 60 4 001,Majkot (Syalkhola),0.393,21733,282431000,2646,30352800,24,No,Yes,Yes,No,No,Yes,Thala To Dailekh bazar,150,Gravel,Garkhakot,-1,B
+6,Jajarkot,60,Kuse Rural Municipality,633,524 6 60 4 002,Dhime (Bharma),0.393,20621,279958000,2116,24052800,28,No,Yes,Yes,No,No,Yes,Daha To Dailekh,200,Gravel,Garkhakot,-1,A
+6,Humla,66,Tajakot Rural Municipality,671,524 6 66 4 006,Mailaa (Puima),0.376,5964,135796000,2659,23328000,35,No,Yes,Yes,No,No,No,-,-1,-,-,-1,A
+6,Humla,66,Aadanchuli Rural Municipality,665,524 6 66 4 007,Shreenagar,0.376,7116,144910000,3211,26889600,40,No,Yes,Yes,No,No,No,-,-1,-,-,-1,A
+6,Humla,66,Chankhelee Rural Municipality,666,524 6 66 4 005,Shreemasthaa (Chitlang),0.376,5517,154800000,2653,19960800,20,No,Yes,No,No,No,Yes,-,-1,-,-,-1,B
+6,Humla,66,Kharpunath Rural Municipality,667,524 6 66 4 003,Kharpunath,0.376,6011,150846000,2294,21122400,10,No,Yes,Yes,Yes,No,Yes,Simikot,10,gravel road,Kharpu,-1,A
+6,Humla,66,Namkha Rural Municipality,668,524 6 66 4 001,Muchu Gaun,0.376,3900,156546000,2231,27021600,35,No,Yes,No,No,No,No,-,-1,-,-,-1,A
+6,Kalikot,64,Palata Rural Municipality,657,524 6 64 4 004,Thirpu,0.374,15303,221240000,2513,25056000,30,No,Yes,Yes,Yes,No,Yes,Karnali highway,10,Pitched,Thripu,-1,A
+6,Kalikot,64,Mahabai Rural Municipality,654,524 6 64 4 006,Odanaku,0.374,8323,167675000,1434,16454400,12,No,Yes,Yes,No,No,No,-,-1,Soil,-,-1,B
+6,Kalikot,64,Kalika Rural Municipality,316,524 3 29 4 004,Sukatiya,0.374,14080,187035000,2686,30050400,8,No,Yes,Yes,Yes,No,No,Karnali Highway,10,Gravel,Hawdi,-1,C
+6,Kalikot,64,Naraharinath Rural Municipality,655,524 6 64 4 001,Kumal Gaun,0.374,21366,261898000,4082,46641600,19,No,Yes,Yes,No,No,No,Karnali Highway,10,Gravel,-,-1,B
+6,Kalikot,64,Sanni Tribeni Rural Municipality,659,524 6 64 4 002,Mehelmudi,0.374,12846,186784000,2351,27537600,19,No,Yes,Yes,No,No,Yes,Karnali Highway,10,Gravel,-,-1,B
+6,Kalikot,64,Pachaljharana Rural Municipality,656,524 6 64 4 003,Ramnakot (Jarkot),0.374,12343,191896000,1910,24206400,32,No,Yes,Yes,No,No,No,Karnali Highway,7,Gravel,-,-1,A
+6,Jumla,63,Hima Rural Municipality,646,524 6 63 4 004,Kalika Khetu,0.409,10961,170810000,3124,26990400,5,No,Yes,Yes,No,No,Yes,Karnali Highway,20,Gravel,-,-1,C
+6,Mugu,65,Soru Rural Municipality,664,524 6 65 4 002,Jima,0.397,12238,236465000,2082,28603200,27,No,Yes,Yes,No,No,No,Gamgadi,-1,-,-,-1,A
+6,Mugu,65,Mugumkarmarag Rural Municipality,663,524 6 65 4 003,Pulu,0.397,5396,160057000,924,17311200,28,No,Yes,Yes,No,No,No,-,-1,-,-,-1,A
+6,Dolpa,62,Chharka Tangsong Rural Municipality,636,524 6 62 4 006,Chhaarkhaa,0.401,1451,132560000,617,7226400,95,No,No,No,No,No,No,-,-1,-,-,-1,A
+6,Dolpa,62,Kaike Rural Municipality,639,524 6 62 4 005,Sahartara,0.401,3576,127372000,652,8176800,15,No,No,No,No,No,No,-,-1,-,-,-1,A
+6,Dolpa,62,Muikechula Rural Municipality,640,524 6 62 4 004,Narku,0.401,5129,143688000,1050,11222400,23,No,No,No,No,No,No,-,-1,-,-,-1,A
+6,Dolpa,62,Dolpo Buddha Rural Municipality,637,524 6 62 4 003,Dho,0.401,2126,112146000,434,5260800,52,No,No,No,No,No,No,-,-1,-,-,-1,A
+6,Dolpa,62,Se Phoksundo Rural Municipality,641,524 6 62 4 001,Saldang,0.401,3099,121528000,1160,13488000,-1,No,Yes,Yes,No,No,No,Dunai,7.5,walking trail,In sey Phoksundo Gaupalika,-1,A
+6,Dolpa,62,Jagdulla Rural Municipality,638,524 6 62 4 002,Kai Gaun,0.401,2273,130358000,853,8512800,-1,No,Yes,Yes,No,No,Yes,Majgau,12.5,Not available,Kai gaun,-1,A
+6,Salyan,53,Darma Rural Municipality,574,524 6 53 4 002,Bhalchaur (Tharula Bazaar),0.441,19966,218893000,1689,24624000,40,No,Yes,Yes,No,Yes,No,Tharmare,15,Gravel,-,-1,A
+6,Salyan,53,Siddha Kumakh Rural Municipality,575,524 6 53 4 003,Dhorchaur,0.441,13593,0,0,0,-1,No,Yes,Yes,No,Yes,No,-,-1,-,-,-1,A
+6,Salyan,53,Kumakhamalika Rural Municipality,578,524 6 53 4 001,Marmaparikaandaa (Raghe Chaur),0.441,24972,275647000,2004,30158400,44,No,Yes,Yes,No,Yes,No,Shital pati,41,Gravel,-,-1,A
+5,Dang,56,Rajpur Rural Municipality,587,524 5 56 4 004,Rajpur ( now it is proposed in Jahare),0.485,25037,285536000,1409,23452800,-1,No,Yes,No,No,Yes,No,"East west highway, Kalakate",36,Not available,"Rajpur, Ilaka Police",-1,B
+5,Pyuthan,55,Jhimruk Rural Municipality,546,524 5 55 4 003,Okharkot (Machhi),0.413,27931,292893000,2954,46840800,-1,No,Yes,Yes,Yes,Yes,No,Bijwar,18,Gravel,-,-1,C
+5,Pyuthan,55,Naubahini Rural Municipality,549,524 5 55 4 001,Lung (Bahane),0.413,30292,317455000,2992,45808800,-1,No,Yes,Yes,Yes,Yes,No,Bijwar,19,Gravel,-,-1,C
+5,Rolpa,54,Sukidaha Rural Municipality,559,524 5 54 4 001,Jinabang,0.395,20009,233928000,1555,15703200,-1,No,No,No,No,No,No,-,-1,-,-,-1,A
+5,Rolpa,54,Lungri Rural Municipality,554,524 5 54 4 008,Bada chaur,0.395,23631,248179000,2279,34780800,-1,No,Yes,Yes,No,Yes,No,Sulichaur,-1,-,-,-1,A
+5,Rolpa,54,Duikholi Rural Municipality,553,524 5 54 4 002,Raangkot (Duikholi Bazaar),0.395,20778,242027000,982,15398400,-1,No,Yes,Yes,No,No,No,Ghartigau,32,Gravel,-,-1,C
+5,Rukum East,52,Bhume Rural Municipality,775,524 5 52 4 003,Morabang,0.431,18589,258044000,1752,26404800,-1,No,Yes,No,No,No,No,-,-1,-,-,-1,A
+5,Rukum West,77,Banfikot Rural Municipality,565,524 6 52 4 002,Kol,0.431,17932,288761000,1862,25471200,-1,No,No,No,No,No,No,-,-1,-,-,-1,A

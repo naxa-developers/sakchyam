@@ -234,6 +234,7 @@ class Partnership(models.Model):
     other_products = models.IntegerField(blank=True, null=True, default=0)
     beneficiary = models.IntegerField(blank=True, null=True, default=0)
     scf_funds = models.IntegerField(blank=True, null=True, default=0)
+    leverage = models.FloatField(blank=True, null=True, default=0)
     allocated_budget = models.FloatField(blank=True, null=True, default=0)
     allocated_beneficiary = models.FloatField(blank=True, null=True, default=0)
     female_percentage = models.FloatField(blank=True, null=True, default=0)
@@ -381,13 +382,9 @@ class Payment(models.Model):
     )
 
     component = models.CharField(max_length=500, choices=type)
-    indirect_links = models.CharField(max_length=500,choices=type,blank=True,null=True)
-    link_with_indirect = models.CharField(max_length=500,choices=type,blank=True,null=True)
-    direct_links = models.ManyToManyField(DirectLink,blank=True,null=True)
-    description = RichTextField(blank=True,null=True)
-    title = models.CharField(max_length=100,blank=True,null=True)
-    component_value = models.CharField(max_length=100,blank=True,null=True)
-
-
-
-
+    indirect_links = models.CharField(max_length=500, choices=type, blank=True, null=True)
+    link_with_indirect = models.CharField(max_length=500, choices=type, blank=True, null=True)
+    direct_links = models.ManyToManyField(DirectLink, blank=True, null=True)
+    description = RichTextField(blank=True, null=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
+    component_value = models.CharField(max_length=100, blank=True, null=True)

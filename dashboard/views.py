@@ -24,6 +24,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from dashboard.app_setting import MY_SETTING
 
 
 # Create your views here.
@@ -550,7 +551,8 @@ class PartnershipList(LoginRequiredMixin, ListView):
                                                 'extension_counter', 'tablet', 'other_products', 'beneficiary',
                                                 'scf_funds', 'allocated_budget', 'allocated_beneficiary',
                                                 'female_percentage', 'total_beneficiary', 'female_beneficiary',
-                                                'status', 'start_date', 'end_date', 'project_year').order_by('id')
+                                                'status', 'start_date', 'end_date', 'project_year',
+                                                'leverage').order_by('id')
         paginator = Paginator(query_data, 500)
         page_numbers_range = 1000
         max_index = len(paginator.page_range)
@@ -1018,6 +1020,51 @@ def automationBulkCreate(request):
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
 
+def programmeBulkCreate(request):
+    template = 'financial_programme_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                name = None if df['Programme'][row] == '' else df['Programme'][row]
+                code = None if df['Programme Code'][row] == '' else df['Programme Code'][row]
+                date = None if df['Date'][row] == '' else df['Date'][row]
+                total = None if df['Total Beneficiaries'][row] == '' else df['Total Beneficiaries'][row]
+                automation = FinancialProgram.objects.update_or_create(
+                    name=name,
+                    code=code,
+                    date=date,
+                    total=total
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Financial Program Bulk Created ")
+        return redirect('/dashboard/financial_program-list/', messages)
+
 
 def mfsBulkCreate(request):
     template = 'mfs_bulk_upload.html'
@@ -1161,8 +1208,8 @@ def productBulkCreate(request):
             try:
                 name = None if df['Product Name'][row] == '' else df['Product Name'][row]
                 type = None if df['Product Category'][row] == '' else df['Product Category'][row]
-                code = 0 if df['Product Code'][row] == '' else df['Product Code'][row]
-                date = 0 if df['Launch Date'][row] == '' else df['Launch Date'][row]
+                code = None if df['Product Code'][row] == '' else df['Product Code'][row]
+                date = None if df['Launch Date'][row] == '' else df['Launch Date'][row]
                 product = Product.objects.update_or_create(
                     name=name,
                     type=type,
@@ -1295,6 +1342,91 @@ def outreachBulkCreate(request):
             success_count) + " Outreach Created ")
         return redirect('/dashboard/outreach-list/', messages)
 
+def secondarydataBulkCreate(request):
+    template = 'secondary_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['myfile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                municipality = Municipality.objects.get(
+                    code=df['Local Unit Code'][row])
+                province = municipality.province_id
+                district = municipality.district_id
+                head_quarter = None if df['Head-Quarter of the Local Unit'][row] == '' else df['Head-Quarter of the Local Unit'][row]
+                hdi = None if df['HDI of District'][row] == '' else df['HDI of District'][row]
+                population = None if df['Population in the Local Unit'][row] == '' else df['Population in the Local Unit'][row]
+                yearly_fund = None if df['Yearly Central Government Funding'][row] == '' else df['Yearly Central Government Funding'][row]
+                social_security_recipients = None if df['Social Security Payment Recipients'][row] == '' else df['Social Security Payment Recipients'][row]
+                yearly_social_security_payment = None if df['Yearly Social Security Payments'][row] == '' else df['Yearly Social Security Payments'][row]
+                nearest_branch_distance = None if df['Road distance from nearest Commercial Bank Branch (in KM)'][row] == '' else df['Road distance from nearest Commercial Bank Branch (in KM)'][row]
+                communication_landline = None if df['Available Means of Communication_Landline'][row] == '' else df['Available Means of Communication_Landline'][row]
+                communication_mobile = None if df['Available Means of Communication_Mobile'][row] == '' else df['Available Means of Communication_Mobile'][row]
+                communication_internet = None if df['Available Means of Communication_Internet'][row] == '' else df['Available Means of Communication_Internet'][row]
+                communication_internet_other = None if df['Available Means of Communication_OtherInternet'][row] == '' else df['Available Means of Communication_OtherInternet'][row]
+                available_electricity_maingrid = None if df['Availability of Electricity_MainGrid'][row] == '' else df['Availability of Electricity_MainGrid'][row]
+                available_electricity_micro_hydro = None if df['Availability of Electricity_Micro-Hydro'][row] == '' else df['Availability of Electricity_Micro-Hydro'][row]
+                nearest_road_location_name = None if df['Nearest Road Access_LocationName'][row] == '' else df['Nearest Road Access_LocationName'][row]
+                nearest_road_distance = None if df['Nearest Road Access_Distance'][row] == '' else df['Nearest Road Access_Distance'][row]
+                nearest_road_type = None if df['Nearest Road Access_TypeOfRoad'][row] == '' else df['Nearest Road Access_TypeOfRoad'][row]
+                nearest_police_location_name = None if df['Nearest Police Presence_LocationName'][row] == '' else df['Nearest Police Presence_LocationName'][row]
+                nearest_police_distance = None if df['Nearest Police Presence_Distance'][row] == '' else df['Nearest Police Presence_Distance'][row]
+                categorisation_by_sakchyam = None if df['Categorisation by Sakchyam'][row] == '' else df['Categorisation by Sakchyam'][row]
+
+                outreach = SecondaryData.objects.update_or_create(
+                    province_id=province,
+                    district_id=district,
+                    municipality_id=municipality,
+                    hdi=hdi,
+                    head_quarter=head_quarter,
+                    population = population,
+                    yearly_fund=yearly_fund,
+                    social_security_recipients=social_security_recipients,
+                    yearly_social_security_payment=yearly_social_security_payment,
+                    nearest_police_distance=nearest_police_distance,
+                    communication_landline=communication_landline,
+                    communication_mobile=communication_mobile,
+                    communication_internet=communication_internet,
+                    communication_internet_other=communication_internet_other,
+                    available_electricity_maingrid=available_electricity_maingrid,
+                    available_electricity_micro_hydro=available_electricity_micro_hydro,
+                    nearest_police_location_name=nearest_police_location_name,
+                    nearest_road_location_name=nearest_road_location_name,
+                    nearest_road_distance=nearest_road_distance,
+                    nearest_road_type=nearest_road_type,
+                    categorisation_by_sakchyam=categorisation_by_sakchyam,
+                    nearest_branch_distance=nearest_branch_distance
+
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Secondary Created ")
+        return redirect('/dashboard/secondary_data-list/', messages)
+
 
 def partnershipBulkCreate(request):
     template = 'partnership_bulk_upload.html'
@@ -1320,7 +1452,7 @@ def partnershipBulkCreate(request):
         total_range = len(df)
         success_count = 0
         range1 = 0
-        range2 = 1000
+        range2 = MY_SETTING
         loopcount = 0
         overallloop = 0
         while range1 < total_range:
@@ -1345,6 +1477,7 @@ def partnershipBulkCreate(request):
                             row]
                         beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
                         scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
+                        leverage = None if df['Leverage'][row] == '' else df['Leverage'][row]
                         allocated_budget = None if df['Allocated Funds to Local Units'][row] == '' else \
                             df['Allocated Funds to Local Units'][row]
                         allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
@@ -1370,6 +1503,7 @@ def partnershipBulkCreate(request):
                             other_products=other_products,
                             beneficiary=beneficiary,
                             scf_funds=scf_funds,
+                            leverage=leverage,
                             allocated_budget=allocated_budget,
                             allocated_beneficiary=allocated_beneficiary,
                             female_beneficiary=female_beneficiary,
@@ -1381,9 +1515,9 @@ def partnershipBulkCreate(request):
 
                         )
                         loopcount += 1
-                        if loopcount == 999:
-                            range1 += 1000
-                            range2 += 1000
+                        if loopcount == MY_SETTING-1:
+                            range1 += MY_SETTING
+                            range2 += MY_SETTING
 
                         success_count += 1
                     except ObjectDoesNotExist as e:
@@ -1479,7 +1613,7 @@ def MunicipalityBulkCreate(request):
         for row in range(0, upper_range):
             try:
                 district = District.objects.get(
-                    n_code=df['District N Code'][row])
+                    n_code=df['District Code'][row])
                 province = district.province_id
                 name = None if df['Name'][row] == '' else df['Name'][row]
                 municipality_type = None if df['Municipality Type'][row] == '' else df['Municipality Type'][row]
@@ -1504,6 +1638,57 @@ def MunicipalityBulkCreate(request):
         messages.add_message(request, messages.SUCCESS, str(
             success_count) + " Municipality Created ")
         return redirect('/dashboard/municipalities-list/', messages)
+
+
+def AutomationPartnerBulkCreate(request):
+    template = 'automation_partner_bulk_upload.html'
+
+    # prompt = {
+    #     'order': '''1. Please upload a .csv or .xls file \n
+    #                 2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets'''
+    # }
+
+    if request.method == "GET":
+        return render(request, template)
+
+    if request.method == 'POST':
+        uploaded_file = request.FILES['autofile']
+
+        if uploaded_file.name.endswith('.csv'):
+            df = pd.read_csv(uploaded_file).fillna('')
+        elif uploaded_file.name.endswith(('.xls', 'xlsx')):
+            df = pd.read_excel(uploaded_file).fillna('')
+        else:
+            messages.error(request, "Please upload a .csv or .xls file")
+
+        upper_range = len(df)
+
+        success_count = 0
+        for row in range(0, upper_range):
+            try:
+                partner_code = Partner.objects.get(
+                    code=df['Partner Code'][row])
+                latitude = None if df['Latitude'][row] == '' else df['Latitude'][row]
+                date = None if df['Date'][row] == '' else df['Date'][row]
+                longitude = None if df['Longitude'][row] == '' else df['Longitude'][row]
+                beneficiary = 0 if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
+
+                automation_partner = AutomationPartner.objects.update_or_create(
+                    partner=partner_code,
+                    latitude=latitude,
+                    date=date,
+                    longitude=longitude,
+                    beneficiary=beneficiary
+
+                )
+                success_count += 1
+            except ObjectDoesNotExist as e:
+                messages.add_message(request, messages.WARNING, str(
+                    e) + " for row " + str(row))
+                continue
+        messages.add_message(request, messages.SUCCESS, str(
+            success_count) + " Automation Partner Created ")
+        return redirect('/dashboard/automation_partners-list/', messages)
 
 
 def DistrictBulkCreate(request):

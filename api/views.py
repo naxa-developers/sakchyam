@@ -688,8 +688,9 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                     municipality_id__code__in=mun_id).distinct('partner')
 
         partner = AutomationPartner.objects.filter(partner__in=partners_id).order_by('id')
-        total_beneficiary = partner.aggregate(
-            Sum('beneficiary'))
+        # total_beneficiary = partner.aggregate(
+        #     Sum('beneficiary'))['beneficiary__sum']
+        total_beneficiary = 0
         tablet_total = 0
         branch_total = 0
         for part in partner:
@@ -719,14 +720,21 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                 tablet_sum = automation.aggregate(
                     Sum('num_tablet_deployed'))
                 tablet = tablet_sum['num_tablet_deployed__sum']
+                dist_cov = automation.distinct('district_id').count()
+                prov_cov = automation.distinct('province_id').count()
+                mun_cov = automation.distinct('municipality_id').count()
+                branch = automation.count()
+                beneficiary_p = part.beneficiary
             else:
                 tablet = 0
-            dist_cov = automation.distinct('district_id').count()
-            prov_cov = automation.distinct('province_id').count()
-            mun_cov = automation.distinct('municipality_id').count()
-            branch = automation.count()
+                dist_cov = 0
+                prov_cov = 0
+                mun_cov = 0
+                branch = 0
+                beneficiary_p = 0
             tablet_total = tablet + tablet_total
             branch_total = branch + branch_total
+            total_beneficiary = beneficiary_p + total_beneficiary
             data.append({
                 'id': part.id,
                 'partner_id': part.partner.id,
@@ -735,7 +743,7 @@ class AutomationDataPartner(viewsets.ModelViewSet):
                 'province_covered': prov_cov,
                 'municipality_covered': mun_cov,
                 'branch': branch,
-                'beneficiary': part.beneficiary,
+                'beneficiary': beneficiary_p,
                 'lat': part.latitude,
                 'long': part.longitude,
                 'tablets_deployed': tablet,
@@ -745,7 +753,7 @@ class AutomationDataPartner(viewsets.ModelViewSet):
             'total_tablet': tablet_total,
             'total_branch': branch_total,
             'total_partner': partner.count(),
-            'total_beneficiary': total_beneficiary['beneficiary__sum'],
+            'total_beneficiary': total_beneficiary,
             'partner_data': data,
 
         })
@@ -1163,7 +1171,7 @@ class PartnershipRadial(viewsets.ModelViewSet):
         partnership_query = Partnership.objects.values('id', 'project_id__investment_primary', 'project_id',
                                                        'project_id__name', 'partner_id__name',
                                                        'partner_id', 'partner_id__name', 'allocated_budget',
-                                                       'total_beneficiary')
+                                                       'total_beneficiary', 'leverage')
 
         if request.GET.getlist('status'):
             status_get = request.GET['status']
@@ -2309,6 +2317,34 @@ class MfsData(viewsets.ModelViewSet):
                 'province_code': y['province_id__code'],
                 'district_code': y['district_id__n_code'],
                 'municipality_code': y['municipality_id__code'],
+                'key_innovation': y['key_innovation'],
+                'achievement_type': y['achievement_type'],
+                'achieved_number': y['achieved_number'],
+            })
+
+        return Response(data)
+
+
+class AllMfsData(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, ]
+    queryset = MFS.objects.values('id')
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'partner_id', 'province_id', 'district_id', 'municipality_id',
+                        'key_innovation', 'achievement_type', 'achieved_number']
+
+    def list(self, request, **kwargs):
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        group = Group.objects.get(user=user)
+        data = []
+
+        mfs_query = MFS.objects.values('id', 'partner_id__code', 'partner_id__name',
+                                       'key_innovation', 'achievement_type', 'achieved_number')
+        for y in mfs_query:
+            data.append({
+                'id': y['id'],
+                'partner_id': y['partner_id__code'],
+                'partner_name': y['partner_id__name'],
                 'key_innovation': y['key_innovation'],
                 'achievement_type': y['achievement_type'],
                 'achieved_number': y['achieved_number'],
