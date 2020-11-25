@@ -695,7 +695,7 @@ class AutomationDataPartner(viewsets.ModelViewSet):
         branch_total = 0
         for part in partner:
             if filter_type == 'partner':
-                # automation = Automation.objects.filter(partner__id=part.id)
+                automation = Automation.objects.filter(partner__id=part.id)
                 if prov_id:
                     automation = Automation.objects.filter(partner__id=part.id).filter(
                         province_id__code__in=prov_id)
