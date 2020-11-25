@@ -1372,8 +1372,8 @@ def secondarydataBulkCreate(request):
                     code=df['Local Unit Code'][row])
                 province = municipality.province_id
                 district = municipality.district_id
-                hdi = None if df['Head-Quarter of the Local Unit'][row] == '' else df['Head-Quarter of the Local Unit'][row]
-                head_quarter = None if df['HDI of District'][row] == '' else df['HDI of District'][row]
+                head_quarter = None if df['Head-Quarter of the Local Unit'][row] == '' else df['Head-Quarter of the Local Unit'][row]
+                hdi = None if df['HDI of District'][row] == '' else df['HDI of District'][row]
                 population = None if df['Population in the Local Unit'][row] == '' else df['Population in the Local Unit'][row]
                 yearly_fund = None if df['Yearly Central Government Funding'][row] == '' else df['Yearly Central Government Funding'][row]
                 social_security_recipients = None if df['Social Security Payment Recipients'][row] == '' else df['Social Security Payment Recipients'][row]
