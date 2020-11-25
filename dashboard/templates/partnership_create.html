@@ -46,7 +46,7 @@
                         <div class="form-group ">
                             <label for="id_province_id" class="">Province</label>
                             <select class="selectpicker" data-live-search="true" name="province_id" required
-                                id="id_province_id">
+                                    id="id_province_id">
                                 {% for province in province %}
                                 <option value="{{province.id}}" selected>{{province.name}}</option>
                                 {% endfor %}
@@ -58,7 +58,7 @@
                         <div class="form-group ">
                             <label for="id_district_id" class="">District</label>
                             <select class="selectpicker" data-live-search="true" name="district_id" required
-                                id="id_district_id">
+                                    id="id_district_id">
                                 {% for district in district %}
                                 <option value="{{district.id}}" selected>{{district.name}}</option>
                                 {% endfor %}
@@ -75,7 +75,7 @@
                         <div class="form-group ">
                             <label for="id_municipality_id" class="">Municipality</label>
                             <select class="selectpicker" data-live-search="true" name="municipality_id" required
-                                id="id_municipality_id">
+                                    id="id_municipality_id">
                                 {% for municipality in municipalities %}
                                 <option value="{{municipality.id}}" selected>{{municipality.name}}</option>
                                 {% endfor %}
@@ -93,7 +93,7 @@
                         <div class="form-group ">
                             <label for="id_partner_id" class="">Partner</label>
                             <select class="selectpicker" data-live-search="true" name="partner_id" required
-                                id="id_partner_id">
+                                    id="id_partner_id">
                                 {% for partner in partner %}
                                 <option value="{{partner.id}}" selected>{{partner.name}}</option>
                                 {% endfor %}
@@ -111,7 +111,7 @@
                         <div class="form-group ">
                             <label for="id_project_id" class="">Project</label>
                             <select class="selectpicker" data-live-search="true" name="project_id" required
-                                id="id_project_id">
+                                    id="id_project_id">
                                 {% for project in project %}
                                 <option value="{{project.id}}" selected>{{project.name}}</option>
                                 {% endfor %}
@@ -123,8 +123,6 @@
                 </div>
 
 
-
-
             </div>
 
             <div class="row">
@@ -133,7 +131,7 @@
                     <div class="form-group">
                         <label for="id_branch" class="">Branch</label>
                         <input class="form-control" type="number" name="branch" value="0"
-                            id="id_branch"></div>
+                               id="id_branch"></div>
                 </div>
 
             </div>
@@ -144,7 +142,7 @@
                     <div class="form-group">
                         <label for="id_blb" class="">Blb</label>
                         <input class="form-control" type="number" name="blb" value="0"
-                            id="id_blb"></div>
+                               id="id_blb"></div>
                 </div>
 
             </div>
@@ -155,7 +153,7 @@
                     <div class="form-group">
                         <label for="id_extension_counter" class="">Extension counter</label>
                         <input class="form-control" type="number" name="extension_counter" value="0"
-                            id="id_extension_counter"></div>
+                               id="id_extension_counter"></div>
                 </div>
 
             </div>
@@ -166,7 +164,7 @@
                     <div class="form-group">
                         <label for="id_tablet" class="">Tablet</label>
                         <input class="form-control" type="number" name="tablet" value="0"
-                            id="id_tablet"></div>
+                               id="id_tablet"></div>
                 </div>
 
             </div>
@@ -177,7 +175,7 @@
                     <div class="form-group">
                         <label for="id_other_products" class="">Other products</label>
                         <input class="form-control" type="number" name="other_products" value="0"
-                            id="id_other_products"></div>
+                               id="id_other_products"></div>
                 </div>
 
             </div>
@@ -188,7 +186,7 @@
                     <div class="form-group">
                         <label for="id_beneficiary" class="">Beneficiary</label>
                         <input class="form-control" type="number" name="beneficiary" value="0"
-                            id="id_beneficiary"></div>
+                               id="id_beneficiary"></div>
                 </div>
 
             </div>
@@ -199,7 +197,18 @@
                     <div class="form-group">
                         <label for="id_scf_funds" class="">Scf funds</label>
                         <input class="form-control" type="number" name="scf_funds" value="0"
-                            id="id_scf_funds"></div>
+                               id="id_scf_funds"></div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_leverage" class="">Leverage</label>
+                        <input class="form-control" type="float" name="leverage" value="0"
+                               id="id_leverage"></div>
                 </div>
 
             </div>
@@ -210,7 +219,7 @@
                     <div class="form-group">
                         <label for="id_allocated_budget" class="">Allocated budget</label>
                         <input class="form-control" type="float" name="allocated_budget" value="0"
-                            id="id_allocated_budget"></div>
+                               id="id_allocated_budget"></div>
                 </div>
 
             </div>
@@ -221,7 +230,7 @@
                     <div class="form-group">
                         <label for="id_allocated_beneficiary" class="">Allocated beneficiary</label>
                         <input class="form-control" type="float" name="allocated_beneficiary" value="0"
-                            id="id_allocated_beneficiary"></div>
+                               id="id_allocated_beneficiary"></div>
                 </div>
 
             </div>
@@ -232,7 +241,7 @@
                     <div class="form-group">
                         <label for="id_female_percentage" class="">Female percentage</label>
                         <input class="form-control" type="float" name="female_percentage" value="0"
-                            id="id_female_percentage"></div>
+                               id="id_female_percentage"></div>
                 </div>
 
             </div>
@@ -243,7 +252,7 @@
                     <div class="form-group">
                         <label for="id_total_beneficiary" class="">Total beneficiary</label>
                         <input class="form-control" type="number" name="total_beneficiary" value="0"
-                            id="id_total_beneficiary"></div>
+                               id="id_total_beneficiary"></div>
                 </div>
 
             </div>
@@ -254,7 +263,7 @@
                     <div class="form-group">
                         <label for="id_female_beneficiary" class="">Female beneficiary</label>
                         <input class="form-control" type="number" name="female_beneficiary" value="0"
-                            id="id_female_beneficiary"></div>
+                               id="id_female_beneficiary"></div>
                 </div>
 
             </div>
@@ -264,7 +273,7 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_status" class="">Status</label>
-                        <input class="form-control" type="text" name="status" maxlength="100" required id="id_status" />
+                        <input class="form-control" type="text" name="status" maxlength="100" required id="id_status"/>
                     </div>
                 </div>
 
@@ -274,7 +283,8 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_start_date" class="">Start Date</label>
-                        <input class="form-control" type="date" name="start_date" maxlength="100" required id="id_start_date" />
+                        <input class="form-control" type="date" name="start_date" maxlength="100" required
+                               id="id_start_date"/>
                     </div>
                 </div>
 
@@ -285,7 +295,8 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_end_date" class="">End Date</label>
-                        <input class="form-control" type="date" name="end_date" maxlength="100" required id="id_end_date" />
+                        <input class="form-control" type="date" name="end_date" maxlength="100" required
+                               id="id_end_date"/>
                     </div>
                 </div>
 
@@ -296,14 +307,12 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_project_year" class="">Project Year</label>
-                        <input class="form-control" type="text" name="project_year" maxlength="100" required id="id_project_year" />
+                        <input class="form-control" type="text" name="project_year" maxlength="100" required
+                               id="id_project_year"/>
                     </div>
                 </div>
 
             </div>
-
-
-
 
 
             <div class="form-group mrt-100">
