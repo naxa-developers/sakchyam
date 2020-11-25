@@ -1345,6 +1345,7 @@ def partnershipBulkCreate(request):
                             row]
                         beneficiary = None if df['Beneficiaries'][row] == '' else df['Beneficiaries'][row]
                         scf_funds = None if df['S-CF Funds'][row] == '' else df['S-CF Funds'][row]
+                        leverage = None if df['Leverage'][row] == '' else df['Leverage'][row]
                         allocated_budget = None if df['Allocated Funds to Local Units'][row] == '' else \
                             df['Allocated Funds to Local Units'][row]
                         allocated_beneficiary = None if df['Allocated Beneficiaries at Local Units'][row] == '' else \
@@ -1370,6 +1371,7 @@ def partnershipBulkCreate(request):
                             other_products=other_products,
                             beneficiary=beneficiary,
                             scf_funds=scf_funds,
+                            leverage=leverage,
                             allocated_budget=allocated_budget,
                             allocated_beneficiary=allocated_beneficiary,
                             female_beneficiary=female_beneficiary,
