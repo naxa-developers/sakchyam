@@ -24,6 +24,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from dashboard.app_setting import MY_SETTING
 
 
 # Create your views here.
@@ -1321,7 +1322,7 @@ def partnershipBulkCreate(request):
         total_range = len(df)
         success_count = 0
         range1 = 0
-        range2 = 1000
+        range2 = MY_SETTING
         loopcount = 0
         overallloop = 0
         while range1 < total_range:
@@ -1384,9 +1385,9 @@ def partnershipBulkCreate(request):
 
                         )
                         loopcount += 1
-                        if loopcount == 999:
-                            range1 += 1000
-                            range2 += 1000
+                        if loopcount == MY_SETTING-1:
+                            range1 += MY_SETTING
+                            range2 += MY_SETTING
 
                         success_count += 1
                     except ObjectDoesNotExist as e:

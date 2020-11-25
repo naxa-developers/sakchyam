@@ -36,7 +36,13 @@
                     <li class="dropdown user-menu">
                         <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"
                                 aria-expanded="false">
+                            {% for data in thumbnaildata %}
+                            {% if data %}
+                            <img src="{{ data.thumbnail.url }}" class="user-image" alt="{{ user.username }}">
+                            {% else %}
                             <img src="{% static 'dashboard/images/avatar.png' %}" class="user-image" alt="User Image">
+                            {% endif %}
+                            {% endfor %}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
                             <!-- User image -->
