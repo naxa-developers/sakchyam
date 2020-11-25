@@ -550,7 +550,8 @@ class PartnershipList(LoginRequiredMixin, ListView):
                                                 'extension_counter', 'tablet', 'other_products', 'beneficiary',
                                                 'scf_funds', 'allocated_budget', 'allocated_beneficiary',
                                                 'female_percentage', 'total_beneficiary', 'female_beneficiary',
-                                                'status', 'start_date', 'end_date', 'project_year').order_by('id')
+                                                'status', 'start_date', 'end_date', 'project_year',
+                                                'leverage').order_by('id')
         paginator = Paginator(query_data, 500)
         page_numbers_range = 1000
         max_index = len(paginator.page_range)
