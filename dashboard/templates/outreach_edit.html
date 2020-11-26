@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.change_outreach %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -161,7 +162,7 @@
                     <div class="form-group">
                         <label for="id_point_service" class="">Point Service</label>
                         <input class="form-control" type="text" name="point_service"  required value="{{ form.instance.point_service }}"
-                            id="id_point_service"></div>
+                            id="id_point_service" required></div>
                 </div>
 
             </div>
@@ -181,7 +182,7 @@
                     <div class="form-group">
                         <label for="id_gps_point" class="">Gps Point</label>
                         <input class="form-control" type="text" name="gps_point" required value="{{ form.instance.gps_point }}"
-                            id="id_gps_point"></div>
+                            id="id_gps_point" required></div>
                 </div>
 
             </div>
@@ -203,5 +204,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

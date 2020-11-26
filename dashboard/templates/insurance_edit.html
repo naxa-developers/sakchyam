@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.change_insurance %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -161,5 +162,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

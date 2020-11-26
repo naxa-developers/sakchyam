@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_secondarydata %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -95,7 +96,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_hdi" class="">HDI</label>
-                        <input class="form-control" type="float" name="hdi" value="0"
+                        <input class="form-control" type="float" name="hdi" placeholder="Enter a Float"
                             id="id_hdi"></div>
                 </div>
 
@@ -106,7 +107,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_population" class="">Population</label>
-                        <input class="form-control" type="number" name="population" value="0"
+                        <input class="form-control" type="number" name="population" placeholder="Enter a number"
                             id="id_population"></div>
                 </div>
 
@@ -117,7 +118,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_social_security_recipients" class="">Social Security Recipients</label>
-                        <input class="form-control" type="number" name="social_security_recipients" value="0"
+                        <input class="form-control" type="number" name="social_security_recipients" placeholder="Enter a number"
                             id="id_social_security_recipients"></div>
                 </div>
 
@@ -128,7 +129,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_yearly_social_security_payment" class="">Yearly Social Security Payment</label>
-                        <input class="form-control" type="float" name="yearly_social_security_payment" value="0"
+                        <input class="form-control" type="float" name="yearly_social_security_payment" placeholder="Enter a Float"
                             id="id_yearly_social_security_payment"></div>
                 </div>
 
@@ -138,8 +139,8 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_nearest_branch_distance" class="">Number Of Tablets Deployed</label>
-                        <input class="form-control" type="float" name="nearest_branch_distance" value="0"
+                        <label for="id_nearest_branch_distance" class="">Nearest Brance Distance</label>
+                        <input class="form-control" type="float" name="nearest_branch_distance" placeholder="Enter a Float"
                             id="id_nearest_branch_distance"></div>
                 </div>
 
@@ -150,7 +151,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_yearly_fund" class="">Yearly Fund</label>
-                        <input class="form-control" type="float" name="yearly_fund" value="0"
+                        <input class="form-control" type="float" name="yearly_fund" placeholder="Enter a Float"
                             id="id_num_yearly_fund"></div>
                 </div>
 
@@ -161,7 +162,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_nearest_road_distance" class="">Nearest road distance</label>
-                        <input class="form-control" type="float" name="nearest_road_distance" value="0"
+                        <input class="form-control" type="float" name="nearest_road_distance" placeholder="Enter a Float"
                             id="id_nearest_road_distance"></div>
                 </div>
 
@@ -172,7 +173,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_nearest_police_distance" class="">Nearest police distance</label>
-                        <input class="form-control" type="float" name="nearest_police_distance" value="0"
+                        <input class="form-control" type="float" name="nearest_police_distance" placeholder="Enter a Float"
                             id="id_nearest_police_distance"></div>
                 </div>
 
@@ -298,5 +299,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

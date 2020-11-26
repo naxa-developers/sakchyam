@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_outreach %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -151,7 +152,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_point_service" class="">Point Service</label>
-                        <input class="form-control" type="text" name="point_service" value="" ></div>
+                        <input class="form-control" type="text" name="point_service" value="" required></div>
                 </div>
 
             </div>
@@ -169,7 +170,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_gps_point" class="">Gps Point</label>
-                        <input class="form-control" type="text" name="gps_point" value=""></div>
+                        <input class="form-control" type="text" name="gps_point" value="" required></div>
                 </div>
 
             </div>
@@ -190,5 +191,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

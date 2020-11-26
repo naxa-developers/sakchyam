@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_insurance %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -81,7 +82,7 @@
                     <div class="form-group">
                         <label for="id_innovation" class="">Innovation</label>
                         <input class="form-control" type="text" name="innovation"
-                            id="id_innovation"></div>
+                            id="id_innovation" required></div>
                 </div>
 
             </div>
@@ -93,7 +94,7 @@
                     <div class="form-group">
                         <label for="id_product" class="">Product</label>
                         <input class="form-control" type="text" name="product"
-                            id="id_product"></div>
+                            id="id_product" required></div>
                 </div>
 
             </div>
@@ -114,8 +115,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_number_of_insurance_sold" class="">Number Of Insurance Sold</label>
-                        <input class="form-control" type="number" name="number_of_insurance_sold" value="0"
-                            id="id_number_of_insurance_sold"></div>
+                        <input class="form-control" type="number" name="number_of_insurance_sold"
+                            id="id_number_of_insurance_sold" required></div>
                 </div>
 
             </div>
@@ -125,8 +126,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_amount_of_insurance" class="">Amount of Insurance</label>
-                        <input class="form-control" type="float" name="amount_of_insurance" value="0"
-                            id="amount_of_insurance"></div>
+                        <input class="form-control" type="float" name="amount_of_insurance"
+                            id="amount_of_insurance" required></div>
                 </div>
 
             </div>
@@ -136,8 +137,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_amount_of_sum_insuranced" class="">Amount of Sum Insuranced</label>
-                        <input class="form-control" type="float" name="amount_of_sum_insuranced" value="0"
-                            id="id_amount_of_sum_insuranced"></div>
+                        <input class="form-control" type="float" name="amount_of_sum_insuranced"
+                            id="id_amount_of_sum_insuranced" required></div>
                 </div>
 
             </div>
@@ -147,7 +148,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_amount_of_claim" class="">Amount of Claim</label>
-                        <input class="form-control" type="float" name="amount_of_claim" value="0"
+                        <input class="form-control" type="float" name="amount_of_claim"
                             id="id_amount_of_claim"></div>
                 </div>
 
@@ -160,5 +161,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}
