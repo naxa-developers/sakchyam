@@ -388,3 +388,7 @@ class Payment(models.Model):
     description = RichTextField(blank=True, null=True)
     title = models.CharField(max_length=100, blank=True, null=True)
     component_value = models.CharField(max_length=100, blank=True, null=True)
+
+
+class Test(models.Model):
+    name = models.TextField(blank=True, null=True)
