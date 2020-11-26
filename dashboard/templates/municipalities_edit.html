@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.change_municipality %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -123,10 +124,10 @@
 
 
             <div class="form-group mrt-100">
-                <button type="submit" class="sakchyam-button sm-button">Save</button>
+                <button type="submit" class="sakchyam-button sm-button">Update</button>
             </div>
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

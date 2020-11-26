@@ -68,19 +68,23 @@
                     <td>{{ user.email }}</td>
                     <td>
 
-
+                        {% if perms.auth.delete_user %}
                         {% if user.user.is_active %}
 
 <!--                        <span class="status green">Active</span>-->
+
                         <a href="/dashboard/activate/{{ user.user.id }}">
                             <button type="button" class="btn btn-outline-danger">Deactivate</button>
                         </a>
+
 
                         {% else %}
 
                         <a href="/dashboard/activate/{{ user.user.id }}">
                             <button type="button" class="btn btn-outline-info">Activate</button>
                         </a>
+
+                        {% endif %}
 
                         {% endif %}
 
@@ -118,13 +122,14 @@
                               <i class="material-icons">more_vert</i>
                           </a>
                            <ul class="dropdown-animation">
-
+                                {% if perms.auth.change_user %}
                                <li>
                                     <a href="/dashboard/useredit-role/{{ user.user.id }}"
                                       class="flex-start">
                                         <i class="material-icons">edit</i> Change Role
                                    </a>
                                </li>
+                               {% endif %}
                            </ul>
                        </div>
                     </td>

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_project %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -60,7 +61,7 @@
                     <div class="form-group">
                         <label for="id_code" class="">Code</label>
                         <input class="form-control" type="text" name="code" value="0"
-                            id="id_code"></div>
+                            id="id_code" required></div>
                 </div>
 
             </div>
@@ -72,7 +73,7 @@
                     <div class="form-group">
                         <label for="id_investment_primary" class="">Investment Primary</label>
                         <input class="form-control" type="text" name="investment_primary" 
-                            id="id_investment_primary"></div>
+                            id="id_investment_primary" required></div>
                 </div>
 
             </div>
@@ -84,7 +85,7 @@
                     <div class="form-group">
                         <label for="id_investment_primary" class="">Investment Secondary</label>
                         <input class="form-control" type="text" name="investment_secondary" 
-                            id="investment_secondary"></div>
+                            id="investment_secondary" required></div>
                 </div>
 
             </div>
@@ -95,7 +96,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_leverage" class="">Leverage</label>
-                        <input class="form-control" type="number" name="leverage" value="0"
+                        <input class="form-control" type="number" name="leverage"
                             id="id_leverage"></div>
                 </div>
 
@@ -107,7 +108,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_scf_funds" class="">SCF FUNDS</label>
-                        <input class="form-control" type="number" name="scf_funds" value="0"
+                        <input class="form-control" type="number" name="scf_funds"
                             id="id_scf_funds"></div>
                 </div>
 
@@ -120,5 +121,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

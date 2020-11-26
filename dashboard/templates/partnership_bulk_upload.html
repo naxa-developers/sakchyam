@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_partnership %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -39,5 +40,5 @@
     <p>2. Order of the file columns should be Province,District,Municipality,Partner,Project,Branch,Blb,Extension Counter,Tablet,Other products,Beneficiary,Scf Funds,Allocated Budget,Allocated Beneficiary,Female Percentage,Total Beneficiary,Female Beneficiary,Status,Start Date,End Date,Project year </p>
     {% endif %}
 </main>
-
+{% endif %}
 {% endblock %}

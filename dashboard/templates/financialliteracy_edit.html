@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.change_financialliteracy %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -116,7 +117,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_value" class="">Value</label>
-                        <input value="{{ form.instance.value }}" class="form-control" type="number" name="value" value="0"
+                        <input value="{{ form.instance.value }}" class="form-control" type="number" name="value"
                             id="id_value">
                     </div>
                 </div>
@@ -125,7 +126,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_single_count" class="">Single Count</label>
-                        <input value="{{ form.instance.single_count }}" class="form-control" type="number" name="single_count" value="0"
+                        <input value="{{ form.instance.single_count }}" class="form-control" type="number" name="single_count"
                             id="id_single_count">
                     </div>
                 </div>
@@ -167,5 +168,5 @@
         </div> -->
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.delete_product %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -9,7 +10,7 @@
         <ul class="flex-start">
 
             <li>
-                <a href="/dashboard/sakchyam-product/">Product</a>
+                <a href="/dashboard/sakchyam-product/"> Sakchyam Product</a>
             </li>
 
             <li>Delete Form</li>
@@ -41,5 +42,5 @@
         </p>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

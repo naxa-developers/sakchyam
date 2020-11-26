@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.delete_logdata %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -42,5 +43,5 @@
         </p>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}
