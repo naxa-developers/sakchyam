@@ -58,8 +58,16 @@
                 <tbody>
                 {% for data in list %}
                 <tr>
-                    <td>{{ data.province_id.name }}</td>
-                    <td>{{ data.district_id.name }}</td>
+                    {% if data.province_id.name %}
+                        <td>{{ data.province_id.name }}</td>
+                    {% else %}
+                    <td>Province not decleared</td>
+                    {% endif %}
+                    {% if data.district_id.name %}
+                        <td>{{ data.district_id.name }}</td>
+                    {% else %}
+                        <td>District not decleared</td>
+                    {% endif %}
                     <td>{{ data.partner_id.name }}</td>
                     <td>{{ data.key_innovation }}</td>
                     <td>{{ data.achievement_type }}</td>

@@ -1092,9 +1092,15 @@ def mfsBulkCreate(request):
         success_count = 0
         for row in range(0, upper_range):
             try:
-                district = District.objects.get(
-                    n_code=df['District Code'][row])
-                province = district.province_id
+                if df['District Code'][row] != "":
+                    district = District.objects.get(
+                        n_code=df['District Code'][row])
+                else:
+                    district = None
+                if df['Province Code'][row] != "":
+                    province = Province.objects.get(code=df['Province Code'][row])
+                else:
+                    province = None
                 partner = Partner.objects.get(
                     code=df['Partner Code'][row])
                 key_innovation = None if df['Key Innovation'][row] == '' else df['Key Innovation'][row]
