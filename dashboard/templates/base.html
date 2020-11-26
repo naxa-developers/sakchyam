@@ -161,10 +161,10 @@
                     <li class="{{ userman }}  menu-item menu-toggle"><a href="javascript:void(0);" class=""><i
                             class="material-icons">person</i><span>User management</span></a>
                         <ul class="ml-menu">
-                            {% if perms.api.view_user %}
+                            {% if perms.auth.view_user %}
                             <li><a href="/dashboard/role/">Role Management</a></li>
                             {% endif %}
-                            {% if perms.api.view_user %}
+                            {% if perms.auth.view_user %}
                             <li><a href="/dashboard/user/">User Management</a></li>
                             {% endif %}
                             <li><a href="/dashboard/changepassword/">Change Password</a></li>
