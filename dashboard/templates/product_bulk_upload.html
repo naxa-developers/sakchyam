@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_product %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -9,7 +10,7 @@
         <ul class="flex-start">
 
             <li>
-                <a href="/dashboard/sakchyam-product/">Product</a>
+                <a href="/dashboard/sakchyam-product/"> Sakchyam Product</a>
             </li>
 
             <li>Upload Bulk Data</li>
@@ -39,5 +40,5 @@
     <p>2. Order of the file columns should be </p>
     {% endif %}
 </main>
-
+{% endif %}
 {% endblock %}

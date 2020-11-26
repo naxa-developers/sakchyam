@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_partner %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -52,7 +53,7 @@
                     <div class="col-md-6">
                         <div class="form-group error">
                             <label for="id_partner_name" class="">Partner Name</label>
-                            <input class="form-control" type="text" name="name" maxlength="150" required id="id_partner_name"/>
+                            <input class="form-control" type="text" name="name" maxlength="150" required id="id_partner_name" required/>
                         </div>
                     </div>
                 </div>
@@ -61,7 +62,7 @@
                     <div class="col-md-6">
                         <div class="form-group error">
                             <label for="id_code" class="">Code</label>
-                            <input class="form-control" type="text" name="code" maxlength="100" value="0" required id="id_code"/>
+                            <input class="form-control" type="text" name="code" maxlength="100"  required id="id_code" required/>
     
                         </div>
                     </div>
@@ -70,9 +71,8 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_financial_literacy" class="">Financial Literacy</label>
-                        <select class="selectpicker" data-live-search="true" name="financial_literacy" required
-                            id="id_financial_literacy">
-                           
+                        <select class="selectpicker" data-live-search="true" name="financial_literacy">
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -91,9 +91,8 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_partnership" class="">Partnership</label>
-                        <select class="selectpicker" data-live-search="true" name="partnership" required
-                            id="id_partnership">
-                           
+                        <select class="selectpicker" data-live-search="true" name="partnership">
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -112,9 +111,8 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_outreach_expansion" class="">Outreach Expansion</label>
-                        <select class="selectpicker" data-live-search="true" name="outreach_expansion" required
-                            id="id_outreach_expansion">
-                           
+                        <select class="selectpicker" data-live-search="true" name="outreach_expansion">
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -133,9 +131,8 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_mfs" class="">Mfs</label>
-                        <select class="selectpicker" data-live-search="true" name="mfs" required
-                            id="id_mfs">
-                           
+                        <select class="selectpicker" data-live-search="true" name="mfs">
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -154,9 +151,8 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_product_process" class="">Product Process</label>
-                        <select class="selectpicker" data-live-search="true" name="product_process" required
-                            id="id_product_process">
-                           
+                        <select class="selectpicker" data-live-search="true" name="product_process">
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -179,5 +175,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}
