@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_automation %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -39,5 +40,5 @@
     <p>2. Order of the file columns should be Province, District, Municipality, Partner, Branch, No. of Tablets</p>
     {% endif %}
 </main>
-
+{% endif %}
 {% endblock %}

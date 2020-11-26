@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.change_mfs %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -113,7 +114,7 @@
                     <div class="form-group">
                         <label for="id_achievement_type" class="">Achievement Type</label>
                         <input class="form-control" type="text" name="achievement_type" value="{{ form.instance.achievement_type }}"
-                            id="id_achievement_type"></div>
+                            id="id_achievement_type" required></div>
                 </div>
 
             </div>
@@ -135,5 +136,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

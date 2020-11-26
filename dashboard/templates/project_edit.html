@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.change_project %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -60,7 +61,7 @@
                     <div class="form-group">
                         <label for="id_code" class="">Code</label>
                         <input class="form-control" type="text" name="code" value="{{ form.instance.code }}"
-                            id="id_code"></div>
+                            id="id_code" required></div>
                 </div>
 
             </div>
@@ -72,7 +73,7 @@
                     <div class="form-group">
                         <label for="id_investment_primary" class="">Investment Primary</label>
                         <input class="form-control" type="text" name="investment_primary" value="{{ form.instance.investment_primary }}"
-                            id="id_investment_primary"></div>
+                            id="id_investment_primary" required></div>
                 </div>
 
             </div>
@@ -84,7 +85,7 @@
                     <div class="form-group">
                         <label for="id_investment_primary" class="">Investment Secondary</label>
                         <input class="form-control" type="text" name="investment_secondary" value="{{ form.instance.investment_secondary }}"
-                            id="investment_secondary"></div>
+                            id="investment_secondary" required></div>
                 </div>
 
             </div>
@@ -115,10 +116,10 @@
 
 
             <div class="form-group mrt-100">
-                <button type="submit" class="sakchyam-button sm-button">Save</button>
+                <button type="submit" class="sakchyam-button sm-button">Update</button>
             </div>
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

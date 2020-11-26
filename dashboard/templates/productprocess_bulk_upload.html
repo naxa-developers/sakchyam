@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_productprocess %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -39,5 +40,5 @@
     <p>2. Order of the file columns should be Partner Code,Product Code,Partner Type,Innovation Area,Market Failure </p>
     {% endif %}
 </main>
-
+{% endif %}
 {% endblock %}

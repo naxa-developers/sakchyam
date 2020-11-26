@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.api.add_financialliteracy %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -56,7 +57,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_code" class="">Code</label>
-                        <input class="form-control" type="number" name="code" value="0" required
+                        <input class="form-control" type="number" name="code"  required
                             id="id_code"></div>
                 </div>
 
@@ -66,7 +67,7 @@
                 <div class="col-md-6">
                     <div class="form-group error">
                         <label for="id_date" class="">Date</label>
-                        <input class="form-control" type="date" name="date" maxlength="100" required id="id_date" />
+                        <input class="form-control" type="date" name="date" maxlength="100" id="id_date" />
                     </div>
                 </div>
 
@@ -92,5 +93,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% if perms.auth.add_user %}
 <!-- Main Content -->
 
 <main class="sakchyam-main">
@@ -536,7 +537,7 @@
 
                     <div class="col-md-6">
                         <div class="category-sector select-list">
-                            <h4>Add role</h4>
+                            <h4>User Management</h4>
                             <div class="checklist-wrapper">
                                 <div class="checklist-body category-body">
                                     {% for permission in permissions %}
@@ -572,5 +573,5 @@
         </div>
     </form>
 </main>
-
+{% endif %}
 {% endblock %}
