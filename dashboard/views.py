@@ -1020,6 +1020,7 @@ def automationBulkCreate(request):
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
 
+
 def programmeBulkCreate(request):
     template = 'financial_programme_bulk_upload.html'
 
@@ -1348,6 +1349,7 @@ def outreachBulkCreate(request):
             success_count) + " Outreach Created ")
         return redirect('/dashboard/outreach-list/', messages)
 
+
 def secondarydataBulkCreate(request):
     template = 'secondary_bulk_upload.html'
 
@@ -1378,25 +1380,46 @@ def secondarydataBulkCreate(request):
                     code=df['Local Unit Code'][row])
                 province = municipality.province_id
                 district = municipality.district_id
-                head_quarter = None if df['Head-Quarter of the Local Unit'][row] == '' else df['Head-Quarter of the Local Unit'][row]
+                head_quarter = None if df['Head-Quarter of the Local Unit'][row] == '' else \
+                    df['Head-Quarter of the Local Unit'][row]
                 hdi = None if df['HDI of District'][row] == '' else df['HDI of District'][row]
-                population = None if df['Population in the Local Unit'][row] == '' else df['Population in the Local Unit'][row]
-                yearly_fund = None if df['Yearly Central Government Funding'][row] == '' else df['Yearly Central Government Funding'][row]
-                social_security_recipients = None if df['Social Security Payment Recipients'][row] == '' else df['Social Security Payment Recipients'][row]
-                yearly_social_security_payment = None if df['Yearly Social Security Payments'][row] == '' else df['Yearly Social Security Payments'][row]
-                nearest_branch_distance = None if df['Road distance from nearest Commercial Bank Branch (in KM)'][row] == '' else df['Road distance from nearest Commercial Bank Branch (in KM)'][row]
-                communication_landline = None if df['Available Means of Communication_Landline'][row] == '' else df['Available Means of Communication_Landline'][row]
-                communication_mobile = None if df['Available Means of Communication_Mobile'][row] == '' else df['Available Means of Communication_Mobile'][row]
-                communication_internet = None if df['Available Means of Communication_Internet'][row] == '' else df['Available Means of Communication_Internet'][row]
-                communication_internet_other = None if df['Available Means of Communication_OtherInternet'][row] == '' else df['Available Means of Communication_OtherInternet'][row]
-                available_electricity_maingrid = None if df['Availability of Electricity_MainGrid'][row] == '' else df['Availability of Electricity_MainGrid'][row]
-                available_electricity_micro_hydro = None if df['Availability of Electricity_Micro-Hydro'][row] == '' else df['Availability of Electricity_Micro-Hydro'][row]
-                nearest_road_location_name = None if df['Nearest Road Access_LocationName'][row] == '' else df['Nearest Road Access_LocationName'][row]
-                nearest_road_distance = None if df['Nearest Road Access_Distance'][row] == '' else df['Nearest Road Access_Distance'][row]
-                nearest_road_type = None if df['Nearest Road Access_TypeOfRoad'][row] == '' else df['Nearest Road Access_TypeOfRoad'][row]
-                nearest_police_location_name = None if df['Nearest Police Presence_LocationName'][row] == '' else df['Nearest Police Presence_LocationName'][row]
-                nearest_police_distance = None if df['Nearest Police Presence_Distance'][row] == '' else df['Nearest Police Presence_Distance'][row]
-                categorisation_by_sakchyam = None if df['Categorisation by Sakchyam'][row] == '' else df['Categorisation by Sakchyam'][row]
+                population = None if df['Population in the Local Unit'][row] == '' else \
+                    df['Population in the Local Unit'][row]
+                yearly_fund = None if df['Yearly Central Government Funding'][row] == '' else \
+                    df['Yearly Central Government Funding'][row]
+                social_security_recipients = None if df['Social Security Payment Recipients'][row] == '' else \
+                    df['Social Security Payment Recipients'][row]
+                yearly_social_security_payment = None if df['Yearly Social Security Payments'][row] == '' else \
+                    df['Yearly Social Security Payments'][row]
+                nearest_branch_distance = None if df['Road distance from nearest Commercial Bank Branch (in KM)'][
+                                                      row] == '' else \
+                    df['Road distance from nearest Commercial Bank Branch (in KM)'][row]
+                communication_landline = None if df['Available Means of Communication_Landline'][row] == '' else \
+                    df['Available Means of Communication_Landline'][row]
+                communication_mobile = None if df['Available Means of Communication_Mobile'][row] == '' else \
+                    df['Available Means of Communication_Mobile'][row]
+                communication_internet = None if df['Available Means of Communication_Internet'][row] == '' else \
+                    df['Available Means of Communication_Internet'][row]
+                communication_internet_other = None if df['Available Means of Communication_OtherInternet'][
+                                                           row] == '' else \
+                    df['Available Means of Communication_OtherInternet'][row]
+                available_electricity_maingrid = None if df['Availability of Electricity_MainGrid'][row] == '' else \
+                    df['Availability of Electricity_MainGrid'][row]
+                available_electricity_micro_hydro = None if df['Availability of Electricity_Micro-Hydro'][
+                                                                row] == '' else \
+                    df['Availability of Electricity_Micro-Hydro'][row]
+                nearest_road_location_name = None if df['Nearest Road Access_LocationName'][row] == '' else \
+                    df['Nearest Road Access_LocationName'][row]
+                nearest_road_distance = None if df['Nearest Road Access_Distance'][row] == '' else \
+                    df['Nearest Road Access_Distance'][row]
+                nearest_road_type = None if df['Nearest Road Access_TypeOfRoad'][row] == '' else \
+                    df['Nearest Road Access_TypeOfRoad'][row]
+                nearest_police_location_name = None if df['Nearest Police Presence_LocationName'][row] == '' else \
+                    df['Nearest Police Presence_LocationName'][row]
+                nearest_police_distance = None if df['Nearest Police Presence_Distance'][row] == '' else \
+                    df['Nearest Police Presence_Distance'][row]
+                categorisation_by_sakchyam = None if df['Categorisation by Sakchyam'][row] == '' else \
+                    df['Categorisation by Sakchyam'][row]
 
                 outreach = SecondaryData.objects.update_or_create(
                     province_id=province,
@@ -1404,7 +1427,7 @@ def secondarydataBulkCreate(request):
                     municipality_id=municipality,
                     hdi=hdi,
                     head_quarter=head_quarter,
-                    population = population,
+                    population=population,
                     yearly_fund=yearly_fund,
                     social_security_recipients=social_security_recipients,
                     yearly_social_security_payment=yearly_social_security_payment,
@@ -1421,7 +1444,6 @@ def secondarydataBulkCreate(request):
                     nearest_road_type=nearest_road_type,
                     categorisation_by_sakchyam=categorisation_by_sakchyam,
                     nearest_branch_distance=nearest_branch_distance
-
 
                 )
                 success_count += 1
@@ -1521,7 +1543,7 @@ def partnershipBulkCreate(request):
 
                         )
                         loopcount += 1
-                        if loopcount == MY_SETTING-1:
+                        if loopcount == MY_SETTING - 1:
                             range1 += MY_SETTING
                             range2 += MY_SETTING
 
@@ -1947,6 +1969,29 @@ class OutReachEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return reverse_lazy('outreach-list')
 
 
+def UserEdit(request, pk):
+    if request.method == 'GET':
+        user = User.objects.get(id=pk)
+        user_data = UserProfile.objects.get(user=user)
+        context = {
+            'user': user,
+            'user_data': user_data
+        }
+
+        return render(request, 'user_edit.html', context)
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        full_name = request.POST['full_name']
+        user = User.objects.get(id=pk)
+        userdata = User.objects.filter(id=pk)
+        userdata.update(username=username)
+        userprofiledata = UserProfile.objects.filter(user=user)
+        userprofiledata.update(email=email,full_name=full_name)
+        messages.add_message(request, messages.WARNING, "User Updated")
+        return redirect('/dashboard/user')
+
+
 class FinancialLiteracyEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = FinancialLiteracy
     template_name = 'financialliteracy_edit.html'
@@ -2110,6 +2155,18 @@ class ProductDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('sakchyam-product')
+
+
+class UserDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'user_delete.html'
+    success_message = 'User deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(User, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('user')
 
 
 class ProductProcessDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
@@ -2441,6 +2498,19 @@ def activate_user(request, **kwargs):
         user.is_active = False
     else:
         user.is_active = True
+
+    user.save()
+    return redirect('user')
+
+
+def staff_user(request, **kwargs):
+    user = User.objects.get(id=kwargs['id'])
+    # user_data = UserProfile.objects.get(user=user)
+
+    if user.is_staff:
+        user.is_staff = False
+    else:
+        user.is_staff = True
 
     user.save()
     return redirect('user')
