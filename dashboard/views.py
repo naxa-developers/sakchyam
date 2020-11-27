@@ -1980,14 +1980,11 @@ def UserEdit(request, pk):
 
         return render(request, 'user_edit.html', context)
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        full_name = request.POST['full_name']
         user = User.objects.get(id=pk)
         userdata = User.objects.filter(id=pk)
-        userdata.update(username=username)
+        userdata.update(username=request.POST['username'])
         userprofiledata = UserProfile.objects.filter(user=user)
-        userprofiledata.update(email=email,full_name=full_name)
+        userprofiledata.update(email=request.POST['email'], full_name=request.POST['full_name'])
         messages.add_message(request, messages.WARNING, "User Updated")
         return redirect('/dashboard/user')
 
