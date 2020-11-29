@@ -6,14 +6,15 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, \
     Municipality, Automation, Partner, AutomationPartner, FinancialLiteracy, \
     FinancialProgram, Outreach, ProductProcess, Product, Project, AutomationPartner, MFS, Insurance, SecondaryData, \
-    Partnership
+    Partnership, Payment
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
     FinancialLiteracyForm, \
     AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm, OutReachForm, ProductProcessForm, ProjectForm, \
     ProductForm, ProvinceForm, DistrictForm, MunicipalitiesForm, \
-    Financial_ProgramForm, Automation_PartnersForm, MfsForm, InsuranceForm, Secondary_DataForm, PartnershipForm
+    Financial_ProgramForm, Automation_PartnersForm, MfsForm, InsuranceForm, Secondary_DataForm, PartnershipForm, \
+    PaymentForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -2220,6 +2221,22 @@ class LogFrameList(LoginRequiredMixin, ListView):
         return data
 
 
+class PaymentList(LoginRequiredMixin, ListView):
+    template_name = 'payment_list.html'
+    model = Payment
+
+    def get_context_data(self, **kwargs):
+        data = super(PaymentList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['payment'] = 'active'
+        # data['active'] = 'program'
+        query_data = Payment.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+
 class LogSubCategoryList(LoginRequiredMixin, ListView):
     template_name = 'logsubcategory_list.html'
     model = LogSubCategory
@@ -2253,6 +2270,18 @@ class LogSubCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(LogSubCategoryDelete, self).delete(request, *args, **kwargs)
+
+
+class PaymentDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'payment_delete.html'
+    success_message = 'Payment deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Payment, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('payment-list')
 
 
 class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -2612,6 +2641,24 @@ class SakchyamAPartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
         return reverse_lazy('sakchyam-partners')
 
 
+class PaymentCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Payment
+    template_name = 'payment_create.html'
+    form_class = PaymentForm
+    success_message = 'Payment created'
+
+    def get_context_data(self, **kwargs):
+        data = super(PaymentCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['payment'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('payment-list')
+
+
 class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Partner
     template_name = 'sakchyam_partner_edit.html'
@@ -2628,6 +2675,21 @@ class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView)
 
     def get_success_url(self):
         return reverse_lazy('sakchyam-partners')
+
+
+class PaymentEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Payment
+    template_name = 'payment_edit.html'
+    form_class = PaymentForm
+    success_message = 'Payment data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(PaymentEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['partner'] = 'active'
+        return data
 
 
 class SakchyamPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):

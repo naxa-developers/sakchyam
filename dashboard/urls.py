@@ -20,6 +20,7 @@ urlpatterns = [
     path('logsubcat-add/<int:cat>', views.LogSubCatCreate.as_view(), name='logsubcat-add'),
     path('logsubcat-edit/<int:pk>/<int:cat>', views.LogSubCatUpdate.as_view(), name='logsubcat-edit'),
     path('logsubcat-delete/<int:pk>/<int:cat>', views.LogSubCategoryDelete.as_view(), name='logsubcat-delete'),
+    path('payment-delete/<int:pk>', views.PaymentDelete.as_view(), name='payment-delete'),
     path('logsubcat-list/<int:id>', views.LogSubCategoryList.as_view(), name='logsubcat-list'),
 
     # path('logtitle-add/<int:subcat>', views.LogTitleCreate.as_view(), name='logtitle-add'),
@@ -30,6 +31,7 @@ urlpatterns = [
 
     path('automation-list/', views.AutomationList.as_view(), name='automation-list'),
     path('outreach-list/', views.OutReachList.as_view(), name='outreach-list'),
+    path('payment-list/', views.PaymentList.as_view(), name='payment-list'),
     path('productprocess-list/', views.ProductProcessList.as_view(), name='productprocess-list'),
     path('financialliteracy-list/', views.FinancialLiteracyList.as_view(), name='financialliteracy-list'),
     path('automation-add/', views.AutomationCreate.as_view(), name='automation-add'),
@@ -63,6 +65,7 @@ urlpatterns = [
     # sakchyam partner urls
     path('sakchyam-partners/', views.SakchyamAPartnersList.as_view(), name='sakchyam-partners'),
     path('sakchyam-partners-add/', views.SakchyamAPartnersCreate.as_view(), name='sakchyam-partners-add'),
+    path('payment-add/', views.PaymentCreate.as_view(), name='payment-add'),
     path('sakchyam-partners-edit/<int:pk>', views.SakchyamAPartnersEdit.as_view(), name='sakchyam-partners-edit'),
     path('sakchyam-partners-delete/<int:pk>', views.SakchyamPartnersDelete.as_view(), name='sakchyam-partners-delete'),
     path('sakchyam-partners-bulk-add', views.sakchyamPartnerBulkCreate, name='sakchyam-partners-bulk-add'),
@@ -98,6 +101,7 @@ urlpatterns = [
     path('automation_partners-delete/<int:pk>', views.AutomationPartnersDelete.as_view(), name='project-delete'),
 
     path('financial_program-edit/<int:pk>', views.FinancialProgramEdit.as_view(), name='financial_program-edit'),
+    path('payment-edit/<int:pk>', views.PaymentEdit.as_view(), name='payment-edit'),
 
     path('automation_partners-edit/<int:pk>', views.AutomationPartnersEdit.as_view(), name='automation_partners-edit'),
 
