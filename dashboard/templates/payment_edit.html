@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if perms.api.add_automation %}
+<!-- Main Content -->
+
+<main class="sakchyam-main">
+<p>Working On This Page</p>
+</main>
+{% endif %}
+{% endblock %}

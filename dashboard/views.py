@@ -1971,7 +1971,22 @@ class OutReachEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 
 def UserEdit(request, pk):
-    if request.method == 'GET':
+    if request.method == 'POST':
+        user = User.objects.get(id=pk)
+        userdata = User.objects.filter(id=pk)
+        userdata.update(username=request.POST['username'])
+        userprofiledata = UserProfile.objects.get(user=user)
+        if 'image' in request.FILES:
+            userprofiledata.image = request.FILES['image']
+        else:
+            userprofiledata.image = userprofiledata.image
+        userprofiledata.full_name = request.POST['full_name']
+        userprofiledata.email = request.POST['email']
+        userprofiledata.save()
+        messages.add_message(request, messages.WARNING, "User Updated")
+        return redirect('/dashboard/user')
+
+    else:
         user = User.objects.get(id=pk)
         user_data = UserProfile.objects.get(user=user)
         context = {
@@ -1980,14 +1995,6 @@ def UserEdit(request, pk):
         }
 
         return render(request, 'user_edit.html', context)
-    if request.method == 'POST':
-        user = User.objects.get(id=pk)
-        userdata = User.objects.filter(id=pk)
-        userdata.update(username=request.POST['username'])
-        userprofiledata = UserProfile.objects.filter(user=user)
-        userprofiledata.update(email=request.POST['email'], full_name=request.POST['full_name'])
-        messages.add_message(request, messages.WARNING, "User Updated")
-        return redirect('/dashboard/user')
 
 
 class FinancialLiteracyEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
