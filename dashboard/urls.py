@@ -11,6 +11,7 @@ urlpatterns = [
     path('role/', views.RoleList.as_view(), name='role'),
     path('add-role/', views.RoleCreate.as_view(), name='add-role'),
     path('edit-role/<int:pk>', views.RoleUpdate.as_view(), name='edit-role'),
+    path('delete-role/<int:pk>', views.RoleDelete.as_view(), name='delete-role'),
     path('assign-role/<int:id>', views.assign_role, name='assign-role'),
     path('changepassword/', views.change_password, name='changepassword'),
     path('log-frame-add/<int:cat>/<int:subcat>', views.LogDataCreate.as_view(), name='log-frame-add'),
