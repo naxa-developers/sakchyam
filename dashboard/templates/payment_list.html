@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if perms.api.view_payment %}
+<main class="sakchyam-main">
+    <!-- sakchyam breadcrumb -->
+    <div class="sakchyam-breadcrumb">
+        <ul class="flex-start">
+
+            <li>
+                Payment List
+            </li>
+
+        </ul>
+        {% if perms.api.add_payment %}
+        <div class="buttons is-end">
+            <a href="/dashboard/payment-add">
+                <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
+            </a>
+        </div>
+
+
+        {% endif %}
+    </div>
+    <div class="logframe">
+        <!-- logframe table -->
+        <div class="table-tesponsive ">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Alert!</strong> {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <table class="logframe-table dataTablePartner">
+                <thead>
+                <tr>
+
+                    <th>Component</th>
+                    <th>Indirect Links</th>
+                    <th>Link With Direct</th>
+                    <th>Direct Links</th>
+                    <th>Description</th>
+                    <th>Title</th>
+
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in list %}
+                <tr>
+                    <td>
+                         {{ data.component }}
+                    </td>
+                    <td>{{ data.indirect_links }}</td>
+                    <td>{{ data.link_with_indirect }}</td>
+                    <td>{% for test in data.direct_links.all %}{{ test.components|truncatewords:"5" }},{% endfor %}</td>
+                    <td>{{ data.description }}</td>
+                    <td>{{ data.title }}</td>
+
+
+                    <td>
+                        <div class="table-action">
+                            <a href="#" class="more-action">
+                                <i class="material-icons">more_vert</i>
+                            </a>
+                            <ul class="dropdown-animation">
+                                {% if perms.api.change_payment %}
+                                <li>
+                                    <a href="/dashboard/payment-edit/{{ data.id }}"
+                                       class="flex-start">
+                                        <i class="material-icons">edit</i> Edit
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if perms.api.delete_payment %}
+                                <li>
+                                    <a href="/dashboard/payment-delete/{{ data.id }}" class="flex-start">
+                                        <i class="material-icons">delete</i>Delete
+                                    </a>
+
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+        <div class="pagination">
+                    <div class="paging-left">
+                        <div class="page-item">
+                            <p>Showing <span class="show-start">1</span>to<span class="show-end">500</span>of<span class="total-entries"></span>{{ page_obj.paginator.num_pages }}</p>
+                        </div>
+
+                    </div>
+                    <div class="paging-right">
+                        {% if page_obj.has_previous %}
+                        <div class="page-item pre-page">
+                            <a href="?page={{ page_obj.previous_page_number }}" >previous page</a>
+                        </div>
+                        {% endif %}
+                        <ul>
+                            {% for page in page_range %}
+                            <li {% if page == page_obj.number %} class="active" {% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        {% if page_obj.has_next %}
+                        <div class="next-page page-item">
+                            <a href="?page={{ page_obj.next_page_number }}">next page</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    </div>
+
+        </div>
+
+</main>
+{% endif %}
+{% endblock %}

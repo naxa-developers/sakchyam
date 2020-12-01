@@ -42,6 +42,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Activate / Deactivate Users</th>
+                    <th>Staff Status</th>
                     <th>role</th>
 <!--                    <th></th>-->
 
@@ -74,14 +75,38 @@
 <!--                        <span class="status green">Active</span>-->
 
                         <a href="/dashboard/activate/{{ user.user.id }}">
-                            <button type="button" class="btn btn-outline-danger">Deactivate</button>
+                            <button type="button" class="btn btn-outline-info">Activated</button>
                         </a>
 
 
                         {% else %}
 
                         <a href="/dashboard/activate/{{ user.user.id }}">
-                            <button type="button" class="btn btn-outline-info">Activate</button>
+                            <button type="button" class="btn btn-outline-danger">Deactivated</button>
+                        </a>
+
+                        {% endif %}
+
+                        {% endif %}
+
+
+                    </td>
+                    <td>
+
+                        {% if perms.auth.change_user %}
+                        {% if user.user.is_staff %}
+
+<!--                        <span class="status green">Active</span>-->
+
+                        <a href="/dashboard/staff/{{ user.user.id }}">
+                            <button type="button" class="btn btn-outline-info">Yes</button>
+                        </a>
+
+
+                        {% else %}
+
+                        <a href="/dashboard/staff/{{ user.user.id }}">
+                            <button type="button" class="btn btn-outline-danger">No</button>
                         </a>
 
                         {% endif %}
@@ -93,7 +118,7 @@
 
                     <td>
                         {% if user.user.is_superuser %}
-                        admin
+                        Super Admin
                         {% else %}
 
                         {% if user.user.groups.all.exists %}
@@ -127,6 +152,22 @@
                                     <a href="/dashboard/useredit-role/{{ user.user.id }}"
                                       class="flex-start">
                                         <i class="material-icons">edit</i> Change Role
+                                   </a>
+                               </li>
+                               {% endif %}
+                               {% if perms.auth.delete_user %}
+                               <li>
+                                    <a href="/dashboard/delete-user/{{ user.user.id }}"
+                                      class="flex-start">
+                                        <i class="material-icons">delete</i> Delete User
+                                   </a>
+                               </li>
+                               {% endif %}
+                               {% if perms.auth.change_user %}
+                               <li>
+                                    <a href="/dashboard/edit-user/{{ user.user.id }}"
+                                      class="flex-start">
+                                        <i class="material-icons">edit</i> Edit User
                                    </a>
                                </li>
                                {% endif %}

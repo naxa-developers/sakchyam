@@ -5,6 +5,7 @@ urlpatterns = [
     path('create-user/', views.signup, name='create-user'),
     path('useredit-role/<int:id>', views.usereditrole, name='user-edit-role'),
     path('activate/<int:id>', views.activate_user, name='activate'),
+    path('staff/<int:id>', views.staff_user, name='staff'),
     path('main/', views.Dashboard.as_view(), name='main'),
     path('user/', views.UserList.as_view(), name='user'),
     path('role/', views.RoleList.as_view(), name='role'),
@@ -19,6 +20,7 @@ urlpatterns = [
     path('logsubcat-add/<int:cat>', views.LogSubCatCreate.as_view(), name='logsubcat-add'),
     path('logsubcat-edit/<int:pk>/<int:cat>', views.LogSubCatUpdate.as_view(), name='logsubcat-edit'),
     path('logsubcat-delete/<int:pk>/<int:cat>', views.LogSubCategoryDelete.as_view(), name='logsubcat-delete'),
+    path('payment-delete/<int:pk>', views.PaymentDelete.as_view(), name='payment-delete'),
     path('logsubcat-list/<int:id>', views.LogSubCategoryList.as_view(), name='logsubcat-list'),
 
     # path('logtitle-add/<int:subcat>', views.LogTitleCreate.as_view(), name='logtitle-add'),
@@ -29,6 +31,7 @@ urlpatterns = [
 
     path('automation-list/', views.AutomationList.as_view(), name='automation-list'),
     path('outreach-list/', views.OutReachList.as_view(), name='outreach-list'),
+    path('payment-list/', views.PaymentList.as_view(), name='payment-list'),
     path('productprocess-list/', views.ProductProcessList.as_view(), name='productprocess-list'),
     path('financialliteracy-list/', views.FinancialLiteracyList.as_view(), name='financialliteracy-list'),
     path('automation-add/', views.AutomationCreate.as_view(), name='automation-add'),
@@ -51,6 +54,7 @@ urlpatterns = [
     path('partnership-bulk-add/', views.partnershipBulkCreate, name='partnership-bulk-add'),
     path('automation-edit/<int:pk>', views.AutomationEdit.as_view(), name='automation-edit'),
     path('outreach-edit/<int:pk>', views.OutReachEdit.as_view(), name='outreach-edit'),
+    path('edit-user/<int:pk>', views.UserEdit, name='user-edit'),
     path('productprocess-edit/<int:pk>', views.ProductProcessEdit.as_view(), name='productprocess-edit'),
     path('automation-delete/<int:pk>', views.AutomationDelete.as_view(), name='automation-delete'),
     path('outreach-delete/<int:pk>', views.OutReachDelete.as_view(), name='outreach-delete'),
@@ -61,6 +65,7 @@ urlpatterns = [
     # sakchyam partner urls
     path('sakchyam-partners/', views.SakchyamAPartnersList.as_view(), name='sakchyam-partners'),
     path('sakchyam-partners-add/', views.SakchyamAPartnersCreate.as_view(), name='sakchyam-partners-add'),
+    path('payment-add/', views.PaymentCreate.as_view(), name='payment-add'),
     path('sakchyam-partners-edit/<int:pk>', views.SakchyamAPartnersEdit.as_view(), name='sakchyam-partners-edit'),
     path('sakchyam-partners-delete/<int:pk>', views.SakchyamPartnersDelete.as_view(), name='sakchyam-partners-delete'),
     path('sakchyam-partners-bulk-add', views.sakchyamPartnerBulkCreate, name='sakchyam-partners-bulk-add'),
@@ -69,6 +74,7 @@ urlpatterns = [
     path('project-delete/<int:pk>', views.ProjectDelete.as_view(), name='project-delete'),
     path('sakchyam-product/', views.SakchyamProductList.as_view(), name='sakchyam-product'),
     path('product-delete/<int:pk>', views.ProductDelete.as_view(), name='product-delete'),
+    path('delete-user/<int:pk>', views.UserDelete.as_view(), name='delete-user'),
     path('project-add/', views.ProjectCreate.as_view(), name='project-add'),
     path('product-add/', views.ProductCreate.as_view(), name='product-add'),
     path('product-edit/<int:pk>', views.ProductEdit.as_view(), name='product-edit'),
@@ -95,6 +101,7 @@ urlpatterns = [
     path('automation_partners-delete/<int:pk>', views.AutomationPartnersDelete.as_view(), name='project-delete'),
 
     path('financial_program-edit/<int:pk>', views.FinancialProgramEdit.as_view(), name='financial_program-edit'),
+    path('payment-edit/<int:pk>', views.PaymentEdit.as_view(), name='payment-edit'),
 
     path('automation_partners-edit/<int:pk>', views.AutomationPartnersEdit.as_view(), name='automation_partners-edit'),
 
