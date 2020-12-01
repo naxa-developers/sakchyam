@@ -2710,6 +2710,16 @@ class SakchyamPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView
     def get_success_url(self):
         return reverse_lazy('sakchyam-partners')
 
+class RoleDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'role_delete.html'
+    success_message = 'Role deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Group, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('role')
 
 '''
 This function enables creating the record of Sakchyam Partner model using a csv or xls file.

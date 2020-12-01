@@ -535,6 +535,7 @@
                         </div>
                     </div>
 
+
                     <div class="col-md-6">
                         <div class="category-sector select-list">
                             <h4>User Management</h4>
@@ -564,6 +565,37 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="category-sector select-list">
+                            <h4>Payment</h4>
+                            <div class="checklist-wrapper">
+                                <div class="checklist-body category-body">
+                                    {% for permission in permissions %}
+                                    {% if permission.content_type.model == 'payment' %}
+                                    <div class="checklist-card">
+                                        <div class="checklist-header">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" value="{{permission.id}}"
+                                                       class="custom-control-input"
+                                                       id="district{{permission.id}}" name="permissions">
+                                                <label class="custom-control-label" for="district{{permission.id}}">{{permission.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endif %}
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
             </div>
 
 
