@@ -21,11 +21,11 @@
             </li>
 
 
-            <li>Create User Form</li>
+            <li>Edit User Form</li>
         </ul>
     </div>
     <!-- program form -->
-    <form class="program-form" method="post" enctype="multipart/form-data">
+    <form class="program-form" method="post" action="/dashboard/edit-user/{{user.id}}" enctype="multipart/form-data">
 
         {% csrf_token %}
         {% if form.errors %}
@@ -54,30 +54,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_username" class="">Username:</label>
-                        <input type="text" name="username" class="form-control" maxlength="150" autofocus required
+                        <input type="text" name="username" value = '{{user.username}}' class="form-control" maxlength="150" autofocus required
                                id="id_username"/>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_password1">Password:</label>
-                        <input type="password" class="form-control" name="password1" required id="id_password1"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_password2">Password confirmation:</label>
-                        <input type="password" class="form-control" name="password2" required id="id_password2"/>
-                    </div>
-                </div>
-            </div>
-
 
         </div>
 
@@ -92,18 +73,18 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_full_name">Full Name:</label>
-                        <input type="text" class="form-control" name="full_name" required id="id_full_name"/>
+                        <input type="text" class="form-control" value="{{user_data.full_name}}" name="full_name" required id="id_full_name"/>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_email">Email:</label>
-                        <input type="email" class="form-control" name="email" required id="id_email"/>
+                        <input type="email" class="form-control" value="{{user_data.email}}" name="email" required id="id_email"/>
                     </div>
                 </div>
-            </div>
 
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group ">
@@ -112,9 +93,6 @@
                     </div>
                 </div>
             </div>
-
-
-        </div>
 
         <!-- default form -->
 

@@ -1,34 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% if perms.api.view_partnership %}
+{% if perms.api.view_payment %}
 <main class="sakchyam-main">
     <!-- sakchyam breadcrumb -->
     <div class="sakchyam-breadcrumb">
         <ul class="flex-start">
-            <li>
-                <a href="/dashboard/partnership-list">Visualisation</a>
-            </li>
 
             <li>
-                Partnership
+                Payment List
             </li>
 
         </ul>
-        {% if perms.api.add_partnership %}
+        {% if perms.api.add_payment %}
         <div class="buttons is-end">
-            <a href="/dashboard/partnership-add">
+            <a href="/dashboard/payment-add">
                 <button type="submit" class="sakchyam-button sm-button"> Add Data</button>
             </a>
-
-            <a href="/dashboard/partnership-bulk-add">
-                <button type="submit" class="sakchyam-button sm-button"> Add Bulk Data</button>
-            </a>
-
-            <a href="/dashboard/sakchyam-project/">
-                <button type="submit" class="sakchyam-button sm-button"> Manage Project</button>
-            </a>
-
         </div>
 
 
@@ -49,28 +37,12 @@
                 <thead>
                 <tr>
 
-                    <th>Partner ID</th>
-                    <th>Project Id</th>
-                    <th>Province Id</th>
-                    <th>District Id</th>
-                    <th>Municipality Id</th>
-                    <th>Branch</th>
-                    <th>Blb</th>
-                    <th>Extension Counter</th>
-                    <th>Tablet</th>
-                    <th>Other Product</th>
-                    <th>Beneficiary</th>
-                    <th>Scf Funds</th>
-                    <th>Leverage</th>
-                    <th>Allocated Budget</th>
-                    <th>Allocated Beneficiary</th>
-                    <th>Female Percentage</th>
-                    <th>Total Beneficiary</th>
-                    <th>Female Beneficiary</th>
-                    <th>Status</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Project Year</th>
+                    <th>Component</th>
+                    <th>Indirect Links</th>
+                    <th>Link With Direct</th>
+                    <th>Direct Links</th>
+                    <th>Description</th>
+                    <th>Title</th>
 
                     <th></th>
                 </tr>
@@ -79,29 +51,13 @@
                 {% for data in list %}
                 <tr>
                     <td>
-                         {{ data.partner_id__name }}
+                         {{ data.component }}
                     </td>
-                    <td>{{ data.project_id__name }}</td>
-                    <td>{{ data.province_id__name }}</td>
-                    <td>{{ data.district_id__name }}</td>
-                    <td>{{ data.municipality_id__name }}</td>
-                    <td>{{ data.branch }}</td>
-                    <td>{{ data.blb }}</td>
-                    <td>{{ data.extension_counter }}</td>
-                    <td>{{ data.tablet }}</td>
-                    <td>{{ data.other_products }}</td>
-                    <td>{{ data.beneficiary }}</td>
-                    <td>{{ data.scf_funds }}</td>
-                    <td>{{ data.leverage}}</td>
-                    <td>{{ data.allocated_budget }}</td>
-                    <td>{{ data.allocated_beneficiary }}</td>
-                    <td>{{ data.female_percentage }}</td>
-                    <td>{{ data.total_beneficiary }}</td>
-                    <td>{{ data.female_beneficiary }}</td>
-                    <td>{{ data.status }}</td>
-                    <td>{{ data.start_date }}</td>
-                    <td>{{ data.end_date }}</td>
-                    <td>{{ data.project_year }}</td>
+                    <td>{{ data.indirect_links }}</td>
+                    <td>{{ data.link_with_indirect }}</td>
+                    <td>{% for test in data.direct_links.all %}{{ test.components|truncatewords:"5" }},{% endfor %}</td>
+                    <td>{{ data.description }}</td>
+                    <td>{{ data.title }}</td>
 
 
                     <td>
@@ -110,18 +66,18 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-animation">
-                                {% if perms.api.change_partnership %}
+                                {% if perms.api.change_payment %}
                                 <li>
-                                    <a href="/dashboard/partnership-edit/{{ data.id }}"
+                                    <a href="/dashboard/payment-edit/{{ data.id }}"
                                        class="flex-start">
                                         <i class="material-icons">edit</i> Edit
                                     </a>
                                 </li>
                                 {% endif %}
-                                {% if perms.api.delete_partnership %}
+                                {% if perms.api.delete_payment %}
                                 <li>
-                                    <a href="/dashboard/partnership-delete/{{ data.id }}" class="flex-start">
-                                        <i class="material-icons">delete</i>delete
+                                    <a href="/dashboard/payment-delete/{{ data.id }}" class="flex-start">
+                                        <i class="material-icons">delete</i>Delete
                                     </a>
 
                                 </li>

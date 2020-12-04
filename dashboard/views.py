@@ -6,14 +6,15 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from api.models import LogCategory, LogSubCategory, MilestoneYear, LogData, Province, MilestoneYear, District, \
     Municipality, Automation, Partner, AutomationPartner, FinancialLiteracy, \
     FinancialProgram, Outreach, ProductProcess, Product, Project, AutomationPartner, MFS, Insurance, SecondaryData, \
-    Partnership
+    Partnership, Payment
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from dashboard.forms import LogDataForm, LogSubCategoryForm, LogCategoryForm, GroupForm, UserProfileForm, \
     FinancialLiteracyForm, \
     AutomationForm, LogCategoryForm, PartnerForm, MilestoneYearForm, OutReachForm, ProductProcessForm, ProjectForm, \
     ProductForm, ProvinceForm, DistrictForm, MunicipalitiesForm, \
-    Financial_ProgramForm, Automation_PartnersForm, MfsForm, InsuranceForm, Secondary_DataForm, PartnershipForm
+    Financial_ProgramForm, Automation_PartnersForm, MfsForm, InsuranceForm, Secondary_DataForm, PartnershipForm, \
+    PaymentForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User, Group, Permission
 from .models import UserProfile
@@ -1020,6 +1021,7 @@ def automationBulkCreate(request):
             success_count) + " Automations Created ")
         return redirect('/dashboard/automation-list/', messages)
 
+
 def programmeBulkCreate(request):
     template = 'financial_programme_bulk_upload.html'
 
@@ -1348,6 +1350,7 @@ def outreachBulkCreate(request):
             success_count) + " Outreach Created ")
         return redirect('/dashboard/outreach-list/', messages)
 
+
 def secondarydataBulkCreate(request):
     template = 'secondary_bulk_upload.html'
 
@@ -1378,25 +1381,46 @@ def secondarydataBulkCreate(request):
                     code=df['Local Unit Code'][row])
                 province = municipality.province_id
                 district = municipality.district_id
-                head_quarter = None if df['Head-Quarter of the Local Unit'][row] == '' else df['Head-Quarter of the Local Unit'][row]
+                head_quarter = None if df['Head-Quarter of the Local Unit'][row] == '' else \
+                    df['Head-Quarter of the Local Unit'][row]
                 hdi = None if df['HDI of District'][row] == '' else df['HDI of District'][row]
-                population = None if df['Population in the Local Unit'][row] == '' else df['Population in the Local Unit'][row]
-                yearly_fund = None if df['Yearly Central Government Funding'][row] == '' else df['Yearly Central Government Funding'][row]
-                social_security_recipients = None if df['Social Security Payment Recipients'][row] == '' else df['Social Security Payment Recipients'][row]
-                yearly_social_security_payment = None if df['Yearly Social Security Payments'][row] == '' else df['Yearly Social Security Payments'][row]
-                nearest_branch_distance = None if df['Road distance from nearest Commercial Bank Branch (in KM)'][row] == '' else df['Road distance from nearest Commercial Bank Branch (in KM)'][row]
-                communication_landline = None if df['Available Means of Communication_Landline'][row] == '' else df['Available Means of Communication_Landline'][row]
-                communication_mobile = None if df['Available Means of Communication_Mobile'][row] == '' else df['Available Means of Communication_Mobile'][row]
-                communication_internet = None if df['Available Means of Communication_Internet'][row] == '' else df['Available Means of Communication_Internet'][row]
-                communication_internet_other = None if df['Available Means of Communication_OtherInternet'][row] == '' else df['Available Means of Communication_OtherInternet'][row]
-                available_electricity_maingrid = None if df['Availability of Electricity_MainGrid'][row] == '' else df['Availability of Electricity_MainGrid'][row]
-                available_electricity_micro_hydro = None if df['Availability of Electricity_Micro-Hydro'][row] == '' else df['Availability of Electricity_Micro-Hydro'][row]
-                nearest_road_location_name = None if df['Nearest Road Access_LocationName'][row] == '' else df['Nearest Road Access_LocationName'][row]
-                nearest_road_distance = None if df['Nearest Road Access_Distance'][row] == '' else df['Nearest Road Access_Distance'][row]
-                nearest_road_type = None if df['Nearest Road Access_TypeOfRoad'][row] == '' else df['Nearest Road Access_TypeOfRoad'][row]
-                nearest_police_location_name = None if df['Nearest Police Presence_LocationName'][row] == '' else df['Nearest Police Presence_LocationName'][row]
-                nearest_police_distance = None if df['Nearest Police Presence_Distance'][row] == '' else df['Nearest Police Presence_Distance'][row]
-                categorisation_by_sakchyam = None if df['Categorisation by Sakchyam'][row] == '' else df['Categorisation by Sakchyam'][row]
+                population = None if df['Population in the Local Unit'][row] == '' else \
+                    df['Population in the Local Unit'][row]
+                yearly_fund = None if df['Yearly Central Government Funding'][row] == '' else \
+                    df['Yearly Central Government Funding'][row]
+                social_security_recipients = None if df['Social Security Payment Recipients'][row] == '' else \
+                    df['Social Security Payment Recipients'][row]
+                yearly_social_security_payment = None if df['Yearly Social Security Payments'][row] == '' else \
+                    df['Yearly Social Security Payments'][row]
+                nearest_branch_distance = None if df['Road distance from nearest Commercial Bank Branch (in KM)'][
+                                                      row] == '' else \
+                    df['Road distance from nearest Commercial Bank Branch (in KM)'][row]
+                communication_landline = None if df['Available Means of Communication_Landline'][row] == '' else \
+                    df['Available Means of Communication_Landline'][row]
+                communication_mobile = None if df['Available Means of Communication_Mobile'][row] == '' else \
+                    df['Available Means of Communication_Mobile'][row]
+                communication_internet = None if df['Available Means of Communication_Internet'][row] == '' else \
+                    df['Available Means of Communication_Internet'][row]
+                communication_internet_other = None if df['Available Means of Communication_OtherInternet'][
+                                                           row] == '' else \
+                    df['Available Means of Communication_OtherInternet'][row]
+                available_electricity_maingrid = None if df['Availability of Electricity_MainGrid'][row] == '' else \
+                    df['Availability of Electricity_MainGrid'][row]
+                available_electricity_micro_hydro = None if df['Availability of Electricity_Micro-Hydro'][
+                                                                row] == '' else \
+                    df['Availability of Electricity_Micro-Hydro'][row]
+                nearest_road_location_name = None if df['Nearest Road Access_LocationName'][row] == '' else \
+                    df['Nearest Road Access_LocationName'][row]
+                nearest_road_distance = None if df['Nearest Road Access_Distance'][row] == '' else \
+                    df['Nearest Road Access_Distance'][row]
+                nearest_road_type = None if df['Nearest Road Access_TypeOfRoad'][row] == '' else \
+                    df['Nearest Road Access_TypeOfRoad'][row]
+                nearest_police_location_name = None if df['Nearest Police Presence_LocationName'][row] == '' else \
+                    df['Nearest Police Presence_LocationName'][row]
+                nearest_police_distance = None if df['Nearest Police Presence_Distance'][row] == '' else \
+                    df['Nearest Police Presence_Distance'][row]
+                categorisation_by_sakchyam = None if df['Categorisation by Sakchyam'][row] == '' else \
+                    df['Categorisation by Sakchyam'][row]
 
                 outreach = SecondaryData.objects.update_or_create(
                     province_id=province,
@@ -1404,7 +1428,7 @@ def secondarydataBulkCreate(request):
                     municipality_id=municipality,
                     hdi=hdi,
                     head_quarter=head_quarter,
-                    population = population,
+                    population=population,
                     yearly_fund=yearly_fund,
                     social_security_recipients=social_security_recipients,
                     yearly_social_security_payment=yearly_social_security_payment,
@@ -1421,7 +1445,6 @@ def secondarydataBulkCreate(request):
                     nearest_road_type=nearest_road_type,
                     categorisation_by_sakchyam=categorisation_by_sakchyam,
                     nearest_branch_distance=nearest_branch_distance
-
 
                 )
                 success_count += 1
@@ -1521,7 +1544,7 @@ def partnershipBulkCreate(request):
 
                         )
                         loopcount += 1
-                        if loopcount == MY_SETTING-1:
+                        if loopcount == MY_SETTING - 1:
                             range1 += MY_SETTING
                             range2 += MY_SETTING
 
@@ -1947,6 +1970,33 @@ class OutReachEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return reverse_lazy('outreach-list')
 
 
+def UserEdit(request, pk):
+    if request.method == 'POST':
+        user = User.objects.get(id=pk)
+        userdata = User.objects.filter(id=pk)
+        userdata.update(username=request.POST['username'])
+        userprofiledata = UserProfile.objects.get(user=user)
+        if 'image' in request.FILES:
+            userprofiledata.image = request.FILES['image']
+        else:
+            userprofiledata.image = userprofiledata.image
+        userprofiledata.full_name = request.POST['full_name']
+        userprofiledata.email = request.POST['email']
+        userprofiledata.save()
+        messages.add_message(request, messages.WARNING, "User Updated")
+        return redirect('/dashboard/user')
+
+    else:
+        user = User.objects.get(id=pk)
+        user_data = UserProfile.objects.get(user=user)
+        context = {
+            'user': user,
+            'user_data': user_data
+        }
+
+        return render(request, 'user_edit.html', context)
+
+
 class FinancialLiteracyEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = FinancialLiteracy
     template_name = 'financialliteracy_edit.html'
@@ -2112,6 +2162,18 @@ class ProductDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         return reverse_lazy('sakchyam-product')
 
 
+class UserDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'user_delete.html'
+    success_message = 'User deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(User, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('user')
+
+
 class ProductProcessDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'productprocess_delete.html'
     success_message = 'ProductProcess deleted'
@@ -2166,6 +2228,22 @@ class LogFrameList(LoginRequiredMixin, ListView):
         return data
 
 
+class PaymentList(LoginRequiredMixin, ListView):
+    template_name = 'payment_list.html'
+    model = Payment
+
+    def get_context_data(self, **kwargs):
+        data = super(PaymentList, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['payment'] = 'active'
+        # data['active'] = 'program'
+        query_data = Payment.objects.order_by('id')
+        data['list'] = query_data
+        return data
+
+
 class LogSubCategoryList(LoginRequiredMixin, ListView):
     template_name = 'logsubcategory_list.html'
     model = LogSubCategory
@@ -2199,6 +2277,18 @@ class LogSubCategoryDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(LogSubCategoryDelete, self).delete(request, *args, **kwargs)
+
+
+class PaymentDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'payment_delete.html'
+    success_message = 'Payment deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Payment, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('payment-list')
 
 
 class LogDataCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -2446,6 +2536,19 @@ def activate_user(request, **kwargs):
     return redirect('user')
 
 
+def staff_user(request, **kwargs):
+    user = User.objects.get(id=kwargs['id'])
+    # user_data = UserProfile.objects.get(user=user)
+
+    if user.is_staff:
+        user.is_staff = False
+    else:
+        user.is_staff = True
+
+    user.save()
+    return redirect('user')
+
+
 def assign_role(request, **kwargs):
     if "GET" == request.method:
         groups = Group.objects.all()
@@ -2545,6 +2648,24 @@ class SakchyamAPartnersCreate(SuccessMessageMixin, LoginRequiredMixin, CreateVie
         return reverse_lazy('sakchyam-partners')
 
 
+class PaymentCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Payment
+    template_name = 'payment_create.html'
+    form_class = PaymentForm
+    success_message = 'Payment created'
+
+    def get_context_data(self, **kwargs):
+        data = super(PaymentCreate, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['payment'] = 'active'
+        return data
+
+    def get_success_url(self):
+        return reverse_lazy('payment-list')
+
+
 class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Partner
     template_name = 'sakchyam_partner_edit.html'
@@ -2563,6 +2684,21 @@ class SakchyamAPartnersEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView)
         return reverse_lazy('sakchyam-partners')
 
 
+class PaymentEdit(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Payment
+    template_name = 'payment_edit.html'
+    form_class = PaymentForm
+    success_message = 'Payment data updated'
+
+    def get_context_data(self, **kwargs):
+        data = super(PaymentEdit, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_data = UserProfile.objects.get(user=user)
+        data['user'] = user_data
+        data['partner'] = 'active'
+        return data
+
+
 class SakchyamPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'sakchyam_partner_delete.html'
     success_message = 'Sakchyam Partner deleted'
@@ -2574,6 +2710,16 @@ class SakchyamPartnersDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView
     def get_success_url(self):
         return reverse_lazy('sakchyam-partners')
 
+class RoleDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'role_delete.html'
+    success_message = 'Role deleted'
+
+    def get_object(self):
+        id = self.kwargs.get('pk')
+        return get_object_or_404(Group, id=id)
+
+    def get_success_url(self):
+        return reverse_lazy('role')
 
 '''
 This function enables creating the record of Sakchyam Partner model using a csv or xls file.

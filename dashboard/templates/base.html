@@ -121,7 +121,7 @@
                     {% endif %}
                     {% if perms.api.view_partner %}
                     <li class="{{partner}} menu-item"><a href="/dashboard/sakchyam-partners">
-                        <i class="material-icons">group</i><span>Sakchyam Partner</span></a>
+                        <i class="material-icons">group</i><span>Sakchyam Partners</span></a>
                     </li>
                     {% endif %}
                     {% if perms.api.view_project %}
@@ -137,6 +137,11 @@
                     {% if perms.api.view_secondarydata %}
                     <li class="{{secondarydata}}  menu-item"><a href="/dashboard/secondary_data-list">
                         <i class="material-icons">input</i><span>Secondary Data</span></a>
+                    </li>
+                    {% endif %}
+                    {% if perms.api.view_payment %}
+                    <li class="{{payment}}  menu-item"><a href="/dashboard/payment-list">
+                        <i class="material-icons">money</i><span>Payment</span></a>
                     </li>
                     {% endif %}
 
@@ -161,10 +166,10 @@
                     <li class="{{ userman }}  menu-item menu-toggle"><a href="javascript:void(0);" class=""><i
                             class="material-icons">person</i><span>User management</span></a>
                         <ul class="ml-menu">
-                            {% if perms.api.view_user %}
+                            {% if perms.auth.view_user %}
                             <li><a href="/dashboard/role/">Role Management</a></li>
                             {% endif %}
-                            {% if perms.api.view_user %}
+                            {% if perms.auth.view_user %}
                             <li><a href="/dashboard/user/">User Management</a></li>
                             {% endif %}
                             <li><a href="/dashboard/changepassword/">Change Password</a></li>
