@@ -352,38 +352,25 @@ class Insurance(models.Model):
         return self.product
 
 
+class ComponentType(models.Model):
+    type = models.CharField(max_length=500, blank=True, null=True)
+
+
 class DirectLink(models.Model):
-    type = (
-        ('RTGS', 'RTGS'),
-        ('National Switch', 'National Switch'),
-        ('CSD', 'CSD'),
-        ('Card and Switch System', 'Card and Switch System'),
-        ('PSPs/PSOs', 'PSPs/PSOs'),
-        ('NCHL', 'NCHL'),
-        ('BFIS', 'BFIS'),
-        ('Capital Market Players', 'Capital Market Players'),
-    )
-    components = models.CharField(max_length=500, choices=type)
+    components = models.ForeignKey(ComponentType, on_delete=models.CASCADE, related_name='DirectComp', blank=True,
+                                   null=True)
 
     def __str__(self):
-        return self.components
+        return self.components.type
 
 
 class Payment(models.Model):
-    type = (
-        ('RTGS', 'RTGS'),
-        ('National Switch', 'National Switch'),
-        ('CSD', 'CSD'),
-        ('Card and Switch System', 'Card and Switch System'),
-        ('PSPs/PSOs', 'PSPs/PSOs'),
-        ('NCHL', 'NCHL'),
-        ('BFIS', 'BFIS'),
-        ('Capital Market Players', 'Capital Market Players'),
-    )
-
-    component = models.CharField(max_length=500, choices=type, blank=True, null=True)
-    indirect_links = models.CharField(max_length=500, choices=type, blank=True, null=True)
-    link_with_indirect = models.CharField(max_length=500, choices=type, blank=True, null=True)
+    component = models.ForeignKey(ComponentType, on_delete=models.CASCADE, related_name='Compcomp', blank=True,
+                                  null=True)
+    indirect_links = models.ForeignKey(ComponentType, on_delete=models.CASCADE, related_name='Indirectcomp', blank=True,
+                                       null=True)
+    link_with_indirect = models.ForeignKey(ComponentType, on_delete=models.CASCADE, related_name='LinkWithIndirectcomp',
+                                           blank=True, null=True)
     direct_links = models.ManyToManyField(DirectLink, blank=True, null=True)
     description = RichTextField(blank=True, null=True)
     title = models.CharField(max_length=100, blank=True, null=True)
