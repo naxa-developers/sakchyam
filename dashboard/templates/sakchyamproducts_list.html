@@ -43,11 +43,11 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+                    <th>Product Category</th>
+                    <th>Product Name</th>
 
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Code</th>
-                    <th>Date</th>
+                    <th>Product Code</th>
+                    <th>Launch Date</th>
 
                     <th></th>
                 </tr>
@@ -55,8 +55,9 @@
                 <tbody>
                 {% for data in list %}
                 <tr>
-                    <td>{{ data.name }}</td>
                     <td>{{ data.type }}</td>
+                    <td>{{ data.name }}</td>
+
                     <td>{{ data.code }}</td>
                     <td>{{ data.date }}</td>
 
