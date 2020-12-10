@@ -71,9 +71,10 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_financial_literacy" class="">Financial Literacy</label>
-                        <select class="selectpicker" data-live-search="true" name="financial_literacy" required
+                        <select class="selectpicker" data-live-search="true" name="financial_literacy"
                             id="id_financial_literacy">
                             {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="">None</option>
                             <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -86,6 +87,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -98,6 +100,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="">None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" selected >Commercial Bank</option>
@@ -110,6 +113,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="">None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -122,6 +126,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -134,6 +139,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="">None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -146,6 +152,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="">None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -158,6 +165,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="">None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -170,6 +178,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -182,6 +191,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="">None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -193,7 +203,8 @@
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
-                            {% else %}
+                            {% elif form.instance.insurance == "Insurance" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -205,6 +216,19 @@
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" selected >Insurance</option>
+                            {% else %}
+                            <option value="" selected >None</option>
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" >Mobile Network Operator</option>
+                            <option value="Insurance" >Insurance</option>
                             {% endif %}
                            
                         </select>
@@ -213,10 +237,11 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_partnership" class="">Partnership</label>
-                        <select class="selectpicker" data-live-search="true" name="partnership" required
+                        <select class="selectpicker" data-live-search="true" name="partnership"
                             id="id_partnership">
                            
                             {% if form.instance.partnership == "Microfinance/Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -229,6 +254,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.partnership == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -241,6 +267,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.partnership == "Commercial Bank" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" selected >Commercial Bank</option>
@@ -253,6 +280,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -265,6 +293,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -277,6 +306,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -289,6 +319,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -301,6 +332,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -313,6 +345,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -325,6 +358,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -336,7 +370,21 @@
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.insurance == "Insurance" %}
+                            <option value="" >None</option>
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
+                            <option value="Insurance" selected >Insurance</option>
                             {% else %}
+                            <option value="" selected>None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -347,7 +395,7 @@
                             <option value="Insurance Provider" >Insurance Provider</option>
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
-                            <option value="Insurance" selected >Insurance</option>
+                            <option value="Insurance">Insurance</option>
                             {% endif %}
                            
                         </select>
@@ -356,10 +404,11 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_outreach_expansion" class="">Outreach Expansion</label>
-                        <select class="selectpicker" data-live-search="true" name="outreach_expansion" required
+                        <select class="selectpicker" data-live-search="true" name="outreach_expansion"
                             id="id_outreach_expansion">
                            
                             {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -372,6 +421,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -384,6 +434,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" selected >Commercial Bank</option>
@@ -396,6 +447,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -408,6 +460,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -420,6 +473,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -432,6 +486,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -444,6 +499,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -456,6 +512,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -468,6 +525,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -479,7 +537,21 @@
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.insurance == "Insurance" %}
+                            <option value="" >None</option>
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator">Mobile Network Operator</option>
+                            <option value="Insurance" selected>Insurance</option>
                             {% else %}
+                            <option value="" selected>None</option
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -490,7 +562,7 @@
                             <option value="Insurance Provider" >Insurance Provider</option>
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
-                            <option value="Insurance" selected >Insurance</option>
+                            <option value="Insurance" >Insurance</option>
                             {% endif %}
                            
                         </select>
@@ -499,10 +571,11 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_mfs" class="">Mfs</label>
-                        <select class="selectpicker" data-live-search="true" name="mfs" required
+                        <select class="selectpicker" data-live-search="true" name="mfs"
                             id="id_mfs">
                            
                             {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -515,6 +588,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -527,6 +601,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" selected >Commercial Bank</option>
@@ -539,6 +614,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -551,6 +627,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -563,6 +640,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -575,6 +653,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -587,6 +666,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -599,6 +679,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -611,6 +692,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -622,7 +704,21 @@
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.insurance == "Insurance" %}
+                            <option value="" >None</option>
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator">Mobile Network Operator</option>
+                            <option value="Insurance" selected>Insurance</option>
                             {% else %}
+                            <option value="" selected>None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -633,7 +729,7 @@
                             <option value="Insurance Provider" >Insurance Provider</option>
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
-                            <option value="Insurance" selected >Insurance</option>
+                            <option value="Insurance" >Insurance</option>
                             {% endif %}
                            
                         </select>
@@ -642,10 +738,11 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_product_process" class="">Product Process</label>
-                        <select class="selectpicker" data-live-search="true" name="product_process" required
+                        <select class="selectpicker" data-live-search="true" name="product_process"
                             id="id_product_process">
                            
                             {% if form.instance.financial_literacy == "Microfinance/Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" selected >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -658,6 +755,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Banks and Mobile Network Operators" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" selected >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -670,6 +768,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Commercial Bank" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" selected >Commercial Bank</option>
@@ -682,6 +781,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Microfinance" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -694,6 +794,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Providers" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -706,6 +807,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Cooperative" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -718,6 +820,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Digital Financial Service Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -730,6 +833,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Insurance Provider" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -742,6 +846,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Apex Organization" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -754,6 +859,7 @@
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
                             {% elif form.instance.financial_literacy == "Mobile Network Operator" %}
+                            <option value="" >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -765,7 +871,21 @@
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" selected >Mobile Network Operator</option>
                             <option value="Insurance" >Insurance</option>
+                            {% elif form.instance.insurance == "Insurance" %}
+                            <option value="" >None</option>
+                            <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
+                            <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
+                            <option value="Commercial Bank" >Commercial Bank</option>
+                            <option value="Microfinance" >Microfinance</option>
+                            <option value="Digital Financial Service Providers" >Digital Financial Service Providers</option>
+                            <option value="Cooperative" >Cooperative</option>
+                            <option value="Digital Financial Service Operator" >Digital Financial Service Operator</option>
+                            <option value="Insurance Provider" >Insurance Provider</option>
+                            <option value="Apex Organization" >Apex Organization</option>
+                            <option value="Mobile Network Operator">Mobile Network Operator</option>
+                            <option value="Insurance"selected >Insurance</option>
                             {% else %}
+                            <option value="" selected >None</option>
                             <option value="Microfinance/Cooperative" >Microfinance/Cooperative</option>
                             <option value="Commercial Banks and Mobile Network Operators" >Commercial Banks and Mobile Network Operators</option>
                             <option value="Commercial Bank" >Commercial Bank</option>
@@ -776,7 +896,7 @@
                             <option value="Insurance Provider" >Insurance Provider</option>
                             <option value="Apex Organization" >Apex Organization</option>
                             <option value="Mobile Network Operator" >Mobile Network Operator</option>
-                            <option value="Insurance" selected >Insurance</option>
+                            <option value="Insurance" >Insurance</option>
                             {% endif %}
                            
                         </select>
