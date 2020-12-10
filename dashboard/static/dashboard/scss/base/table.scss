@@ -1,7 +1,11 @@
+.table-tesponsive {
+    position: relative;
+}
 
 .dataTable {
     width: 100% !important;
     margin-top: 1rem;
+    position: relative;
 
     thead {
         background-color: $color-bg;
@@ -13,13 +17,24 @@
             font-size: 1.1rem;
             font-weight: 700;
             padding: 1rem .6125rem;
-            .table-title{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background-color: $color-bg;
+
+            .table-title {
                 @include display-flex(flex);
                 @include justify-content-start;
                 @include align-items-center;
-                i{
+
+                i {
                     margin-right: .5rem;
                 }
+            }
+
+            @media screen and (max-width:$medium-desktop) {
+                font-size: .875rem;
             }
         }
     }
@@ -43,32 +58,41 @@
                     font-size: 1rem;
                     font-weight: 600;
                     font-family: $montserrat;
+
+                    @media screen and (max-width:$medium-desktop) {
+                        font-size: .875rem;
+                    }
                 }
-                .icons{
-                    .icon{
-                        &.check{
-                            i{
-                                color:$color-green;
+
+                .icons {
+                    .icon {
+                        &.check {
+                            i {
+                                color: $color-green;
                             }
                         }
                     }
                 }
-                .user{
+
+                .user {
                     @include display-flex(flex);
                     @include align-items-center;
                     @include justify-content-start;
-                    figure{
+
+                    figure {
                         @include flex-base(0 0 34px);
                         max-width: 34px;
                         @include radius(50%);
-                        margin:0 .6125rem 0 0;
-                        img{
-                            width:34px;
+                        margin: 0 .6125rem 0 0;
+
+                        img {
+                            width: 34px;
                             height: 34px;
                             @include radius(50%);
                         }
                     }
-                    h6{
+
+                    h6 {
                         font-weight: 600;
                     }
                 }
@@ -83,6 +107,7 @@
     .table-action {
         position: relative;
         display: inline-block;
+
         a {
             i {
                 color: $color-bg-text;
@@ -117,7 +142,8 @@
                     &:hover {
                         background-color: $color-secondary;
                         color: $color-blue;
-                        i{
+
+                        i {
                             color: $color-blue;
                         }
                     }
@@ -125,40 +151,45 @@
             }
         }
     }
-    &.table-border{
+
+    &.table-border {
         margin-top: 0rem;
-        thead{
-            tr{
-                th{
+
+        thead {
+            tr {
+                th {
                     color: darken($blue-light, 40%);
                     border: 1px solid $blue-light;
                     font-size: 0.875rem;
                 }
-                &:nth-child(1){
-                    th{
+
+                &:nth-child(1) {
+                    th {
                         text-align: center;
                     }
                 }
-                
-                &:nth-child(2){
-                    th{
+
+                &:nth-child(2) {
+                    th {
                         text-align: center;
                         font-size: 0.75rem;
                     }
                 }
-                &:nth-child(3){
-                    th{
+
+                &:nth-child(3) {
+                    th {
                         font-size: 0.75rem;
                     }
                 }
 
             }
         }
-        tbody{
-            tr{
-                td{
+
+        tbody {
+            tr {
+                td {
                     border: 1px solid $blue-light;
-                    border-top: 0px;    
+                    border-top: 0px;
                     font-size: 0.745rem;
                 }
             }
@@ -189,45 +220,54 @@
 
 .dataTables_paginate {
     margin-top: 2rem;
-    float:right;
+    float: right;
+
     .previous {
         margin-right: 5px;
     }
+
     .next {
         margin-left: 5px;
     }
-    span{
-        a{
+
+    span {
+        a {
             color: $color-primary;
             background-color: $color-bg;
             border: 1px solid rgba($color-primary, 0.1);
-            padding:0 5px;
+            padding: 0 5px;
             @include transition (all .5s ease-in-out);
             cursor: pointer;
         }
-        &:hover{
-            a{
+
+        &:hover {
+            a {
                 border-color: $color-blue;
-            background-color: $color-blue;
-            color:$color-white;
+                background-color: $color-blue;
+                color: $color-white;
             }
         }
     }
 }
-.dataTables_length{
+
+.dataTables_length {
     float: left;
-    label{
-        margin:0;
+
+    label {
+        margin: 0;
     }
 }
-.dataTables_filter{
+
+.dataTables_filter {
     float: right;
+
     label {
-        margin:0;
+        margin: 0;
         @include display-flex(flex);
         @include justify-content-end;
         @include align-items-center;
-        margin-right:5px;
+        margin-right: 5px;
+
         input[type=search] {
             border: 1px solid $color-border;
             color: $color-bg-text;
