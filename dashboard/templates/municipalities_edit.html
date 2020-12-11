@@ -45,7 +45,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="id_province_id" class="">Province</label>
+                            <label for="id_province_id" class="">Province Name</label>
                             <select name="province_id" id="id_province_id" class="selectpicker" data-live-search="true" required>
                                 {% for province in province %}
                                     {% if province.id == form.instance.province_id.id %}
@@ -60,7 +60,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_district_id" class="">District</label>
+                            <label for="id_district_id" class="">District Name</label>
                             <select name="district_id" id="id_district_id" class="selectpicker" data-live-search="true" required>
                                 {% for district in district %}
                                     {% if district.id == form.instance.district_id.id %}
@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group error">
-                        <label for="id_name" class="">Name</label>
+                        <label for="id_name" class="">Municipality Name</label>
                         <input class="form-control" type="text" name="name" maxlength="100" value="{{ form.instance.name }}" required id="id_name" />
                     </div>
                 </div>
@@ -115,7 +115,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_code" class="">Code</label>
+                        <label for="id_code" class="">Municipality Code</label>
                         <input class="form-control" type="number" name="code" value="{{form.instance.code}}"
                             id="id_code"></div>
                 </div>

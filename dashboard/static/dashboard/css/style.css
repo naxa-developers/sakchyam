@@ -1477,7 +1477,9 @@ button {
   align-items: center; }
 
 .table-tesponsive {
-  position: relative; }
+  position: relative;
+  overflow-y: auto;
+  max-height: calc(100vh - 328px); }
 
 .dataTable {
   width: 100% !important;
