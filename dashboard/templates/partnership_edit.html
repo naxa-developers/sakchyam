@@ -99,7 +99,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_partner_id" class="">Partner</label>
+                            <label for="id_partner_id" class="">Partner Institution</label>
                             <select name="partner_id" id="id_partner_id" class="selectpicker" data-live-search="true" required>
                                 {% for partner in partner %}
                                     {% if partner.id == form.instance.partner_id.id %}
@@ -151,7 +151,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_blb" class="">Blb</label>
+                        <label for="id_blb" class="">BLB</label>
                         <input class="form-control" type="number" name="blb" value="{{ form.instance.blb }}"
                             id="id_blb"></div>
                 </div>
@@ -162,7 +162,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_extension_counter" class="">Extension counter</label>
+                        <label for="id_extension_counter" class="">Extension Counter</label>
                         <input class="form-control" type="number" name="extension_counter" value="{{ form.instance.extension_counter }}"
                             id="id_extension_counter"></div>
                 </div>
@@ -184,7 +184,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_other_products" class="">Other products</label>
+                        <label for="id_other_products" class="">Other Major Products</label>
                         <input class="form-control" type="number" name="other_products" value="{{ form.instance.other_products }}"
                             id="id_other_products"></div>
                 </div>
@@ -195,7 +195,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_beneficiary" class="">Beneficiary</label>
+                        <label for="id_beneficiary" class="">Beneficiaries</label>
                         <input class="form-control" type="number" name="beneficiary" value="{{ form.instance.beneficiary }}"
                             id="id_beneficiary"></div>
                 </div>
@@ -206,7 +206,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_scf_funds" class="">Scf funds</label>
+                        <label for="id_scf_funds" class="">S-CF Funds</label>
                         <input class="form-control" type="number" name="scf_funds" value="{{ form.instance.scf_funds }}"
                             id="id_scf_funds"></div>
                 </div>
@@ -227,7 +227,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_allocated_budget" class="">Allocated budget</label>
+                        <label for="id_allocated_budget" class="">Allocated Funds To Local Units</label>
                         <input class="form-control" type="float" name="allocated_budget" value="{{ form.instance.allocated_budget }}"
                             id="id_allocated_budget"></div>
                 </div>
@@ -238,7 +238,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_allocated_beneficiary" class="">Allocated beneficiary</label>
+                        <label for="id_allocated_beneficiary" class="">Allocated Beneficiaries At Local Unit</label>
                         <input class="form-control" type="float" name="allocated_beneficiary" value="{{ form.instance.allocated_beneficiary }}"
                             id="id_allocated_beneficiary"></div>
                 </div>
@@ -249,7 +249,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_female_percentage" class="">Female percentage</label>
+                        <label for="id_female_percentage" class="">Female Percentage</label>
                         <input class="form-control" type="float" name="female_percentage" value="{{ form.instance.female_percentage }}"
                             id="id_female_percentage"></div>
                 </div>
@@ -260,7 +260,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_total_beneficiary" class="">Total beneficiary</label>
+                        <label for="id_total_beneficiary" class="">Total Beneficiaries</label>
                         <input class="form-control" type="number" name="total_beneficiary" value="{{ form.instance.total_beneficiary }}"
                             id="id_total_beneficiary"></div>
                 </div>
@@ -271,7 +271,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_female_beneficiary" class="">Female beneficiary</label>
+                        <label for="id_female_beneficiary" class="">Female Beneficiaries</label>
                         <input class="form-control" type="number" name="female_beneficiary" value="{{ form.instance.female_beneficiary }}"
                             id="id_female_beneficiary"></div>
                 </div>

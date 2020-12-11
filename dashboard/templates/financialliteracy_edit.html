@@ -81,7 +81,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_partner_id" class="">Partner</label>
+                            <label for="id_partner_id" class="">Partner Institution</label>
                             <select name="partner_id" id="id_partner_id" class="selectpicker" data-live-search="true" required>
                                 {% for partner in partner_type %}
                                     {% if partner.id == form.instance.partner_id.id %}
@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_program_id" class="">Program</label>
+                            <label for="id_program_id" class="">Programme</label>
                             <select name="program_id" id="id_program_id" class="selectpicker" data-live-search="true" required>
                                 {% for program_id in program_id %}
                                     {% if program_id.id == form.instance.program_id.id %}
@@ -125,7 +125,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_single_count" class="">Single Count</label>
+                        <label for="id_single_count" class="">Total Single Count</label>
                         <input value="{{ form.instance.single_count }}" class="form-control" type="number" name="single_count"
                             id="id_single_count">
                     </div>
