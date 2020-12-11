@@ -44,13 +44,12 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
-
-                    <th>Province Id</th>
-                    <th>District Id</th>
-                    <th>Partner Id</th>
+                    <th>Partner Name</th>
                     <th>Key Innovation</th>
                     <th>Achievement Type</th>
-                    <th>Achieved Number</th>
+                    <th>Province</th>
+                    <th>District</th>
+                    <th>Achieved Number (as of June-end 2020)</th>
 
                     <th></th>
                 </tr>
@@ -58,6 +57,9 @@
                 <tbody>
                 {% for data in list %}
                 <tr>
+                    <td>{{ data.partner_id.name }}</td>
+                    <td>{{ data.key_innovation }}</td>
+                    <td>{{ data.achievement_type }}</td>
                     {% if data.province_id.name %}
                         <td>{{ data.province_id.name }}</td>
                     {% else %}
@@ -68,9 +70,9 @@
                     {% else %}
                         <td>District not decleared</td>
                     {% endif %}
-                    <td>{{ data.partner_id.name }}</td>
-                    <td>{{ data.key_innovation }}</td>
-                    <td>{{ data.achievement_type }}</td>
+
+
+
                     <td>{{ data.achieved_number }}</td>
 
 
