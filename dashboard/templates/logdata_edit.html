@@ -135,21 +135,29 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group ">
-                        <label for="id_data_type" class="">data type</label>
+                        <label for="id_data_type" class="">Data type</label>
                         <select class="selectpicker" data-live-search="true" name="data_type" required
                                 id="id_data_type">
                             {% if form.instance.data_type == 'number' %}
                             <option value="number" selected>Number</option>
                             <option value="budget">Budget</option>
                             <option value="percentage">Percentage</option>
+                            <option value="">None</option>
                             {% elif form.instance.data_type == 'budget' %}
                             <option value="number">Number</option>
                             <option value="budget" selected>Budget</option>
                             <option value="percentage">Percentage</option>
+                            <option value="">None</option>
                             {% elif form.instance.data_type == 'percentage' %}
                             <option value="number">Number</option>
                             <option value="budget">Budget</option>
                             <option value="percentage" selected>Percentage</option>
+                            <option value="">None</option>
+                            {% else %}
+                            <option value="number">Number</option>
+                            <option value="budget">Budget</option>
+                            <option value="percentage">Percentage</option>
+                            <option value="" selected>None</option>
                             {% endif %}
                         </select>
                     </div>

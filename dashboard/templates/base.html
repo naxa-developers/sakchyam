@@ -18,6 +18,13 @@
 </head>
 
 <body class="">
+    <div id="sakchyam-preloader">
+        <img alt="sakchyam-logo" src='{% static "dashboard/images/sakchyam-logo.png" %}' alt="logo " />
+        <div class="spinner">
+            <div class="spinnerhalf spinnerhalf--left"></div>
+            <div class="spinnerhalf spinnerhalf--right"></div>
+        </div>
+    </div>
 <div class="sakchyam-wrapper">
     <!-- header start -->
     <header class="sakchyam-header" id="header">
@@ -139,11 +146,12 @@
                         <i class="material-icons">input</i><span>Secondary Data</span></a>
                     </li>
                     {% endif %}
-                    {% if perms.api.view_payment %}
-                    <li class="{{payment}}  menu-item"><a href="/dashboard/payment-list">
-                        <i class="material-icons">money</i><span>Payment</span></a>
-                    </li>
-                    {% endif %}
+<!--                    {% if perms.api.view_payment %}-->
+<!--                    <li class="{{payment}}  menu-item"><a href="/dashboard/payment-list">-->
+<!--                        <i class="material-icons">money</i><span>Payment</span></a>-->
+<!--                    </li>-->
+<!--                    {% endif %} -->
+
 
                     {% if perms.api.view_province or perms.api.view_district or perms.api.view_municipality %}
                     <li class="{{province}} {{district}} {{municipalities}}  menu-item menu-toggle"><a href="javascript:void(0);" class=""><i

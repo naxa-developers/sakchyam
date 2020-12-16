@@ -57,4 +57,5 @@
 
 >Note:
 > for logs run docker-compose logs -f --tail 100
->check docker container status docker ps / docker ps -a
+> for recreating a single service docker-compose up -d --force-recreate web 
+> check docker container status docker ps / docker ps -a

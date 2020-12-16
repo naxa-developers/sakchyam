@@ -46,7 +46,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="id_partner_id" class="">Partner</label>
+                            <label for="id_partner_id" class="">Partne Institutionr</label>
                             <select name="partner_id" id="id_partner_id" class="selectpicker" data-live-search="true" required>
                                 {% for partner in partner %}
                                     {% if partner.id == form.instance.partner_id.id %}
@@ -115,7 +115,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_number_of_insurance_sold" class="">Number Of Insurance Sold</label>
+                        <label for="id_number_of_insurance_sold" class="">Number of Insurance Policies Sold during project period</label>
                         <input class="form-control" type="number" name="number_of_insurance_sold" value="{{  form.instance.number_of_insurance_sold }}"
                             id="id_number_of_insurance_sold"></div>
                 </div>
@@ -126,7 +126,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_amount_of_insurance" class="">Amount of Insurance</label>
+                        <label for="id_amount_of_insurance" class="">Amount of Insurance Premium</label>
                         <input class="form-control" type="float" name="amount_of_insurance" value="{{  form.instance.amount_of_insurance }}"
                             id="amount_of_insurance"></div>
                 </div>
@@ -137,7 +137,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="id_amount_of_sum_insuranced" class="">Amount of Sum Insuranced</label>
+                        <label for="id_amount_of_sum_insuranced" class="">Amount of Sum Insured</label>
                         <input class="form-control" type="float" name="amount_of_sum_insuranced" value="{{  form.instance.amount_of_sum_insuranced }}"
                             id="id_amount_of_sum_insuranced"></div>
                 </div>

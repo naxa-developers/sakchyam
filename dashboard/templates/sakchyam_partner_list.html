@@ -43,14 +43,14 @@
             <table class="logframe-table dataTable">
                 <thead>
                 <tr>
+                    <th>Partner Institution</th>
+                    <th>Partner Code</th>
 
-                    <th>Code</th>
-                    <th>Partner Name</th>
-                    <th>Financial Literacy</th>
-                    <th>Partnership</th>
-                    <th>Outreach Expansion</th>
-                    <th>Mfs</th>
-                    <th>Product Process</th>
+                    <th>Partner Type on Financial Literacy</th>
+                    <th>Partner Type on Partnership</th>
+                    <th>Partner Type on Outreach Expansion</th>
+                    <th>Partner Type on Mobile Financing Services</th>
+                    <th>Partner Type on Product Process</th>
 
                     <th></th>
                 </tr>
@@ -58,8 +58,9 @@
                 <tbody>
                 {% for data in list %}
                 <tr>
-                    <td>{{ data.code }}</td>
                     <td>{{ data.name }}</td>
+                    <td>{{ data.code }}</td>
+
                     <td>{{ data.financial_literacy }}</td>
                     <td>{{ data.partnership }}</td>
                     <td>{{ data.outreach_expansion }}</td>
