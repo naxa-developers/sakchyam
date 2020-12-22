@@ -64,6 +64,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_password1">Password:</label>
+                        <span style="display:none;color:red;" id="password_common">Password Too Common</span>
                         <input type="password" class="form-control" name="password1" required id="id_password1"/>
                     </div>
                 </div>
@@ -73,6 +74,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_password2">Password confirmation:</label>
+                        <span style="display:none;color:red;" id="password_common2">Password Not Matched</span>
                         <input type="password" class="form-control" name="password2" required id="id_password2"/>
                     </div>
                 </div>
@@ -120,9 +122,46 @@
 
 
         <div class="form-group mrt-100">
-            <button type="submit" class="sakchyam-button sm-button">Save</button>
+            <button type="submit" id="submit_button" disabled class="sakchyam-button sm-button">Save</button>
         </div>
     </form>
+    <script>
+        let pw1=document.getElementById("id_password1");
+        let pw2=document.getElementById("id_password2");
+        let button_element=document.getElementById("submit_button");
+        let password_common=document.getElementById("password_common");
+        let password_common2=document.getElementById("password_common2");
+        console.log("Test",pw1)
+        pw1.onkeyup =()=>{
+                    password_common.style.display="block"
+                    console.log("Start")
+                    if ((pw1.value.match(/[a-z]/g) && pw1.value.match(
+                        /[A-Z]/g) && pw1.value.match(
+                        /[0-9]/g) && pw1.value.match(
+                        /[^a-zA-Z\d]/g) && pw1.value.length >= 8)){
+                            console.log("Valid")
+                            button_element.disabled=false
+                            password_common.style.display="none"
+                        }
+                    else {
+                        button_element.disabled=true
+                        console.log("INVALID")
+                    }
+
+        }
+        pw2.onkeyup =()=>{
+               if (pw2.value !== pw1.value)
+               {
+                password_common2.style.display="block"
+                button_element.disabled=true
+               }
+               else{
+                password_common2.style.display="none"
+                button_element.disabled=false
+               }
+        }
+
+</script>
 </main>
 {% endif %}
 {% endblock %}
