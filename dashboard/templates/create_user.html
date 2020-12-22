@@ -152,12 +152,23 @@
         pw2.onkeyup =()=>{
                if (pw2.value !== pw1.value)
                {
+                console.log("IF")
                 password_common2.style.display="block"
                 button_element.disabled=true
                }
                else{
+                console.log("ELSE")
                 password_common2.style.display="none"
-                button_element.disabled=false
+                if ((pw2.value.match(/[a-z]/g) && pw2.value.match(
+                        /[A-Z]/g) && pw2.value.match(
+                        /[0-9]/g) && pw2.value.match(
+                        /[^a-zA-Z\d]/g) && pw2.value.length >= 8))
+                        {
+                    button_element.disabled=false
+                    }
+                else{
+                    button_element.disabled=true
+                }
                }
         }
 
