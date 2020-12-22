@@ -64,7 +64,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_password1">Password:</label>
-                        <span style="display:none;color:red;" id="password_common">Password Too Common</span>
+                        <span style="display:none;color:red;" id="password_common">Password must contain atleast one uppercase and atleast one number</span>
                         <input type="password" class="form-control" name="password1" required id="id_password1"/>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="id_password2">Password confirmation:</label>
-                        <span style="display:none;color:red;" id="password_common2">Password Not Matched</span>
+                        <span style="display:none;color:red;" id="password_common2">Password Does Not Match </span>
                         <input type="password" class="form-control" name="password2" required id="id_password2"/>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                 <div class="col-md-6">
                     <div class="form-group ">
                         <label for="id_image" class="">Image</label>
-                        <input type="file" name="image" id="id_image">
+                        <input type="file" name="image" id="id_image" required>
                     </div>
                 </div>
             </div>
