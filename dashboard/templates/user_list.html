@@ -42,7 +42,6 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Activate / Deactivate Users</th>
-                    <th>Staff Status</th>
                     <th>role</th>
 <!--                    <th></th>-->
 
@@ -83,30 +82,6 @@
 
                         <a href="/dashboard/activate/{{ user.user.id }}">
                             <button type="button" class="btn btn-outline-danger">Deactivated</button>
-                        </a>
-
-                        {% endif %}
-
-                        {% endif %}
-
-
-                    </td>
-                    <td>
-
-                        {% if perms.auth.change_user %}
-                        {% if user.user.is_staff %}
-
-<!--                        <span class="status green">Active</span>-->
-
-                        <a href="/dashboard/staff/{{ user.user.id }}">
-                            <button type="button" class="btn btn-outline-info">Yes</button>
-                        </a>
-
-
-                        {% else %}
-
-                        <a href="/dashboard/staff/{{ user.user.id }}">
-                            <button type="button" class="btn btn-outline-danger">No</button>
                         </a>
 
                         {% endif %}
