@@ -52,7 +52,7 @@ ruamel.yaml==0.16.12
 ruamel.yaml.clib==0.2.2
 sentry-sdk==0.10.2
 six==1.15.0
-sqlparse==0.4.1
+sqlparse==0.4.2
 tablib==2.0.0
 text-unidecode==1.2
 uritemplate==3.0.1
